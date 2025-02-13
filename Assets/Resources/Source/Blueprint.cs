@@ -424,8 +424,8 @@ public class Blueprint
             {
                 var region = CDesktop.LBWindow().LBRegionGroup().LBRegion();
                 WriteWrap(region, musicRelease.name);
-                WriteWrap(region, "uiayoe".Contains(musicRelease.type.ToLower()[0]) ? "is an" : "is a", "DarkGray");
-                WriteWrap(region, musicRelease.type.ToLower(), "DarkGray");
+                WriteWrap(region, "uiayoe".Contains(musicRelease.types[0].ToLower()[0]) ? "is an" : "is a", "DarkGray");
+                WriteWrap(region, musicRelease.types[0].ToLower(), "DarkGray");
                 WriteWrap(region, "by", "DarkGray");
                 WriteWrap(region, musicRelease.artist, "Gray");
                 if (musicRelease.releaseDate.Length == 10)
@@ -2457,7 +2457,8 @@ public class Blueprint
                     if (i == 32)
                         if (data[i].Length > 0)
                         {
-                            if (possibleTypes.Contains(data[i])) newAlbum.type = data[i];
+                            var types = ProcessTypes(data[i]);
+                            if (types.All(x => possibleTypes.Contains(x))) newAlbum.types = types;
                             else { failed = 320; break; };
                         }
                         else { failed = i; break; };
@@ -2523,6 +2524,18 @@ public class Blueprint
                     string ProcessGenre(string genre)
                     {
                         var capitalised = string.Join(' ', genre.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
+                        return capitalised;
+                    }
+                }
+
+                List<string> ProcessTypes(string line)
+                {
+                    var list = line.Split(",").Select(x => ProcessType(x.Trim())).ToList();
+                    return list;
+
+                    string ProcessType(string type)
+                    {
+                        var capitalised = type[..1].ToUpper() + type[1..].ToLower();
                         return capitalised;
                     }
                 }

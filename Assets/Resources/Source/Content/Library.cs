@@ -56,7 +56,7 @@ public class Library
         releases = releases.Where(x => yearFiltering[int.Parse(x.releaseDate.Substring(0, 4))].Value()).ToList();
         releases = releases.Where(x => decadeFiltering[int.Parse(x.releaseDate.Substring(0, 3) + "0")].Value()).ToList();
         releases = releases.Where(x => durationFiltering[x.duration].Value()).ToList();
-        releases = releases.Where(x => releaseTypeFiltering[x.type].Value()).ToList();
+        releases = releases.Where(x => x.types.Any(y => releaseTypeFiltering[y].Value())).ToList();
         releases = releases.Where(x => (requireAllSelectedGenres.Value() && genreFiltering.Where(x => x.Value.Value()).All(y => x.genres.Contains(y.Key))) || (!requireAllSelectedGenres.Value() && (x.genres.Count == 0 || x.genres.Any(y => genreFiltering[y].Value())))).ToList();
         releases = releases.Where(x => (requireAllSelectedLanguages.Value() && languageFiltering.Where(x => x.Value.Value()).All(y => x.languages.Contains(y.Key))) || (!requireAllSelectedLanguages.Value() && (x.languages.Count == 0 || x.languages.Any(y => languageFiltering[y].Value())))).ToList();
         releases = releases.Where(x => trackAmountFiltering[x.tracks.Count].Value()).ToList();

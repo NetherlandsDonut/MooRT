@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
 
 using UnityEditor;
 using UnityEngine;
@@ -88,6 +89,22 @@ public class Starter : MonoBehaviour
                 rating.Value.trackRatings = rating.Value.savedTrackRatings.ToArray();
         ratings = ratings.Where(x => x.Value.savedTrackRatings != null).ToDictionary(x => x.Key, x => x.Value);
         Deserialize(ref library, "library", false, prefix);
+        var oldLibrary = new List<Release>();
+        Deserialize(ref oldLibrary, "libraryOld", false, prefix);
+        Deserialize(ref library, "library", false, prefix);
+        foreach (var album in oldLibrary)
+        {
+            var find = library.originalReleases.Find(x => x.artist == album.artist && x.name == album.name);
+            if (find != null)
+            {
+                foreach (var track in album.tracks)
+                    if (track.excluded)
+                    {
+                        var findTrack = find.tracks.Find(x => x.name == track.name);
+                        findTrack.excluded = track.excluded;
+                    }
+            }
+        }
         library ??= new();
         SetUpLibrary();
 
@@ -120,7 +137,8 @@ public class Starter : MonoBehaviour
         var allGenres = library.originalReleases.SelectMany(x => x.genres).Distinct();
         Genre.genres = allGenres.Select(x => new Genre(x, library.originalReleases.Where(y => y.genres.Contains(x)).ToList())).ToList();
         TrackAmount.trackAmounts = library.originalReleases.GroupBy(x => x.tracks.Count).Select(x => new TrackAmount(x.Key, x.ToList())).ToList();
-        ReleaseType.releaseTypes = library.originalReleases.GroupBy(x => x.type).Select(x => new ReleaseType(x.Key, x.ToList())).ToList();
+        var allReleaseTypes = library.originalReleases.SelectMany(x => x.types).Distinct();
+        ReleaseType.releaseTypes = allReleaseTypes.Select(x => new ReleaseType(x, library.originalReleases.Where(y => y.types.Contains(x)).ToList())).ToList();
         var debuts = library.originalArtists.Where(x => x.releases.Count > 0).Select(x => x.releases.OrderBy(x => x.releaseDate).First());
         DebutYear.debutYears = debuts.GroupBy(x => x.releaseDate.Substring(0, 4)).Select(x => new DebutYear(int.Parse(x.Key), x.ToList())).ToList();
         Duration.durations = library.originalReleases.GroupBy(x => x.length / 60).Select(x => new Duration(x.Key, x.ToList())).ToList();

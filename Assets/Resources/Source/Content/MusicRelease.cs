@@ -41,7 +41,7 @@ public class MusicRelease
     public string name;
 
     //Type of this music release
-    public string type;
+    public List<string> types;
 
     //Genres of the album
     public List<string> genres;
