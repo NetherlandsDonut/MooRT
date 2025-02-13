@@ -1337,7 +1337,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("LanguagesScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 142);
+            SetAnchor(173, 142);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1357,14 +1357,14 @@ public class Blueprint
             });
         }),
         new("LanguagesScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 142);
+            SetAnchor(173, 123);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("LanguagesScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 173, -162);
+            SetAnchor(173, -162);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1501,7 +1501,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("YearsScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 152);
+            SetAnchor(173, 152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1521,14 +1521,14 @@ public class Blueprint
             });
         }),
         new("YearsScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 133);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("YearsScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 173, -152);
+            SetAnchor(173, -152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1665,7 +1665,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("DecadesScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 85);
+            SetAnchor(173, 85);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1685,14 +1685,14 @@ public class Blueprint
             });
         }),
         new("DecadesScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 66);
+            SetAnchor(173, 66);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(148);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("DecadesScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 173, -86);
+            SetAnchor(173, -86);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1829,7 +1829,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("ReleaseTypesScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 76);
+            SetAnchor(173, 76);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1849,14 +1849,14 @@ public class Blueprint
             });
         }),
         new("ReleaseTypesScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 57);
+            SetAnchor(173, 57);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(129);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("ReleaseTypesScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 173, -76);
+            SetAnchor(173, -76);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1993,7 +1993,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("TrackAmountsScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 152);
+            SetAnchor(173, 152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -2013,14 +2013,14 @@ public class Blueprint
             });
         }),
         new("TrackAmountsScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 133);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("TrackAmountsScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 173, -152);
+            SetAnchor(173, -152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -2157,7 +2157,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("DebutYearsScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 152);
+            SetAnchor(173, 152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -2177,14 +2177,14 @@ public class Blueprint
             });
         }),
         new("DebutYearsScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 133);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("DebutYearsScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 173, -152);
+            SetAnchor(173, -152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -2321,7 +2321,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("DurationsScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 152);
+            SetAnchor(173, 152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -2341,14 +2341,14 @@ public class Blueprint
             });
         }),
         new("DurationsScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 173, 133);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("DurationsScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 173, -152);
+            SetAnchor(173, -152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
