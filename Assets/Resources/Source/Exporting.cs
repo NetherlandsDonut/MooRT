@@ -16,8 +16,8 @@ public class Exporting
     //that consists of album covers provided on the list
     public static void ExportSquareChart(List<MusicRelease> albums)
     {
-        var x = 5;
-        var y = 5;
+        var x = 10;
+        var y = 10;
         var offsetWidth = 4;
         var covers = new List<Sprite>();
         for (int i = 0; i < x * y; i++)

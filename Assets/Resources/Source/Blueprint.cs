@@ -122,7 +122,7 @@ public class Blueprint
                 {
                     var album = library.releases[index + thisWindow.pagination()];
                     var amount = !ratings.ContainsKey(album.ID) ? 0 : Math.Ceiling(ratings[album.ID].rating / 100.0);
-                    AddHeaderRegion(() => AddLine(amount.ToString("000"), amount > 970 ? "Legendary" : (amount > 900 ? "Epic" : (amount > 800 ? "Rare" : (amount > 700 ? "Uncommon" : "Common")))));
+                    AddHeaderRegion(() => AddLine(amount.ToString("000"), amount >= 970 ? "Legendary" : (amount >= 900 ? "Epic" : (amount >= 800 ? "Rare" : (amount >= 700 ? "Uncommon" : "Common")))));
                 }
             }
             AddPaddingRegion(() => AddLine(""));
