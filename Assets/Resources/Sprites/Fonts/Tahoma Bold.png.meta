@@ -7067,7 +7067,7 @@ TextureImporter:
         serializedVersion: 2
         x: 104
         y: 165
-        width: 11
+        width: 5
         height: 15
       alignment: 9
       pivot: {x: 0, y: 1}
@@ -8783,7 +8783,7 @@ TextureImporter:
         serializedVersion: 2
         x: 320
         y: 150
-        width: 10
+        width: 5
         height: 15
       alignment: 9
       pivot: {x: 0, y: 1}
@@ -12611,7 +12611,7 @@ TextureImporter:
         serializedVersion: 2
         x: 371
         y: 105
-        width: 10
+        width: 5
         height: 15
       alignment: 9
       pivot: {x: 0, y: 1}
@@ -17351,7 +17351,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09100000000000000800000000000000
+      spriteID: 04000000000000000800000000000000
       internalID: 400
       vertices: []
       indices: 
@@ -18815,7 +18815,7 @@ TextureImporter:
         serializedVersion: 2
         x: 370
         y: 30
-        width: 6
+        width: 3
         height: 15
       alignment: 9
       pivot: {x: 0, y: 1}
@@ -18881,7 +18881,7 @@ TextureImporter:
         serializedVersion: 2
         x: 383
         y: 30
-        width: 10
+        width: 5
         height: 15
       alignment: 9
       pivot: {x: 0, y: 1}
@@ -19893,7 +19893,7 @@ TextureImporter:
         serializedVersion: 2
         x: 361
         y: 15
-        width: 10
+        width: 11
         height: 15
       alignment: 9
       pivot: {x: 0, y: 1}
@@ -20191,6 +20191,116 @@ TextureImporter:
       bones: []
       spriteID: 00169000000000000800000000000000
       internalID: 1690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font_913
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 3
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b9c198a62865441b8dd2f9d2c18f41
+      internalID: -1681006827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font_914
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 0
+        width: 5
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5289867c97ae71b47b468d8f2d7f7c0d
+      internalID: -196851183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font_915
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 6
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 556b26cdd44116145add059c686559ef
+      internalID: -882486605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font_916
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 5
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4780ecb2575ac354885d19f25bd3ed5b
+      internalID: 1938687844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font_917
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 5
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08dedce266f9b6846a4eaa21856f991b
+      internalID: -2125845968
       vertices: []
       indices: 
       edges: []
@@ -21114,6 +21224,11 @@ TextureImporter:
       Font_910: 1670
       Font_911: 1680
       Font_912: 1690
+      Font_913: -1681006827
+      Font_914: -196851183
+      Font_915: -882486605
+      Font_916: 1938687844
+      Font_917: -2125845968
       Font_92: -1402007228
       Font_93: 1740055951
       Font_94: 1817207753
