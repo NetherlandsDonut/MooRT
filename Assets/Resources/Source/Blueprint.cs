@@ -326,17 +326,26 @@ public class Blueprint
                         else
                         {
                             var trackRating = !ratings.ContainsKey(musicRelease.ID) ? 0 : ratings[musicRelease.ID].trackRatings[track.Item4];
-                            if (trackRating > 0)
-                                AddPaddingRegion(() => AddSmallButton("OtherDetract", (h) =>
+                            AddPaddingRegion(() => AddSmallButton(trackRating > 0 ? "OtherDetract" : "OtherDetractOff", (h) =>
+                            {
+                                if (trackRating <= 0) return;
+                                if (!ratings.ContainsKey(musicRelease.ID))
+                                    ratings.Add(musicRelease.ID, new ReleaseRating(musicRelease));
+                                if (Input.GetKey(LeftShift)) ratings[musicRelease.ID].trackRatings[track.Item4] = 1;
+                                else ratings[musicRelease.ID].trackRatings[track.Item4]--;
+                                ratings[musicRelease.ID].UpdateRating();
+                                CDesktop.RespawnAll();
+                            }, null, null, (h) =>
+                            {
+                                if (!Input.GetKey(Backspace)) return;
+                                var split = musicRelease.discs.Split(":");
+                                if (split.Contains(track.Item4 + "") && track.Item4 != 0)
                                 {
-                                    if (!ratings.ContainsKey(musicRelease.ID))
-                                        ratings.Add(musicRelease.ID, new ReleaseRating(musicRelease));
-                                    ratings[musicRelease.ID].trackRatings[track.Item4]--;
-                                    ratings[musicRelease.ID].UpdateRating();
+                                    split = split.Where(x => x != track.Item4 + "").ToArray();
+                                    musicRelease.discs = string.Join(":", split);
                                     CDesktop.RespawnAll();
-                                }));
-                            else
-                                AddPaddingRegion(() => AddSmallButton("OtherDetractOff"));
+                                }
+                            }));
                         }
                     }
                 }
@@ -372,17 +381,26 @@ public class Blueprint
                         else
                         {
                             var trackRating = !ratings.ContainsKey(musicRelease.ID) ? 0 : ratings[musicRelease.ID].trackRatings[track.Item4];
-                            if (trackRating < possibleRatings.Length - 1)
-                                AddPaddingRegion(() => AddSmallButton("OtherAdd", (h) =>
+                            AddPaddingRegion(() => AddSmallButton(trackRating < possibleRatings.Length - 1 ? "OtherAdd" : "OtherAddOff", (h) =>
+                            {
+                                if (trackRating >= possibleRatings.Length - 1) return;
+                                if (!ratings.ContainsKey(musicRelease.ID))
+                                    ratings.Add(musicRelease.ID, new ReleaseRating(musicRelease));
+                                if (Input.GetKey(LeftShift)) ratings[musicRelease.ID].trackRatings[track.Item4] = possibleRatings.Length - 1;
+                                else ratings[musicRelease.ID].trackRatings[track.Item4]++;
+                                ratings[musicRelease.ID].UpdateRating();
+                                CDesktop.RespawnAll();
+                            }, null, null, (h) =>
+                            {
+                                if (!Input.GetKey(Backspace)) return;
+                                var split = musicRelease.discs.Contains(":") ? musicRelease.discs.Split(":").ToList() : new();
+                                if (!split.Contains(track.Item4 + "") && track.Item4 != 0)
                                 {
-                                    if (!ratings.ContainsKey(musicRelease.ID))
-                                        ratings.Add(musicRelease.ID, new ReleaseRating(musicRelease));
-                                    ratings[musicRelease.ID].trackRatings[track.Item4]++;
-                                    ratings[musicRelease.ID].UpdateRating();
+                                    split.Add(track.Item4 + "");
+                                    musicRelease.discs = string.Join(":", split);
                                     CDesktop.RespawnAll();
-                                }));
-                            else
-                                AddPaddingRegion(() => AddSmallButton("OtherAddOff"));
+                                }
+                            }));
                         }
                     }
                 }
@@ -2543,6 +2561,10 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Open new release file", "", "Center"), (h) =>
             {
                 Serialization.OpenTXT("newRelease");
+            });
+            AddButtonRegion(() => AddLine("sex", "", "Center"), (h) =>
+            {
+                Exporting.ExportSquareChart(library.releases);
             });
             AddButtonRegion(() => AddLine("Exit", "", "Center"), (h) =>
             {

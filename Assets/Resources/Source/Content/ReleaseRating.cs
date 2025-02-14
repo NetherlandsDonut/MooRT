@@ -60,8 +60,8 @@ public class ReleaseRating
     public static (string, string)[] possibleRatings = new (string, string)[]
     {
         ("?", "DimGray"),
-        ("F", "DarkGray"),
-        ("F+", "DarkGray"),
+        ("E", "DarkGray"),
+        ("E+", "DarkGray"),
         ("D", "Gray"),
         ("D+", "Gray"),
         ("C", "Uncommon"),

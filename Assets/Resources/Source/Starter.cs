@@ -87,22 +87,6 @@ public class Starter : MonoBehaviour
                 rating.Value.trackRatings = rating.Value.savedTrackRatings.ToArray();
         ratings = ratings.Where(x => x.Value.savedTrackRatings != null).ToDictionary(x => x.Key, x => x.Value);
         Deserialize(ref library, "library", false, prefix);
-        var oldLibrary = new List<Release>();
-        Deserialize(ref oldLibrary, "libraryOld", false, prefix);
-        Deserialize(ref library, "library", false, prefix);
-        foreach (var album in oldLibrary)
-        {
-            var find = library.originalReleases.Find(x => x.artist == album.artist && x.name == album.name);
-            if (find != null)
-            {
-                foreach (var track in album.tracks)
-                    if (track.excluded)
-                    {
-                        var findTrack = find.tracks.Find(x => x.name == track.name);
-                        findTrack.excluded = track.excluded;
-                    }
-            }
-        }
         library ??= new();
         SetUpLibrary();
 
