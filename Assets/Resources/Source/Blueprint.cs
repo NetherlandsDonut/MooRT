@@ -17,6 +17,7 @@ using static Duration;
 using static DebutYear;
 using static TrackAmount;
 using static ReleaseType;
+using static ArtistBattle;
 using static MusicRelease;
 using static ReleaseRating;
 
@@ -2566,6 +2567,11 @@ public class Blueprint
             {
                 Exporting.ExportSquareChart(library.releases);
             });
+            AddButtonRegion(() => AddLine("Artist battle", "", "Center"), (h) =>
+            {
+                tracksPerArtist = 1;
+                SpawnDesktopBlueprint("PrepareArtistBattle");
+            });
             AddButtonRegion(() => AddLine("Exit", "", "Center"), (h) =>
             {
                 Application.Quit();
@@ -2753,6 +2759,321 @@ public class Blueprint
             AddPaddingRegion(() =>
             {
                 AddLine("Error at line " + errorAtLine + ", seconds aren't a number");
+            });
+        }),
+
+        //Artist battle
+        new("ArtistBattle", () => {
+            SetAnchor(Center);
+            for (int i = 0; i < artistBattle.perRound; i++)
+            {
+                var index = i;
+                var candidate = artistBattle.rounds[currentRound].candidates[index];
+                var track = candidate.track;
+                var album = library.originalReleases.Find(x => x.ID == candidate.releaseID);
+                var artist = library.originalArtists.Find(x => x.ID == candidate.artistID);
+                AddRegionGroup();
+                SetRegionGroupWidth(190);
+                SetRegionGroupHeight(243);
+                AddButtonRegion(() =>
+                {
+                    if (albumCovers.ContainsKey(album.ID + ""))
+                        SetRegionBackgroundAsImage(albumCovers[album.ID + ""]);
+                    else SetRegionBackgroundAsImage(albumCovers["0"]);
+                    SetRegionAsGroupExtender();
+                },
+                (h) =>
+                {
+                    artistBattle.rounds[currentRound++].choice = candidate.artistID;
+                    if (currentRound == artistBattle.rounds.Count)
+                    {
+                        CloseDesktop("ArtistBattle");
+                        Exporting.ExportArtistBattleResults(artistBattle);
+                    }
+                    else CDesktop.RespawnAll();
+                });
+                AddHeaderRegion(() =>
+                {
+                    AddLine(track.duration);
+                    AddText(" / ", "DarkGray");
+                    AddText(track.name, "Gray");
+                });
+                AddPaddingRegion(() =>
+                {
+                    AddLine(artist.name);
+                });
+                AddPaddingRegion(() =>
+                {
+                    AddLine(album.name);
+                });
+            }
+        }),
+        new("ArtistBattleHeader", () => {
+            SetAnchor(Center, 0, 133);
+            AddRegionGroup();
+            SetRegionGroupWidth(190 * artistBattle.perRound);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Round " + (currentRound + 1) + " / " + artistBattle.roundAmount, "", "Center");
+            });
+        }),
+        new("ArtistBattlePerRound", () => {
+            SetAnchor(-221, 225);
+            AddHeaderGroup();
+            SetRegionGroupWidth(440);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Tracks per round", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(146);
+            SetRegionGroupHeight(19);
+            if (perRound == 2) AddHeaderRegion(() => AddLine("2", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("2", "", "Center");
+            },
+            (h) =>
+            {
+                perRound = 2;
+                CDesktop.RespawnAll();
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(147);
+            SetRegionGroupHeight(19);
+            if (perRound == 3) AddHeaderRegion(() => AddLine("3", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("3", "", "Center");
+            },
+            (h) =>
+            {
+                perRound = 3;
+                CDesktop.RespawnAll();
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(146);
+            SetRegionGroupHeight(19);
+            if (perRound == 4) AddHeaderRegion(() => AddLine("4", "", "Center"));
+            else AddButtonRegion(() => AddLine("4", "", "Center"),
+            (h) =>
+            {
+                perRound = 4;
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("ArtistBattlePerArtist", () => {
+            SetAnchor(-221, 187);
+            AddHeaderGroup();
+            SetRegionGroupWidth(440);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Tracks per artist", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(tracksPerArtist > 1 ? "OtherDetract" : "OtherDetractOff", (h) =>
+            {
+                if (tracksPerArtist <= 1) return;
+                if (Input.GetKey(LeftShift)) tracksPerArtist = 1;
+                else tracksPerArtist--;
+                CDesktop.RespawnAll();
+            }));
+            AddRegionGroup();
+            SetRegionGroupWidth(402);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddLine(tracksPerArtist + "", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            var arts = library.originalArtists.Where(x => artistBattleParticipants[x.ID].Value());
+            var max = arts.Count() > 0 ? arts.Min(x => x.releases.Where(y => ratings.ContainsKey(y.ID)).Sum(y => y.tracks.Count(z => !z.excluded))) : 1;
+            if (tracksPerArtist > max) tracksPerArtist = max;
+            AddPaddingRegion(() => AddSmallButton(tracksPerArtist < max ? "OtherAdd" : "OtherAddOff", (h) =>
+            {
+                if (tracksPerArtist >= max) return;
+                if (Input.GetKey(LeftShift)) tracksPerArtist = max;
+                else tracksPerArtist++;
+                CDesktop.RespawnAll();
+            }));
+        }),
+        new("ArtistBattleFinish", () => {
+            SetAnchor(-221, -193);
+            AddHeaderGroup();
+            SetRegionGroupWidth(440);
+            SetRegionGroupHeight(19);
+            AddButtonRegion(() =>
+            {
+                AddLine("Generate", "", "Center");
+            },
+            (h) =>
+            {
+                var arts = library.originalArtists.Where(x => artistBattleParticipants[x.ID].Value());
+                if (arts.Count() < perRound || arts.Count() * tracksPerArtist % perRound != 0) return;
+                currentRound = 0;
+                artistBattle = new ArtistBattle(library.originalArtists.Where(x => artistBattleParticipants[x.ID].Value()).ToList());
+                SpawnDesktopBlueprint("ArtistBattle");
+                CloseDesktop("PrepareArtistBattle");
+            });
+        }),
+        new("ArtistBattleArtists", () => {
+            var rowAmount = 15;
+            var thisWindow = CDesktop.LBWindow();
+            var list = library.artists.Where(x => x.name != "Various artists" && (!hideArtistsOfExcludedCountries.Value() || hideArtistsOfExcludedCountries.Value() && countryFiltering[x.country].Value())).ToList();
+            CDesktop.quickInputWindow = thisWindow;
+            thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
+            SetAnchor(-221, 149);
+            AddHeaderGroup();
+            SetRegionGroupWidth(440);
+            AddPaddingRegion(() =>
+            {
+                AddCheckbox(hideArtistsOfExcludedCountries);
+                AddLine("Hide artists of excluded countries");
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(37);
+            AddButtonRegion(() => AddLine("#", "", "Right"),
+                (h) =>
+                {
+                    library.artists.Reverse();
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+            }
+            AddPaddingRegion(() => AddLine(""));
+            AddRegionGroup();
+            SetRegionGroupWidth(219);
+            AddButtonRegion(() => AddLine("Name"),
+                (h) =>
+                {
+                    library.artists = (lastSort == "Name" ? library.artists.OrderByDescending(x => x.name) : library.artists.OrderBy(x => x.name)).ToList();
+                    lastSort = lastSort == "Name" ? "" : "Name";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var artist = list[index + thisWindow.pagination()];
+                        AddLine(artist.name);
+                        AddCheckbox(artistBattleParticipants[artist.ID], artistBattleParticipants.Select(x => x.Value).ToList());
+                    },
+                    (h) => { });
+            }
+            AddPaddingRegion(() => AddLine(library.artists.Count + " out of " + library.originalArtists.Count + " artists", "DarkGray"));
+            AddRegionGroup();
+            SetRegionGroupWidth(55);
+            AddButtonRegion(() => AddLine("Country"),
+                (h) =>
+                {
+                    library.artists = (lastSort == "Country" ? library.artists.OrderByDescending(x => x.country) : library.artists.OrderBy(x => x.country)).ToList();
+                    lastSort = lastSort == "Country" ? "" : "Country";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var artist = list[index + thisWindow.pagination()];
+                        AddLine(countryCodes.ContainsKey(artist.country) ? Country.countryCodes[artist.country] : "???", "", "Right");
+                    },
+                    (h) => { });
+            }
+            AddPaddingRegion(() => AddLine(""));
+            AddRegionGroup();
+            SetRegionGroupWidth(55);
+            AddButtonRegion(() => AddLine("Points"),
+                (h) =>
+                {
+                    library.artists = (lastSort == "Points" ? library.artists.OrderByDescending(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0)) : library.artists.OrderBy(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0))).ToList();
+                    lastSort = lastSort == "Points" ? "" : "Points";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var artist = list[index + thisWindow.pagination()];
+                        AddLine(artist.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
+                    },
+                    (h) => { });
+            }
+            AddPaddingRegion(() => AddLine(""));
+            AddRegionGroup();
+            SetRegionGroupWidth(55);
+            AddButtonRegion(() => AddLine("RTracks"),
+                (h) =>
+                {
+                    library.artists = (lastSort == "Rated tracks" ? library.artists.OrderByDescending(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? x.tracks.Count(z => !z.excluded) : 0)) : library.artists.OrderBy(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? x.tracks.Count(z => !z.excluded) : 0))).ToList();
+                    lastSort = lastSort == "Rated tracks" ? "" : "Rated tracks";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var artist = list[index + thisWindow.pagination()];
+                        AddLine(artist.releases.Sum(x => ratings.ContainsKey(x.ID) ? x.tracks.Count(z => !z.excluded) : 0) + "", "", "Right");
+                    },
+                    (h) => { });
+            }
+            AddPaddingRegion(() => AddLine(""));
+        }),
+        new("ArtistBattleArtistsScrollbarUp", () => {
+            SetAnchor(200, 130);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            AddPaddingRegion(() =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "ArtistBattleArtists");
+                if (window.pagination() > 0)
+                    AddSmallButton("OtherPageUp", (h) =>
+                    {
+                        PlaySound("DesktopChangePage", 0.6f);
+                        window.DecrementPagination();
+                        CDesktop.RespawnAll();
+                        Respawn("ArtistsScrollbarUp", true);
+                        Respawn("ArtistsScrollbar", true);
+                        Respawn("ArtistsScrollbarDown", true);
+                    });
+                else AddSmallButton("OtherPageUpOff");
+            });
+        }),
+        new("ArtistBattleArtistsScrollbar", () => {
+            SetAnchor(200, 111);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(281);
+            AddPaddingRegion(() => AddLine(""));
+        }),
+        new("ArtistBattleArtistsScrollbarDown", () => {
+            SetAnchor(200, -174);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            AddPaddingRegion(() =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "ArtistBattleArtists");
+                if (window.pagination() < window.maxPagination())
+                    AddSmallButton("OtherPageDown", (h) =>
+                    {
+                        PlaySound("DesktopChangePage", 0.6f);
+                        window.IncrementPagination();
+                        CDesktop.RespawnAll();
+                        Respawn("ArtistsScrollbarUp", true);
+                        Respawn("ArtistsScrollbar", true);
+                        Respawn("ArtistsScrollbarDown", true);
+                    });
+                else AddSmallButton("OtherPageDownOff");
             });
         }),
     };
@@ -3079,6 +3400,34 @@ public class Blueprint
             newCover = null;
             startedGettingCover = false;
             SetDesktopBackground("Backgrounds/Default");
+        }),
+        new("PrepareArtistBattle", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("ArtistBattlePerRound");
+            SpawnWindowBlueprint("ArtistBattlePerArtist");
+            SpawnWindowBlueprint("ArtistBattleFinish");
+            SpawnWindowBlueprint("ArtistBattleArtists");
+            SpawnWindowBlueprint("ArtistBattleArtistsScrollbarUp");
+            SpawnWindowBlueprint("ArtistBattleArtistsScrollbar");
+            SpawnWindowBlueprint("ArtistBattleArtistsScrollbarDown");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
+            });
+            AddMousePaginationHotkeys("ArtistBattleArtists");
+        }),
+        new("ArtistBattle", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("ArtistBattle");
+            SpawnWindowBlueprint("ArtistBattleHeader");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
+            });
         }),
         new("AcceptNewAlbum", () =>
         {

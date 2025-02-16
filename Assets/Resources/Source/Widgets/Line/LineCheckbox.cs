@@ -31,11 +31,15 @@ public class LineCheckbox : MonoBehaviour
         //Invert the field value
         Sound.PlaySound("DesktopButtonPress", 0.8f);
         value.Invert();
+        if (Root.CDesktop.title == "PrepareArtistBattle")
+            Root.CDesktop.RespawnAll();
     }
 
     public void RightClick()
     {
         value.Invert();
         referenceList?.ForEach(x => x.Invert());
+        if (Root.CDesktop.title == "PrepareArtistBattle")
+            Root.CDesktop.RespawnAll();
     }
 }

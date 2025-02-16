@@ -76,6 +76,10 @@ public static class Root
     public static string quickInput = "";
     public static bool hasFocus = true;
 
+    public static int currentRound;
+    public static int perRound = 2;
+    public static int tracksPerArtist;
+
     public static Desktop CDesktop, LBDesktop;
 
     public static List<Desktop> desktops;
@@ -108,9 +112,13 @@ public static class Root
 
     public static Dictionary<int, Bool> durationFiltering;
 
-    public static int loadingScreenProgress = 0;
-    public static int loadingScreenAim = 0;
-    public static int errorAtLine = 0;
+    public static Dictionary<int, Bool> artistBattleParticipants;
+
+    public static int artistBattleTrackAmount;
+
+    public static int loadingScreenProgress;
+    public static int loadingScreenAim;
+    public static int errorAtLine;
     public static string newCoverURL;
     public static Sprite newCover;
     public static bool startedGettingCover;
