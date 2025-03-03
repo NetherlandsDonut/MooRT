@@ -932,7 +932,7 @@ public static class Root
         else
         {
             Texture2D tex = DownloadHandlerTexture.GetContent(www);
-            scale(tex, 188, 188);
+            scale(tex, 188, 188, FilterMode.Trilinear);
             newCover = Sprite.Create(tex, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1);
             newCover.texture.filterMode = FilterMode.Point;
         }
