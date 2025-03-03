@@ -25,35 +25,10 @@ public static class Root
     //Checks whether the screen can be unlocked (will happen a frame later)
     public static bool canUnlockScreen;
 
-    //Cheat setting that makes the player see all areas regardless of exploration progress
-    public static bool showAreasUnconditional;
-
-    //Cheat setting that enables going out of bounds with camera in adventure map
-    public static bool disableCameraBounds;
-
     //Instance of Random that helps in generating random numbers
     public static System.Random random;
 
-    //Page in the chart
-    public static string chartPage;
-
-    //Row for the icons in the chart
-    public static Region iconRow;
-
-    public static string creationRace;
-    public static string creationSpec;
-    public static string creationGender;
-
     public static Highlightable mouseOver;
-
-    //Loading bar elements
-    public static GameObject[] loadingBar;
-
-    //Sites to load
-    public static List<Blueprint> loadSites;
-
-    //Delegated action to the split window confirmation
-    public static Action splitDelegate;
 
     //Index of the input line marker
     public static int inputLineMarker;
@@ -903,44 +878,13 @@ public static class Root
 
     #region General
 
-    //Rolls a chance with a provided % of something happening [0 - 100]
-    public static bool Roll(double chance) => random.Next(0, 100000) < chance * 1000;
-
     //Set what highlightible object mouse is currently hovering over
     public static void SetMouseOver(Highlightable highlightable) => mouseOver = highlightable;
-
-    //Bezier function
-    public static Vector3 Bezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
-    {
-        return (((-p0 + 3 * (p1 - p2) + p3) * t + (3 * (p0 + p2) - 6 * p1)) * t + 3 * (p1 - p0)) * t + p0;
-    }
 
     //Euler function
     public static float EuelerGrowth()
     {
         return (float)Math.Pow(keyStack / 150.0 + 1.0, Math.E);
-    }
-
-    //Compares values with a operator provided in the form of a string
-    public static bool CompareValues(double x, double y, string compare)
-    {
-        if (compare == ">=") return x >= y;
-        if (compare == ">") return x > y;
-        if (compare == "<=") return x <= y;
-        if (compare == "<") return x < y;
-        if (compare == "==") return x == y;
-        if (compare == "!=") return x != y;
-        if (compare == "<>") return x != y;
-        return false;
-    }
-
-    //Compares values with a operator provided in the form of a string
-    public static bool CompareValues(string x, string y, string compare)
-    {
-        if (compare == "==") return x == y;
-        if (compare == "!=") return x != y;
-        if (compare == "<>") return x != y;
-        return false;
     }
 
     //Converts a number into the roman notation

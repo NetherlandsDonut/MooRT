@@ -19,6 +19,7 @@ public class Desktop : MonoBehaviour
     //Camera that is rendering the screen of this desktop
     public Camera screen;
 
+    //Gradient objects for coloring the screen
     public SpriteRenderer gradientTop, gradientBottom;
 
     //Transition object that shows desktop transition effects
@@ -91,29 +92,32 @@ public class Desktop : MonoBehaviour
     {
         if (CDesktop.title == "LoadingScreen")
         {
-            for (int i = loadingScreenProgress; i <= loadingScreenAim; i++)
+            if (loadingScreenProgress <= loadingScreenAim)
             {
-                if (i - 10 >= loadingScreenProgress)
+                var atStart = loadingScreenProgress;
+                for (int i = atStart; i <= loadingScreenAim; i++)
                 {
-                    loadingScreenProgress = i;
-                    break;
+                    if (i - 10 >= atStart) break;
+                    var raw = LoadImage(i + "");
+                    if (raw == null) continue;
+                    if (!albumCovers.ContainsKey(i + ""))
+                    {
+                        loadingScreenProgress++;
+                        albumCovers.Add(i + "", Sprite.Create(raw, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
+                        Texture2D bar = new(188, 17, TextureFormat.ARGB32, false);
+                        bar.CopyPixels(raw, 0, 0, 0, 93, 188, 17, 0, 0, 0);
+                        bar.Apply();
+                        albumBars.Add(i + "", Sprite.Create(bar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
+                    }
                 }
-                if (i == loadingScreenAim) loadingScreenProgress = i;
-                var raw = LoadImage(i + "");
-                if (raw == null) continue;
-                albumCovers.Add(i + "", Sprite.Create(raw, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
-                Texture2D bar = new(188, 17, TextureFormat.ARGB32, false);
-                bar.CopyPixels(raw, 0, 0, 0, 93, 188, 17, 0, 0, 0);
-                bar.Apply();
-                albumBars.Add(i + "", Sprite.Create(bar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
+                loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 17);
             }
-            if (loadingScreenProgress == loadingScreenAim)
+            else if (loadingScreenProgress > loadingScreenAim)
             {
                 cursor.SetCursor(CursorType.Default);
                 SpawnDesktopBlueprint("MusicReleases");
                 CloseDesktop("LoadingScreen");
             }
-            else loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 299.0f), 17);
         }
         else
         {

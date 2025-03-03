@@ -2457,17 +2457,16 @@ public class Blueprint
                         if (data[i].Length > 0)
                         {
                             var trim = data[i].Trim();
-                            if (trim.Contains("."))
-                                newAlbum.releaseDate = data[i];
-                            else if (trim.Contains(" "))
+                            if (trim.Contains(" "))
                             {
                                 var split = trim.Split(" ").ToList();
                                 var day = split.Find(x => x.Length <= 2 && x.All(x => char.IsDigit(x)));
                                 var month = split.Find(x => x.Length >= 3 && x.All(x => !char.IsDigit(x)));
                                 var year = split.Find(x => x.Length == 4 && x.All(x => char.IsDigit(x)));
                                 var reverseMonths = monthNames.ToDictionary(x => x.Value, x => x.Key);
-                                newAlbum.releaseDate = year + "." + reverseMonths[month].ToString("00") + "." + int.Parse(day).ToString("00");
+                                newAlbum.releaseDate = year + "." + reverseMonths[month].ToString("00") + (day != null ? "." + int.Parse(day).ToString("00") : "");
                             }
+                            else newAlbum.releaseDate = data[i];
                         }
                         else { failed = i; break; };
                     if (i == 26)

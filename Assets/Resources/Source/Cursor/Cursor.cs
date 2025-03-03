@@ -31,13 +31,6 @@ public class Cursor : MonoBehaviour
         color = "None";
     }
 
-    //Sets the color of the cursor to a different color from default white
-    public void SetColor(string color)
-    {
-        render.color = Coloring.colors[color];
-        this.color = color;
-    }
-
     //Sets the style of the cursor
     public void SetCursor(CursorType type)
     {

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Collections.Generic;
 
 using UnityEditor;
 using UnityEngine;
@@ -10,10 +9,10 @@ using static Sound;
 using static Cursor;
 using static Library;
 using static Defines;
-using static ProgramSettings;
 using static CursorRemote;
 using static ReleaseRating;
 using static Serialization;
+using static ProgramSettings;
 
 public class Starter : MonoBehaviour
 {
@@ -65,9 +64,9 @@ public class Starter : MonoBehaviour
 
         //In case of Unity debugging set data directory
         //to that of the build so we don't have to store game data in two places
-#if (UNITY_EDITOR)
-        prefix = "D:/Games/MooRT/";
-#endif
+        #if (UNITY_EDITOR)
+        prefix = "D:/Programs/MooRT/";
+        #endif
 
         buildingSprites = Resources.LoadAll<Sprite>("Sprites/Other/Second").ToDictionary(x => x.name, x => x);
         buildingSprites.Add("RegionBorder", Resources.Load<Sprite>("Sprites/PremadeBorders/RegionBorder"));
