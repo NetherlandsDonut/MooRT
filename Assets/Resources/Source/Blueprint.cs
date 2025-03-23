@@ -613,22 +613,6 @@ public class Blueprint
             });
             AddButtonRegion(() =>
             {
-                AddLine("Modify rating", "", "Center");
-            },
-            (h) =>
-            {
-
-            });
-            AddButtonRegion(() =>
-            {
-                AddLine("Manual placement", "", "Center");
-            },
-            (h) =>
-            {
-
-            });
-            AddButtonRegion(() =>
-            {
                 AddLine("Clear rating", "", "Center");
             },
             (h) =>
@@ -638,6 +622,26 @@ public class Blueprint
                 Respawn("MusicReleaseScrollbarUp", true);
                 Respawn("MusicReleaseScrollbar", true);
                 Respawn("MusicReleaseScrollbarDown", true);
+            });
+            AddPaddingRegion(() =>
+            {
+                if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
+                {
+                    AddLine("#" + (library.originalReleases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1));
+                    AddText(" overall", "DarkGray");
+                }
+                else AddLine("", "", "Center");
+            });
+            AddPaddingRegion(() =>
+            {
+                if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
+                {
+                    AddLine("#" + (years.Find(x => x.year == int.Parse(musicRelease.releaseDate[..4])).releases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1));
+                    AddText(" for " + musicRelease.releaseDate[..4] + ", ", "DarkGray");
+                    AddText("#" + (decades.Find(x => x.decade == int.Parse(musicRelease.releaseDate[..3] + "0")).releases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1), "Gray");
+                    AddText(" for " + musicRelease.releaseDate[..3] + "0s", "DarkGray");
+                }
+                else AddLine("", "", "Center");
             });
         }),
         new("MusicReleaseBottomLine", () => {
