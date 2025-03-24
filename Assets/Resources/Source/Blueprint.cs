@@ -288,7 +288,7 @@ public class Blueprint
                 {
                     discOffset++;
                     var sum = 0;
-                    var upTo = discs.Last() == i ? musicRelease.tracks.Count : discs.First(x => x > i);
+                    var upTo = discs.Last() == i ? musicRelease.tracks.Count : discs.Find(x => x > i);
                     for (int j = i; j < upTo; j++)
                         sum += musicRelease.tracks[j].length;
                     tracklist.Add((-1, musicRelease.format == "digital" ? "Disc " + discOffset : "Side " + (char)(discOffset + 64), sum / 60 + "m" + (sum % 60 > 0 ? " " + sum % 60 + "s" : ""), 0));
@@ -394,7 +394,7 @@ public class Blueprint
                             }, null, null, (h) =>
                             {
                                 if (!Input.GetKey(Backspace)) return;
-                                var split = musicRelease.discs.Contains(":") ? musicRelease.discs.Split(":").ToList() : new();
+                                var split = musicRelease.discs.Length > 0 ? musicRelease.discs.Split(":").ToList() : new();
                                 if (!split.Contains(track.Item4 + "") && track.Item4 != 0)
                                 {
                                     split.Add(track.Item4 + "");
@@ -3144,6 +3144,12 @@ public class Blueprint
                     Respawn("MusicReleaseScrollbar", true);
                     Respawn("MusicReleaseScrollbarDown", true);
                     SpawnAlbumTransition();
+                    if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                    {
+                        if (musicRelease.pallete == null)
+                            musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                        SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                    }
                 }
             });
             AddHotkey(D, () =>
@@ -3160,6 +3166,12 @@ public class Blueprint
                         Respawn("MusicReleaseScrollbarUp", true);
                         Respawn("MusicReleaseScrollbar", true);
                         Respawn("MusicReleaseScrollbarDown", true);
+                        if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                        {
+                            if (musicRelease.pallete == null)
+                                musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                            SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                        }
                     }
                 }
             }, false);
@@ -3174,6 +3186,12 @@ public class Blueprint
                     Respawn("MusicReleaseScrollbar", true);
                     Respawn("MusicReleaseScrollbarDown", true);
                     SpawnAlbumTransition();
+                    if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                    {
+                        if (musicRelease.pallete == null)
+                            musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                        SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                    }
                 }
             });
             AddHotkey(A, () =>
@@ -3190,6 +3208,12 @@ public class Blueprint
                         Respawn("MusicReleaseScrollbarUp", true);
                         Respawn("MusicReleaseScrollbar", true);
                         Respawn("MusicReleaseScrollbarDown", true);
+                        if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                        {
+                            if (musicRelease.pallete == null)
+                                musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                            SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                        }
                     }
                 }
             }, false);
