@@ -66,6 +66,7 @@ public class Blueprint
                 var index = i;
                 if (library.releases.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -93,18 +94,8 @@ public class Blueprint
                         musicReleaseIndex = index + thisWindow.pagination();
                         musicRelease = library.releases[musicReleaseIndex];
                         SpawnDesktopBlueprint("MusicRelease");
-                    },
-                    null,
-                    (h) => () =>
-                    {
-                        var album = library.releases[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(album.name);
-                        });
                     });
+                else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
             AddPaddingRegion(() => AddLine(library.releases.Count + " out of " + library.originalReleases.Count + " releases", "DarkGray"));
             AddRegionGroup();
@@ -125,6 +116,7 @@ public class Blueprint
                     var amount = !ratings.ContainsKey(album.ID) ? 0 : Math.Ceiling(ratings[album.ID].rating / 100.0);
                     AddHeaderRegion(() => AddLine(amount.ToString("000"), amount >= 970 ? "Legendary" : (amount >= 900 ? "Epic" : (amount >= 800 ? "Rare" : (amount >= 700 ? "Uncommon" : "Common")))));
                 }
+                else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -140,23 +132,12 @@ public class Blueprint
             {
                 var index = i;
                 if (library.releases.Count > index + thisWindow.pagination())
-                    AddButtonRegion(() =>
+                    AddHeaderRegion(() =>
                     {
                         var album = library.releases[index + thisWindow.pagination()];
                         AddLine(album.releaseDate.Substring(0, 4), "", "Center");
-                    },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var album = library.releases[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(album.name);
-                        });
                     });
+                else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -172,23 +153,12 @@ public class Blueprint
             {
                 var index = i;
                 if (library.releases.Count > index + thisWindow.pagination())
-                    AddButtonRegion(() =>
+                    AddHeaderRegion(() =>
                     {
                         var album = library.releases[index + thisWindow.pagination()];
                         AddLine(album.duration + "m", "", "Right");
-                    },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var album = library.releases[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(album.name);
-                        });
                     });
+                else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -204,23 +174,12 @@ public class Blueprint
             {
                 var index = i;
                 if (library.releases.Count > index + thisWindow.pagination())
-                    AddButtonRegion(() =>
+                    AddHeaderRegion(() =>
                     {
                         var album = library.releases[index + thisWindow.pagination()];
                         AddLine(album.tracks.Count + "", "", "Right");
-                    },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var album = library.releases[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(album.name);
-                        });
                     });
+                else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -658,6 +617,12 @@ public class Blueprint
                     Respawn("MusicReleaseScrollbar", true);
                     Respawn("MusicReleaseScrollbarDown", true);
                     SpawnAlbumTransition();
+                    if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                    {
+                        if (musicRelease.pallete == null)
+                            musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                        SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                    }
                 });
                 else AddSmallButton("OtherPreviousPageOff");
             });
@@ -675,6 +640,12 @@ public class Blueprint
                     Respawn("MusicReleaseScrollbar", true);
                     Respawn("MusicReleaseScrollbarDown", true);
                     SpawnAlbumTransition();
+                    if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                    {
+                        if (musicRelease.pallete == null)
+                            musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                        SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                    }
                 });
                 else AddSmallButton("OtherNextPageOff");
             });
