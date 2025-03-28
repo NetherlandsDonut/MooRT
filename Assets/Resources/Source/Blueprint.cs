@@ -20,6 +20,7 @@ using static ReleaseType;
 using static ArtistBattle;
 using static MusicRelease;
 using static ReleaseRating;
+using static ProgramSettings;
 
 using static Root.Anchor;
 
@@ -2408,7 +2409,9 @@ public class Blueprint
         new("Menu", () => {
             SetAnchor(Center);
             AddRegionGroup();
-            AddButtonRegion(() => AddLine("Import new release", "", "Center"), (h) =>
+            SetRegionGroupWidth(160);
+            AddHeaderRegion(() => AddLine("Library management:"));
+            AddButtonRegion(() => AddLine("Import new release"), (h) =>
             {
                 var failed = -1;
                 var data = Serialization.ReadTXT("newRelease");
@@ -2533,22 +2536,67 @@ public class Blueprint
                     }
                 }
             });
-            AddButtonRegion(() => AddLine("Open new release file", "", "Center"), (h) =>
+            AddButtonRegion(() => AddLine("Open new release file"), (h) =>
             {
                 Serialization.OpenTXT("newRelease");
             });
-            AddButtonRegion(() => AddLine("sex", "", "Center"), (h) =>
+            AddEmptyRegion();
+            AddHeaderRegion(() => AddLine("Exporting:"));
+            AddButtonRegion(() => AddLine("Export album chart"), (h) =>
             {
                 Exporting.ExportSquareChart(library.releases);
             });
-            AddButtonRegion(() => AddLine("Artist battle", "", "Center"), (h) =>
+            AddEmptyRegion();
+            AddHeaderRegion(() => AddLine("Tools:"));
+            AddButtonRegion(() => AddLine("Artist battle"), (h) =>
             {
                 tracksPerArtist = 1;
                 SpawnDesktopBlueprint("PrepareArtistBattle");
             });
-            AddButtonRegion(() => AddLine("Exit", "", "Center"), (h) =>
+            AddEmptyRegion();
+            AddHeaderRegion(() => AddLine("Menu:"));
+            AddButtonRegion(() => AddLine("Settings"), (h) =>
+            {
+                CloseWindow("Menu");
+                SpawnWindowBlueprint("MenuSettings");
+            });
+            AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
                 Application.Quit();
+            });
+        }),
+        new("MenuSettings", () => {
+            SetAnchor(Center);
+            AddRegionGroup();
+            SetRegionGroupWidth(190);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Settings:", "Gray");
+                AddSmallButton("OtherClose", (h) =>
+                {
+                    CloseWindow(h.window);
+                    Respawn("Menu");
+                });
+            });
+            AddButtonRegion(() =>
+            {
+                AddCheckbox(settings.pixelPerfectVision);
+                AddLine("Pixel perfect vision");
+            },
+            (h) =>
+            {
+                settings.pixelPerfectVision.Invert();
+                CDesktop.RespawnAll();
+            });
+            AddButtonRegion(() =>
+            {
+                AddCheckbox(settings.soundEffects);
+                AddLine("Sound effects");
+            },
+            (h) =>
+            {
+                settings.soundEffects.Invert();
+                CDesktop.RespawnAll();
             });
         }),
 
