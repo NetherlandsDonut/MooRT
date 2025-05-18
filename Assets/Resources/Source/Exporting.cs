@@ -29,6 +29,7 @@ public class Exporting
         if (!Directory.Exists("MooRT_Export"))
             Directory.CreateDirectory("MooRT_Export");
         File.WriteAllBytes("MooRT_Export/squareChart.png", chart.EncodeToPNG());
+        Process.Start(Environment.CurrentDirectory + "\\MooRT_Export\\squareChart.png");
     }
 
     public static void ExportArtistBattleResults(ArtistBattle artistBattle)

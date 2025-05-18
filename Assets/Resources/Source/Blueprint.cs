@@ -2575,6 +2575,10 @@ public class Blueprint
             });
             AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
+                if (library != null && library.originalReleases.Count > 0 && library.originalArtists.Count > 0)
+                    Serialization.Serialize(library, "library", true);
+                if (ratings != null && ratings.Count > 0)
+                    Serialization.Serialize(ratings, "ratings", true);
                 Application.Quit();
             });
         }),
