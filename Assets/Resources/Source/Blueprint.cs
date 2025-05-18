@@ -2544,7 +2544,16 @@ public class Blueprint
             AddHeaderRegion(() => AddLine("Exporting:"));
             AddButtonRegion(() => AddLine("Quick #100 Studio albums"), (h) =>
             {
-                Exporting.ExportSquareChart(library.originalReleases.Where(x => x.types.Contains("Studio album")).OrderByDescending(x => x.GetRating()).ToList());
+                Exporting.ExportSquareChart(library.originalReleases.Where(x => x.GetRating() > 0 && x.types.Contains("Studio album")).OrderByDescending(x => x.GetRating()).ToList());
+            });
+            AddButtonRegion(() => AddLine("Quick chart of current"), (h) =>
+            {
+                var rel = library.releases.Where(x => x.GetRating() > 0).OrderByDescending(x => x.GetRating()).ToList();
+                var squareN = 1;
+                for (int i = 2; ; i++)
+                    if (i * i > rel.Count) break;
+                    else squareN = i;
+                Exporting.ExportSquareChart(rel, squareN, squareN);
             });
             AddButtonRegion(() => AddLine("Export album chart"), (h) =>
             {
@@ -3212,7 +3221,7 @@ public class Blueprint
             },
             (h) =>
             {
-                Exporting.ExportSquareChart(library.releases, squareChartXSize, squareChartYSize, quareChartOffset);
+                Exporting.ExportSquareChart(library.releases.Where(x => x.GetRating() > 0).ToList(), squareChartXSize, squareChartYSize, quareChartOffset);
             });
         }),
     };

@@ -16,7 +16,7 @@ public class Exporting
     {
         var offsetWidth = offset ? 4 : 0;
         var covers = new List<Sprite>();
-        for (int i = 0; i < x * y; i++)
+        for (int i = 0; i < x * y && i < albums.Count; i++)
             covers.Add(albumCovers[albums[i].ID + ""]);
         var amount = 188 + offsetWidth;
         var chart = new Texture2D(1, 1);
