@@ -12,22 +12,19 @@ public class Exporting
 {
     //This method exports a square chart of XY size
     //that consists of album covers provided on the list
-    public static void ExportSquareChart(List<MusicRelease> albums)
+    public static void ExportSquareChart(List<MusicRelease> albums, int x = 10, int y = 10, bool offset = true)
     {
-        var x = 10;
-        var y = 10;
-        var offsetWidth = 4;
+        var offsetWidth = offset ? 4 : 0;
         var covers = new List<Sprite>();
         for (int i = 0; i < x * y; i++)
             covers.Add(albumCovers[albums[i].ID + ""]);
-        var offset = true;
-        var amount = 188 + (offset ? offsetWidth : 0);
+        var amount = 188 + offsetWidth;
         var chart = new Texture2D(1, 1);
         chart.SetPixel(0, 0, new Color(0, 0, 0, 1));
-        scale(chart, amount * x + (offset ? offsetWidth : 0), amount * y + (offset ? offsetWidth : 0));
-        for (int i = 0; i < x; i++)
-            for (int j = 0; j < y && j + i * x < covers.Count; j++)
-                Graphics.CopyTexture(covers[j + i * x].texture, 0, 0, 0, 0, 188, 188, chart, 0, 0, j * amount + (offset ? offsetWidth : 0), (x - i - 1) * amount + (offset ? offsetWidth : 0));
+        scale(chart, amount * x + offsetWidth, amount * y + offsetWidth);
+        for (int j = 0; j < y; j++)
+            for (int i = 0; i < x && i + j * x < covers.Count; i++)
+                Graphics.CopyTexture(covers[i + j * x].texture, 0, 0, 0, 0, 188, 188, chart, 0, 0, i * amount + offsetWidth, (y - j - 1) * amount + offsetWidth);
         chart.Apply();
         if (!Directory.Exists("MooRT_Export"))
             Directory.CreateDirectory("MooRT_Export");

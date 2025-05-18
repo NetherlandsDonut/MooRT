@@ -2409,7 +2409,7 @@ public class Blueprint
         new("Menu", () => {
             SetAnchor(Center);
             AddRegionGroup();
-            SetRegionGroupWidth(160);
+            SetRegionGroupWidth(180);
             AddHeaderRegion(() => AddLine("Library management:"));
             AddButtonRegion(() => AddLine("Import new release"), (h) =>
             {
@@ -2542,9 +2542,13 @@ public class Blueprint
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Exporting:"));
+            AddButtonRegion(() => AddLine("Quick #100 Studio albums"), (h) =>
+            {
+                Exporting.ExportSquareChart(library.originalReleases.Where(x => x.types.Contains("Studio album")).OrderByDescending(x => x.GetRating()).ToList());
+            });
             AddButtonRegion(() => AddLine("Export album chart"), (h) =>
             {
-                Exporting.ExportSquareChart(library.releases);
+                SpawnDesktopBlueprint("SquareChart");
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Tools:"));
@@ -3098,6 +3102,119 @@ public class Blueprint
                 else AddSmallButton("OtherPageDownOff");
             });
         }),
+
+        //Export album chart
+        new("SquareChartOffset", () => {
+            SetAnchor(-145, 95);
+            AddHeaderGroup();
+            SetRegionGroupWidth(294);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Offset between each album art", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(146);
+            SetRegionGroupHeight(19);
+            if (!quareChartOffset) AddHeaderRegion(() => AddLine("No", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("No", "", "Center");
+            },
+            (h) =>
+            {
+                quareChartOffset = false;
+                CDesktop.RespawnAll();
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(147);
+            SetRegionGroupHeight(19);
+            if (quareChartOffset) AddHeaderRegion(() => AddLine("Yes", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("Yes", "", "Center");
+            },
+            (h) =>
+            {
+                quareChartOffset = true;
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("SquareChartWidth", () => {
+            SetAnchor(-145, 57);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Width of the chart", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(squareChartXSize > 1 ? "OtherDetract" : "OtherDetractOff", (h) =>
+            {
+                if (squareChartXSize <= 1) return;
+                if (Input.GetKey(LeftShift)) squareChartXSize = 1;
+                else squareChartXSize--;
+                CDesktop.RespawnAll();
+            }));
+            AddRegionGroup();
+            SetRegionGroupWidth(254);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddLine(squareChartXSize + "", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(squareChartXSize < 200 ? "OtherAdd" : "OtherAddOff", (h) =>
+            {
+                if (Input.GetKey(LeftShift)) squareChartXSize += 10;
+                else squareChartXSize++;
+                if (squareChartXSize > 200) squareChartXSize = 200;
+                CDesktop.RespawnAll();
+            }));
+        }),
+        new("SquareChartHeight", () => {
+            SetAnchor(-145, 19);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Height of the chart", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(squareChartYSize > 1 ? "OtherDetract" : "OtherDetractOff", (h) =>
+            {
+                if (squareChartYSize <= 1) return;
+                if (Input.GetKey(LeftShift)) squareChartYSize = 1;
+                else squareChartYSize--;
+                CDesktop.RespawnAll();
+            }));
+            AddRegionGroup();
+            SetRegionGroupWidth(254);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddLine(squareChartYSize + "", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(squareChartYSize < 200 ? "OtherAdd" : "OtherAddOff", (h) =>
+            {
+                if (Input.GetKey(LeftShift)) squareChartYSize += 10;
+                else squareChartYSize++;
+                if (squareChartYSize > 200) squareChartYSize = 200;
+                CDesktop.RespawnAll();
+            }));
+        }),
+        new("SquareChartFinish", () => {
+            SetAnchor(-145, -19);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Amount of albums:", "", "Center"));
+            AddPaddingRegion(() => AddLine(squareChartXSize + " × " + squareChartYSize + " = " + (squareChartXSize * squareChartYSize), "", "Center"));
+            AddButtonRegion(() =>
+            {
+                AddLine("Generate", "", "Center");
+            },
+            (h) =>
+            {
+                Exporting.ExportSquareChart(library.releases, squareChartXSize, squareChartYSize, quareChartOffset);
+            });
+        }),
     };
 
     public static List<Blueprint> desktopBlueprints = new()
@@ -3519,6 +3636,19 @@ public class Blueprint
                     Respawn("MusicReleaseScrollbar");
                     Respawn("MusicReleaseScrollbarDown");
                 }
+            });
+        }),
+        new("SquareChart", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("SquareChartOffset");
+            SpawnWindowBlueprint("SquareChartWidth");
+            SpawnWindowBlueprint("SquareChartHeight");
+            SpawnWindowBlueprint("SquareChartFinish");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
             });
         }),
     };

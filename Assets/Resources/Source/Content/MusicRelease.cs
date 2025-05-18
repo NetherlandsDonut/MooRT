@@ -97,7 +97,15 @@ public class MusicRelease
     //Clears track ratings and stores them to backup
     public void ClearTrackRatings()
     {
+        if (!ratings.ContainsKey(ID)) return;
         var releaseRating = ratings[ID];
         releaseRating.trackRatings = new int[tracks.Count];
+    }
+
+    //Gets the album rating
+    public int GetRating()
+    {
+        if (!ratings.ContainsKey(ID)) return 0;
+        return ratings[ID].rating;
     }
 }

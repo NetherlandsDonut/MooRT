@@ -55,6 +55,10 @@ public static class Root
     public static int perRound = 2;
     public static int tracksPerArtist;
 
+    public static bool quareChartOffset = true;
+    public static int squareChartXSize = 10;
+    public static int squareChartYSize = 10;
+
     public static Desktop CDesktop, LBDesktop;
 
     public static List<Desktop> desktops;
