@@ -98,16 +98,25 @@ public class Desktop : MonoBehaviour
                 for (int i = atStart; i <= loadingScreenAim; i++)
                 {
                     if (i - 10 >= atStart) break;
+                    var rawBar = LoadBar(i + "");
+                    if (rawBar != null && !albumBars.ContainsKey(i + ""))
+                        albumBars.Add(i + "", Sprite.Create(rawBar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
                     var raw = LoadImage(i + "");
                     if (raw == null) continue;
                     if (!albumCovers.ContainsKey(i + ""))
                     {
                         loadingScreenProgress++;
                         albumCovers.Add(i + "", Sprite.Create(raw, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
-                        Texture2D bar = new(188, 17, TextureFormat.ARGB32, false);
-                        bar.CopyPixels(raw, 0, 0, 0, 93, 188, 17, 0, 0, 0);
-                        bar.Apply();
-                        albumBars.Add(i + "", Sprite.Create(bar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
+                        if (!albumBars.ContainsKey(i + ""))
+                        {
+                            Texture2D bar = new(188, 17, TextureFormat.ARGB32, false);
+                            bar.CopyPixels(raw, 0, 0, 0, 93, 188, 17, 0, 0, 0);
+                            bar.Apply();
+                            albumBars.Add(i + "", Sprite.Create(bar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
+                            var prefix = "";
+                            if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
+                            System.IO.File.WriteAllBytes(prefix + "MooRT_Data_4/" + i + ".png", albumBars.Last().Value.texture.EncodeToPNG());
+                        }
                     }
                 }
                 loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 17);

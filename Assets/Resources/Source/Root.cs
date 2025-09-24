@@ -526,12 +526,6 @@ public static class Root
         CDesktop.LBWindow().LBRegionGroup().LBRegion().reverseButtons ^= true;
     }
 
-    public static void SetRegionBackgroundToGrayscale()
-    {
-        var region = CDesktop.LBWindow().LBRegionGroup().LBRegion();
-        region.background.GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Shaders/Grayscale");
-    }
-
     //When other region groups are lenghier than the
     //one this region is in then the unique extender will
     //be extended to match length of the other group regions
@@ -918,6 +912,21 @@ public static class Root
         if (!Directory.Exists(prefix + "MooRT_Data_3"))
             Directory.CreateDirectory(prefix + "MooRT_Data_3");
         var imagePath = prefix + @"MooRT_Data_3\" + file + (encoded ? "" : ".png");
+        if (!File.Exists(imagePath)) return null;
+        byte[] byteArray = File.ReadAllBytes(imagePath);
+        Texture2D tex = new(1, 1);
+        ImageConversion.LoadImage(tex, byteArray);
+        tex.filterMode = FilterMode.Point;
+        tex.Apply();
+        return tex;
+    }
+
+    public static Texture2D LoadBar(string file, bool encoded = false, string prefix = "")
+    {
+        if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
+        if (!Directory.Exists(prefix + "MooRT_Data_4"))
+            Directory.CreateDirectory(prefix + "MooRT_Data_4");
+        var imagePath = prefix + @"MooRT_Data_4\" + file + (encoded ? "" : ".png");
         if (!File.Exists(imagePath)) return null;
         byte[] byteArray = File.ReadAllBytes(imagePath);
         Texture2D tex = new(1, 1);

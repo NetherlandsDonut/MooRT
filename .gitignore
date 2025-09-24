@@ -32,6 +32,8 @@ Thumbs.db
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+/MooRT_Data_4/
+/MooRT_Export/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
