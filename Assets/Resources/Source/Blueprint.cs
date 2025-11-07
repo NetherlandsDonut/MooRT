@@ -2559,6 +2559,12 @@ public class Blueprint
             {
                 SpawnDesktopBlueprint("SquareChart");
             });
+            AddButtonRegion(() => AddLine("Export scaled album chart"), (h) =>
+            {
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                SpawnDesktopBlueprint("ScaledChart");
+            });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Tools:"));
             AddButtonRegion(() => AddLine("Artist battle"), (h) =>
@@ -3126,27 +3132,27 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(146);
             SetRegionGroupHeight(19);
-            if (!quareChartOffset) AddHeaderRegion(() => AddLine("No", "", "Center"));
+            if (!squareChartOffset) AddHeaderRegion(() => AddLine("No", "", "Center"));
             else AddButtonRegion(() =>
             {
                 AddLine("No", "", "Center");
             },
             (h) =>
             {
-                quareChartOffset = false;
+                squareChartOffset = false;
                 CDesktop.RespawnAll();
             });
             AddRegionGroup();
             SetRegionGroupWidth(147);
             SetRegionGroupHeight(19);
-            if (quareChartOffset) AddHeaderRegion(() => AddLine("Yes", "", "Center"));
+            if (squareChartOffset) AddHeaderRegion(() => AddLine("Yes", "", "Center"));
             else AddButtonRegion(() =>
             {
                 AddLine("Yes", "", "Center");
             },
             (h) =>
             {
-                quareChartOffset = true;
+                squareChartOffset = true;
                 CDesktop.RespawnAll();
             });
         }),
@@ -3225,7 +3231,169 @@ public class Blueprint
             },
             (h) =>
             {
-                Exporting.ExportSquareChart(library.releases.Where(x => x.GetRating() > 0).ToList(), squareChartXSize, squareChartYSize, quareChartOffset);
+                Exporting.ExportSquareChart(library.releases.Where(x => x.GetRating() > 0).ToList(), squareChartXSize, squareChartYSize, squareChartOffset);
+            });
+        }),
+
+        //Export scaled album chart
+        new("ScaledChartPerfectFit", () => {
+            SetAnchor(-145, 95);
+            AddHeaderGroup();
+            SetRegionGroupWidth(294);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Perfect fit on each row", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(146);
+            SetRegionGroupHeight(19);
+            if (!scaledChartPerfectFit) AddHeaderRegion(() => AddLine("No", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("No", "", "Center");
+            },
+            (h) =>
+            {
+                scaledChartPerfectFit = false;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(147);
+            SetRegionGroupHeight(19);
+            if (scaledChartPerfectFit) AddHeaderRegion(() => AddLine("Yes", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("Yes", "", "Center");
+            },
+            (h) =>
+            {
+                scaledChartPerfectFit = true;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            });
+        }),
+
+        //Export scaled album chart
+        new("ScaledChartDecrease", () => {
+            SetAnchor(-145, 95);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Steady decrease in cover size", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(scaledChartDecrease > 10 ? "OtherDetract" : "OtherDetractOff", (h) =>
+            {
+                if (scaledChartDecrease <= 10) return;
+                if (Input.GetKey(LeftShift)) scaledChartDecrease = 10;
+                else scaledChartDecrease--;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            }));
+            AddRegionGroup();
+            SetRegionGroupWidth(254);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddLine(scaledChartDecrease + "", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(scaledChartDecrease < 100 ? "OtherAdd" : "OtherAddOff", (h) =>
+            {
+                if (Input.GetKey(LeftShift)) scaledChartDecrease += 100;
+                else scaledChartDecrease++;
+                if (scaledChartDecrease > 100) scaledChartDecrease = 100;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            }));
+        }),
+        new("ScaledChartFirstRowSize", () => {
+            SetAnchor(-145, 57);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("First row cover amount", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(scaledChartFirstRowAmount > 1 ? "OtherDetract" : "OtherDetractOff", (h) =>
+            {
+                if (scaledChartFirstRowAmount <= 1) return;
+                if (Input.GetKey(LeftShift)) scaledChartFirstRowAmount = 1;
+                else scaledChartFirstRowAmount--;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            }));
+            AddRegionGroup();
+            SetRegionGroupWidth(254);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddLine(scaledChartFirstRowAmount + "", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(scaledChartFirstRowAmount < 200 ? "OtherAdd" : "OtherAddOff", (h) =>
+            {
+                if (Input.GetKey(LeftShift)) scaledChartFirstRowAmount += 10;
+                else scaledChartFirstRowAmount++;
+                if (scaledChartFirstRowAmount > 200) scaledChartFirstRowAmount = 200;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            }));
+        }),
+        new("ScaledChartRowAmount", () => {
+            SetAnchor(-145, 19);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Row amount of the chart", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(scaledChartRowAmount > 1 ? "OtherDetract" : "OtherDetractOff", (h) =>
+            {
+                if (scaledChartRowAmount <= 1) return;
+                if (Input.GetKey(LeftShift)) scaledChartRowAmount = 1;
+                else scaledChartRowAmount--;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            }));
+            AddRegionGroup();
+            SetRegionGroupWidth(254);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddLine(scaledChartRowAmount + "", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(19);
+            AddPaddingRegion(() => AddSmallButton(scaledChartRowAmount < 200 ? "OtherAdd" : "OtherAddOff", (h) =>
+            {
+                if (Input.GetKey(LeftShift)) scaledChartRowAmount += 10;
+                else scaledChartRowAmount++;
+                if (scaledChartRowAmount > 200) scaledChartRowAmount = 200;
+                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
+                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
+                CDesktop.RespawnAll();
+            }));
+        }),
+        new("ScaledChartFinish", () => {
+            SetAnchor(-145, -19);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Amount of albums:", "", "Center"));
+            AddPaddingRegion(() => AddLine((Exporting.scaledChartBlueprint == null ? 0 : Exporting.scaledChartBlueprint.Sum(x => x.Item2)) + "", "", "Center"));
+            AddButtonRegion(() =>
+            {
+                AddLine("Generate", "", "Center");
+            },
+            (h) =>
+            {
+                Exporting.ExportScaledChart(library.releases.Where(x => x.GetRating() > 0).ToList());
             });
         }),
     };
@@ -3658,6 +3826,20 @@ public class Blueprint
             SpawnWindowBlueprint("SquareChartWidth");
             SpawnWindowBlueprint("SquareChartHeight");
             SpawnWindowBlueprint("SquareChartFinish");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("ScaledChart", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("ScaledChartPerfectFit");
+            //SpawnWindowBlueprint("ScaledChartDecrease");
+            SpawnWindowBlueprint("ScaledChartFirstRowSize");
+            SpawnWindowBlueprint("ScaledChartRowAmount");
+            SpawnWindowBlueprint("ScaledChartFinish");
             AddHotkey(Escape, () =>
             {
                 CloseDesktop(CDesktop.title);
