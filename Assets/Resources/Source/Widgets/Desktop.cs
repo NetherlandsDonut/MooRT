@@ -88,7 +88,7 @@ public class Desktop : MonoBehaviour
         if (CDesktop.title == "LoadingScreen")
         {
             if (Starter.enteredThirdStage)
-                if (loadingScreenProgress <= loadingScreenAim)
+                if (loadingScreenProgress < loadingScreenAim)
                 {
                     var atStart = loadingScreenProgress;
                     if (waitForTexture && newCover != null)
@@ -102,7 +102,7 @@ public class Desktop : MonoBehaviour
                         returnToMenu = false;
                     }
                     else
-                        for (int i = atStart; i <= loadingScreenAim; i++)
+                        for (int i = atStart; i < loadingScreenAim; i++)
                         {
                             if (i - 10 >= atStart) break;
                             Debug.Log(loadingScreenProgress + " / " + loadingScreenAim);
@@ -149,7 +149,7 @@ public class Desktop : MonoBehaviour
                         }
                     loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 17);
                 }
-                else if (loadingScreenProgress > loadingScreenAim)
+                else if (loadingScreenProgress >= loadingScreenAim)
                 {
                     cursor.SetCursor(CursorType.Default);
                     SpawnDesktopBlueprint("MusicReleases");
