@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using static Root.RegionBackgroundType;
-
 public class LineCheckbox : MonoBehaviour
 {
     //Region that this checkbox is asigned to
@@ -29,7 +27,6 @@ public class LineCheckbox : MonoBehaviour
     public void OnMouseUp()
     {
         //Invert the field value
-        Sound.PlaySound("DesktopButtonPress", 0.8f);
         value.Invert();
         if (Root.CDesktop.title == "PrepareArtistBattle")
             Root.CDesktop.RespawnAll();

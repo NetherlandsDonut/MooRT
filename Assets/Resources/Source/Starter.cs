@@ -1,18 +1,16 @@
 ﻿using System.Linq;
-using System.Text;
+
 using UnityEditor;
 using UnityEngine;
-using static Cursor;
-using static CursorRemote;
-using static Defines;
-using static Font;
-using static Library;
-using static ProgramSettings;
-using static ReleaseRating;
+
 using static Root;
+using static Font;
+using static Cursor;
+using static Library;
+using static Defines;
+using static ReleaseRating;
 using static Serialization;
-using static Sound;
-using static UnityEngine.GraphicsBuffer;
+using static ProgramSettings;
 
 public class Starter : MonoBehaviour
 {
@@ -48,19 +46,6 @@ public class Starter : MonoBehaviour
 
         //This is the player cursor that follows the hidden system cursor
         cursor = FindAnyObjectByType<Cursor>();
-
-        //This is the enemy cursor that indicates what actions the enemy is performing in their turn
-        cursorEnemy = FindAnyObjectByType<CursorRemote>();
-
-        //Find all audio sources in the scene
-        var sources = FindObjectsByType<AudioSource>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-        //This is audio source for all quick and single sound effects.
-        //Audio played through this medium cannot be stopped or changed in volume
-        soundEffects = sources.First(x => x.name == "SFX");
-
-        //All sound effects loaded up
-        sounds = Resources.LoadAll<AudioClip>("Sounds/").ToDictionary(x => x.name, x => x);
 
         //In case of Unity debugging set data directory
         //to that of the build so we don't have to store game data in two places

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using static Root;
-using static Sound;
 using static Cursor;
 using static InputLine;
 
@@ -84,7 +83,6 @@ public class Desktop : MonoBehaviour
 
     public void ReloadAssets()
     {
-        PlaySound("DesktopMagicClick");
         Starter.LoadData();
     }
 
@@ -151,7 +149,6 @@ public class Desktop : MonoBehaviour
         }
         else
         {
-            soundsPlayedThisFrame = new();
             if (animatedSpriteTime >= 0)
             {
                 animatedSpriteTime -= Time.deltaTime;
@@ -167,6 +164,7 @@ public class Desktop : MonoBehaviour
 
     public void Update()
     {
+        if (!Starter.enteredThirdStage) return;
         if (title == "LoadCover")
         {
             if (!startedGettingCover)
@@ -269,7 +267,6 @@ public class Desktop : MonoBehaviour
                         }
                         else
                         {
-                            PlaySound("DesktopMenuClose");
                             inputDestination.Reset();
                             ExecuteQuit(inputDestination);
                             didSomething = true;

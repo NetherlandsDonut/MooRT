@@ -5,7 +5,6 @@ using UnityEngine;
 using static Root;
 using static Root.CursorType;
 
-using static Sound;
 using static Cursor;
 
 public class Highlightable : MonoBehaviour
@@ -84,25 +83,20 @@ public class Highlightable : MonoBehaviour
         if (pressedState == "Left" && pressEvent != null)
         {
             var l = GetComponent<LineSmallButton>();
-            if (l != null && l.texture == "OtherClose") PlaySound("DesktopButtonClose");
-            else PlaySound("DesktopButtonPress", 0.8f);
             pressEvent(this);
         }
         else if (pressedState == "Right" && rightPressEvent != null)
         {
-            PlaySound("DesktopButtonPressRight", 0.5f);
             if (GetComponent<LineCheckbox>() != null)
                 GetComponent<LineCheckbox>().RightClick();
             else rightPressEvent(this);
         }
         else if (pressedState == "Right" && GetComponent<LineCheckbox>() != null)
         {
-            PlaySound("DesktopButtonPressRight", 0.5f);
             GetComponent<LineCheckbox>().RightClick();
         }
         else if (pressedState == "Middle" && middlePressEvent != null)
         {
-            PlaySound("DesktopButtonPressRight", 0.5f);
             middlePressEvent(this);
         }
         pressedState = "None";

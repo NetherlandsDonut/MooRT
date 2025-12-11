@@ -7,7 +7,6 @@ using static UnityEngine.KeyCode;
 
 using static Root;
 using static Year;
-using static Sound;
 using static Genre;
 using static Decade;
 using static Library;
@@ -194,7 +193,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("MusicReleasesScrollbarUp", true);
@@ -221,7 +219,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("MusicReleasesScrollbarUp", true);
@@ -459,7 +456,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("MusicReleaseScrollbarUp", true);
@@ -486,7 +482,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("MusicReleaseScrollbarUp", true);
@@ -795,7 +790,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("ArtistsScrollbarUp", true);
@@ -822,7 +816,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("ArtistsScrollbarUp", true);
@@ -992,7 +985,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("CountriesScrollbarUp", true);
@@ -1019,7 +1011,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("CountriesScrollbarUp", true);
@@ -1161,7 +1152,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("GenresScrollbarUp", true);
@@ -1188,7 +1178,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("GenresScrollbarUp", true);
@@ -1341,7 +1330,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("LanguagesScrollbarUp", true);
@@ -1368,7 +1356,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("LanguagesScrollbarUp", true);
@@ -1505,7 +1492,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("YearsScrollbarUp", true);
@@ -1532,7 +1518,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("YearsScrollbarUp", true);
@@ -1669,7 +1654,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("DecadesScrollbarUp", true);
@@ -1696,7 +1680,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("DecadesScrollbarUp", true);
@@ -1833,7 +1816,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("ReleaseTypesScrollbarUp", true);
@@ -1860,7 +1842,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("ReleaseTypesScrollbarUp", true);
@@ -1997,7 +1978,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("TrackAmountsScrollbarUp", true);
@@ -2024,7 +2004,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("TrackAmountsScrollbarUp", true);
@@ -2161,7 +2140,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("DebutYearsScrollbarUp", true);
@@ -2188,7 +2166,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("DebutYearsScrollbarUp", true);
@@ -2325,7 +2302,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("DurationsScrollbarUp", true);
@@ -2352,7 +2328,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("DurationsScrollbarUp", true);
@@ -3091,7 +3066,6 @@ public class Blueprint
                 if (window.pagination() > 0)
                     AddSmallButton("OtherPageUp", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.DecrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("ArtistsScrollbarUp", true);
@@ -3118,7 +3092,6 @@ public class Blueprint
                 if (window.pagination() < window.maxPagination())
                     AddSmallButton("OtherPageDown", (h) =>
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
                         Respawn("ArtistsScrollbarUp", true);
@@ -3507,7 +3480,6 @@ public class Blueprint
             {
                 if (musicReleaseIndex < library.releases.Count - 1)
                 {
-                    PlaySound("DesktopChangePage", 0.6f);
                     musicRelease = library.releases[++musicReleaseIndex];
                     CDesktop.RespawnAll();
                     Respawn("MusicReleaseScrollbarUp", true);
@@ -3530,7 +3502,6 @@ public class Blueprint
                     musicReleaseIndex += (int)Math.Round(EuelerGrowth()) / 2;
                     if (musicReleaseIndex != temp)
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         musicRelease = library.releases[musicReleaseIndex];
                         CDesktop.RespawnAll();
                         Respawn("MusicReleaseScrollbarUp", true);
@@ -3549,7 +3520,6 @@ public class Blueprint
             {
                 if (musicReleaseIndex > 0)
                 {
-                    PlaySound("DesktopChangePage", 0.6f);
                     musicRelease = library.releases[--musicReleaseIndex];
                     CDesktop.RespawnAll();
                     Respawn("MusicReleaseScrollbarUp", true);
@@ -3572,7 +3542,6 @@ public class Blueprint
                     musicReleaseIndex -= (int)Math.Round(EuelerGrowth()) / 2;
                     if (musicReleaseIndex != temp)
                     {
-                        PlaySound("DesktopChangePage", 0.6f);
                         musicRelease = library.releases[musicReleaseIndex];
                         CDesktop.RespawnAll();
                         Respawn("MusicReleaseScrollbarUp", true);
@@ -3850,7 +3819,6 @@ public class Blueprint
                 var window = CDesktop.windows.Find(x => x.title == "MusicRelease");
                 if (window.pagination() > 0)
                 {
-                    PlaySound("DesktopChangePage", 0.6f);
                     window.DecrementPagination();
                     CDesktop.RespawnAll();
                     Respawn("MusicReleaseScrollbarUp");
@@ -3863,7 +3831,6 @@ public class Blueprint
                 var window = CDesktop.windows.Find(x => x.title == "MusicRelease");
                 if (window.pagination() < window.maxPagination())
                 {
-                    PlaySound("DesktopChangePage", 0.6f);
                     window.IncrementPagination();
                     CDesktop.RespawnAll();
                     Respawn("MusicReleaseScrollbarUp");
@@ -3927,7 +3894,6 @@ public class Blueprint
                 else break;
             if (moved)
             {
-                PlaySound("DesktopChangePage", 0.6f);
                 CDesktop.RespawnAll();
                 Respawn(windowName + "ScrollbarUp");
                 Respawn(windowName + "Scrollbar");
@@ -3947,7 +3913,6 @@ public class Blueprint
                 else break;
             if (moved)
             {
-                PlaySound("DesktopChangePage", 0.6f);
                 CDesktop.RespawnAll();
                 Respawn(windowName + "ScrollbarUp");
                 Respawn(windowName + "Scrollbar");
@@ -3964,8 +3929,6 @@ public class Blueprint
             if (window == null) return;
             var temp = window.pagination();
             window.IncrementPagination();
-            if (temp != window.pagination())
-                PlaySound("DesktopChangePage", 0.6f);
             window.Respawn();
         });
         AddHotkey(D, () => 
@@ -3974,8 +3937,6 @@ public class Blueprint
             if (window == null) return;
             var temp = window.pagination();
             window.IncrementPaginationEuler();
-            if (temp != window.pagination())
-                PlaySound("DesktopChangePage", 0.6f);
             window.Respawn();
         }, false);
         AddHotkey(A, () => 
@@ -3984,8 +3945,6 @@ public class Blueprint
             if (window == null) return;
             var temp = window.pagination();
             window.DecrementPagination();
-            if (temp != window.pagination())
-                PlaySound("DesktopChangePage", 0.6f);
             window.Respawn();
         });
         AddHotkey(A, () => 
@@ -3994,8 +3953,6 @@ public class Blueprint
             if (window == null) return;
             var temp = window.pagination();
             window.DecrementPaginationEuler();
-            if (temp != window.pagination())
-                PlaySound("DesktopChangePage", 0.6f);
             window.Respawn();
         }, false);
     }

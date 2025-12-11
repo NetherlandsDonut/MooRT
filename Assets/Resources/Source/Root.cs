@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-using static Sound;
 using static Blueprint;
 using static ProgramSettings;
 
@@ -513,18 +512,12 @@ public static class Root
             AddSmallButton("OtherNextPage", (h) =>
             {
                 if (thisWindow.pagination() < thisWindow.maxPagination())
-                {
-                    PlaySound("DesktopChangePage", 0.6f);
                     thisWindow.IncrementPagination();
-                }
             });
             AddSmallButton("OtherPreviousPage", (h) =>
             {
                 if (thisWindow.pagination() > 0)
-                {
-                    PlaySound("DesktopChangePage", 0.6f);
                     thisWindow.DecrementPagination();
-                }
             });
         });
     }
