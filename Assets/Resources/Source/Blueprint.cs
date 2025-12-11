@@ -2593,16 +2593,6 @@ public class Blueprint
                 settings.pixelPerfectVision.Invert();
                 CDesktop.RespawnAll();
             });
-            AddButtonRegion(() =>
-            {
-                AddCheckbox(settings.soundEffects);
-                AddLine("Sound effects");
-            },
-            (h) =>
-            {
-                settings.soundEffects.Invert();
-                CDesktop.RespawnAll();
-            });
         }),
 
         //Errors

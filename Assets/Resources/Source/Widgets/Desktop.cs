@@ -81,11 +81,6 @@ public class Desktop : MonoBehaviour
         screenlock.SetActive(false);
     }
 
-    public void ReloadAssets()
-    {
-        Starter.LoadData();
-    }
-
     public static bool waitForTexture;
 
     public void FixedUpdate()
@@ -99,12 +94,18 @@ public class Desktop : MonoBehaviour
                     for (int i = atStart; i <= loadingScreenAim; i++)
                     {
                         if (i - 10 >= atStart) break;
-                        if (waitForTexture && returnToMenu) Application.Quit();
+                        if (waitForTexture && returnToMenu)
+                        {
+                            waitForTexture = false;
+                            newCover = null;
+                            returnToMenu = false;
+                            continue;
+                        }
                         else if (waitForTexture && newCover != null)
                         {
                             var prefix = "";
                             if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
-                            System.IO.File.WriteAllBytes(prefix + "MooRT_Data_3/" + (i + 1) + ".png", newCover.texture.EncodeToPNG());
+                            System.IO.File.WriteAllBytes(prefix + "MooRT_Data_3/" + i + ".png", newCover.texture.EncodeToPNG());
                             waitForTexture = false;
                             newCover = null;
                         }
@@ -140,7 +141,7 @@ public class Desktop : MonoBehaviour
                     }
                     loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 17);
                 }
-                else if (loadingScreenProgress > loadingScreenAim)
+                else if (loadingScreenProgress >= loadingScreenAim)
                 {
                     cursor.SetCursor(CursorType.Default);
                     SpawnDesktopBlueprint("MusicReleases");
@@ -220,7 +221,6 @@ public class Desktop : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S)) ProgramSettings.settings.soundEffects.Invert();
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.LeftControl)) CloseWindow("Tooltip");
             if (mouseOver != null)
             {
@@ -240,7 +240,6 @@ public class Desktop : MonoBehaviour
                 else if (Input.GetMouseButtonUp(2))
                     mouseOver.MouseUp("Middle");
             }
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.Tab) && Input.GetKeyDown(KeyCode.LeftAlt)) ReloadAssets();
             if (!screenLocked)
             {
                 if (tooltip != null && !WindowUp("Tooltip"))

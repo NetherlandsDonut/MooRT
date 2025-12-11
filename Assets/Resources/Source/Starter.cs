@@ -14,6 +14,12 @@ using static ProgramSettings;
 
 public class Starter : MonoBehaviour
 {
+    void Awake()
+    {
+        //Loads the defines into the program
+        LoadData();
+    }
+
     void Start()
     {
         //Sets the initial values for the base variables
@@ -47,12 +53,6 @@ public class Starter : MonoBehaviour
         //This is the player cursor that follows the hidden system cursor
         cursor = FindAnyObjectByType<Cursor>();
 
-        //In case of Unity debugging set data directory
-        //to that of the build so we don't have to store game data in two places
-        #if (UNITY_EDITOR)
-        prefix = "D:/Programs/MooRT/";
-        #endif
-
         buildingSprites = Resources.LoadAll<Sprite>("Sprites/Other/Second").ToDictionary(x => x.name, x => x);
         buildingSprites.Add("RegionBorder", Resources.Load<Sprite>("Sprites/PremadeBorders/RegionBorder"));
         buildingSprites.Add("RegionBorderCorner", Resources.Load<Sprite>("Sprites/PremadeBorders/RegionBorderCorner"));
@@ -78,7 +78,7 @@ public class Starter : MonoBehaviour
     public static bool enteredSecondStage = false;
     public static bool enteredThirdStage = false;
 
-    public void Update()
+    void Update()
     {
         if (enteredSecondStage && urlContent != "" && !enteredThirdStage)
         {
@@ -98,9 +98,6 @@ public class Starter : MonoBehaviour
             settings.FillNulls();
 
             #endregion
-
-            //Loads the game content data from the game directory
-            LoadData();
 
             //Spawn the initial desktop so the user can perform all actions from there
             SpawnDesktopBlueprint("LoadingScreen");

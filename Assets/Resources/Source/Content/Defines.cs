@@ -8,15 +8,15 @@ public class Defines
     //This function generates default values for the game settings
     public void FillNulls()
     {
-        if (textPaddingLeft < 0)
+        if (textPaddingLeft <= 0)
             textPaddingLeft = 4;
-        if (textPaddingRight < 0)
+        if (textPaddingRight <= 0)
             textPaddingRight = 4;
-        if (shadowSystem < 0)
+        if (shadowSystem <= 0)
             shadowSystem = 1;
-        if (markerCharacter == null || markerCharacter == "")
+        if (markerCharacter == null || markerCharacter == "" || markerCharacter == string.Empty)
             markerCharacter ??= "_";
-        if (textWrapEnding == null || textWrapEnding == "")
+        if (textWrapEnding == null || textWrapEnding == "" || textWrapEnding == string.Empty)
             textWrapEnding ??= "...";
     }
 
