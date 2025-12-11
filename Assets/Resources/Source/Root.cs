@@ -106,6 +106,7 @@ public static class Root
     public static int loadingScreenAim;
     public static int errorAtLine;
     public static string newCoverURL;
+    public static int newCoverID;
     public static Sprite newCover;
     public static bool startedGettingCover;
     public static bool returnToMenu;
@@ -913,6 +914,7 @@ public static class Root
         if (!Directory.Exists(prefix + "MooRT_Data_3"))
             Directory.CreateDirectory(prefix + "MooRT_Data_3");
         var imagePath = prefix + @"MooRT_Data_3\" + file + (encoded ? "" : ".png");
+        Debug.Log("Loading image from: " + imagePath);
         if (!File.Exists(imagePath)) return null;
         byte[] byteArray = File.ReadAllBytes(imagePath);
         Texture2D tex = new(1, 1);

@@ -3414,7 +3414,7 @@ public class Blueprint
         new("LoadingScreen", () => 
         {
             Cursor.cursor.SetCursor(CursorType.None);
-            loadingScreenAim = library.originalReleases.Count;
+            loadingScreenAim = library.originalReleases.Count + 1;
             SetDesktopBackground("Backgrounds/Default");
             SpawnWindowBlueprint("LoadingStatus");
             loadingStatusBar = CDesktop.LBWindow().LBRegionGroup().LBRegion().background.transform;
