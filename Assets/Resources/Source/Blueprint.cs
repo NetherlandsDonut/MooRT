@@ -2556,11 +2556,6 @@ public class Blueprint
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Menu:"));
-            AddButtonRegion(() => AddLine("Settings"), (h) =>
-            {
-                CloseWindow("Menu");
-                SpawnWindowBlueprint("MenuSettings");
-            });
             AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
                 if (library != null && library.originalReleases.Count > 0 && library.originalArtists.Count > 0)
