@@ -14,7 +14,7 @@ public class Exporting
     //that consists of album covers provided on the list
     public static void ExportSquareChart(List<MusicRelease> albums, int x = 10, int y = 10, bool offset = true)
     {
-        var offsetWidth = offset ? 4 : 0;
+        var offsetWidth = offset ? 3 : 0;
         var covers = new List<Sprite>();
         for (int i = 0; i < x * y && i < albums.Count; i++)
             covers.Add(albumCovers[albums[i].ID + ""]);
@@ -76,48 +76,37 @@ public class Exporting
         Process.Start(Environment.CurrentDirectory + "\\MooRT_Export\\scaledChart.png");
     }
 
-    ////This method exports a timeline/sequence chart
-    ////that consists of album covers provided on the list
-    //public static void ExportSequenceChart(List<MusicRelease> albums, bool splitOnYears, bool splitOnDecades)
-    //{
-    //    //int minimumRating = int.Parse(inputFields["SequenceChartMinimumRating"]);
-    //    bool splitYears = checkboxes["SequenceChartSplitYears"];
-    //    bool albumDescription = checkboxes["SequenceChartAlbumDescription"];
-    //    var covers = new List<(Sprite, MusicRelease)>();
-    //    for (int i = 0; i < albums.Count; i++)
-    //        covers.Add((albumCovers[albums[i].ID + ""], albums[i]));
-    //    albums.ForEach(x => covers.Add(((Bitmap)LoadBitmapCover(x.id), x)));
-    //    var groups = (splitYears ? covers : covers.OrderBy(x => x.Item2.year).ToList()).GroupBy(x => splitYears ? x.Item2.year : 0).ToList();
-    //    var final = ResizeImage((Bitmap)LoadBitmapCover(0), 1299, 300 * covers.Count + groups.Count - 1);
-    //    Graphics g = FromImage(final);
-    //    g.SmoothingMode = SmoothingMode.HighQuality;
-    //    GraphicsPath p = new GraphicsPath();
-    //    var format = new StringFormat { Alignment = StringAlignment.Near };
-    //    var brush = new SolidBrush(Color.DarkGray);
-    //    int currentX = 0;
-    //    for (int i = 0; i < groups.Count; i++)
-    //        for (int j = 0; j < groups[i].Count(); j++)
-    //        {
-    //            var pair = groups[i].ToList()[j];
-    //            var y = 999 - (int)Math.Round(Math.Pow((pair.Item2.points / 10.0) + 100, 2) / 1200.0 - 8);
-    //            g.DrawImage(ResizeImage(pair.Item1, 300), currentX, y);
-    //            if (albumDescription)
-    //            {
-    //                p.AddString(pair.Item2.points.ToString().Insert(1, "."), FontFamily.GenericSansSerif, (int)FontStyle.Regular, g.DpiY * 28 / 72, new RectangleF(currentX, y + 300, 300, 300), format);
-    //                g.FillPath(brush, p);
-    //            }
-    //            currentX += 300;
-    //            if (j == groups[i].Count() - 1 && i != groups.Count - 1)
-    //            {
-    //                g.DrawLine(new Pen(Brushes.DarkGray), new Point(currentX, 0), new Point(currentX, 1299));
-    //                currentX++;
-    //            }
-    //        }
-    //    chart.Apply();
-    //    if (!Directory.Exists("MooRT_Export")) Directory.CreateDirectory("MooRT_Export");
-    //    File.WriteAllBytes("MooRT_Export/scaledChart.png", chart.EncodeToPNG());
-    //    Process.Start(Environment.CurrentDirectory + "\\MooRT_Export\\scaledChart.png");
-    //}
+    //This method exports a timeline/sequence chart
+    //that consists of album covers provided on the list
+    public static void ExportSequenceChart(List<MusicRelease> albums, bool splitOnYears, bool splitOnDecades)
+    {
+        //int minimumRating = int.Parse(inputFields["SequenceChartMinimumRating"]);
+        var covers = new List<(Sprite, MusicRelease)>();
+        for (int i = 0; i < albums.Count; i++)
+            covers.Add((albumCovers[albums[i].ID + ""], albums[i]));
+        var groups = covers.GroupBy(x => splitOnYears ? x.Item2.releaseDate[..4] : (splitOnDecades ? x.Item2.releaseDate[..3] : "")).ToList();
+        var chart = new Texture2D(188 * covers.Count + groups.Count - 1, 1187);
+        //chart.Set(0, 0, new Color(1, 1, 1, 1));
+        int currentX = 0;
+        for (int i = 0; i < groups.Count; i++)
+            for (int j = 0; j < groups[i].Count(); j++)
+            {
+                var pair = groups[i].ToList()[j];
+                var y = pair.Item2.GetRating() / 100;
+                Graphics.CopyTexture(pair.Item1.texture, 0, 0, 0, 0, 188, 188, chart, 0, 0, currentX, y);
+                currentX += 188;
+                if (j == groups[i].Count() - 1 && i != groups.Count - 1)
+                {
+                    for (int z = 0; z < chart.height; z++)
+                        chart.SetPixel(currentX, z, new Color(0, 0, 0, 1));
+                    currentX++;
+                }
+            }
+        chart.Apply();
+        if (!Directory.Exists("MooRT_Export")) Directory.CreateDirectory("MooRT_Export");
+        File.WriteAllBytes("MooRT_Export/scaledChart.png", chart.EncodeToPNG());
+        Process.Start(Environment.CurrentDirectory + "\\MooRT_Export\\scaledChart.png");
+    }
 
     public static void ExportArtistBattleResults(ArtistBattle artistBattle)
     {

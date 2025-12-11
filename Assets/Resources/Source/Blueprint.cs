@@ -2410,137 +2410,140 @@ public class Blueprint
             SetAnchor(Center);
             AddRegionGroup();
             SetRegionGroupWidth(180);
-            AddHeaderRegion(() => AddLine("Library management:"));
-            AddButtonRegion(() => AddLine("Import new release"), (h) =>
+            if (Serialization.libraryExpansion)
             {
-                var failed = -1;
-                var data = Serialization.ReadTXT("newRelease");
-                var possibleTypes = new List<string> { "Studio album", "Live album", "Extended play", "Compilation album", "Demo recording", "Soundtrack", "Remix album" };
-                var artistName = "";
-                var artistCountry = "none";
-                var newAlbum = new MusicRelease();
-                newAlbum.tracks = new();
-                for (int i = 0; i < data.Length; i++)
+                AddHeaderRegion(() => AddLine("Library management:"));
+                AddButtonRegion(() => AddLine("Import new release"), (h) =>
                 {
-                    if (i == 2)
-                        if (data[i].Length > 0) artistName = data[i];
-                        else { failed = i; break; };
-                    if (i == 8)
-                        if (data[i].Length > 0) artistCountry = data[i];
-                        else if (!library.originalArtists.Exists(x => x.name == artistName)) { failed = i; break; };
-                    if (i == 14)
-                        if (data[i].Length > 0) newAlbum.name = data[i];
-                        else { failed = i; break; };
-                    if (i == 20)
-                        if (data[i].Length > 0)
-                        {
-                            var trim = data[i].Trim();
-                            if (trim.Contains(" "))
+                    var failed = -1;
+                    var data = Serialization.ReadTXT("newRelease");
+                    var possibleTypes = new List<string> { "Studio album", "Live album", "Extended play", "Compilation album", "Demo recording", "Soundtrack", "Remix album" };
+                    var artistName = "";
+                    var artistCountry = "none";
+                    var newAlbum = new MusicRelease();
+                    newAlbum.tracks = new();
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        if (i == 2)
+                            if (data[i].Length > 0) artistName = data[i];
+                            else { failed = i; break; };
+                        if (i == 8)
+                            if (data[i].Length > 0) artistCountry = data[i];
+                            else if (!library.originalArtists.Exists(x => x.name == artistName)) { failed = i; break; };
+                        if (i == 14)
+                            if (data[i].Length > 0) newAlbum.name = data[i];
+                            else { failed = i; break; };
+                        if (i == 20)
+                            if (data[i].Length > 0)
                             {
-                                var split = trim.Split(" ").ToList();
-                                var day = split.Find(x => x.Length <= 2 && x.All(x => char.IsDigit(x)));
-                                var month = split.Find(x => x.Length >= 3 && x.All(x => !char.IsDigit(x)));
-                                var year = split.Find(x => x.Length == 4 && x.All(x => char.IsDigit(x)));
-                                var reverseMonths = monthNames.ToDictionary(x => x.Value, x => x.Key);
-                                newAlbum.releaseDate = year + "." + reverseMonths[month].ToString("00") + (day != null ? "." + int.Parse(day).ToString("00") : "");
+                                var trim = data[i].Trim();
+                                if (trim.Contains(" "))
+                                {
+                                    var split = trim.Split(" ").ToList();
+                                    var day = split.Find(x => x.Length <= 2 && x.All(x => char.IsDigit(x)));
+                                    var month = split.Find(x => x.Length >= 3 && x.All(x => !char.IsDigit(x)));
+                                    var year = split.Find(x => x.Length == 4 && x.All(x => char.IsDigit(x)));
+                                    var reverseMonths = monthNames.ToDictionary(x => x.Value, x => x.Key);
+                                    newAlbum.releaseDate = year + "." + reverseMonths[month].ToString("00") + (day != null ? "." + int.Parse(day).ToString("00") : "");
+                                }
+                                else newAlbum.releaseDate = data[i];
                             }
-                            else newAlbum.releaseDate = data[i];
-                        }
-                        else { failed = i; break; };
-                    if (i == 26)
-                        if (data[i].Length > 0) newCoverURL = data[i];
-                        else { failed = i; break; };
-                    if (i == 32)
-                        if (data[i].Length > 0)
-                        {
-                            var types = ProcessTypes(data[i]);
-                            if (types.All(x => possibleTypes.Contains(x))) newAlbum.types = types;
-                            else { failed = 320; break; };
-                        }
-                        else { failed = i; break; };
-                    if (i == 38)
-                        if (data[i].Length > 0) newAlbum.genres = ProcessGenres(data[i]);
-                        else { failed = i; break; };
-                    if (i >= 44)
-                        if (data[i].Length > 0)
-                        {
-                            data[i] = data[i].Replace("\t", " ");
-                            if (data[i].Split(" ").Length > 1 && data[i].Split(" ").Last().Contains(":"))
+                            else { failed = i; break; };
+                        if (i == 26)
+                            if (data[i].Length > 0) newCoverURL = data[i];
+                            else { failed = i; break; };
+                        if (i == 32)
+                            if (data[i].Length > 0)
                             {
-                                var newTrack = new Track();
-                                var lastIndex = data[i].LastIndexOf(" ");
-                                newTrack.name = data[i][..lastIndex].Trim();
-                                var time = data[i][lastIndex..].Trim();
-                                if (time.Split(":").Length != 2) { failed = 441; errorAtLine = i + 1; break; };
-                                if (!int.TryParse(time.Split(":")[0], out int minutes)) { failed = 442; errorAtLine = i + 1; break; };
-                                if (!int.TryParse(time.Split(":")[1], out int seconds)) { failed = 443; errorAtLine = i + 1; break; };
-                                newTrack.length = minutes * 60 + seconds;
-                                newTrack.duration = time;
-                                newAlbum.tracks.Add(newTrack);
+                                var types = ProcessTypes(data[i]);
+                                if (types.All(x => possibleTypes.Contains(x))) newAlbum.types = types;
+                                else { failed = 320; break; };
                             }
-                            else { failed = 440; errorAtLine = i + 1; break; };
-                        }
-                        else { failed = i; break; };
-                }
-                if (failed != -1)
-                    SpawnWindowBlueprint("ErrorLoadingAlbum" + failed);
-                else
-                {
-                    newArtist = null;
-                    newRelease = newAlbum;
-                    artistFind = library.originalArtists.Find(x => x.name == artistName && (x.country == artistCountry || artistCountry == "none"));
-                    if (artistFind == null)
+                            else { failed = i; break; };
+                        if (i == 38)
+                            if (data[i].Length > 0) newAlbum.genres = ProcessGenres(data[i]);
+                            else { failed = i; break; };
+                        if (i >= 44)
+                            if (data[i].Length > 0)
+                            {
+                                data[i] = data[i].Replace("\t", " ");
+                                if (data[i].Split(" ").Length > 1 && data[i].Split(" ").Last().Contains(":"))
+                                {
+                                    var newTrack = new Track();
+                                    var lastIndex = data[i].LastIndexOf(" ");
+                                    newTrack.name = data[i][..lastIndex].Trim();
+                                    var time = data[i][lastIndex..].Trim();
+                                    if (time.Split(":").Length != 2) { failed = 441; errorAtLine = i + 1; break; };
+                                    if (!int.TryParse(time.Split(":")[0], out int minutes)) { failed = 442; errorAtLine = i + 1; break; };
+                                    if (!int.TryParse(time.Split(":")[1], out int seconds)) { failed = 443; errorAtLine = i + 1; break; };
+                                    newTrack.length = minutes * 60 + seconds;
+                                    newTrack.duration = time;
+                                    newAlbum.tracks.Add(newTrack);
+                                }
+                                else { failed = 440; errorAtLine = i + 1; break; };
+                            }
+                            else { failed = i; break; };
+                    }
+                    if (failed != -1)
+                        SpawnWindowBlueprint("ErrorLoadingAlbum" + failed);
+                    else
                     {
-                        artistFind = new Artist()
+                        newArtist = null;
+                        newRelease = newAlbum;
+                        artistFind = library.originalArtists.Find(x => x.name == artistName && (x.country == artistCountry || artistCountry == "none"));
+                        if (artistFind == null)
                         {
-                            ID = library.originalArtists.Count + 1,
-                            name = artistName,
-                            pronoun = "they",
-                            country = artistCountry,
-                            releases = new()
-                        };
-                        newArtist = artistFind;
+                            artistFind = new Artist()
+                            {
+                                ID = library.originalArtists.Count + 1,
+                                name = artistName,
+                                pronoun = "they",
+                                country = artistCountry,
+                                releases = new()
+                            };
+                            newArtist = artistFind;
+                        }
+                        newRelease.ID = library.originalReleases.Count + 1;
+                        newRelease.languages = new() { "English" };
+                        newRelease.coverDescriptors = new() { };
+                        newRelease.format = int.Parse(newRelease.releaseDate[..4]) >= 1990 ? "digital" : "analog";
+                        newRelease.artist = artistFind.name;
+                        newRelease.artistID = artistFind.ID;
+                        newRelease.Initialise(artistFind);
+                        musicRelease = newRelease;
+                        SpawnDesktopBlueprint("LoadCover");
                     }
-                    newRelease.ID = library.originalReleases.Count + 1;
-                    newRelease.languages = new() { "English" };
-                    newRelease.coverDescriptors = new() { };
-                    newRelease.format = int.Parse(newRelease.releaseDate[..4]) >= 1990 ? "digital" : "analog";
-                    newRelease.artist = artistFind.name;
-                    newRelease.artistID = artistFind.ID;
-                    newRelease.Initialise(artistFind);
-                    musicRelease = newRelease;
-                    SpawnDesktopBlueprint("LoadCover");
-                }
 
-                List<string> ProcessGenres(string line)
-                {
-                    var list = line.Split(",").Select(x => ProcessGenre(x.Trim())).ToList();
-                    return list;
-
-                    string ProcessGenre(string genre)
+                    List<string> ProcessGenres(string line)
                     {
-                        var capitalised = string.Join(' ', genre.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
-                        return capitalised;
+                        var list = line.Split(",").Select(x => ProcessGenre(x.Trim())).ToList();
+                        return list;
+
+                        string ProcessGenre(string genre)
+                        {
+                            var capitalised = string.Join(' ', genre.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
+                            return capitalised;
+                        }
                     }
-                }
 
-                List<string> ProcessTypes(string line)
-                {
-                    var list = line.Split(",").Select(x => ProcessType(x.Trim())).ToList();
-                    return list;
-
-                    string ProcessType(string type)
+                    List<string> ProcessTypes(string line)
                     {
-                        var capitalised = type[..1].ToUpper() + type[1..].ToLower();
-                        return capitalised;
+                        var list = line.Split(",").Select(x => ProcessType(x.Trim())).ToList();
+                        return list;
+
+                        string ProcessType(string type)
+                        {
+                            var capitalised = type[..1].ToUpper() + type[1..].ToLower();
+                            return capitalised;
+                        }
                     }
-                }
-            });
-            AddButtonRegion(() => AddLine("Open new release file"), (h) =>
-            {
-                Serialization.OpenTXT("newRelease");
-            });
-            AddEmptyRegion();
+                });
+                AddButtonRegion(() => AddLine("Open new release file"), (h) =>
+                {
+                    Serialization.OpenTXT("newRelease");
+                });
+                AddEmptyRegion();
+            }
             AddHeaderRegion(() => AddLine("Exporting:"));
             AddButtonRegion(() => AddLine("Quick #100 Studio albums"), (h) =>
             {
@@ -2564,6 +2567,10 @@ public class Blueprint
                 var list = library.releases.Where(x => x.GetRating() > 0).ToList();
                 Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
                 SpawnDesktopBlueprint("ScaledChart");
+            });
+            AddButtonRegion(() => AddLine("Export sequence album chart"), (h) =>
+            {
+                SpawnDesktopBlueprint("SequenceChart");
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Tools:"));
@@ -3273,43 +3280,6 @@ public class Blueprint
                 CDesktop.RespawnAll();
             });
         }),
-
-        //Export scaled album chart
-        new("ScaledChartDecrease", () => {
-            SetAnchor(-145, 95);
-            AddHeaderGroup();
-            SetRegionGroupWidth(292);
-            SetRegionGroupHeight(19);
-            AddHeaderRegion(() => AddLine("Steady decrease in cover size", "", "Center"));
-            AddRegionGroup();
-            SetRegionGroupWidth(19);
-            SetRegionGroupHeight(19);
-            AddPaddingRegion(() => AddSmallButton(scaledChartDecrease > 10 ? "OtherDetract" : "OtherDetractOff", (h) =>
-            {
-                if (scaledChartDecrease <= 10) return;
-                if (Input.GetKey(LeftShift)) scaledChartDecrease = 10;
-                else scaledChartDecrease--;
-                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
-                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
-                CDesktop.RespawnAll();
-            }));
-            AddRegionGroup();
-            SetRegionGroupWidth(254);
-            SetRegionGroupHeight(19);
-            AddPaddingRegion(() => AddLine(scaledChartDecrease + "", "", "Center"));
-            AddRegionGroup();
-            SetRegionGroupWidth(19);
-            SetRegionGroupHeight(19);
-            AddPaddingRegion(() => AddSmallButton(scaledChartDecrease < 100 ? "OtherAdd" : "OtherAddOff", (h) =>
-            {
-                if (Input.GetKey(LeftShift)) scaledChartDecrease += 100;
-                else scaledChartDecrease++;
-                if (scaledChartDecrease > 100) scaledChartDecrease = 100;
-                var list = library.releases.Where(x => x.GetRating() > 0).ToList();
-                Exporting.GenerateScaledChartBlueprint(list.Count, scaledChartPerfectFit, scaledChartFirstRowAmount, scaledChartRowAmount);
-                CDesktop.RespawnAll();
-            }));
-        }),
         new("ScaledChartFirstRowSize", () => {
             SetAnchor(-145, 57);
             AddHeaderGroup();
@@ -3394,6 +3364,89 @@ public class Blueprint
             (h) =>
             {
                 Exporting.ExportScaledChart(library.releases.Where(x => x.GetRating() > 0).ToList());
+            });
+        }),
+        new("SequenceChartSplitOnYears", () => {
+            SetAnchor(-145, 57);
+            AddHeaderGroup();
+            SetRegionGroupWidth(294);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Split chart on years", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(146);
+            SetRegionGroupHeight(19);
+            if (!sequenceChartSplitOnYears) AddHeaderRegion(() => AddLine("No", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("No", "", "Center");
+            },
+            (h) =>
+            {
+                sequenceChartSplitOnYears = false;
+                CDesktop.RespawnAll();
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(147);
+            SetRegionGroupHeight(19);
+            if (sequenceChartSplitOnYears) AddHeaderRegion(() => AddLine("Yes", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("Yes", "", "Center");
+            },
+            (h) =>
+            {
+                sequenceChartSplitOnYears = true;
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("SequenceChartSplitOnDecades", () => {
+            SetAnchor(-145, 19);
+            AddHeaderGroup();
+            SetRegionGroupWidth(294);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Split chart on decades", "", "Center"));
+            AddRegionGroup();
+            SetRegionGroupWidth(146);
+            SetRegionGroupHeight(19);
+            if (!sequenceChartSplitOnDecades) AddHeaderRegion(() => AddLine("No", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("No", "", "Center");
+            },
+            (h) =>
+            {
+                sequenceChartSplitOnDecades = false;
+                CDesktop.RespawnAll();
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(147);
+            SetRegionGroupHeight(19);
+            if (sequenceChartSplitOnDecades) AddHeaderRegion(() => AddLine("Yes", "", "Center"));
+            else AddButtonRegion(() =>
+            {
+                AddLine("Yes", "", "Center");
+            },
+            (h) =>
+            {
+                sequenceChartSplitOnDecades = true;
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("SequenceChartFinish", () => {
+            SetAnchor(-145, -19);
+            AddHeaderGroup();
+            SetRegionGroupWidth(292);
+            SetRegionGroupHeight(19);
+            AddHeaderRegion(() => AddLine("Amount of albums:", "", "Center"));
+            var all = library.releases.Where(x => x.GetRating() > 0).Count();
+            AddPaddingRegion(() => AddLine(all > 70 ? "70 (" + all + ")" : all + "", "", "Center"));
+            AddButtonRegion(() =>
+            {
+                AddLine("Generate", "", "Center");
+            },
+            (h) =>
+            {
+                Exporting.ExportSequenceChart(library.releases.Where(x => x.GetRating() > 0).Take(70).ToList(), sequenceChartSplitOnYears, sequenceChartSplitOnDecades);
             });
         }),
     };
@@ -3836,10 +3889,21 @@ public class Blueprint
         {
             SetDesktopBackground("Backgrounds/Default");
             SpawnWindowBlueprint("ScaledChartPerfectFit");
-            //SpawnWindowBlueprint("ScaledChartDecrease");
             SpawnWindowBlueprint("ScaledChartFirstRowSize");
             SpawnWindowBlueprint("ScaledChartRowAmount");
             SpawnWindowBlueprint("ScaledChartFinish");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("SequenceChart", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("SequenceChartSplitOnYears");
+            SpawnWindowBlueprint("SequenceChartSplitOnDecades");
+            SpawnWindowBlueprint("SequenceChartFinish");
             AddHotkey(Escape, () =>
             {
                 CloseDesktop(CDesktop.title);

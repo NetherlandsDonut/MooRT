@@ -50,7 +50,7 @@ public static class Root
     public static float quickInputTime;
     public static string quickInput = "";
     public static bool hasFocus = true;
-
+    
     public static int currentRound;
     public static int perRound = 2;
     public static int tracksPerArtist;
@@ -58,6 +58,9 @@ public static class Root
     public static bool squareChartOffset = true;
     public static int squareChartXSize = 10;
     public static int squareChartYSize = 10;
+
+    public static bool sequenceChartSplitOnYears = true;
+    public static bool sequenceChartSplitOnDecades = true;
 
     public static bool scaledChartPerfectFit = false;
     public static int scaledChartDecrease = 50;
