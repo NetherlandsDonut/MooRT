@@ -15,6 +15,7 @@ public class Cursor : MonoBehaviour
 
     void Update()
     {
+        if (!Starter.enteredThirdStage) return;
         if (CDesktop.screenLocked) SetCursor(CursorType.Await);
         else if (render.sprite != null && IsNow(CursorType.Await)) SetCursor(CursorType.Default);
         if (CDesktop == null) return;

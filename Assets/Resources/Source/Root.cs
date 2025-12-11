@@ -959,6 +959,15 @@ public static class Root
         }
     }
 
+    public static IEnumerator GetJSON(string link)
+    {
+        UnityWebRequest www = UnityWebRequest.Get(link);
+        yield return www.SendWebRequest();
+
+        if (www == null || www.result != UnityWebRequest.Result.Success) Debug.Log("Failed to fetch library.");
+        else Serialization.urlContent = www.downloadHandler.text;
+    }
+
     public static Texture2D scaled(Texture2D src, int width, int height, FilterMode mode = FilterMode.Bilinear)
     {
         Rect texR = new(0, 0, width, height);

@@ -88,45 +88,66 @@ public class Desktop : MonoBehaviour
         Starter.LoadData();
     }
 
+    public static bool waitForTexture;
+
     public void FixedUpdate()
     {
         if (CDesktop.title == "LoadingScreen")
         {
-            if (loadingScreenProgress <= loadingScreenAim)
-            {
-                var atStart = loadingScreenProgress;
-                for (int i = atStart; i <= loadingScreenAim; i++)
+            if (Starter.enteredThirdStage)
+                if (loadingScreenProgress <= loadingScreenAim)
                 {
-                    if (i - 10 >= atStart) break;
-                    var rawBar = LoadBar(i + "");
-                    if (rawBar != null && !albumBars.ContainsKey(i + ""))
-                        albumBars.Add(i + "", Sprite.Create(rawBar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
-                    var raw = LoadImage(i + "");
-                    if (raw == null) continue;
-                    if (!albumCovers.ContainsKey(i + ""))
+                    var atStart = loadingScreenProgress;
+                    for (int i = atStart; i <= loadingScreenAim; i++)
                     {
-                        loadingScreenProgress++;
-                        albumCovers.Add(i + "", Sprite.Create(raw, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
-                        if (!albumBars.ContainsKey(i + ""))
+                        if (i - 10 >= atStart) break;
+                        if (waitForTexture && returnToMenu) Application.Quit();
+                        else if (waitForTexture && newCover != null)
                         {
-                            Texture2D bar = new(188, 17, TextureFormat.ARGB32, false);
-                            bar.CopyPixels(raw, 0, 0, 0, 93, 188, 17, 0, 0, 0);
-                            bar.Apply();
-                            albumBars.Add(i + "", Sprite.Create(bar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
                             var prefix = "";
                             if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
-                            System.IO.File.WriteAllBytes(prefix + "MooRT_Data_4/" + i + ".png", albumBars.Last().Value.texture.EncodeToPNG());
+                            System.IO.File.WriteAllBytes(prefix + "MooRT_Data_3/" + (i + 1) + ".png", newCover.texture.EncodeToPNG());
+                            waitForTexture = false;
+                            newCover = null;
+                        }
+                        else if (!waitForTexture)
+                        {
+                            var rawBar = LoadBar(i + "");
+                            if (rawBar != null && !albumBars.ContainsKey(i + ""))
+                                albumBars.Add(i + "", Sprite.Create(rawBar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
+                            var raw = LoadImage(i + "");
+                            if (raw == null && !Serialization.useUnityData)
+                            {
+                                waitForTexture = true;
+                                newCover = null;
+                                StartCoroutine(GetTexture("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_3/" + i + ".png"));
+                            }
+                            if (raw == null) continue;
+                            if (!albumCovers.ContainsKey(i + ""))
+                            {
+                                loadingScreenProgress++;
+                                albumCovers.Add(i + "", Sprite.Create(raw, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
+                                if (!albumBars.ContainsKey(i + ""))
+                                {
+                                    Texture2D bar = new(188, 17, TextureFormat.ARGB32, false);
+                                    bar.CopyPixels(raw, 0, 0, 0, 93, 188, 17, 0, 0, 0);
+                                    bar.Apply();
+                                    albumBars.Add(i + "", Sprite.Create(bar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
+                                    var prefix = "";
+                                    if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
+                                    System.IO.File.WriteAllBytes(prefix + "MooRT_Data_4/" + i + ".png", albumBars.Last().Value.texture.EncodeToPNG());
+                                }
+                            }
                         }
                     }
+                    loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 17);
                 }
-                loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 17);
-            }
-            else if (loadingScreenProgress > loadingScreenAim)
-            {
-                cursor.SetCursor(CursorType.Default);
-                SpawnDesktopBlueprint("MusicReleases");
-                CloseDesktop("LoadingScreen");
-            }
+                else if (loadingScreenProgress > loadingScreenAim)
+                {
+                    cursor.SetCursor(CursorType.Default);
+                    SpawnDesktopBlueprint("MusicReleases");
+                    CloseDesktop("LoadingScreen");
+                }
         }
         else
         {

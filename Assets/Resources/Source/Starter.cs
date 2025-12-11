@@ -1,18 +1,18 @@
 ﻿using System.Linq;
-
+using System.Text;
 using UnityEditor;
 using UnityEngine;
-
-using static Root;
-using static Font;
-using static Sound;
 using static Cursor;
-using static Library;
-using static Defines;
 using static CursorRemote;
-using static ReleaseRating;
-using static Serialization;
+using static Defines;
+using static Font;
+using static Library;
 using static ProgramSettings;
+using static ReleaseRating;
+using static Root;
+using static Serialization;
+using static Sound;
+using static UnityEngine.GraphicsBuffer;
 
 public class Starter : MonoBehaviour
 {
@@ -85,25 +85,44 @@ public class Starter : MonoBehaviour
             if (rating.Value.savedTrackRatings != null)
                 rating.Value.trackRatings = rating.Value.savedTrackRatings.ToArray();
         ratings = ratings.Where(x => x.Value.savedTrackRatings != null).ToDictionary(x => x.Key, x => x.Value);
-        Deserialize(ref library, "library", false, prefix);
-        library ??= new();
-        SetUpLibrary();
+        if (useUnityData) urlContent = "x";
+        else StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
+        enteredSecondStage = true;
+    }
 
-        //Get user settings..
-        Deserialize(ref settings, "settings", false, prefix);
-        settings ??= new();
-        settings.FillNulls();
+    public static bool enteredSecondStage = false;
+    public static bool enteredThirdStage = false;
 
-        #endregion
+    public void Update()
+    {
+        if (enteredSecondStage && urlContent != "" && !enteredThirdStage)
+        {
+            enteredThirdStage = true;
 
-        //Loads the game content data from the game directory
-        LoadData();
+            if (urlContent != "x") DeserializeFromURL(ref library, false);
+            if (library == null) Deserialize(ref library, "library", false, prefix);
+            else Serialize(library, "library");
 
-        //Spawn the initial desktop so the user can perform all actions from there
-        SpawnDesktopBlueprint("LoadingScreen");
+            library ??= new();
 
-        ////Destroy this object as it's only used for program initialization
-        //Destroy(gameObject);
+            SetUpLibrary();
+
+            //Get user settings..
+            Deserialize(ref settings, "settings", false, prefix);
+            settings ??= new();
+            settings.FillNulls();
+
+            #endregion
+
+            //Loads the game content data from the game directory
+            LoadData();
+
+            //Spawn the initial desktop so the user can perform all actions from there
+            SpawnDesktopBlueprint("LoadingScreen");
+
+            ////Destroy this object as it's only used for program initialization
+            //Destroy(gameObject);
+        }
     }
 
     public static void SetUpLibrary()
