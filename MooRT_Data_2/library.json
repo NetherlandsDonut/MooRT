@@ -5009,6 +5009,12 @@
       "name": "Mitski",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 836,
+      "name": "Frost Children",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -282981,6 +282987,84 @@
         {
           "name": "I Love Me After You",
           "length": 168
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4147,
+      "artist": "Frost Children",
+      "artistID": 836,
+      "name": "Sister",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Electro House",
+        "Electropop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2025.09.12",
+      "tracks": [
+        {
+          "name": "Position Famous",
+          "length": 204
+        },
+        {
+          "name": "Falling",
+          "length": 227
+        },
+        {
+          "name": "Electric",
+          "length": 133
+        },
+        {
+          "name": "Control",
+          "length": 155
+        },
+        {
+          "name": "Bound2U",
+          "length": 176
+        },
+        {
+          "name": "What is Forever For",
+          "length": 184
+        },
+        {
+          "name": "Sister",
+          "length": 207
+        },
+        {
+          "name": "Dirty Girl",
+          "length": 190
+        },
+        {
+          "name": "Radio",
+          "length": 190
+        },
+        {
+          "name": "Don't Make Me Cry",
+          "length": 219
+        },
+        {
+          "name": "Ralph Lauren",
+          "length": 158
+        },
+        {
+          "name": "Blue Eyes",
+          "length": 208
+        },
+        {
+          "name": "4Me",
+          "length": 138
+        },
+        {
+          "name": "2 LØVE",
+          "length": 337
         }
       ],
       "discs": "",
