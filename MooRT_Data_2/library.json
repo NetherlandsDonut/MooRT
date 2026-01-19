@@ -5003,6 +5003,12 @@
       "name": "Ninajirachi",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 835,
+      "name": "Mitski",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -282909,6 +282915,72 @@
         {
           "name": "All at Once",
           "length": 326
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4146,
+      "artist": "Mitski",
+      "artistID": 835,
+      "name": "The Land Is Inhospitable and So Are We",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Singer / Songwriter",
+        "Indie Folk"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2023.09.15",
+      "tracks": [
+        {
+          "name": "Bug Like an Angel",
+          "length": 212
+        },
+        {
+          "name": "Buffalo Replaced",
+          "length": 160
+        },
+        {
+          "name": "Heaven",
+          "length": 224
+        },
+        {
+          "name": "I Don't Like My Mind",
+          "length": 145
+        },
+        {
+          "name": "The Deal",
+          "length": 232
+        },
+        {
+          "name": "When Memories Snow",
+          "length": 104
+        },
+        {
+          "name": "My Love Mine All Mine",
+          "length": 137
+        },
+        {
+          "name": "The Frost",
+          "length": 168
+        },
+        {
+          "name": "Star",
+          "length": 179
+        },
+        {
+          "name": "I'm Your Man",
+          "length": 209
+        },
+        {
+          "name": "I Love Me After You",
+          "length": 168
         }
       ],
       "discs": "",
