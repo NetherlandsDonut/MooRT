@@ -1,0 +1,166 @@
+{
+  "pixelPerfectVision": {
+    "value": "False"
+  },
+  "ratingRanges": [
+    {
+      "min": {
+        "value": "970",
+        "inputType": 4
+      },
+      "r": 221,
+      "g": 110
+    },
+    {
+      "min": {
+        "value": "900",
+        "inputType": 4
+      },
+      "r": 163,
+      "g": 53,
+      "b": 238
+    },
+    {
+      "min": {
+        "value": "800",
+        "inputType": 4
+      },
+      "g": 117,
+      "b": 226
+    },
+    {
+      "min": {
+        "value": "700",
+        "inputType": 4
+      },
+      "r": 26,
+      "g": 201
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    },
+    {
+      "min": {
+        "value": "0",
+        "inputType": 4
+      },
+      "r": 183,
+      "g": 183,
+      "b": 183
+    }
+  ]
+}

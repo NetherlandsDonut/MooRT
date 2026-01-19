@@ -1,27 +1,24 @@
 ﻿using System;
-using UnityEngine;
-using System.Linq;
 using System.Collections.Generic;
-
+using System.Linq;
+using UnityEngine;
 using static UnityEngine.KeyCode;
-
-using static Root;
-using static Year;
-using static Genre;
-using static Decade;
-using static Library;
-using static Country;
-using static Language;
-using static Duration;
-using static DebutYear;
-using static TrackAmount;
-using static ReleaseType;
 using static ArtistBattle;
+using static Country;
+using static DebutYear;
+using static Decade;
+using static Duration;
+using static Genre;
+using static Language;
+using static Library;
 using static MusicRelease;
-using static ReleaseRating;
 using static ProgramSettings;
-
+using static ReleaseRating;
+using static ReleaseType;
+using static Root;
 using static Root.Anchor;
+using static TrackAmount;
+using static Year;
 
 public class Blueprint
 {
@@ -34,7 +31,7 @@ public class Blueprint
 
     public string title;
     public Action actions;
-    public bool upperUI;    
+    public bool upperUI;
 
     public static List<Blueprint> windowBlueprints = new()
     {
@@ -114,7 +111,7 @@ public class Blueprint
                 {
                     var album = library.releases[index + thisWindow.pagination()];
                     var amount = !ratings.ContainsKey(album.ID) ? 0 : Math.Ceiling(ratings[album.ID].rating / 100.0);
-                    AddHeaderRegion(() => AddLine(amount.ToString("000"), amount >= 970 ? "Legendary" : (amount >= 900 ? "Epic" : (amount >= 800 ? "Rare" : (amount >= 700 ? "Uncommon" : "Common")))));
+                    AddHeaderRegion(() => AddLine(amount.ToString("000"), settings.ratingRanges.First(x => int.Parse(x.min.Value()) <= amount).GetColorCode()));
                 }
                 else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
@@ -510,7 +507,7 @@ public class Blueprint
                         CloseDesktop(CDesktop.title);
                         CDesktop.RespawnAll();
                     });
-                    AddSmallButton("OtherClose", (h) =>
+                    AddSmallButton("OtherCloseGreen", (h) =>
                     {
                         library.originalReleases.Add(newRelease);
                         if (newArtist != null)
@@ -694,6 +691,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -727,6 +726,8 @@ public class Blueprint
                             AddLine(artist.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(library.artists.Count + " out of " + library.originalArtists.Count + " artists", "DarkGray"));
             AddRegionGroup();
@@ -759,6 +760,8 @@ public class Blueprint
                             AddLine(artist.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -791,6 +794,8 @@ public class Blueprint
                             AddLine(artist.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -868,6 +873,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -901,6 +908,8 @@ public class Blueprint
                             AddLine(country.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -933,6 +942,8 @@ public class Blueprint
                             AddLine(country.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -965,6 +976,8 @@ public class Blueprint
                             AddLine(country.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -986,6 +999,8 @@ public class Blueprint
                         AddLine(country.artists.Sum(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0)) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -1067,6 +1082,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1100,6 +1117,8 @@ public class Blueprint
                             AddLine(genre.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -1132,6 +1151,8 @@ public class Blueprint
                             AddLine(genre.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1153,6 +1174,8 @@ public class Blueprint
                         AddLine(genre.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -1234,6 +1257,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1267,6 +1292,8 @@ public class Blueprint
                             AddLine(language.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -1299,6 +1326,8 @@ public class Blueprint
                             AddLine(language.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1331,6 +1360,8 @@ public class Blueprint
                             AddLine(language.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -1407,6 +1438,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1440,6 +1473,8 @@ public class Blueprint
                             AddLine(year.year + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -1472,6 +1507,8 @@ public class Blueprint
                             AddLine(year.year + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1493,6 +1530,8 @@ public class Blueprint
                         AddLine(year.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -1544,7 +1583,7 @@ public class Blueprint
 
         //Decades
         new("Decades", () => {
-            var rowAmount = 15;
+            var rowAmount = 8;
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? decades : decades.Where(x => decadeFiltering[x.decade].Value())).ToList();
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
@@ -1569,6 +1608,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1602,6 +1643,8 @@ public class Blueprint
                             AddLine(decade.decade + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -1634,6 +1677,8 @@ public class Blueprint
                             AddLine(decade.decade + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1655,6 +1700,8 @@ public class Blueprint
                         AddLine(decade.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -1731,6 +1778,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1752,18 +1801,9 @@ public class Blueprint
                         AddLine(releaseType.name);
                         AddCheckbox(releaseTypeFiltering[releaseType.name], releaseTypeFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var releaseType = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(releaseType.name);
-                        });
-                    });
+                    (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -1796,6 +1836,8 @@ public class Blueprint
                             AddLine(releaseType.name);
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1817,6 +1859,8 @@ public class Blueprint
                         AddLine(releaseType.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -1893,6 +1937,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1926,6 +1972,8 @@ public class Blueprint
                             AddLine(trackAmount.amount + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -1958,6 +2006,8 @@ public class Blueprint
                             AddLine(trackAmount.amount + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -1979,6 +2029,8 @@ public class Blueprint
                         AddLine(duration.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -2055,6 +2107,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -2088,6 +2142,8 @@ public class Blueprint
                             AddLine(debutYear.year + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -2120,6 +2176,8 @@ public class Blueprint
                             AddLine(debutYear.year + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -2141,6 +2199,8 @@ public class Blueprint
                         AddLine(debutYear.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -2217,15 +2277,17 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
             SetRegionGroupWidth(219);
-            AddButtonRegion(() => AddLine("Name"),
+            AddButtonRegion(() => AddLine("Duration"),
                 (h) =>
                 {
-                    durations = (lastSort == "Name" ? durations.OrderByDescending(x => x.duration) : durations.OrderBy(x => x.duration)).ToList();
-                    lastSort = lastSort == "Name" ? "" : "Name";
+                    durations = (lastSort == "Duration" ? durations.OrderByDescending(x => x.duration) : durations.OrderBy(x => x.duration)).ToList();
+                    lastSort = lastSort == "Duration" ? "" : "Duration";
                 }
             );
             for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
@@ -2250,6 +2312,8 @@ public class Blueprint
                             AddLine(duration.duration + "m");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaginationLine();
             AddRegionGroup();
@@ -2282,6 +2346,8 @@ public class Blueprint
                             AddLine(duration.duration + "");
                         });
                     });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -2303,6 +2369,8 @@ public class Blueprint
                         AddLine(duration.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -2570,12 +2638,17 @@ public class Blueprint
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Menu:"));
+            AddButtonRegion(() => AddLine("Edit rating color ranges"), (h) =>
+            {
+                SpawnDesktopBlueprint("RatingColorRange");
+            });
             AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
+                Serialization.Serialize(settings, "settings");
                 if (library != null && library.originalReleases.Count > 0 && library.originalArtists.Count > 0)
-                    Serialization.Serialize(library, "library", true);
+                    Serialization.Serialize(library, "library");
                 if (ratings != null && ratings.Count > 0)
-                    Serialization.Serialize(ratings, "ratings", true);
+                    Serialization.Serialize(ratings, "ratings");
                 Application.Quit();
             });
         }),
@@ -2602,6 +2675,108 @@ public class Blueprint
                 settings.pixelPerfectVision.Invert();
                 CDesktop.RespawnAll();
             });
+        }),
+        new("RatingColorRange1", () => {
+            SetAnchor(Center, -322);
+            AddRegionGroup();
+            SetRegionGroupWidth(110);
+            for (int j = 0; j < 3; j++)
+            {
+                var index = 0 + j * 6;
+                var range = settings.ratingRanges[index];
+                range.PrintOut();
+                if (j < 2) AddEmptyRegion();
+            }
+        }),
+        new("RatingColorRange2", () => {
+            SetAnchor(Center, -194);
+            AddRegionGroup();
+            SetRegionGroupWidth(110);
+            for (int j = 0; j < 3; j++)
+            {
+                var index = 1 + j * 6;
+                var range = settings.ratingRanges[index];
+                range.PrintOut();
+                if (j < 2) AddEmptyRegion();
+            }
+        }),
+        new("RatingColorRange3", () => {
+            SetAnchor(Center, -64);
+            AddRegionGroup();
+            SetRegionGroupWidth(110);
+            for (int j = 0; j < 3; j++)
+            {
+                var index = 2 + j * 6;
+                var range = settings.ratingRanges[index];
+                range.PrintOut();
+                if (j < 2) AddEmptyRegion();
+            }
+        }),
+        new("RatingColorRange4", () => {
+            SetAnchor(Center, 64);
+            AddRegionGroup();
+            SetRegionGroupWidth(110);
+            for (int j = 0; j < 3; j++)
+            {
+                var index = 3 + j * 6;
+                var range = settings.ratingRanges[index];
+                range.PrintOut();
+                if (j < 2) AddEmptyRegion();
+            }
+        }),
+        new("RatingColorRange5", () => {
+            SetAnchor(Center, 194);
+            AddRegionGroup();
+            SetRegionGroupWidth(110);
+            for (int j = 0; j < 3; j++)
+            {
+                var index = 4 + j * 6;
+                var range = settings.ratingRanges[index];
+                range.PrintOut();
+                if (j < 2) AddEmptyRegion();
+            }
+        }),
+        new("RatingColorRange6", () => {
+            SetAnchor(Center, 322);
+            AddRegionGroup();
+            SetRegionGroupWidth(110);
+            for (int j = 0; j < 3; j++)
+            {
+                var index = 5 + j * 6;
+                var range = settings.ratingRanges[index];
+                range.PrintOut();
+                if (j < 2) AddEmptyRegion();
+            }
+        }),
+        new("RatingColorRangeMenuBar", () => {
+            SetAnchor(Bottom, 0, 10);
+            AddRegionGroup();
+            AddButtonRegion(() => AddLine("Clear All Ranges"), (h) =>
+            {
+                foreach (var foo in settings.ratingRanges)
+                {
+                    foo.min.Set("0");
+                    foo.r = 183;
+                    foo.g = 183;
+                    foo.b = 183;
+                }
+                CDesktop.RespawnAll();
+            });
+            AddRegionGroup();
+            AddButtonRegion(() => AddLine("Reset To Default Values"), (h) =>
+            {
+                settings.ratingRanges = RatingRange.DefaultRatingRanges();
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("ResetLibraryFiltering", () => {
+            SetAnchor(TopRight, -19, -19);
+            AddRegionGroup();
+            AddPaddingRegion(() => AddSmallButton("OtherReverse", (h) =>
+            {
+                library.ResetLibrary();
+                CDesktop.RespawnAll();
+            }));
         }),
 
         //Errors
@@ -2967,6 +3142,8 @@ public class Blueprint
                 var index = i;
                 if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -2989,6 +3166,8 @@ public class Blueprint
                         AddCheckbox(artistBattleParticipants[artist.ID], artistBattleParticipants.Select(x => x.Value).ToList());
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(library.artists.Count + " out of " + library.originalArtists.Count + " artists", "DarkGray"));
             AddRegionGroup();
@@ -3010,6 +3189,8 @@ public class Blueprint
                         AddLine(countryCodes.ContainsKey(artist.country) ? Country.countryCodes[artist.country] : "???", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -3031,6 +3212,8 @@ public class Blueprint
                         AddLine(artist.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].listPoints : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
             AddRegionGroup();
@@ -3052,6 +3235,8 @@ public class Blueprint
                         AddLine(artist.releases.Sum(x => ratings.ContainsKey(x.ID) ? x.tracks.Count(z => !z.excluded) : 0) + "", "", "Right");
                     },
                     (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
             }
             AddPaddingRegion(() => AddLine(""));
         }),
@@ -3425,7 +3610,7 @@ public class Blueprint
 
     public static List<Blueprint> desktopBlueprints = new()
     {
-        new("LoadingScreen", () => 
+        new("LoadingScreen", () =>
         {
             Cursor.cursor.SetCursor(CursorType.None);
             loadingScreenAim = library.originalReleases.Count + 1;
@@ -3436,7 +3621,7 @@ public class Blueprint
             loadingStatusBar.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Fills/RarityRare");
             loadingStatusBar.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }),
-        new("MusicReleases", () => 
+        new("MusicReleases", () =>
         {
             library.ApplyFiltering();
             SetDesktopBackground("Backgrounds/Default");
@@ -3444,11 +3629,28 @@ public class Blueprint
             SpawnWindowBlueprint("MusicReleasesScrollbarUp");
             SpawnWindowBlueprint("MusicReleasesScrollbar");
             SpawnWindowBlueprint("MusicReleasesScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
                 CloseDesktop(CDesktop.title);
                 SpawnDesktopBlueprint("Menu");
+            });
+            AddHotkey(Home, () =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "MusicReleases");
+                window.PreparePagination();
+                staticPagination["MusicReleases"] = 0;
+                window.CorrectPagination();
+                CDesktop.RespawnAll();
+            });
+            AddHotkey(End, () =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "MusicReleases");
+                window.PreparePagination();
+                staticPagination["MusicReleases"] = int.MaxValue;
+                window.CorrectPagination();
+                CDesktop.RespawnAll();
             });
             AddMousePaginationHotkeys("MusicReleases");
         }),
@@ -3557,7 +3759,7 @@ public class Blueprint
             }, false);
             AddMousePaginationHotkeys("MusicRelease");
         }),
-        new("Artists", () => 
+        new("Artists", () =>
         {
             showExcludedElements = new Bool(true);
             SetDesktopBackground("Backgrounds/Default");
@@ -3573,7 +3775,7 @@ public class Blueprint
             });
             AddMousePaginationHotkeys("Artists");
         }),
-        new("Countries", () => 
+        new("Countries", () =>
         {
             showExcludedElements = new Bool(true);
             SetDesktopBackground("Backgrounds/Default");
@@ -3876,6 +4078,23 @@ public class Blueprint
                 CDesktop.RespawnAll();
             });
         }),
+        new("RatingColorRange", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("RatingColorRange1");
+            SpawnWindowBlueprint("RatingColorRange2");
+            SpawnWindowBlueprint("RatingColorRange3");
+            SpawnWindowBlueprint("RatingColorRange4");
+            SpawnWindowBlueprint("RatingColorRange5");
+            SpawnWindowBlueprint("RatingColorRange6");
+            SpawnWindowBlueprint("RatingColorRangeMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                Serialization.Serialize(settings, "settings");
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
+            });
+        }),
     };
 
     public static void AddMousePaginationHotkeys(string windowName)
@@ -3922,7 +4141,7 @@ public class Blueprint
 
     public static void AddPaginationHotkeys()
     {
-        AddHotkey(D, () => 
+        AddHotkey(D, () =>
         {
             var window = CDesktop.windows.Find(x => x.maxPaginationReq != null);
             if (window == null) return;
@@ -3930,7 +4149,7 @@ public class Blueprint
             window.IncrementPagination();
             window.Respawn();
         });
-        AddHotkey(D, () => 
+        AddHotkey(D, () =>
         {
             var window = CDesktop.windows.Find(x => x.maxPaginationReq != null);
             if (window == null) return;
@@ -3938,7 +4157,7 @@ public class Blueprint
             window.IncrementPaginationEuler();
             window.Respawn();
         }, false);
-        AddHotkey(A, () => 
+        AddHotkey(A, () =>
         {
             var window = CDesktop.windows.Find(x => x.maxPaginationReq != null);
             if (window == null) return;
@@ -3946,7 +4165,7 @@ public class Blueprint
             window.DecrementPagination();
             window.Respawn();
         });
-        AddHotkey(A, () => 
+        AddHotkey(A, () =>
         {
             var window = CDesktop.windows.Find(x => x.maxPaginationReq != null);
             if (window == null) return;

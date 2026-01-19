@@ -44,7 +44,7 @@ public class Library
         languageFiltering = languages.ToDictionary(x => x.name, x => new Bool(true));
         genreFiltering = genres.ToDictionary(x => x.name, x => new Bool(true));
         trackAmountFiltering = trackAmounts.ToDictionary(x => x.amount, x => new Bool(true));
-        releaseTypeFiltering =  releaseTypes.ToDictionary(x => x.name, x => new Bool(true));
+        releaseTypeFiltering = releaseTypes.ToDictionary(x => x.name, x => new Bool(true));
         debutYearFiltering = debutYears.ToDictionary(x => x.year, x => new Bool(true));
         durationFiltering = durations.ToDictionary(x => x.duration, x => new Bool(true));
     }

@@ -5,12 +5,13 @@ using UnityEngine;
 
 using static Root;
 using static Root.InputType;
+using System;
 
 public class String
 {
     public string value = "";
     public InputType inputType = Everything;
-    private string backupValue = "";
+    [NonSerialized] private string backupValue = "";
 
     public string Value() => value;
     public string Insert(int i, char x) => value = value.Length <= i ? value += x : value.Insert(i, x + "");
@@ -30,7 +31,7 @@ public class String
         StrictLetters => char.IsLetter(letter) || letter == '\'' && value.Length != 0 && value.Last() != '\'',
         Capitals => char.IsLetter(letter) || letter == ' ' && value.Length != 0 && value.Last() != ' ',
         Numbers => char.IsDigit(letter),
-        Decimal => char.IsDigit(letter) || letter == ',' && !Value().Contains(','),
+        //Decimal => char.IsDigit(letter) || letter == ',' && !Value().Contains(','),
         _ => true,
     };
 

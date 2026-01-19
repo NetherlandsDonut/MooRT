@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using static Font;
 using static Coloring;
+using System.Linq;
 
 public class LineText : MonoBehaviour
 {
@@ -51,9 +52,17 @@ public class LineText : MonoBehaviour
         var glyph = fonts[font].GetGlyph(character);
         var r = newCharacter.GetComponent<SpriteRenderer>();
         r.sprite = glyph;
-        if (color == null) { Debug.Log("ERROR 009: Color was not set"); color = "Gray"; }
-        else if (!colors.ContainsKey(color)) { Debug.Log("ERROR 008: Color not found: \"" + color + "\""); color = "Gray"; }
-        r.color = colors[color];
+        if (color != null && color.Count(x => x == ':') == 2)
+        {
+            var split = color.Split(':').Select(x => int.Parse(x)).ToArray();
+            r.color = new Color32((byte)split[0], (byte)split[1], (byte)split[2], 255);
+        }
+        else
+        {
+            if (color == null) { Debug.Log("ERROR 009: Color was not set"); color = "Gray"; }
+            else if (!colors.ContainsKey(color)) { Debug.Log("ERROR 008: Color not found: \"" + color + "\""); color = "Gray"; }
+            r.color = colors[color];
+        }
         r.sortingLayerName = layer == "" ? window.layer : layer;
         characters.Add(newCharacter);
         return offset + (int)glyph.rect.width + 1;

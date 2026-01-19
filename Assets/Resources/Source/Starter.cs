@@ -46,10 +46,6 @@ public class Starter : MonoBehaviour
         //unless you call CloseDesktop() which will remove it from the list and wipe it's data
         desktops = new();
 
-        //List of in-game settings that describe visual style of the game,
-        //control how the audio works and other things for personalisation and user info storage
-        settings = new ProgramSettings();
-
         //This is the player cursor that follows the hidden system cursor
         cursor = FindAnyObjectByType<Cursor>();
 
@@ -70,6 +66,7 @@ public class Starter : MonoBehaviour
             if (rating.Value.savedTrackRatings != null)
                 rating.Value.trackRatings = rating.Value.savedTrackRatings.ToArray();
         ratings = ratings.Where(x => x.Value.savedTrackRatings != null).ToDictionary(x => x.Key, x => x.Value);
+        Serialize(ratings, "ratings", true);
         if (useUnityData) urlContent = "x";
         else StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
         enteredSecondStage = true;
@@ -91,11 +88,13 @@ public class Starter : MonoBehaviour
             library ??= new();
 
             SetUpLibrary();
+            Serialize(library, "library", true);
 
             //Get user settings..
             Deserialize(ref settings, "settings", false, prefix);
             settings ??= new();
             settings.FillNulls();
+            Serialize(settings, "settings", true);
 
             #endregion
 
@@ -137,6 +136,7 @@ public class Starter : MonoBehaviour
         Root.hasFocus = hasFocus;
         if (!hasFocus)
         {
+            Serialize(settings, "settings");
             if (library != null && library.originalReleases.Count > 0 && library.originalArtists.Count > 0)
                 Serialize(library, "library");
             if (ratings != null && ratings.Count > 0)
@@ -146,10 +146,11 @@ public class Starter : MonoBehaviour
 
     private void OnQuit()
     {
+        Serialize(settings, "settings");
         if (library != null && library.originalReleases.Count > 0 && library.originalArtists.Count > 0)
-            Serialize(library, "library", true);
+            Serialize(library, "library");
         if (ratings != null && ratings.Count > 0)
-            Serialize(ratings, "ratings", true);
+            Serialize(ratings, "ratings");
     }
 
     public static void LoadData()

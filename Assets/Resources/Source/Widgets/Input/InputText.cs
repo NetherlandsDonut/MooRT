@@ -1,9 +1,9 @@
-using UnityEngine;
 using System.Collections.Generic;
-
-using static Font;
-using static Defines;
+using System.Linq;
+using UnityEngine;
 using static Coloring;
+using static Defines;
+using static Font;
 
 public class InputText : MonoBehaviour
 {
@@ -37,7 +37,15 @@ public class InputText : MonoBehaviour
         var glyph = fonts["Tahoma Bold"].GetGlyph(character);
         newCharacter.GetComponent<SpriteRenderer>().sortingLayerName = inputLine.region.regionGroup.window.layer;
         newCharacter.GetComponent<SpriteRenderer>().sprite = glyph;
-        newCharacter.GetComponent<SpriteRenderer>().color = colors[character + "" == defines.markerCharacter ? "Gray" : (color != "" ? color : "LightGray")];
+        if (character + "" == defines.markerCharacter)
+            newCharacter.GetComponent<SpriteRenderer>().color = colors["Gray"];
+        else if (color != null && color.Count(x => x == ':') == 2)
+        {
+            var split = color.Split(':').Select(x => int.Parse(x)).ToArray();
+            newCharacter.GetComponent<SpriteRenderer>().color = new Color32((byte)split[0], (byte)split[1], (byte)split[2], 255);
+        }
+        else
+            newCharacter.GetComponent<SpriteRenderer>().color = colors[color != "" ? color : "LightGray"];
         if (character + "" == defines.markerCharacter) newCharacter.AddComponent<Blinking>();
         else
         {

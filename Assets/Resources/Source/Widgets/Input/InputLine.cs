@@ -4,6 +4,7 @@ using static Root;
 using static Font;
 using static Cursor;
 using static String;
+using System.Linq;
 
 public class InputLine : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class InputLine : MonoBehaviour
     public void Initialise(Region region, String refText, string color, string align)
     {
         this.region = region;
-        this.color = Coloring.colors.ContainsKey(color) ? color : "";
+        this.color = color;
         this.align = align;
         text = new GameObject("InputText", typeof(InputText)).GetComponent<InputText>();
         text.transform.parent = transform;
@@ -46,30 +47,19 @@ public class InputLine : MonoBehaviour
     {
         if (foo == promptConfirm)
             CloseWindow("ConfirmDeleteCharacter");
+        CDesktop.RespawnAll();
     }
 
     public static void ExecuteChange(String foo)
     {
-        if (foo == promptConfirm)
+        if (foo.inputType == InputType.Numbers)
+           foo.Set("" + int.Parse(foo.Value()));
+        if (WindowUp("RatingColorRange1"))
         {
-            if (WindowUp("ConfirmDeleteCharacter"))
-            {
-                //if (foo.Value() == "DELETE")
-                //{
-                //    saves[GameSettings.settings.selectedRealm].RemoveAll(x => x.player.name == GameSettings.settings.selectedCharacter);
-                //    if (saves[GameSettings.settings.selectedRealm].Count > 0)
-                //        GameSettings.settings.selectedCharacter = saves[GameSettings.settings.selectedRealm].First().player.name;
-                //    else GameSettings.settings.selectedCharacter = "";
-                //    CloseWindow("ConfirmDeleteCharacter");
-                //    RemoveDesktopBackground();
-                //    Respawn("CharacterInfo");
-                //    Respawn("CharacterRoster");
-                //    Respawn("TitleScreenSingleplayer");
-                //    SaveGames();
-                //}
-                //else
-                //    CloseWindow("ConfirmDeleteCharacter");
-            }
+            if (int.Parse(foo.Value()) > 999) foo.Set("999");
+            else if (int.Parse(foo.Value()) < 0) foo.Set("0");
+            ProgramSettings.settings.ratingRanges = ProgramSettings.settings.ratingRanges.OrderByDescending(x => int.Parse(x.min.Value())).ToList();
         }
+        CDesktop.RespawnAll();
     }
 }
