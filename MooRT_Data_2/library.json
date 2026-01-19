@@ -4997,6 +4997,12 @@
       "name": "Title Fight",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 834,
+      "name": "Ninajirachi",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -282834,6 +282840,75 @@
         {
           "name": "New Vision",
           "length": 134
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4145,
+      "artist": "Ninajirachi",
+      "artistID": 834,
+      "name": "I Love My Computer",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Electro House"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2025.08.08",
+      "tracks": [
+        {
+          "name": "London Song",
+          "length": 195
+        },
+        {
+          "name": "iPod Touch",
+          "length": 196
+        },
+        {
+          "name": "Fuck My Computer",
+          "length": 190
+        },
+        {
+          "name": "CSIRAC",
+          "length": 201
+        },
+        {
+          "name": "Delete",
+          "length": 231
+        },
+        {
+          "name": "ฅ^•ﻌ•^ฅ",
+          "length": 66
+        },
+        {
+          "name": "All I Am",
+          "length": 182
+        },
+        {
+          "name": "Infohazard",
+          "length": 269
+        },
+        {
+          "name": "Battery Death",
+          "length": 198
+        },
+        {
+          "name": "Sing Good",
+          "length": 160
+        },
+        {
+          "name": "It's You",
+          "length": 169
+        },
+        {
+          "name": "All at Once",
+          "length": 326
         }
       ],
       "discs": "",
