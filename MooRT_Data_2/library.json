@@ -5039,6 +5039,12 @@
       "name": "The Dumplings",
       "pronoun": "they",
       "country": "Poland"
+    },
+    {
+      "ID": 841,
+      "name": "Jan-Rapowanie",
+      "pronoun": "they",
+      "country": "Poland"
     }
   ],
   "originalReleases": [
@@ -283331,6 +283337,77 @@
         {
           "name": "Tam gdzie będzie nudno, ale będziemy szczęśliwi",
           "length": 261
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4152,
+      "artist": "Jan-Rapowanie",
+      "artistID": 841,
+      "name": "Uśmiech",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Hip-hop",
+        "Rap",
+        "Pop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2020.02.25",
+      "tracks": [
+        {
+          "name": "Pilot",
+          "length": 168
+        },
+        {
+          "name": "Co ja wiem?",
+          "length": 177
+        },
+        {
+          "name": "Thx",
+          "length": 187
+        },
+        {
+          "name": "mY",
+          "length": 174
+        },
+        {
+          "name": "Bąbelek",
+          "length": 185
+        },
+        {
+          "name": "GŁÓWNY",
+          "length": 160
+        },
+        {
+          "name": "CENTRALNY",
+          "length": 161
+        },
+        {
+          "name": "Nie pomogę",
+          "length": 194
+        },
+        {
+          "name": "Zapałki",
+          "length": 144
+        },
+        {
+          "name": "Dziewczyny z klasy",
+          "length": 204
+        },
+        {
+          "name": "Gap Year",
+          "length": 159
+        },
+        {
+          "name": "Nikt mi nie kazał",
+          "length": 157
         }
       ],
       "discs": "",

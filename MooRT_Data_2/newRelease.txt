@@ -1,6 +1,6 @@
 Artist name:
 -
-The Dumplings
+Jan-Rapowanie
 -
 -
 -
@@ -12,19 +12,19 @@ Poland
 -
 Release name:
 -
-Raj
+Uśmiech
 -
 -
 -
 Release date:
--
-21 September 2018
+-	
+25 February 2020
 -
 -
 -
 Release cover:
 -
-https://ecsmedia.pl/c/raj-b-iext116650108.jpg
+https://ecsmedia.pl/c/usmiech-b-iext168335426.jpg
 -
 -
 -
@@ -36,17 +36,21 @@ Studio album
 -
 Genres:
 -
-Synthpop, Electropop
+Hip-hop, Rap, Pop
 -
 -
 -
 Tracklist:
 -
-Kino 5:50
-Raj 3:38
-Deszcz 3:41
-Uciekam 3:41
-Przykro mi 4:02
-Nieszczęśliwa 4:24
-Frank 3:16
-Tam gdzie będzie nudno, ale będziemy szczęśliwi 4:21
+Pilot 2:48
+Co ja wiem? 2:57
+Thx 3:07
+mY 2:54
+Bąbelek 3:05
+GŁÓWNY 2:40
+CENTRALNY 2:41
+Nie pomogę 3:14
+Zapałki	2:24
+Dziewczyny z klasy 3:24
+Gap Year 2:39
+Nikt mi nie kazał 2:37
