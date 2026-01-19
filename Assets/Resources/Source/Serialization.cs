@@ -6,9 +6,10 @@ using System.Security.Cryptography;
 
 using Newtonsoft.Json;
 
+using UnityEngine;
+
 using static Newtonsoft.Json.JsonConvert;
 using static Newtonsoft.Json.Formatting;
-using UnityEngine;
 
 class Serialization
 {
@@ -16,7 +17,7 @@ class Serialization
     public static string prefix = "";
 
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = false;
+    public static bool useUnityData = true;
 
     //Indicates whether the program allows for library expansion
     public static bool libraryExpansion = true;

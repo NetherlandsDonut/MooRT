@@ -80,13 +80,16 @@ public class Exporting
     //that consists of album covers provided on the list
     public static void ExportSequenceChart(List<MusicRelease> albums, bool splitOnYears, bool splitOnDecades)
     {
-        //int minimumRating = int.Parse(inputFields["SequenceChartMinimumRating"]);
         var covers = new List<(Sprite, MusicRelease)>();
         for (int i = 0; i < albums.Count; i++)
             covers.Add((albumCovers[albums[i].ID + ""], albums[i]));
         var groups = covers.GroupBy(x => splitOnYears ? x.Item2.releaseDate[..4] : (splitOnDecades ? x.Item2.releaseDate[..3] : "")).ToList();
-        var chart = new Texture2D(188 * covers.Count + groups.Count - 1, 1187);
-        //chart.Set(0, 0, new Color(1, 1, 1, 1));
+        var chart = new Texture2D(1, 4);
+        chart.SetPixel(0, 0, new Color(0.6f, 0.6f, 0.6f, 1));
+        chart.SetPixel(0, 1, new Color(0.7f, 0.7f, 0.7f, 1));
+        chart.SetPixel(0, 2, new Color(0.8f, 0.8f, 0.8f, 1));
+        chart.SetPixel(0, 3, new Color(0.8f, 0.8f, 0.8f, 1));
+        scale(chart, 188 * covers.Count + groups.Count - 1, 1187, FilterMode.Bilinear);
         int currentX = 0;
         for (int i = 0; i < groups.Count; i++)
             for (int j = 0; j < groups[i].Count(); j++)

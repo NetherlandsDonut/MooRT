@@ -79,6 +79,9 @@ public class MusicRelease
     //Country of the artist that made this album
     [NonSerialized] public string country;
 
+    //Did user clear the rating?
+    [NonSerialized] public bool clearedRating;
+
     public static int musicReleaseIndex;
 
     public static MusicRelease musicRelease;
@@ -95,9 +98,20 @@ public class MusicRelease
     }
 
     //Clears track ratings and stores them to backup
+    public void RestoreTrackRatings()
+    {
+        if (!clearedRating) return;
+        clearedRating = false;
+        if (!ratings.ContainsKey(ID)) return;
+        var releaseRating = ratings[ID];
+        releaseRating.trackRatings = releaseRating.savedTrackRatings.ToArray();
+    }
+
+    //Restore track ratings
     public void ClearTrackRatings()
     {
         if (!ratings.ContainsKey(ID)) return;
+        clearedRating = true;
         var releaseRating = ratings[ID];
         releaseRating.trackRatings = new int[tracks.Count];
     }

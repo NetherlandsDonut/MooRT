@@ -586,18 +586,32 @@ public class Blueprint
                 }
                 else AddLine("", "", "Center");
             });
-            AddButtonRegion(() =>
-            {
-                AddLine("Clear rating", "", "Center");
-            },
-            (h) =>
-            {
-                musicRelease.ClearTrackRatings();
-                CDesktop.RespawnAll();
-                Respawn("MusicReleaseScrollbarUp", true);
-                Respawn("MusicReleaseScrollbar", true);
-                Respawn("MusicReleaseScrollbarDown", true);
-            });
+            if (musicRelease.clearedRating)
+                AddButtonRegion(() =>
+                {
+                    AddLine("Restore rating", "", "Center");
+                },
+                (h) =>
+                {
+                    musicRelease.RestoreTrackRatings();
+                    CDesktop.RespawnAll();
+                    Respawn("MusicReleaseScrollbarUp", true);
+                    Respawn("MusicReleaseScrollbar", true);
+                    Respawn("MusicReleaseScrollbarDown", true);
+                });
+            else
+                AddButtonRegion(() =>
+                {
+                    AddLine("Clear rating", "", "Center");
+                },
+                (h) =>
+                {
+                    musicRelease.ClearTrackRatings();
+                    CDesktop.RespawnAll();
+                    Respawn("MusicReleaseScrollbarUp", true);
+                    Respawn("MusicReleaseScrollbar", true);
+                    Respawn("MusicReleaseScrollbarDown", true);
+                });
         }),
         new("MusicReleaseBottomLine", () => {
             var rating = Root.rating.Value();
@@ -2342,8 +2356,8 @@ public class Blueprint
         new("MenuBar", () => {
             SetAnchor(Bottom, 0, 10);
             AddRegionGroup();
-            if (CDesktop.title == "MusicReleases") AddPaddingRegion(() => AddLine("MusicReleases"));
-            else AddButtonRegion(() => AddLine("MusicReleases"), (h) => { var name = CDesktop.title; SpawnDesktopBlueprint("MusicReleases"); CloseDesktop(name); });
+            if (CDesktop.title == "MusicReleases") AddPaddingRegion(() => AddLine("Music Releases"));
+            else AddButtonRegion(() => AddLine("Music Releases"), (h) => { var name = CDesktop.title; SpawnDesktopBlueprint("MusicReleases"); CloseDesktop(name); });
             AddRegionGroup();
             if (CDesktop.title == "Artists") AddPaddingRegion(() => AddLine("Artists"));
             else AddButtonRegion(() => AddLine("Artists"), (h) => { var name = CDesktop.title; SpawnDesktopBlueprint("Artists"); CloseDesktop(name); });
