@@ -5021,6 +5021,18 @@
       "name": "Royal Blood",
       "pronoun": "they",
       "country": "United Kingdom"
+    },
+    {
+      "ID": 838,
+      "name": "Brutalismus 3000",
+      "pronoun": "they",
+      "country": "Slovakia"
+    },
+    {
+      "ID": 839,
+      "name": "Seks w Czasach Wojny",
+      "pronoun": "they",
+      "country": "Poland"
     }
   ],
   "originalReleases": [
@@ -283138,6 +283150,127 @@
         {
           "name": "All We Have Is Now",
           "length": 153
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4149,
+      "artist": "Brutalismus 3000",
+      "artistID": 838,
+      "name": "ULTRAKUNST",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Uk Hard House",
+        "Ebm< Electroclash"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2023.04.07",
+      "tracks": [
+        {
+          "name": "All die lieben Menschen",
+          "length": 138
+        },
+        {
+          "name": "GR3Y",
+          "length": 265
+        },
+        {
+          "name": "CRYB3B3",
+          "length": 261
+        },
+        {
+          "name": "Safe Space",
+          "length": 206
+        },
+        {
+          "name": "Pontiac parisienne (Skit)",
+          "length": 191
+        },
+        {
+          "name": "Je n'existe pas",
+          "length": 280
+        },
+        {
+          "name": "Die liebe kommt nicht aus Berlin",
+          "length": 206
+        },
+        {
+          "name": "Nur mein KÃ¶rper und die Angst",
+          "length": 207
+        },
+        {
+          "name": "Is U Chemical?",
+          "length": 276
+        },
+        {
+          "name": "Suka suka",
+          "length": 129
+        },
+        {
+          "name": "Gewalt Gewalt",
+          "length": 243
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4150,
+      "artist": "Seks w Czasach Wojny",
+      "artistID": 839,
+      "name": "Seks w Czasach Wojny",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Punk Rock",
+        "Pop Punk",
+        "Emo"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2024.07.06",
+      "tracks": [
+        {
+          "name": "Dom na sprzedaż",
+          "length": 97
+        },
+        {
+          "name": "Lalka",
+          "length": 154
+        },
+        {
+          "name": "Satelity zamiast gwiazd",
+          "length": 166
+        },
+        {
+          "name": "Na noże",
+          "length": 108
+        },
+        {
+          "name": "Aborygeńska aborcja",
+          "length": 92
+        },
+        {
+          "name": "Szpik",
+          "length": 171
+        },
+        {
+          "name": "Nie wiem co zrobić ze sobą po liceum",
+          "length": 128
+        },
+        {
+          "name": "Mgiełka",
+          "length": 200
         }
       ],
       "discs": "",
