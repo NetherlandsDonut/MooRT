@@ -48,13 +48,13 @@ public class Blueprint
 
         //Music releases
         new("MusicReleases", () => {
-            var rowAmount = 15;
+            var rowAmount = 20;
             var thisWindow = CDesktop.LBWindow();
             thisWindow.SetPaginationSingleStep(() => library.releases.Count, rowAmount);
             CDesktop.quickInputWindow = thisWindow;
-            SetAnchor(Center);
+            SetAnchor(Center, -8, 10);
             AddRegionGroup();
-            SetRegionGroupWidth(37);
+            SetRegionGroupWidth(46);
             AddButtonRegion(() => AddLine("#", "", "Right"),
                 (h) =>
                 {
@@ -184,7 +184,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("MusicReleasesScrollbarUp", () => {
-            SetAnchor(208, 161);
+            SetAnchor(204, 219);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -203,14 +203,14 @@ public class Blueprint
             });
         }),
         new("MusicReleasesScrollbar", () => {
-            SetAnchor(208, 142);
+            SetAnchor(204, 200);
             AddRegionGroup();
             SetRegionGroupWidth(19);
-            SetRegionGroupHeight(281);
+            SetRegionGroupHeight(376);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("MusicReleasesScrollbarDown", () => {
-            SetAnchor(208, -143);
+            SetAnchor(204, -180);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>

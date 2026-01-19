@@ -173,6 +173,12 @@ public static class Root
         return true;
     }
 
+    public static Sprite cameraBorderSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraBorder");
+    public static Sprite cameraShadowSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraShadow");
+    public static Sprite gradientTopSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/GradientTop");
+    public static Sprite gradientBottomSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/GradientBottom");
+    public static Sprite cameraScreenlockSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraScreenlock");
+
     private static void AddDesktop(string title)
     {
         var newObject = new GameObject("Desktop: " + title, typeof(Desktop), typeof(SpriteRenderer));
@@ -197,24 +203,24 @@ public static class Root
         newDesktop.screen.orthographic = true;
         if (settings.pixelPerfectVision.Value()) newDesktop.screen.gameObject.AddComponent<PixelCamera>();
         var cameraBorder = new GameObject("CameraBorder", typeof(SpriteRenderer));
-        cameraBorder.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraBorder");
+        cameraBorder.GetComponent<SpriteRenderer>().sprite = cameraBorderSprite;
         cameraBorder.GetComponent<SpriteRenderer>().sortingLayerName = "CameraBorder";
         var cameraShadow = new GameObject("CameraShadow", typeof(SpriteRenderer));
         cameraShadow.transform.parent = cameraBorder.transform.parent = newDesktop.screen.transform;
-        cameraShadow.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraShadow");
+        cameraShadow.GetComponent<SpriteRenderer>().sprite = cameraShadowSprite;
         cameraShadow.GetComponent<SpriteRenderer>().sortingLayerName = "CameraShadow";
         var cameraGradientTop = new GameObject("CameraGradientTop", typeof(SpriteRenderer));
         cameraGradientTop.transform.parent = cameraBorder.transform.parent = newDesktop.screen.transform;
         newDesktop.gradientTop = cameraGradientTop.GetComponent<SpriteRenderer>();
-        newDesktop.gradientTop.sprite = Resources.Load<Sprite>("Sprites/Fullscreen/Backgrounds/GradientTop");
+        newDesktop.gradientTop.sprite = gradientTopSprite;
         newDesktop.gradientTop.sortingLayerName = "DesktopBackground";
         var cameraGradientBottom = new GameObject("CameraGradientBottom", typeof(SpriteRenderer));
         cameraGradientBottom.transform.parent = cameraBorder.transform.parent = newDesktop.screen.transform;
         newDesktop.gradientBottom = cameraGradientBottom.GetComponent<SpriteRenderer>();
-        newDesktop.gradientBottom.sprite = Resources.Load<Sprite>("Sprites/Fullscreen/Backgrounds/GradientBottom");
+        newDesktop.gradientBottom.sprite = gradientBottomSprite;
         newDesktop.gradientBottom.sortingLayerName = "DesktopBackground";
         newDesktop.screenlock = new GameObject("Screenlock", typeof(BoxCollider2D), typeof(SpriteRenderer));
-        newDesktop.screenlock.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Camera/CameraScreenlock");
+        newDesktop.screenlock.GetComponent<SpriteRenderer>().sprite = cameraScreenlockSprite;
         newDesktop.screenlock.GetComponent<SpriteRenderer>().sortingLayerName = "DesktopBackground";
         newDesktop.screenlock.GetComponent<SpriteRenderer>().sortingOrder = 1;
         newDesktop.screenlock.GetComponent<BoxCollider2D>().size = new Vector2(screenX, screenY);
@@ -251,13 +257,15 @@ public static class Root
         else if (settings.pixelPerfectVision.Value() && CDesktop.screen.GetComponent<PixelCamera>() == null) CDesktop.screen.gameObject.AddComponent<PixelCamera>();
     }
 
+    public static Sprite cameraTransition = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraTransition");
+
     public static void SpawnTransition(bool single = true, float speed = 2f)
     {
         if (CDesktop.transition != null && single) return;
         var transition = new GameObject("CameraTransition", typeof(SpriteRenderer), typeof(Shatter));
         transition.transform.parent = CDesktop.screen.transform;
         transition.transform.localPosition = new Vector3(0, 0, -0.01f);
-        transition.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraTransition");
+        transition.GetComponent<SpriteRenderer>().sprite = cameraTransition;
         transition.GetComponent<SpriteRenderer>().sortingLayerName = "CameraBorder";
         transition.GetComponent<Shatter>().Initiate(speed, 0, transition.GetComponent<SpriteRenderer>());
         CDesktop.transition = transition;
@@ -470,6 +478,8 @@ public static class Root
         }
     }
 
+    public static Sprite overlaySprite;
+
     public static void AddRegionOverlay(string overlay)
     {
         var onWhat = CDesktop.LBWindow().LBRegionGroup().LBRegion();
@@ -478,7 +488,8 @@ public static class Root
         newObject.transform.localPosition = new Vector3(2, -2, 0.1f);
         var high = onWhat.background.GetComponent<Highlightable>();
         if (high != null) high.additionalRender = newObject.GetComponent<SpriteRenderer>();
-        newObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/" + overlay);
+        if (overlaySprite == null) overlaySprite = Resources.Load<Sprite>("Sprites/" + overlay);
+        newObject.GetComponent<SpriteRenderer>().sprite = overlaySprite;
     }
 
     public static void AddButtonRegion(Action draw, Action<Highlightable> pressEvent = null, Action<Highlightable> rightPressEvent = null, Func<Highlightable, Action> tooltip = null, Action<Highlightable> middlePressEvent = null)
@@ -506,7 +517,7 @@ public static class Root
         AddPaddingRegion(() =>
         {
             var thisWindow = CDesktop.LBWindow();
-            AddLine("Page: ", "DarkGray");
+            AddLine("Pagination: ", "DarkGray");
             AddText(thisWindow.pagination() + 1 + "");
             AddText(" / ", "DarkGray");
             AddText(thisWindow.maxPagination() + 1 + "");
@@ -587,18 +598,24 @@ public static class Root
 
     #region SmallButtons
 
+    public static Material materialRed;
+
     public static void SetSmallButtonToRed()
     {
         var region = CDesktop.LBWindow().LBRegionGroup().LBRegion();
         var button = region.LBSmallButton().gameObject;
-        button.GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Shaders/Red");
+        if (materialRed == null) materialRed = Resources.Load<Material>("Shaders/Red");
+        button.GetComponent<SpriteRenderer>().material = materialRed;
     }
+
+    public static Material materialGrayscale;
 
     public static void SetSmallButtonToGrayscale()
     {
         var region = CDesktop.LBWindow().LBRegionGroup().LBRegion();
         var button = region.LBSmallButton().gameObject;
-        button.GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Shaders/Grayscale");
+        if (materialGrayscale == null) materialGrayscale = Resources.Load<Material>("Shaders/Grayscale");
+        button.GetComponent<SpriteRenderer>().material = materialGrayscale;
     }
 
     public static void AddSmallButtonOverlay(string overlay, float time = 0, int sortingOrder = 0)
@@ -662,14 +679,16 @@ public static class Root
     {
         var region = CDesktop.LBWindow().LBRegionGroup().LBRegion();
         var button = region.LBBigButton().gameObject;
-        button.GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Shaders/Red");
+        if (materialGrayscale == null) materialGrayscale = Resources.Load<Material>("Shaders/Red");
+        button.GetComponent<SpriteRenderer>().material = materialGrayscale;
     }
 
     public static void SetBigButtonToGrayscale()
     {
         var region = CDesktop.LBWindow().LBRegionGroup().LBRegion();
         var button = region.LBBigButton().gameObject;
-        button.GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Shaders/Grayscale");
+        if (materialGrayscale == null) materialGrayscale = Resources.Load<Material>("Shaders/Grayscale");
+        button.GetComponent<SpriteRenderer>().material = materialGrayscale;
     }
 
     public static GameObject AddBigButtonOverlay(string overlay, float time = 0, int sortingOrder = 0)

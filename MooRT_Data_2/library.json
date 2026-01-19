@@ -4973,6 +4973,30 @@
       "name": "Fontaines D.C.",
       "pronoun": "they",
       "country": "Ireland"
+    },
+    {
+      "ID": 830,
+      "name": "Ugly",
+      "pronoun": "they",
+      "country": "United Kingdom"
+    },
+    {
+      "ID": 831,
+      "name": "Anathema",
+      "pronoun": "they",
+      "country": "United Kingdom"
+    },
+    {
+      "ID": 832,
+      "name": "Caroline Polachek",
+      "pronoun": "they",
+      "country": "United States"
+    },
+    {
+      "ID": 833,
+      "name": "Title Fight",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -40015,7 +40039,7 @@
         "Experimental Hip Hop",
         "Pop Rap",
         "Synth Funk",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Neo Soul"
       ],
       "languages": [
@@ -48917,7 +48941,7 @@
       "genres": [
         "Acid Techno",
         "IDM",
-        "Drill And Bass"
+        "Drill and Bass"
       ],
       "languages": [],
       "format": "digital",
@@ -49063,7 +49087,7 @@
       ],
       "genres": [
         "IDM",
-        "Drill And Bass"
+        "Drill and Bass"
       ],
       "languages": [],
       "format": "digital",
@@ -49127,7 +49151,7 @@
         "IDM",
         "Ambient Techno",
         "Acid Techno",
-        "Drill And Bass"
+        "Drill and Bass"
       ],
       "languages": [],
       "format": "digital",
@@ -56458,7 +56482,7 @@
         "Post Punk",
         "Dream Pop",
         "Indie Electronic",
-        "Alternative Rhythm & Blues"
+        "Alternative R&B"
       ],
       "languages": [
         "English"
@@ -71518,7 +71542,7 @@
         "Dark Ambient",
         "Art Rock",
         "Dark Jazz",
-        "Drum And Bass",
+        "Drum and Bass",
         "Trip Hop"
       ],
       "languages": [
@@ -84993,7 +85017,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Jazz Rock",
         "Art Rock",
         "Art Pop",
@@ -85082,7 +85106,7 @@
         "Trip Hop",
         "Post Punk",
         "Jazz Rock",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Experimental Rock"
       ],
       "languages": [
@@ -85881,7 +85905,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Psychedelic Soul"
       ],
       "languages": [
@@ -85973,7 +85997,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Neo Soul",
         "Ambient Pop",
         "Art Pop"
@@ -93315,7 +93339,7 @@
       "genres": [
         "Emo Rap",
         "Cloud Rap",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Singer / Songwriter"
       ],
       "languages": [
@@ -93384,7 +93408,7 @@
         "Emo Rap",
         "Cloud Rap",
         "Trap",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Pop Rap"
       ],
       "languages": [
@@ -143751,7 +143775,7 @@
         "Ambient Pop",
         "Future Garage",
         "Indie Electronic",
-        "Alternative Rhythm & Blues"
+        "Alternative R&B"
       ],
       "languages": [
         "English"
@@ -146036,7 +146060,7 @@
         "Synth Pop",
         "Art Pop",
         "Contemporary Rhythm & Blues",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Pop Rap"
       ],
       "languages": [
@@ -147813,7 +147837,7 @@
         "J Pop",
         "Art Pop",
         "Dubstep",
-        "Drum And Bass"
+        "Drum and Bass"
       ],
       "languages": [
         "English"
@@ -154534,7 +154558,7 @@
         "Studio album"
       ],
       "genres": [
-        "Atmospheric Drum And Bass",
+        "Atmospheric Drum and Bass",
         "Ambient",
         "Breakcore",
         "Space Ambient",
@@ -154599,7 +154623,7 @@
         "Studio album"
       ],
       "genres": [
-        "Atmospheric Drum And Bass",
+        "Atmospheric Drum and Bass",
         "Ambient",
         "Breakcore",
         "Space Ambient",
@@ -155953,7 +155977,7 @@
         "Art Rock",
         "Industrial Rock",
         "Alternative Dance",
-        "Drum And Bass"
+        "Drum and Bass"
       ],
       "languages": [
         "English"
@@ -159891,7 +159915,7 @@
       "genres": [
         "Ambient",
         "IDM",
-        "Drill And Bass",
+        "Drill and Bass",
         "Electro Acoustic"
       ],
       "languages": [],
@@ -160149,7 +160173,7 @@
       ],
       "genres": [
         "IDM",
-        "Drill And Bass"
+        "Drill and Bass"
       ],
       "languages": [
         "English"
@@ -160203,7 +160227,7 @@
       ],
       "genres": [
         "IDM",
-        "Drill And Bass",
+        "Drill and Bass",
         "Acid Techno",
         "Ambient Techno"
       ],
@@ -162149,7 +162173,7 @@
         "Post Rock",
         "Indie Rock",
         "Art Rock",
-        "Drum And Bass"
+        "Drum and Bass"
       ],
       "languages": [
         "English"
@@ -191505,7 +191529,7 @@
       ],
       "genres": [
         "Breakcore",
-        "Drill And Bass",
+        "Drill and Bass",
         "Modern Classical"
       ],
       "languages": [],
@@ -198995,7 +199019,7 @@
       "genres": [
         "Trap",
         "Pop Rap",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Cloud Rap"
       ],
       "languages": [
@@ -200863,7 +200887,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Indie Electronic",
         "Synth Pop",
         "Art Pop"
@@ -200927,7 +200951,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Synth Pop",
         "Electro Pop",
         "Dance Pop"
@@ -213810,7 +213834,7 @@
       "genres": [
         "Soul",
         "Hip Hop",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Synth Funk",
         "Experimental Hip Hop",
         "Funk",
@@ -217154,7 +217178,7 @@
       ],
       "genres": [
         "Industrial Metal",
-        "Drum And Bass",
+        "Drum and Bass",
         "Sludge Metal",
         "Industrial Hip Hop",
         "Breakbeat",
@@ -218158,7 +218182,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Synth Pop",
         "Ambient Pop",
         "Electro Pop"
@@ -218262,7 +218286,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Electro Pop",
         "Synth Pop",
         "Jazz Pop"
@@ -228957,7 +228981,7 @@
       "genres": [
         "Christian Hip Hop",
         "Experimental Hip Hop",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Trap",
         "Pop Rap",
         "Art Pop",
@@ -229908,7 +229932,7 @@
         "UK Hip Hop",
         "Conscious Hip Hop",
         "Jazz Rap",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Pop Rap",
         "Neo Soul",
         "Grime"
@@ -232529,7 +232553,7 @@
           "length": 396
         }
       ],
-      "discs": "",
+      "discs": "4",
       "coverDescriptors": []
     },
     {
@@ -246751,7 +246775,7 @@
           "length": 672
         }
       ],
-      "discs": "",
+      "discs": "3",
       "coverDescriptors": []
     },
     {
@@ -252055,7 +252079,7 @@
           "length": 283
         }
       ],
-      "discs": "",
+      "discs": "6",
       "coverDescriptors": []
     },
     {
@@ -255634,7 +255658,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Indie Electronic",
         "Alternative Pop"
       ],
@@ -256039,7 +256063,7 @@
           "length": 310
         }
       ],
-      "discs": "",
+      "discs": "6",
       "coverDescriptors": []
     },
     {
@@ -259370,7 +259394,7 @@
         "Trancecore",
         "Post Hardcore",
         "Dubstep",
-        "Drum And Bass",
+        "Drum and Bass",
         "Metalcore",
         "Art Rock"
       ],
@@ -259441,7 +259465,7 @@
         "Post Hardcore",
         "Alternative Rock",
         "Alternative Metal",
-        "Drum And Bass",
+        "Drum and Bass",
         "Metalcore"
       ],
       "languages": [
@@ -259650,7 +259674,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alt Pop",
+        "Alternative Pop",
         "Chamber Pop",
         "Trip Hop",
         "Art Pop"
@@ -259793,7 +259817,7 @@
         "Dream Pop",
         "Chamber Pop",
         "Ambient Pop",
-        "Alt Pop",
+        "Alternative Pop",
         "Art Pop"
       ],
       "languages": [
@@ -259872,8 +259896,8 @@
       ],
       "genres": [
         "Chamber Pop",
-        "Alternative Rhythm And Blues",
-        "Alt Pop",
+        "Alternative R&B",
+        "Alternative Pop",
         "Art Pop"
       ],
       "languages": [
@@ -260194,7 +260218,7 @@
       "genres": [
         "Singer / Songwriter",
         "Traditional Pop",
-        "Alt Pop",
+        "Alternative Pop",
         "Baroque Pop",
         "Chamber Pop"
       ],
@@ -260885,7 +260909,7 @@
         "Hardcore Hip Hop",
         "Pop Rap",
         "Conscious Hip Hop",
-        "Alternative Rhythm And Blues",
+        "Alternative R&B",
         "Art Pop"
       ],
       "languages": [
@@ -261112,7 +261136,7 @@
       "genres": [
         "Pop Rap",
         "Conscious Hip Hop",
-        "Contemporary Rhythm And Blues"
+        "Contemporary R&B"
       ],
       "languages": [
         "English"
@@ -261183,9 +261207,9 @@
       "genres": [
         "Pop Rap",
         "Pop Soul",
-        "Alternative Rhythm And Blues",
+        "Alternative R&B",
         "Pop",
-        "Contemporary Rhythm And Blues"
+        "Contemporary R&B"
       ],
       "languages": [
         "English"
@@ -261255,9 +261279,9 @@
       ],
       "genres": [
         "Dance Pop",
-        "Alternative Rhythm And Blues",
+        "Alternative R&B",
         "Pop Rap",
-        "Contemporary Rhythm And Blues"
+        "Contemporary R&B"
       ],
       "languages": [
         "English"
@@ -261344,7 +261368,7 @@
       "genres": [
         "Dance Pop",
         "Pop Rap",
-        "Contemporary Rhythm And Blues",
+        "Contemporary R&B",
         "Brass Band"
       ],
       "languages": [
@@ -264379,7 +264403,7 @@
       "genres": [
         "Dance Pop",
         "Contemporary Rhythm & Blues",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Pop Rock",
         "Art Pop",
         "Alternative Dance",
@@ -265413,7 +265437,7 @@
       "genres": [
         "Pop Rock",
         "West Coast Hip & Hop",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Hardcore Hip Hop",
         "Experimental Hip Hop"
       ],
@@ -265506,7 +265530,7 @@
       "genres": [
         "Pop Rock",
         "West Coast Hip & Hop",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Hardcore Hip Hop",
         "Experimental Hip Hop"
       ],
@@ -265595,7 +265619,7 @@
       "genres": [
         "Pop Rock",
         "West Coast Hip & Hop",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Hardcore Hip Hop",
         "Experimental Hip Hop"
       ],
@@ -265680,7 +265704,7 @@
       "genres": [
         "Pop Rock",
         "West Coast Hip & Hop",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Hardcore Hip Hop",
         "Experimental Hip Hop"
       ],
@@ -266242,7 +266266,7 @@
         "Dance Pop",
         "Pop Rap",
         "Pop",
-        "Contemporary Rhythm And Blues"
+        "Contemporary R&B"
       ],
       "languages": [
         "English"
@@ -266456,7 +266480,7 @@
         "Trancestep",
         "Trance",
         "Ambient",
-        "Atmospheric Drum And Bass"
+        "Atmospheric Drum and Bass"
       ],
       "languages": [],
       "format": "digital",
@@ -267332,7 +267356,7 @@
         "Alternative Pop",
         "Electro Pop",
         "Contemporary Rhythm & Blues",
-        "Alternative Rhythm & Blues",
+        "Alternative R&B",
         "Trap",
         "Future Bass"
       ],
@@ -269017,7 +269041,7 @@
         "Electronic Dance Music",
         "Art Pop",
         "Trance",
-        "Alternative R&b",
+        "Alternative R&B",
         "Downtempo",
         "Glitch Pop"
       ],
@@ -269086,7 +269110,7 @@
       "genres": [
         "Art Pop",
         "Glitch Pop",
-        "Alternative R&b",
+        "Alternative R&B",
         "Ambient Pop",
         "Deconstructed Club"
       ],
@@ -269145,9 +269169,9 @@
         "Studio album"
       ],
       "genres": [
-        "Alternative R&b",
+        "Alternative R&B",
         "Art Pop",
-        "Post-dubstep",
+        "Post Dubstep",
         "Wonky",
         "Trip Hop",
         "Deconstructed Club",
@@ -270132,7 +270156,7 @@
         "Synthpop",
         "Dance Pop",
         "Electropop",
-        "Contemporary R&b",
+        "Contemporary R&B",
         "Chillwave",
         "Dance Pop",
         "House"
@@ -273125,7 +273149,7 @@
         "Hip Hop",
         "Neo Psychedelia",
         "New Wave",
-        "Alternative R&b"
+        "Alternative R&B"
       ],
       "languages": [
         "English"
@@ -276236,10 +276260,10 @@
       "genres": [
         "Indie Rock",
         "Slacker Rock",
-        "Post-hardcore",
+        "Post Hardcore",
         "Noise Pop",
         "Emo",
-        "Neo-psychedelia"
+        "Neo Psychedelia"
       ],
       "languages": [
         "English"
@@ -276374,7 +276398,7 @@
       ],
       "genres": [
         "Indie Rock",
-        "Post-rock",
+        "Post Rock",
         "Midwest Emo",
         "Psychedelic Rock",
         "Space Rock Revival",
@@ -276433,7 +276457,7 @@
       "genres": [
         "Indie Rock",
         "Power Pop",
-        "Neo-psychedelia",
+        "Neo Psychedelia",
         "Noise Pop"
       ],
       "languages": [
@@ -276496,7 +276520,7 @@
       ],
       "genres": [
         "Indie Rock",
-        "Neo-psychedelia",
+        "Neo Psychedelia",
         "Psychedelic Rock"
       ],
       "languages": [
@@ -276829,7 +276853,7 @@
       "genres": [
         "Conscious Hip Hop",
         "Boom Bap",
-        "Neo-soul",
+        "Neo Soul",
         "Reggae",
         "Boom Bap",
         "Hip Hop Soul"
@@ -276905,9 +276929,9 @@
         "Studio album"
       ],
       "genres": [
-        "Neo-soul",
+        "Neo Soul",
         "Hip Hop",
-        "Contemporary R&b",
+        "Contemporary R&B",
         "Conscious Hip Hop",
         "Boom Bap",
         "Hip Hop Soul"
@@ -277264,7 +277288,7 @@
       ],
       "genres": [
         "Dance Pop",
-        "Contemporary R&b",
+        "Contemporary R&B",
         "Electropop",
         "Latin Pop"
       ],
@@ -277595,7 +277619,7 @@
       ],
       "genres": [
         "Art Rock",
-        "Singer-songwriter",
+        "Singer / Songwriter",
         "Experimental Rock",
         "Ambient Pop"
       ],
@@ -277667,7 +277691,7 @@
         "Chamber Pop",
         "Power Pop",
         "Folk Pop",
-        "Singer-songwriter"
+        "Singer / Songwriter"
       ],
       "languages": [
         "English"
@@ -277880,7 +277904,7 @@
       ],
       "genres": [
         "Contemporary Folk",
-        "Singer-songwriter",
+        "Singer / Songwriter",
         "Acoustic Blues"
       ],
       "languages": [
@@ -277942,11 +277966,11 @@
         "Studio album"
       ],
       "genres": [
-        "Singer-songwriter",
+        "Singer / Songwriter",
         "Folk Rock",
         "Contemporary Folk",
         "Chamber Pop",
-        "Alt-country"
+        "Alternative Country"
       ],
       "languages": [
         "English"
@@ -278162,12 +278186,12 @@
         "Studio album"
       ],
       "genres": [
-        "Post-rock",
+        "Post Rock",
         "Art Rock",
         "Art Punk",
-        "Jazz-rock",
-        "Post-hardcore",
-        "Post-punk"
+        "Jazz Rock",
+        "Post Hardcore",
+        "Post Punk"
       ],
       "languages": [
         "English"
@@ -278276,7 +278300,7 @@
       "genres": [
         "Cool Jazz",
         "Modal Jazz",
-        "Post-bop"
+        "Post Bop"
       ],
       "languages": [
         "English"
@@ -278335,7 +278359,7 @@
       "genres": [
         "Cool Jazz",
         "Modal Jazz",
-        "Post-bop"
+        "Post Bop"
       ],
       "languages": [
         "English"
@@ -278434,7 +278458,7 @@
       ],
       "genres": [
         "Cool Jazz",
-        "Post-bop",
+        "Post Bop",
         "Modal Jazz"
       ],
       "languages": [
@@ -278476,7 +278500,7 @@
         "Studio album"
       ],
       "genres": [
-        "Post-bop",
+        "Post Bop",
         "Cool Jazz"
       ],
       "languages": [
@@ -278518,9 +278542,9 @@
         "Soundtrack"
       ],
       "genres": [
-        "Post-hardcore",
+        "Post Hardcore",
         "Film Soundtrack",
-        "Post-rock",
+        "Post Rock",
         "Art Rock",
         "Noise Rock",
         "Dub",
@@ -278618,7 +278642,7 @@
       ],
       "genres": [
         "Noise Pop",
-        "Neo-psychedelia",
+        "Neo Psychedelia",
         "Psychedelic Pop",
         "Slacker Rock",
         "Sunshine Pop"
@@ -278694,7 +278718,7 @@
         "Studio album"
       ],
       "genres": [
-        "Neo-psychedelia",
+        "Neo Psychedelia",
         "Psychedelic Pop",
         "Art Pop",
         "Progressive Pop",
@@ -278768,7 +278792,7 @@
         "Compilation album"
       ],
       "genres": [
-        "Singer-songwriter",
+        "Singer / Songwriter",
         "Psychedelic Folk",
         "Chamber Jazz",
         "Chamber Folk"
@@ -278857,7 +278881,7 @@
       ],
       "genres": [
         "Alternative Rock",
-        "Post-grunge"
+        "Post Grunge"
       ],
       "languages": [
         "English"
@@ -279349,9 +279373,9 @@
         "Alternative Dance",
         "Trip Hop",
         "Electroclash",
-        "Post-punk Revival",
+        "Post Punk Revival",
         "Alternative Rock",
-        "Neo-psychedelia",
+        "Neo Psychedelia",
         "Indietronica"
       ],
       "languages": [
@@ -280140,8 +280164,8 @@
       "genres": [
         "Video Game Music",
         "Americana",
-        "Post-rock",
-        "Singer-songwriter",
+        "Post Rock",
+        "Singer / Songwriter",
         "Ambient Americana",
         "Electric Blues",
         "American Primitivism"
@@ -280581,9 +280605,9 @@
         "Flamenco Pop",
         "Flamenco Nuevo",
         "Art Pop",
-        "Alternative R&b",
+        "Alternative R&B",
         "Bulería",
-        "Alt-pop"
+        "Alternative Pop"
       ],
       "languages": [
         "English"
@@ -280650,7 +280674,7 @@
       "genres": [
         "Art Pop",
         "Neoperreo",
-        "Alternative R&b",
+        "Alternative R&B",
         "Latin Electronic",
         "Flamenco Nuevo",
         "Deconstructed Club",
@@ -280743,7 +280767,7 @@
         "Classical Crossover",
         "Flamenco Pop",
         "Orchestral Music",
-        "Singer-songwriter"
+        "Singer / Songwriter"
       ],
       "languages": [
         "English"
@@ -280824,8 +280848,8 @@
         "Studio album"
       ],
       "genres": [
-        "Alt-country",
-        "Singer-songwriter",
+        "Alternative Country",
+        "Singer / Songwriter",
         "Gothic Country",
         "Outlaw Country",
         "Americana"
@@ -280899,8 +280923,8 @@
       "genres": [
         "Contemporary Country",
         "Americana",
-        "Alt-country",
-        "Singer-songwriter"
+        "Alternative Country",
+        "Singer / Songwriter"
       ],
       "languages": [
         "English"
@@ -281070,10 +281094,10 @@
         "Noise Rock",
         "Indie Rock",
         "Slacker Rock",
-        "Post-hardcore",
+        "Post Hardcore",
         "Math Rock",
-        "Post-punk",
-        "Neo-psychedelia"
+        "Post Punk",
+        "Neo Psychedelia"
       ],
       "languages": [
         "English"
@@ -281141,9 +281165,9 @@
         "Math Rock",
         "Indie Rock",
         "Noise Rock",
-        "Post-hardcore",
+        "Post Hardcore",
         "Slacker Rock",
-        "Post-rock"
+        "Post Rock"
       ],
       "languages": [
         "English"
@@ -281207,7 +281231,7 @@
         "Indie Rock",
         "Math Rock",
         "Noise Rock",
-        "Post-hardcore",
+        "Post Hardcore",
         "Slacker Rock"
       ],
       "languages": [
@@ -281293,10 +281317,10 @@
         "Studio album"
       ],
       "genres": [
-        "Post-punk Revival",
-        "Dance-punk",
+        "Post Punk Revival",
+        "Dance Punk",
         "New Wave",
-        "Dance-punk Revival",
+        "Dance Punk Revival",
         "Indie Rock"
       ],
       "languages": [
@@ -281704,8 +281728,8 @@
       "genres": [
         "Indie Rock",
         "Alternative Rock",
-        "Post-britpop",
-        "Post-punk Revival",
+        "Post Britpop",
+        "Post Punk Revival",
         "Dream Pop"
       ],
       "languages": [
@@ -282005,7 +282029,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alt-pop",
+        "Alternative Pop",
         "Pop Rap",
         "Electropop"
       ],
@@ -282084,7 +282108,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alt-pop",
+        "Alternative Pop",
         "Indie Pop",
         "Pop Rap",
         "Indietronica"
@@ -282231,7 +282255,7 @@
         "Studio album"
       ],
       "genres": [
-        "Alt-pop",
+        "Alternative Pop",
         "Indie Rock",
         "Pop Rap"
       ],
@@ -282307,9 +282331,9 @@
       ],
       "genres": [
         "Alternative Rock",
-        "Alt-pop",
+        "Alternative Pop",
         "Pop Rock",
-        "Post-punk Revival"
+        "Post Punk Revival"
       ],
       "languages": [
         "English"
@@ -282368,6 +282392,448 @@
         {
           "name": "Intentions",
           "length": 135
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4138,
+      "artist": "Low",
+      "artistID": 166,
+      "name": "Christmas",
+      "types": [
+        "Extended play"
+      ],
+      "genres": [
+        "Christmas Music",
+        "Slowcore",
+        "Dream Pop",
+        "Indie Folk"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "1999.11.29",
+      "tracks": [
+        {
+          "name": "Just Like Christmas",
+          "length": 188
+        },
+        {
+          "name": "Long Way Around the Sea",
+          "length": 278
+        },
+        {
+          "name": "Little Drummer Boy",
+          "length": 292
+        },
+        {
+          "name": "If You Were Born Today",
+          "length": 290
+        },
+        {
+          "name": "Blue Christmas",
+          "length": 202
+        },
+        {
+          "name": "Silent Night",
+          "length": 263
+        },
+        {
+          "name": "Taking Down the Tree",
+          "length": 164
+        },
+        {
+          "name": "One Special Gift",
+          "length": 108
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4139,
+      "artist": "Ugly",
+      "artistID": 830,
+      "name": "Twice Around the Sun",
+      "types": [
+        "Extended play"
+      ],
+      "genres": [
+        "Art Rock",
+        "Indie Rock",
+        "Progressive Rock",
+        "Indie Folk"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2024.04.03",
+      "tracks": [
+        {
+          "name": "The Wheel",
+          "length": 446
+        },
+        {
+          "name": "Sha",
+          "length": 215
+        },
+        {
+          "name": "Icy Windy Sky",
+          "length": 409
+        },
+        {
+          "name": "Shepherd's Carol",
+          "length": 311
+        },
+        {
+          "name": "Hands of Man",
+          "length": 306
+        },
+        {
+          "name": "I'm Happy You're Here",
+          "length": 482
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4140,
+      "artist": "Anathema",
+      "artistID": 831,
+      "name": "A Natural Disaster",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Alternative Rock",
+        "Progressive Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2003.11.03",
+      "tracks": [
+        {
+          "name": "Harmonium",
+          "length": 328
+        },
+        {
+          "name": "Balance",
+          "length": 238
+        },
+        {
+          "name": "Closer",
+          "length": 380
+        },
+        {
+          "name": "Are You There?",
+          "length": 299
+        },
+        {
+          "name": "Childhood Dream",
+          "length": 130
+        },
+        {
+          "name": "Pulled Under at 2000 Metres a Second",
+          "length": 323
+        },
+        {
+          "name": "A Natural Disaster",
+          "length": 387
+        },
+        {
+          "name": "Flying",
+          "length": 357
+        },
+        {
+          "name": "Electricity",
+          "length": 231
+        },
+        {
+          "name": "Violence",
+          "length": 645
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4141,
+      "artist": "Caroline Polachek",
+      "artistID": 832,
+      "name": "Desire, I Want to Turn Into You",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Art Pop",
+        "Alternative Pop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2023.02.14",
+      "tracks": [
+        {
+          "name": "Welcome to My Island",
+          "length": 232
+        },
+        {
+          "name": "Pretty in Possible",
+          "length": 216
+        },
+        {
+          "name": "Bunny Is a Rider",
+          "length": 193
+        },
+        {
+          "name": "Sunset",
+          "length": 162
+        },
+        {
+          "name": "Crude Drawing of an Angel",
+          "length": 209
+        },
+        {
+          "name": "I Believe",
+          "length": 247
+        },
+        {
+          "name": "Fly to You",
+          "length": 245
+        },
+        {
+          "name": "Blood and Butter",
+          "length": 267
+        },
+        {
+          "name": "Hopedrunk Everasking",
+          "length": 199
+        },
+        {
+          "name": "Butterfly Net",
+          "length": 276
+        },
+        {
+          "name": "Smoke",
+          "length": 177
+        },
+        {
+          "name": "Billions",
+          "length": 297
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4142,
+      "artist": "Title Fight",
+      "artistID": 833,
+      "name": "Shed",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Post Hardcore",
+        "Emo",
+        "Melodic Hardcore",
+        "Skate Punk"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2011.05.03",
+      "tracks": [
+        {
+          "name": "Coxton Yard",
+          "length": 89
+        },
+        {
+          "name": "Shed",
+          "length": 136
+        },
+        {
+          "name": "Flood of ‘72",
+          "length": 116
+        },
+        {
+          "name": "Society",
+          "length": 83
+        },
+        {
+          "name": "You Can’t Say Kingston Doesn’t Love You",
+          "length": 102
+        },
+        {
+          "name": "Crescent-Shaped Depression",
+          "length": 159
+        },
+        {
+          "name": "Safe in Your Skin",
+          "length": 154
+        },
+        {
+          "name": "Where Am I?",
+          "length": 186
+        },
+        {
+          "name": "Your Screen Door",
+          "length": 128
+        },
+        {
+          "name": "27",
+          "length": 147
+        },
+        {
+          "name": "Stab",
+          "length": 120
+        },
+        {
+          "name": "GMT (Greenwich Mean Time)",
+          "length": 217
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4143,
+      "artist": "Title Fight",
+      "artistID": 833,
+      "name": "Floral Green",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Post Hardcore",
+        "Emo",
+        "Alternative Rock",
+        "Melodic Hardcore",
+        "Shoegaze"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2012.09.25",
+      "tracks": [
+        {
+          "name": "Numb, but I Still Feel It",
+          "length": 183
+        },
+        {
+          "name": "Leaf",
+          "length": 153
+        },
+        {
+          "name": "Like a Ritual",
+          "length": 188
+        },
+        {
+          "name": "Secret Society",
+          "length": 187
+        },
+        {
+          "name": "Head in the Ceiling Fan",
+          "length": 240
+        },
+        {
+          "name": "Make You Cry",
+          "length": 174
+        },
+        {
+          "name": "Sympathy",
+          "length": 172
+        },
+        {
+          "name": "Frown",
+          "length": 139
+        },
+        {
+          "name": "Calloused",
+          "length": 122
+        },
+        {
+          "name": "Lefty",
+          "length": 241
+        },
+        {
+          "name": "In-Between",
+          "length": 174
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4144,
+      "artist": "Title Fight",
+      "artistID": 833,
+      "name": "Hyperview",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Shoegaze",
+        "Alternative Rock",
+        "Emo",
+        "Dream Pop",
+        "Post Hardcore"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2015.02.03",
+      "tracks": [
+        {
+          "name": "Murder Your Memory",
+          "length": 156
+        },
+        {
+          "name": "Chlorine",
+          "length": 188
+        },
+        {
+          "name": "Hypernight",
+          "length": 176
+        },
+        {
+          "name": "Mrahc",
+          "length": 131
+        },
+        {
+          "name": "Your Pain Is Mine Now",
+          "length": 243
+        },
+        {
+          "name": "Rose of Sharon",
+          "length": 170
+        },
+        {
+          "name": "Trace Me Onto You",
+          "length": 242
+        },
+        {
+          "name": "Liar's Love",
+          "length": 206
+        },
+        {
+          "name": "Dizzy",
+          "length": 261
+        },
+        {
+          "name": "New Vision",
+          "length": 134
         }
       ],
       "discs": "",
