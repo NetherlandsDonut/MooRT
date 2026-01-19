@@ -566,18 +566,6 @@ public class Blueprint
                 Respawn("MusicReleaseScrollbar", true);
                 Respawn("MusicReleaseScrollbarDown", true);
             });
-            AddButtonRegion(() =>
-            {
-                AddLine("Clear rating", "", "Center");
-            },
-            (h) =>
-            {
-                musicRelease.ClearTrackRatings();
-                CDesktop.RespawnAll();
-                Respawn("MusicReleaseScrollbarUp", true);
-                Respawn("MusicReleaseScrollbar", true);
-                Respawn("MusicReleaseScrollbarDown", true);
-            });
             AddPaddingRegion(() =>
             {
                 if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
@@ -597,6 +585,18 @@ public class Blueprint
                     AddText(" for " + musicRelease.releaseDate[..3] + "0s", "DarkGray");
                 }
                 else AddLine("", "", "Center");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Clear rating", "", "Center");
+            },
+            (h) =>
+            {
+                musicRelease.ClearTrackRatings();
+                CDesktop.RespawnAll();
+                Respawn("MusicReleaseScrollbarUp", true);
+                Respawn("MusicReleaseScrollbar", true);
+                Respawn("MusicReleaseScrollbarDown", true);
             });
         }),
         new("MusicReleaseBottomLine", () => {

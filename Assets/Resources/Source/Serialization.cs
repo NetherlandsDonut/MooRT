@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 using static Newtonsoft.Json.JsonConvert;
 using static Newtonsoft.Json.Formatting;
+using UnityEngine;
 
 class Serialization
 {
@@ -15,7 +16,7 @@ class Serialization
     public static string prefix = "";
 
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = true;
+    public static bool useUnityData = false;
 
     //Indicates whether the program allows for library expansion
     public static bool libraryExpansion = true;
@@ -39,48 +40,57 @@ class Serialization
         {
             using var sw = new StreamWriter(prefix + "MooRT_Data_2/" + file + ".txt", true);
             sw.WriteLine("Artist name:");
-            sw.WriteLine("");
+            sw.WriteLine("-");
             sw.WriteLine("here");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
             sw.WriteLine("Artist country:");
-            sw.WriteLine("");
+            sw.WriteLine("-");
             sw.WriteLine("here");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
             sw.WriteLine("Release name:");
-            sw.WriteLine("");
+            sw.WriteLine("-");
             sw.WriteLine("here");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
             sw.WriteLine("Release cover:");
-            sw.WriteLine("");
+            sw.WriteLine("-");
             sw.WriteLine("here");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
             sw.WriteLine("Release type: Studio album | Live album | Extended play | Compilation album | Demo recording | Soundtrack | Remix album");
             sw.WriteLine("");
             sw.WriteLine("here");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
             sw.WriteLine("Genres:");
-            sw.WriteLine("");
+            sw.WriteLine("-");
             sw.WriteLine("here, here, here, here");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
             sw.WriteLine("Tracklist:");
             sw.WriteLine("");
-            sw.WriteLine("here");
-            sw.WriteLine("here");
-            sw.WriteLine("here");
+            sw.WriteLine("here 2:12");
+            sw.WriteLine("here 1:21");
+            sw.WriteLine("here 2:11");
         }
-        Process.Start(prefix + "MooRT_Data_2/" + file + ".txt");
+        if (useUnityData)
+        {
+            UnityEngine.Debug.Log(prefix + "MooRT_Data_2/" + file + ".txt");
+            Process.Start(prefix + "MooRT_Data_2/" + file + ".txt");
+        }
+        else
+        {
+            UnityEngine.Debug.Log(Application.dataPath + "_2/" + file + ".txt");
+            Process.Start(Application.dataPath + "_2/" + file + ".txt");
+        }
     }
 
     public static string alreadyTriedLoadingLibrary;

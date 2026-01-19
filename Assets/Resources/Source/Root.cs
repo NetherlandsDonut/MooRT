@@ -175,8 +175,8 @@ public static class Root
 
     public static Sprite cameraBorderSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraBorder");
     public static Sprite cameraShadowSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraShadow");
-    public static Sprite gradientTopSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/GradientTop");
-    public static Sprite gradientBottomSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/GradientBottom");
+    public static Sprite gradientTopSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Backgrounds/GradientTop");
+    public static Sprite gradientBottomSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Backgrounds/GradientBottom");
     public static Sprite cameraScreenlockSprite = Resources.Load<Sprite>("Sprites/Fullscreen/Camera/CameraScreenlock");
 
     private static void AddDesktop(string title)
