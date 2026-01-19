@@ -5033,6 +5033,12 @@
       "name": "Seks w Czasach Wojny",
       "pronoun": "they",
       "country": "Poland"
+    },
+    {
+      "ID": 840,
+      "name": "The Dumplings",
+      "pronoun": "they",
+      "country": "Poland"
     }
   ],
   "originalReleases": [
@@ -283271,6 +283277,60 @@
         {
           "name": "Mgiełka",
           "length": 200
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4151,
+      "artist": "The Dumplings",
+      "artistID": 840,
+      "name": "Raj",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Synthpop",
+        "Electropop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2018.09.21",
+      "tracks": [
+        {
+          "name": "Kino",
+          "length": 350
+        },
+        {
+          "name": "Raj",
+          "length": 218
+        },
+        {
+          "name": "Deszcz",
+          "length": 221
+        },
+        {
+          "name": "Uciekam",
+          "length": 221
+        },
+        {
+          "name": "Przykro mi",
+          "length": 242
+        },
+        {
+          "name": "Nieszczęśliwa",
+          "length": 264
+        },
+        {
+          "name": "Frank",
+          "length": 196
+        },
+        {
+          "name": "Tam gdzie będzie nudno, ale będziemy szczęśliwi",
+          "length": 261
         }
       ],
       "discs": "",
