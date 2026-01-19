@@ -5015,6 +5015,12 @@
       "name": "Frost Children",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 837,
+      "name": "Royal Blood",
+      "pronoun": "they",
+      "country": "United Kingdom"
     }
   ],
   "originalReleases": [
@@ -283065,6 +283071,73 @@
         {
           "name": "2 LØVE",
           "length": 337
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4148,
+      "artist": "Royal Blood",
+      "artistID": 837,
+      "name": "Typhoons",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Dance Rock",
+        "Alternative Rock",
+        "Hard Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2021.04.30",
+      "tracks": [
+        {
+          "name": "Trouble's Coming",
+          "length": 228
+        },
+        {
+          "name": "Oblivion",
+          "length": 161
+        },
+        {
+          "name": "Typhoons",
+          "length": 236
+        },
+        {
+          "name": "Who Needs Friends",
+          "length": 190
+        },
+        {
+          "name": "Million & One",
+          "length": 258
+        },
+        {
+          "name": "Limbo",
+          "length": 293
+        },
+        {
+          "name": "Either You Want It",
+          "length": 180
+        },
+        {
+          "name": "Boilermaker",
+          "length": 209
+        },
+        {
+          "name": "Mad Visions",
+          "length": 189
+        },
+        {
+          "name": "Hold On",
+          "length": 194
+        },
+        {
+          "name": "All We Have Is Now",
+          "length": 153
         }
       ],
       "discs": "",
