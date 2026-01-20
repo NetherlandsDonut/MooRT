@@ -54,8 +54,8 @@ public class Library
         ResetLibrary(false);
         releases = releases.Where(x => countryFiltering[x.country].Value()).ToList();
         releases = releases.Where(x => artistFiltering[x.artistID].Value()).ToList();
-        releases = releases.Where(x => yearFiltering[int.Parse(x.releaseDate.Substring(0, 4))].Value()).ToList();
-        releases = releases.Where(x => decadeFiltering[int.Parse(x.releaseDate.Substring(0, 3) + "0")].Value()).ToList();
+        releases = releases.Where(x => yearFiltering[int.Parse(x.releaseDate[..4])].Value()).ToList();
+        releases = releases.Where(x => decadeFiltering[int.Parse(x.releaseDate[..3] + "0")].Value()).ToList();
         releases = releases.Where(x => durationFiltering[x.duration].Value()).ToList();
         releases = releases.Where(x => x.types.Any(y => releaseTypeFiltering[y].Value())).ToList();
         releases = releases.Where(x => (requireAllSelectedGenres.Value() && genreFiltering.Where(x => x.Value.Value()).All(y => x.genres.Contains(y.Key))) || (!requireAllSelectedGenres.Value() && (x.genres.Count == 0 || x.genres.Any(y => genreFiltering[y].Value())))).ToList();

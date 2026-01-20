@@ -186,10 +186,10 @@ public class Window : MonoBehaviour
                             var toPrint = 0;
                             var useWrapper = false;
                             var currentLength = 0;
-                            var wrapperLength = Font.fonts["Tahoma Bold"].Length(defines.textWrapEnding);
+                            var wrapperLength = defines.textWrapEnding.Sum(x => Font.GetFontWithSpecificGlyph(x).Length(x) + 1) - 1;
                             for (int i = 0; i < fullText.Length; i++)
                             {
-                                var newCharLength = Font.fonts["Tahoma Bold"].Length(fullText[i]);
+                                var newCharLength = Font.GetFontWithSpecificGlyph(fullText[i]).Length(fullText[i]);
                                 if (fullText.Length > i + 1 && fullText[i + 1] != ' ' && currentLength + newCharLength + wrapperLength > emptySpace)
                                 {
                                     useWrapper = fullText[i] != ' ';

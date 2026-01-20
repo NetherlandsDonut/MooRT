@@ -9,7 +9,6 @@ using UnityEngine.Networking;
 
 using static Blueprint;
 using static ProgramSettings;
-
 using static Root.Anchor;
 using static Root.RegionBackgroundType;
 
@@ -288,17 +287,22 @@ public static class Root
         else CDesktop.GetComponent<SpriteRenderer>().sprite = null;
     }
 
-    public static void SetDesktopBackground(string texture, bool followCamera = true)
+    public static void SetDesktopBackground(string texture)
     {
         CDesktop.gradientTop.color = new Color(0, 0, 0, 0);
         CDesktop.gradientBottom.color = new Color(0, 0, 0, 0);
         var sprite = Resources.Load<Sprite>("Sprites/Fullscreen/" + texture);
-        var temp = (followCamera ? CDesktop.screen.gameObject : CDesktop.gameObject).GetComponent<SpriteRenderer>();
+        var temp = CDesktop.screen.gameObject.GetComponent<SpriteRenderer>();
         if (sprite == null) Debug.Log("ERROR 004: Desktop background not found: \"Sprites/Fullscreen/" + texture + "\"");
         else if (temp.sprite != sprite)
         {
             SpawnTransition();
             temp.sprite = sprite;
+            if (texture == "Backgrounds/Default")
+                if (settings != null)
+                    temp.color = new Color32((byte)settings.menuBackgroundColor[0], (byte)settings.menuBackgroundColor[1], (byte)settings.menuBackgroundColor[2], 255);
+                else 
+                    temp.color = new Color32(40, 40, 40, 255);
         }
     }
 
@@ -338,7 +342,6 @@ public static class Root
         if (WindowUp(blueprint.title)) return null;
         AddWindow(blueprint.title, blueprint.upperUI);
         blueprint.actions();
-        if (resetSearch && CDesktop.LBWindow().maxPaginationReq != null) String.search.Set("");
         CDesktop.LBWindow().Rebuild();
         CDesktop.LBWindow().ResetPosition();
         return CDesktop.LBWindow();
@@ -567,7 +570,7 @@ public static class Root
 
     public static void WriteWrap(Region region, string what, string color = "", string align = "Left")
     {
-        if (region.lines.Count == 0 || region.LBLine().Length() + Font.fonts["Tahoma Bold"].Length(what) + 40 > region.regionGroup.setWidth) AddLine(what, color, align);
+        if (region.lines.Count == 0 || region.LBLine().Length() + what.Sum(x => 1 + Font.GetFontWithSpecificGlyph(x).Length(x)) - 1 + 40 > region.regionGroup.setWidth) AddLine(what, color, align);
         else AddText(" " + what, color);
     }
 

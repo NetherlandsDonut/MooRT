@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.KeyCode;
 using static ArtistBattle;
 using static Country;
 using static DebutYear;
@@ -18,6 +18,7 @@ using static ReleaseType;
 using static Root;
 using static Root.Anchor;
 using static TrackAmount;
+using static UnityEngine.KeyCode;
 using static Year;
 
 public class Blueprint
@@ -47,9 +48,15 @@ public class Blueprint
         new("MusicReleases", () => {
             var rowAmount = 20;
             var thisWindow = CDesktop.LBWindow();
-            thisWindow.SetPaginationSingleStep(() => library.releases.Count, rowAmount);
+            var list = library.releases;
+            if (String.searchRelease.Value() != "")
+                list = list.Where(x => x.name.ToLower().Contains(String.searchRelease.Value())).ToList();
+            thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             CDesktop.quickInputWindow = thisWindow;
             SetAnchor(Center, -8, 10);
+            AddHeaderGroup();
+            SetRegionGroupWidth(445);
+            AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchRelease); AddSmallButton("OtherReverse", (h) => { String.searchRelease.Set(""); CDesktop.RespawnAll(); }); });
             AddRegionGroup();
             SetRegionGroupWidth(46);
             AddButtonRegion(() => AddLine("#", "", "Right"),
@@ -58,10 +65,10 @@ public class Blueprint
                     library.releases.Reverse();
                 }
             );
-            for (int i = thisWindow.pagination() == 0 ? 0 : library.releases.Count - thisWindow.pagination() < rowAmount ? library.releases.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
             {
                 var index = i;
-                if (library.releases.Count > index + thisWindow.pagination())
+                if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
                 else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
@@ -71,17 +78,17 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Name"),
                 (h) =>
                 {
-                    library.releases = (releasesLastSort == "Name" ? library.releases.OrderByDescending(x => x.name) : library.releases.OrderBy(x => x.name)).ToList();
+                    list = (releasesLastSort == "Name" ? list.OrderByDescending(x => x.name) : list.OrderBy(x => x.name)).ToList();
                     releasesLastSort = releasesLastSort == "Name" ? "" : "Name";
                 }
             );
-            for (int i = thisWindow.pagination() == 0 ? 0 : library.releases.Count - thisWindow.pagination() < rowAmount ? library.releases.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
             {
                 var index = i;
-                if (library.releases.Count > index + thisWindow.pagination())
+                if (list.Count > index + thisWindow.pagination())
                     AddButtonRegion(() =>
                     {
-                        var album = library.releases[index + thisWindow.pagination()];
+                        var album = list[index + thisWindow.pagination()];
                         AddRegionOverlay(@"RegionReplacements\AlbumNameBar");
                         SetRegionBackgroundAsImage(albumBars[(albumBars.ContainsKey(album.ID + "") ? album.ID : 0) + ""]);
                         AddLine(album.name, "Black");
@@ -89,27 +96,27 @@ public class Blueprint
                     (h) =>
                     {
                         musicReleaseIndex = index + thisWindow.pagination();
-                        musicRelease = library.releases[musicReleaseIndex];
+                        musicRelease = list[musicReleaseIndex];
                         SpawnDesktopBlueprint("MusicRelease");
                     });
                 else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
-            AddPaddingRegion(() => AddLine(library.releases.Count + " out of " + library.originalReleases.Count + " releases", "DarkGray"));
+            AddPaddingRegion(() => AddLine(list.Count + " out of " + library.originalReleases.Count + " releases", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(46);
             AddButtonRegion(() => AddLine("Rating"),
                 (h) =>
                 {
-                    library.releases = (releasesLastSort == "Rating" ? library.releases.OrderBy(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0) : library.releases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
+                    list = (releasesLastSort == "Rating" ? list.OrderBy(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0) : list.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
                     releasesLastSort = releasesLastSort == "Rating" ? "" : "Rating";
                 }
             );
-            for (int i = thisWindow.pagination() == 0 ? 0 : library.releases.Count - thisWindow.pagination() < rowAmount ? library.releases.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
             {
                 var index = i;
-                if (library.releases.Count > index + thisWindow.pagination())
+                if (list.Count > index + thisWindow.pagination())
                 {
-                    var album = library.releases[index + thisWindow.pagination()];
+                    var album = list[index + thisWindow.pagination()];
                     var amount = !ratings.ContainsKey(album.ID) ? 0 : Math.Ceiling(ratings[album.ID].rating / 100.0);
                     AddHeaderRegion(() => AddLine(amount.ToString("000"), settings.ratingRanges.First(x => int.Parse(x.min.Value()) <= amount).GetColorCode()));
                 }
@@ -121,17 +128,17 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Year", "", "Center"),
                 (h) =>
                 {
-                    library.releases = (releasesLastSort == "Year" ? library.releases.OrderBy(x => x.releaseDate) : library.releases.OrderByDescending(x => x.releaseDate)).ToList();
+                    list = (releasesLastSort == "Year" ? list.OrderBy(x => x.releaseDate) : list.OrderByDescending(x => x.releaseDate)).ToList();
                     releasesLastSort = releasesLastSort == "Year" ? "" : "Year";
                 }
             );
-            for (int i = thisWindow.pagination() == 0 ? 0 : library.releases.Count - thisWindow.pagination() < rowAmount ? library.releases.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
             {
                 var index = i;
-                if (library.releases.Count > index + thisWindow.pagination())
+                if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() =>
                     {
-                        var album = library.releases[index + thisWindow.pagination()];
+                        var album = list[index + thisWindow.pagination()];
                         AddLine(album.releaseDate.Substring(0, 4), "", "Center");
                     });
                 else AddPaddingRegion(() => AddLine("", "", "Center"));
@@ -142,17 +149,17 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Duration"),
                 (h) =>
                 {
-                    library.releases = (releasesLastSort == "Duration" ? library.releases.OrderBy(x => x.length) : library.releases.OrderByDescending(x => x.length)).ToList();
+                    list = (releasesLastSort == "Duration" ? list.OrderBy(x => x.length) : list.OrderByDescending(x => x.length)).ToList();
                     releasesLastSort = releasesLastSort == "Duration" ? "" : "Duration";
                 }
             );
-            for (int i = thisWindow.pagination() == 0 ? 0 : library.releases.Count - thisWindow.pagination() < rowAmount ? library.releases.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
             {
                 var index = i;
-                if (library.releases.Count > index + thisWindow.pagination())
+                if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() =>
                     {
-                        var album = library.releases[index + thisWindow.pagination()];
+                        var album = list[index + thisWindow.pagination()];
                         AddLine(album.duration + "m", "", "Right");
                     });
                 else AddPaddingRegion(() => AddLine("", "", "Center"));
@@ -163,17 +170,17 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Tracks"),
                 (h) =>
                 {
-                    library.releases = (releasesLastSort == "Tracks" ? library.releases.OrderBy(x => x.tracks.Count) : library.releases.OrderByDescending(x => x.tracks.Count)).ToList();
+                    list = (releasesLastSort == "Tracks" ? list.OrderBy(x => x.tracks.Count) : list.OrderByDescending(x => x.tracks.Count)).ToList();
                     releasesLastSort = releasesLastSort == "Tracks" ? "" : "Tracks";
                 }
             );
-            for (int i = thisWindow.pagination() == 0 ? 0 : library.releases.Count - thisWindow.pagination() < rowAmount ? library.releases.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
             {
                 var index = i;
-                if (library.releases.Count > index + thisWindow.pagination())
+                if (list.Count > index + thisWindow.pagination())
                     AddHeaderRegion(() =>
                     {
-                        var album = library.releases[index + thisWindow.pagination()];
+                        var album = list[index + thisWindow.pagination()];
                         AddLine(album.tracks.Count + "", "", "Right");
                     });
                 else AddPaddingRegion(() => AddLine("", "", "Center"));
@@ -181,7 +188,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("MusicReleasesScrollbarUp", () => {
-            SetAnchor(204, 219);
+            SetAnchor(195, 209);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -200,14 +207,14 @@ public class Blueprint
             });
         }),
         new("MusicReleasesScrollbar", () => {
-            SetAnchor(204, 200);
+            SetAnchor(195, 190);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(376);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("MusicReleasesScrollbarDown", () => {
-            SetAnchor(204, -180);
+            SetAnchor(195, -190);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -224,6 +231,15 @@ public class Blueprint
                     });
                 else AddSmallButton("OtherPageDownOff");
             });
+        }),
+        new("ResetLibraryFiltering", () => {
+            SetAnchor(TopRight, -19, -19);
+            AddRegionGroup();
+            AddPaddingRegion(() => AddSmallButton("OtherReverse", (h) =>
+            {
+                library.ResetLibrary();
+                CDesktop.RespawnAll();
+            }));
         }),
 
         //Music release
@@ -421,16 +437,30 @@ public class Blueprint
                 WriteWrap(region, "Music on", "DarkGray");
                 WriteWrap(region, "this release", "DarkGray");
                 WriteWrap(region, "is", "DarkGray");
-                WriteWrap(region, "considered", "DarkGray");
-                WriteWrap(region, "to be", "DarkGray");
-                if (musicRelease.genres.Count > 1)
-                    WriteWrap(region, "a mix of", "DarkGray");
-                foreach (var genre in musicRelease.genres)
+                if (musicRelease.genres.Count == 0 || musicRelease.genres == null)
                 {
-                    WriteWrap(region, genre, "Gray");
-                    if (musicRelease.genres.Count > 1 && musicRelease.genres[^2] == genre) WriteWrap(region, "and", "DarkGray");
-                    else if (musicRelease.genres.Last() != genre) AddText(",", "DarkGray");
-                    else if (musicRelease.genres.Last() == genre) AddText(".", "DarkGray");
+                    WriteWrap(region, "not", "DarkGray");
+                    WriteWrap(region, "considered", "DarkGray");
+                    WriteWrap(region, "to", "DarkGray");
+                    WriteWrap(region, "be", "DarkGray");
+                    WriteWrap(region, "of", "DarkGray");
+                    WriteWrap(region, "any", "DarkGray");
+                    WriteWrap(region, "specific", "DarkGray");
+                    WriteWrap(region, "genre.", "DarkGray");
+                }
+                else
+                {
+                    WriteWrap(region, "considered", "DarkGray");
+                    WriteWrap(region, "to be", "DarkGray");
+                    if (musicRelease.genres.Count > 1)
+                        WriteWrap(region, "a mix of", "DarkGray");
+                    foreach (var genre in musicRelease.genres)
+                    {
+                        WriteWrap(region, genre, "Gray");
+                        if (musicRelease.genres.Count > 1 && musicRelease.genres[^2] == genre) WriteWrap(region, "and", "DarkGray");
+                        else if (musicRelease.genres.Last() != genre) AddText(",", "DarkGray");
+                        else if (musicRelease.genres.Last() == genre) AddText(".", "DarkGray");
+                    }
                 }
                 WriteWrap(region, "This release has", "DarkGray");
                 WriteWrap(region, musicRelease.tracks.Count + " tracks", "Gray");
@@ -563,26 +593,6 @@ public class Blueprint
                 Respawn("MusicReleaseScrollbar", true);
                 Respawn("MusicReleaseScrollbarDown", true);
             });
-            AddPaddingRegion(() =>
-            {
-                if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
-                {
-                    AddLine("#" + (library.originalReleases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1));
-                    AddText(" overall", "DarkGray");
-                }
-                else AddLine("", "", "Center");
-            });
-            AddPaddingRegion(() =>
-            {
-                if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
-                {
-                    AddLine("#" + (years.Find(x => x.year == int.Parse(musicRelease.releaseDate[..4])).releases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1));
-                    AddText(" for " + musicRelease.releaseDate[..4] + ", ", "DarkGray");
-                    AddText("#" + (decades.Find(x => x.decade == int.Parse(musicRelease.releaseDate[..3] + "0")).releases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1), "Gray");
-                    AddText(" for " + musicRelease.releaseDate[..3] + "0s", "DarkGray");
-                }
-                else AddLine("", "", "Center");
-            });
             if (musicRelease.clearedRating)
                 AddButtonRegion(() =>
                 {
@@ -609,6 +619,26 @@ public class Blueprint
                     Respawn("MusicReleaseScrollbar", true);
                     Respawn("MusicReleaseScrollbarDown", true);
                 });
+            AddPaddingRegion(() =>
+            {
+                if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
+                {
+                    AddLine("#" + (library.originalReleases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1));
+                    AddText(" overall", "DarkGray");
+                }
+                else AddLine("", "", "Center");
+            });
+            AddPaddingRegion(() =>
+            {
+                if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
+                {
+                    AddLine("#" + (years.Find(x => x.year == int.Parse(musicRelease.releaseDate[..4])).releases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1));
+                    AddText(" for " + musicRelease.releaseDate[..4] + ", ", "DarkGray");
+                    AddText("#" + (decades.Find(x => x.decade == int.Parse(musicRelease.releaseDate[..3] + "0")).releases.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0).ToList().IndexOf(musicRelease) + 1), "Gray");
+                    AddText(" for " + musicRelease.releaseDate[..3] + "0s", "DarkGray");
+                }
+                else AddLine("", "", "Center");
+            });
         }),
         new("MusicReleaseBottomLine", () => {
             var rating = Root.rating.Value();
@@ -663,6 +693,8 @@ public class Blueprint
             var rowAmount = 15;
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? library.artists : library.artists.Where(x => artistFiltering[x.ID].Value())).Where(x => x.name != "Various artists" && (!hideArtistsOfExcludedCountries.Value() || hideArtistsOfExcludedCountries.Value() && countryFiltering[x.country].Value())).ToList();
+            if (String.searchArtist.Value() != "")
+                list = list.Where(x => x.name.ToLower().Contains(String.searchArtist.Value())).ToList();
             CDesktop.quickInputWindow = thisWindow;
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
@@ -678,6 +710,7 @@ public class Blueprint
                 AddCheckbox(hideArtistsOfExcludedCountries);
                 AddLine("Hide artists of excluded countries");
             });
+            AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchArtist); AddSmallButton("OtherReverse", (h) => { String.searchArtist.Set(""); CDesktop.RespawnAll(); }); });
             AddRegionGroup();
             SetRegionGroupWidth(37);
             AddButtonRegion(() => AddLine("#", "", "Right"),
@@ -800,7 +833,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("ArtistsScrollbarUp", () => {
-            SetAnchor(173, 142);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -819,14 +852,14 @@ public class Blueprint
             });
         }),
         new("ArtistsScrollbar", () => {
-            SetAnchor(173, 123);
+            SetAnchor(173, 114);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("ArtistsScrollbarDown", () => {
-            SetAnchor(173, -162);
+            SetAnchor(173, -171);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -850,6 +883,8 @@ public class Blueprint
             var rowAmount = 15;
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? countries : countries.Where(x => countryFiltering[x.name].Value())).Where(x => x.name != "-").ToList();
+            if (String.searchCountry.Value() != "")
+                list = list.Where(x => x.name.ToLower().Contains(String.searchCountry.Value())).ToList();
             CDesktop.quickInputWindow = thisWindow;
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
@@ -860,6 +895,7 @@ public class Blueprint
                 AddCheckbox(showExcludedElements);
                 AddLine("Show excluded elements");
             });
+            AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchCountry); AddSmallButton("OtherReverse", (h) => { String.searchCountry.Set(""); CDesktop.RespawnAll(); }); });
             AddRegionGroup();
             SetRegionGroupWidth(37);
             AddButtonRegion(() => AddLine("#", "", "Right"),
@@ -1005,7 +1041,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("CountriesScrollbarUp", () => {
-            SetAnchor(200, 152);
+            SetAnchor(200, 142);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1024,14 +1060,14 @@ public class Blueprint
             });
         }),
         new("CountriesScrollbar", () => {
-            SetAnchor(200, 133);
+            SetAnchor(200, 123);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("CountriesScrollbarDown", () => {
-            SetAnchor(200, -152);
+            SetAnchor(200, -162);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1055,6 +1091,8 @@ public class Blueprint
             var rowAmount = 15;
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? genres : genres.Where(x => genreFiltering[x.name].Value())).Where(x => x.name != "-").ToList();
+            if (String.searchGenre.Value() != "")
+                list = list.Where(x => x.name.ToLower().Contains(String.searchGenre.Value())).ToList();
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
             AddHeaderGroup();
@@ -1069,6 +1107,7 @@ public class Blueprint
                 AddCheckbox(requireAllSelectedGenres);
                 AddLine("Require all selected genres");
             });
+            AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchGenre); AddSmallButton("OtherReverse", (h) => { String.searchGenre.Set(""); CDesktop.RespawnAll(); }); });
             AddRegionGroup();
             SetRegionGroupWidth(37);
             AddButtonRegion(() => AddLine("#", "", "Right"),
@@ -1180,7 +1219,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("GenresScrollbarUp", () => {
-            SetAnchor(173, 142);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1199,14 +1238,14 @@ public class Blueprint
             });
         }),
         new("GenresScrollbar", () => {
-            SetAnchor(173, 123);
+            SetAnchor(173, 114);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("GenresScrollbarDown", () => {
-            SetAnchor(173, -162);
+            SetAnchor(173, -171);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1230,6 +1269,8 @@ public class Blueprint
             var rowAmount = 15;
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? languages : languages.Where(x => languageFiltering[x.name].Value())).Where(x => x.name != "-").ToList();
+            if (String.searchLanguage.Value() != "")
+                list = list.Where(x => x.name.ToLower().Contains(String.searchLanguage.Value())).ToList();
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
             AddHeaderGroup();
@@ -1244,6 +1285,7 @@ public class Blueprint
                 AddCheckbox(requireAllSelectedLanguages);
                 AddLine("Require all selected languages");
             });
+            AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchLanguage); AddSmallButton("OtherReverse", (h) => { String.searchLanguage.Set(""); CDesktop.RespawnAll(); }); });
             AddRegionGroup();
             SetRegionGroupWidth(37);
             AddButtonRegion(() => AddLine("#", "", "Right"),
@@ -1366,7 +1408,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("LanguagesScrollbarUp", () => {
-            SetAnchor(173, 142);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1385,14 +1427,14 @@ public class Blueprint
             });
         }),
         new("LanguagesScrollbar", () => {
-            SetAnchor(173, 123);
+            SetAnchor(173, 114);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("LanguagesScrollbarDown", () => {
-            SetAnchor(173, -162);
+            SetAnchor(173, -171);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -1753,7 +1795,7 @@ public class Blueprint
 
         //Release types
         new("ReleaseTypes", () => {
-            var rowAmount = 15;
+            var rowAmount = 7;
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? releaseTypes : releaseTypes.Where(x => releaseTypeFiltering[x.name].Value())).Where(x => x.name != "-").ToList();
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
@@ -2519,8 +2561,11 @@ public class Blueprint
                             else { failed = i; break; };
                         if (i == 38)
                             if (data[i].Length > 0) newAlbum.genres = ProcessGenres(data[i]);
-                            else { failed = i; break; };
-                        if (i >= 44)
+                            else newAlbum.genres = new();
+                        if (i == 44)
+                            if (data[i].Length > 0) newAlbum.languages = ProcessLanguages(data[i]);
+                            else newAlbum.languages = new();
+                        if (i >= 50)
                             if (data[i].Length > 0)
                             {
                                 data[i] = data[i].Replace("\t", " ");
@@ -2530,14 +2575,14 @@ public class Blueprint
                                     var lastIndex = data[i].LastIndexOf(" ");
                                     newTrack.name = data[i][..lastIndex].Trim();
                                     var time = data[i][lastIndex..].Trim();
-                                    if (time.Split(":").Length != 2) { failed = 441; errorAtLine = i + 1; break; };
-                                    if (!int.TryParse(time.Split(":")[0], out int minutes)) { failed = 442; errorAtLine = i + 1; break; };
-                                    if (!int.TryParse(time.Split(":")[1], out int seconds)) { failed = 443; errorAtLine = i + 1; break; };
+                                    if (time.Split(":").Length != 2) { failed = 501; errorAtLine = i + 1; break; };
+                                    if (!int.TryParse(time.Split(":")[0], out int minutes)) { failed = 502; errorAtLine = i + 1; break; };
+                                    if (!int.TryParse(time.Split(":")[1], out int seconds)) { failed = 503; errorAtLine = i + 1; break; };
                                     newTrack.length = minutes * 60 + seconds;
                                     newTrack.duration = time;
                                     newAlbum.tracks.Add(newTrack);
                                 }
-                                else { failed = 440; errorAtLine = i + 1; break; };
+                                else { failed = 500; errorAtLine = i + 1; break; };
                             }
                             else { failed = i; break; };
                     }
@@ -2561,7 +2606,6 @@ public class Blueprint
                             newArtist = artistFind;
                         }
                         newRelease.ID = library.originalReleases.Count + 1;
-                        newRelease.languages = new() { "English" };
                         newRelease.coverDescriptors = new() { };
                         newRelease.format = int.Parse(newRelease.releaseDate[..4]) >= 1990 ? "digital" : "analog";
                         newRelease.artist = artistFind.name;
@@ -2579,6 +2623,18 @@ public class Blueprint
                         string ProcessGenre(string genre)
                         {
                             var capitalised = string.Join(' ', genre.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
+                            return capitalised;
+                        }
+                    }
+
+                    List<string> ProcessLanguages(string line)
+                    {
+                        var list = line.Split(",").Select(x => ProcessLanguage(x.Trim())).ToList();
+                        return list;
+
+                        string ProcessLanguage(string language)
+                        {
+                            var capitalised = string.Join(' ', language.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
                             return capitalised;
                         }
                     }
@@ -2637,11 +2693,30 @@ public class Blueprint
                 SpawnDesktopBlueprint("PrepareArtistBattle");
             });
             AddEmptyRegion();
-            AddHeaderRegion(() => AddLine("Menu:"));
-            AddButtonRegion(() => AddLine("Edit rating color ranges"), (h) =>
+            AddHeaderRegion(() =>
+            {
+                AddLine("Settings:", "Gray");
+                //AddSmallButton("OtherClose", (h) =>
+                //{
+                //    CloseWindow(h.window);
+                //    Respawn("Menu");
+                //});
+            });
+            AddButtonRegion(() => AddLine("Rating color ranges"), (h) =>
             {
                 SpawnDesktopBlueprint("RatingColorRange");
             });
+            AddButtonRegion(() => AddLine("Menu background color"), (h) =>
+            {
+                SpawnDesktopBlueprint("MenuBackgroundColor");
+            });
+            AddEmptyRegion();
+            AddHeaderRegion(() => AddLine("Menu:"));
+            //AddButtonRegion(() => AddLine("Settings"), (h) =>
+            //{
+            //    CloseWindow(h.window);
+            //    SpawnWindowBlueprint("MenuSettings");
+            //});
             AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
                 Serialization.Serialize(settings, "settings");
@@ -2656,25 +2731,16 @@ public class Blueprint
             SetAnchor(Center);
             AddRegionGroup();
             SetRegionGroupWidth(190);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Settings:", "Gray");
-                AddSmallButton("OtherClose", (h) =>
-                {
-                    CloseWindow(h.window);
-                    Respawn("Menu");
-                });
-            });
-            AddButtonRegion(() =>
-            {
-                AddCheckbox(settings.pixelPerfectVision);
-                AddLine("Pixel perfect vision");
-            },
-            (h) =>
-            {
-                settings.pixelPerfectVision.Invert();
-                CDesktop.RespawnAll();
-            });
+            //AddButtonRegion(() =>
+            //{
+            //    AddCheckbox(settings.pixelPerfectVision);
+            //    AddLine("Pixel perfect vision");
+            //},
+            //(h) =>
+            //{
+            //    settings.pixelPerfectVision.Invert();
+            //    CDesktop.RespawnAll();
+            //});
         }),
         new("RatingColorRange1", () => {
             SetAnchor(Center, -322);
@@ -2769,14 +2835,94 @@ public class Blueprint
                 CDesktop.RespawnAll();
             });
         }),
-        new("ResetLibraryFiltering", () => {
-            SetAnchor(TopRight, -19, -19);
+        new("MenuBackgroundColor", () => {
+            SetAnchor(Center);
             AddRegionGroup();
-            AddPaddingRegion(() => AddSmallButton("OtherReverse", (h) =>
+            SetRegionGroupWidth(110);
+            AddPaddingRegion(() =>
             {
-                library.ResetLibrary();
+                AddLine("Red:", "Gray");
+                AddLine("" + settings.menuBackgroundColor[0], "Gray", "Right");
+                AddSmallButton(settings.menuBackgroundColor[0] < 255 ? "OtherAdd" : "OtherAddOff",
+                    (h) =>
+                    {
+                        if (settings.menuBackgroundColor[0] >= 255) return;
+                        if (Input.GetKey(LeftShift)) settings.menuBackgroundColor[0] += 20;
+                        else settings.menuBackgroundColor[0]++;
+                        if (settings.menuBackgroundColor[0] > 255) settings.menuBackgroundColor[0] = 255;
+                        CDesktop.RespawnAll();
+                    }
+                );
+                AddSmallButton(settings.menuBackgroundColor[0] > 0 ? "OtherDetract" : "OtherDetractOff",
+                    (h) =>
+                    {
+                        if (settings.menuBackgroundColor[0] <= 0) return;
+                        if (Input.GetKey(LeftShift)) settings.menuBackgroundColor[0] -= 20;
+                        else settings.menuBackgroundColor[0]--;
+                        if (settings.menuBackgroundColor[0] < 0) settings.menuBackgroundColor[0] = 0;
+                        CDesktop.RespawnAll();
+                    }
+                );
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Green:", "Gray");
+                AddLine("" + settings.menuBackgroundColor[1], "Gray", "Right");
+                AddSmallButton(settings.menuBackgroundColor[1] < 255 ? "OtherAdd" : "OtherAddOff",
+                    (h) =>
+                    {
+                        if (settings.menuBackgroundColor[1] >= 255) return;
+                        if (Input.GetKey(LeftShift)) settings.menuBackgroundColor[1] += 20;
+                        else settings.menuBackgroundColor[1]++;
+                        if (settings.menuBackgroundColor[1] > 255) settings.menuBackgroundColor[1] = 255;
+                        CDesktop.RespawnAll();
+                    }
+                );
+                AddSmallButton(settings.menuBackgroundColor[1] > 0 ? "OtherDetract" : "OtherDetractOff",
+                    (h) =>
+                    {
+                        if (settings.menuBackgroundColor[1] <= 0) return;
+                        if (Input.GetKey(LeftShift)) settings.menuBackgroundColor[1] -= 20;
+                        else settings.menuBackgroundColor[1]--;
+                        if (settings.menuBackgroundColor[1] < 0) settings.menuBackgroundColor[1] = 0;
+                        CDesktop.RespawnAll();
+                    }
+                );
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Blue:", "Gray");
+                AddLine("" + settings.menuBackgroundColor[2], "Gray", "Right");
+                AddSmallButton(settings.menuBackgroundColor[2] < 255 ? "OtherAdd" : "OtherAddOff",
+                    (h) =>
+                    {
+                        if (settings.menuBackgroundColor[2] >= 255) return;
+                        if (Input.GetKey(LeftShift)) settings.menuBackgroundColor[2] += 20;
+                        else settings.menuBackgroundColor[2]++;
+                        if (settings.menuBackgroundColor[2] > 255) settings.menuBackgroundColor[2] = 255;
+                        CDesktop.RespawnAll();
+                    }
+                );
+                AddSmallButton(settings.menuBackgroundColor[2] > 0 ? "OtherDetract" : "OtherDetractOff",
+                    (h) =>
+                    {
+                        if (settings.menuBackgroundColor[2] <= 0) return;
+                        if (Input.GetKey(LeftShift)) settings.menuBackgroundColor[2] -= 20;
+                        else settings.menuBackgroundColor[2]--;
+                        if (settings.menuBackgroundColor[2] < 0) settings.menuBackgroundColor[2] = 0;
+                        CDesktop.RespawnAll();
+                    }
+                );
+            });
+        }),
+        new("MenuBackgroundColorMenuBar", () => {
+            SetAnchor(Bottom, 0, 10);
+            AddRegionGroup();
+            AddButtonRegion(() => AddLine("Reset To Default Value"), (h) =>
+            {
+                settings.menuBackgroundColor = new[] { 136, 99, 84 };
                 CDesktop.RespawnAll();
-            }));
+            });
         }),
 
         //Errors
@@ -2892,7 +3038,7 @@ public class Blueprint
                 AddLine("Error at line 39, no album genres provided");
             });
         }),
-        new("ErrorLoadingAlbum44", () => {
+        new("ErrorLoadingAlbum50", () => {
             SetAnchor(Top, 0, -19);
             AddRegionGroup();
             SetRegionGroupWidth(300);
@@ -2906,7 +3052,7 @@ public class Blueprint
                 AddLine("Error at line " + errorAtLine + ", no tracks were provided");
             });
         }),
-        new("ErrorLoadingAlbum440", () => {
+        new("ErrorLoadingAlbum500", () => {
             SetAnchor(Top, 0, -19);
             AddRegionGroup();
             SetRegionGroupWidth(300);
@@ -2920,7 +3066,7 @@ public class Blueprint
                 AddLine("Error at line " + errorAtLine + ", track provided with wrong format");
             });
         }),
-        new("ErrorLoadingAlbum441", () => {
+        new("ErrorLoadingAlbum501", () => {
             SetAnchor(Top, 0, -19);
             AddRegionGroup();
             SetRegionGroupWidth(300);
@@ -2934,7 +3080,7 @@ public class Blueprint
                 AddLine("Error at line " + errorAtLine + ", duration provided in wrong format");
             });
         }),
-        new("ErrorLoadingAlbum442", () => {
+        new("ErrorLoadingAlbum502", () => {
             SetAnchor(Top, 0, -19);
             AddRegionGroup();
             SetRegionGroupWidth(300);
@@ -2948,7 +3094,7 @@ public class Blueprint
                 AddLine("Error at line " + errorAtLine + ", minutes aren't a number");
             });
         }),
-        new("ErrorLoadingAlbum443", () => {
+        new("ErrorLoadingAlbum503", () => {
             SetAnchor(Top, 0, -19);
             AddRegionGroup();
             SetRegionGroupWidth(300);
@@ -4088,6 +4234,18 @@ public class Blueprint
             SpawnWindowBlueprint("RatingColorRange5");
             SpawnWindowBlueprint("RatingColorRange6");
             SpawnWindowBlueprint("RatingColorRangeMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                Serialization.Serialize(settings, "settings");
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
+            });
+        }),
+        new("MenuBackgroundColor", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("MenuBackgroundColor");
+            SpawnWindowBlueprint("MenuBackgroundColorMenuBar");
             AddHotkey(Escape, () =>
             {
                 Serialization.Serialize(settings, "settings");

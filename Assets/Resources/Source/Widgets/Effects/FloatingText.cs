@@ -12,12 +12,12 @@ public class FloatingText : MonoBehaviour
         var pixelList = new List<(int, int)>();
         var newObject = new GameObject("Text", typeof(LineText));
         newObject.transform.parent = transform;
-        if (align == "Center")
-            newObject.transform.localPosition = new Vector2(fonts[floatingTextFont].Length(text) / -2, 7);
-        else if (align == "Left")
-            newObject.transform.localPosition = new Vector2(0, 7);
-        else if (align == "Right")
-            newObject.transform.localPosition = new Vector2(-fonts[floatingTextFont].Length(text), 7);
+        //if (align == "Center")
+        //    newObject.transform.localPosition = new Vector2(Font.GetFontWithSpecificGlyph(text[0]).Length(text) / -2, 7);
+        //else if (align == "Left")
+        //    newObject.transform.localPosition = new Vector2(0, 7);f
+        //else if (align == "Right")
+        //    newObject.transform.localPosition = new Vector2(-Font.GetFontWithSpecificGlyph(text[0]).Length(text), 7);
         var temp = newObject.GetComponent<LineText>();
         temp.Initialise(Root.CDesktop.LBWindow(), text, color == "" ? "Gray" : color, "FallingText");
         int length = 0;
@@ -25,7 +25,7 @@ public class FloatingText : MonoBehaviour
         foreach (var character in temp.text)
         {
             var before = length;
-            length = temp.SpawnCharacter(character, length, floatingTextFont);
+            length = temp.SpawnCharacter(character, length);
             var ch = temp.characters.Last();
             var chs = ch.GetComponent<SpriteRenderer>();
             if (fall) ch.AddComponent<Shatter>().Initiate(1.7f, 1f, chs);
@@ -102,6 +102,4 @@ public class FloatingText : MonoBehaviour
         textBorder.GetComponent<SpriteRenderer>().sprite = sprite;
         textBorder.GetComponent<SpriteRenderer>().sortingLayerName = fall ? "FallingText" : transform.parent.GetComponent<Region>().regionGroup.window.layer;
     }
-
-    public static string floatingTextFont = "Tahoma Bold";
 }

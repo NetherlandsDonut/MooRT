@@ -21,5 +21,5 @@ public class Line : MonoBehaviour
 
     public LineText LBText() => texts.Last();
 
-    public int Length() => texts.Sum(x => x.text.Length == 0 ? 0 : fonts["Tahoma Bold"].Length(x.text));
+    public int Length() => texts.Sum(x => x.text.Length == 0 ? 0 : x.text.Sum(x => 1 + GetFontWithSpecificGlyph(x).Length(x)) - 1);
 }

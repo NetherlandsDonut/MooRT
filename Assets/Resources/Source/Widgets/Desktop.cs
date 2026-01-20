@@ -50,6 +50,9 @@ public class Desktop : MonoBehaviour
 
     public void RespawnAll()
     {
+        var temp = screen.gameObject.GetComponent<SpriteRenderer>();
+        if (temp.sprite.name.Contains("Default"))
+            temp.color = new Color32((byte)ProgramSettings.settings.menuBackgroundColor[0], (byte)ProgramSettings.settings.menuBackgroundColor[1], (byte)ProgramSettings.settings.menuBackgroundColor[2], 255);
         for (int i = windows.Count - 1; i >= 0; i--)
             windows[i].Respawn();
     }

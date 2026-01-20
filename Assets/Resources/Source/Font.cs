@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -9,7 +9,14 @@ public class Font
     public Font(string name, string charset)
     {
         this.name = name;
-        glyphs = Resources.LoadAll<Sprite>("Sprites/Fonts/" + name).ToDictionary(x => charset[int.Parse(x.name.Split("_")[1])], x => x);
+        glyphs = new();
+        var temp = Resources.LoadAll<Sprite>("Sprites/Fonts/" + name);
+        foreach (var glyph in temp)
+        {
+            var foo = charset[int.Parse(glyph.name.Split("_")[1])];
+            if (!glyphs.ContainsKey(foo))
+                glyphs.Add(foo, glyph);
+        }
         widths = glyphs.ToDictionary(x => x.Key, x => (int)x.Value.rect.width);
         this.charset = charset;
     }
@@ -22,16 +29,6 @@ public class Font
 
     //Widths of the textures, later used in calculating overall text length
     public Dictionary<char, int> widths;
-
-    //Provides information on how many pixels does specific text take up to be printed.
-    //This is the basic way to calculate the width of regions and overally of UI
-    public int Length(string text)
-    {
-        var sum = 0;
-        foreach (var character in text)
-            sum += 1 + Length(character);
-        return sum - 1;
-    }
 
     public int Length(char character) => widths.ContainsKey(character) ? widths[character] : 0;
 
@@ -48,4 +45,7 @@ public class Font
 
     //Current font loaded into memory
     public static Dictionary<string, Font> fonts;
+
+    //Finds the first font with the desired character
+    public static Font GetFontWithSpecificGlyph(char character) => fonts.First(x => x.Value.charset.Contains(character)).Value;
 }

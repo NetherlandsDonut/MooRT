@@ -36,5 +36,9 @@ public class String
     };
 
     public static String promptConfirm = new() { inputType = Capitals };
-    public static String search = new() { inputType = Everything };
+    public static String searchRelease = new() { inputType = Everything };
+    public static String searchArtist = new() { inputType = Everything };
+    public static String searchGenre = new() { inputType = Everything };
+    public static String searchCountry = new() { inputType = Everything };
+    public static String searchLanguage = new() { inputType = Everything };
 }

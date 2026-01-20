@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 using static Coloring;
 using static Defines;
 using static Font;
@@ -34,7 +35,7 @@ public class InputText : MonoBehaviour
         var newCharacter = new GameObject("Character", typeof(SpriteRenderer));
         newCharacter.transform.parent = transform;
         newCharacter.transform.localPosition = new Vector3(offset, 0, 0.2f);
-        var glyph = fonts["Tahoma Bold"].GetGlyph(character);
+        var glyph = GetFontWithSpecificGlyph(character).GetGlyph(character);
         newCharacter.GetComponent<SpriteRenderer>().sortingLayerName = inputLine.region.regionGroup.window.layer;
         newCharacter.GetComponent<SpriteRenderer>().sprite = glyph;
         if (character + "" == defines.markerCharacter)

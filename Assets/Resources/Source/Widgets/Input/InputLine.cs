@@ -1,10 +1,10 @@
-using UnityEngine;
-
-using static Root;
-using static Font;
-using static Cursor;
-using static String;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.TextCore.Text;
+using static Cursor;
+using static Font;
+using static Root;
+using static String;
 
 public class InputLine : MonoBehaviour
 {
@@ -35,7 +35,7 @@ public class InputLine : MonoBehaviour
         region.regionGroup.window.Respawn();
     }
     
-    public int Length() => fonts["Tahoma Bold"].Length(text.text.Value());
+    public int Length() => text.text.Value().Sum(x => 1 + GetFontWithSpecificGlyph(x).Length(x)) - 1;
 
     //String which is modified by interacting with the input field
     public static String inputDestination;

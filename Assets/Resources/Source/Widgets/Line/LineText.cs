@@ -1,9 +1,10 @@
 using UnityEngine;
+
+using System.Linq;
 using System.Collections.Generic;
 
 using static Font;
 using static Coloring;
-using System.Linq;
 
 public class LineText : MonoBehaviour
 {
@@ -44,12 +45,12 @@ public class LineText : MonoBehaviour
         }
     }
 
-    public int SpawnCharacter(char character, int offset, string font = "Tahoma Bold")
+    public int SpawnCharacter(char character, int offset)
     {
         var newCharacter = new GameObject("Character", typeof(SpriteRenderer));
         newCharacter.transform.parent = transform;
         newCharacter.transform.localPosition = new Vector3(offset, 0, -0.05f);
-        var glyph = fonts[font].GetGlyph(character);
+        var glyph = GetFontWithSpecificGlyph(character).GetGlyph(character);
         var r = newCharacter.GetComponent<SpriteRenderer>();
         r.sprite = glyph;
         if (color != null && color.Count(x => x == ':') == 2)

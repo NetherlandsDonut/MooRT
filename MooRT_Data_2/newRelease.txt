@@ -1,30 +1,30 @@
 Artist name:
 -
-Jan-Rapowanie
+Fuel Fandango
 -
 -
 -
 Artist country:
 -
-Poland
+Spain
 -
 -
 -
 Release name:
 -
-Uśmiech
+Origen
 -
 -
 -
 Release date:
 -	
-25 February 2020
+24 January 2020
 -
 -
 -
 Release cover:
 -
-https://ecsmedia.pl/c/usmiech-b-iext168335426.jpg
+https://i1.sndcdn.com/artworks-b1c58755-3d2a-40fc-bf68-3b9958b164dc-0-t500x500.jpg
 -
 -
 -
@@ -36,21 +36,25 @@ Studio album
 -
 Genres:
 -
-Hip-hop, Rap, Pop
+Flamenco, Dance-pop, Electrofolk
+-
+-
+-
+Languages: Example: "English, French" / When left empty, "No Language" will be added automatically
+-
+Spanish
 -
 -
 -
 Tracklist:
 -
-Pilot 2:48
-Co ja wiem? 2:57
-Thx 3:07
-mY 2:54
-Bąbelek 3:05
-GŁÓWNY 2:40
-CENTRALNY 2:41
-Nie pomogę 3:14
-Zapałki	2:24
-Dziewczyny z klasy 3:24
-Gap Year 2:39
-Nikt mi nie kazał 2:37
+Mi Danza 3:16
+Despertaré 3:11
+Silencio 4:30
+Por La Vereda 3:25
+AContra La Pared 3:06
+Estamos Solos 4:12
+Huracán De Flores 2:37
+El Bosque 3:07
+Despacio 4:28
+La Grieta 3:44
