@@ -97,6 +97,8 @@ public static class Root
 
     public static Dictionary<int, Bool> durationFiltering;
 
+    public static Dictionary<string, Bool> ratingStatusFiltering;
+
     public static Dictionary<int, Bool> artistBattleParticipants;
 
     public static int artistBattleTrackAmount;

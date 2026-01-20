@@ -114,8 +114,8 @@ public class Starter : MonoBehaviour
         library.originalArtists.ForEach(x => x.releases = library.originalReleases.Where(y => y.artistID == x.ID).ToList());
         library.originalArtists.ForEach(x => x.releases.ForEach(y => y.Initialise(x)));
         Country.countries = library.originalArtists.GroupBy(x => x.country).Select(x => new Country(x.Key, x.ToList())).ToList();
-        Year.years = library.originalReleases.GroupBy(x => x.releaseDate.Substring(0, 4)).Select(x => new Year(int.Parse(x.Key), x.ToList())).ToList();
-        Decade.decades = Year.years.GroupBy(x => x.year.ToString().Substring(0, 3)).Select(x => new Decade(int.Parse(x.Key + "0"), x.ToList())).ToList();
+        Year.years = library.originalReleases.GroupBy(x => x.releaseDate[..4]).Select(x => new Year(int.Parse(x.Key), x.ToList())).ToList();
+        Decade.decades = Year.years.GroupBy(x => x.year.ToString()[..3]).Select(x => new Decade(int.Parse(x.Key + "0"), x.ToList())).ToList();
         var allLanguages = library.originalReleases.SelectMany(x => x.languages).Distinct();
         Language.languages = allLanguages.Select(x => new Language(x, library.originalReleases.Where(y => y.languages.Contains(x)).ToList())).ToList();
         var allGenres = library.originalReleases.SelectMany(x => x.genres).Distinct();
@@ -124,8 +124,9 @@ public class Starter : MonoBehaviour
         var allReleaseTypes = library.originalReleases.SelectMany(x => x.types).Distinct();
         ReleaseType.releaseTypes = allReleaseTypes.Select(x => new ReleaseType(x, library.originalReleases.Where(y => y.types.Contains(x)).ToList())).ToList();
         var debuts = library.originalArtists.Where(x => x.releases.Count > 0).Select(x => x.releases.OrderBy(x => x.releaseDate).First());
-        DebutYear.debutYears = debuts.GroupBy(x => x.releaseDate.Substring(0, 4)).Select(x => new DebutYear(int.Parse(x.Key), x.ToList())).ToList();
+        DebutYear.debutYears = debuts.GroupBy(x => x.releaseDate[..4]).Select(x => new DebutYear(int.Parse(x.Key), x.ToList())).ToList();
         Duration.durations = library.originalReleases.GroupBy(x => x.length / 60).Select(x => new Duration(x.Key, x.ToList())).ToList();
+        RatingStatus.ratingStatuses = new() { new("Rated"), new("Partially rated"), new("Unrated") };
         library.ResetLibrary();
     }
 

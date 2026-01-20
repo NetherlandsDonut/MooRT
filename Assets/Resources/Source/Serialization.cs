@@ -17,10 +17,10 @@ class Serialization
     public static string prefix = "";
 
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = true;
+    public static bool useUnityData = false;
 
     //Indicates whether the program allows for library expansion
-    public static bool libraryExpansion = true;
+    public static bool libraryExpansion = false;
 
     public static string[] ReadTXT(string file, string prefix = "")
     {

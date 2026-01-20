@@ -47,5 +47,9 @@ public class Font
     public static Dictionary<string, Font> fonts;
 
     //Finds the first font with the desired character
-    public static Font GetFontWithSpecificGlyph(char character) => fonts.First(x => x.Value.charset.Contains(character)).Value;
+    public static Font GetFontWithSpecificGlyph(char character)
+    {
+        var findFont = fonts.ToList().Find(x => x.Value.charset.Contains(character)).Value;
+        return findFont ?? fonts["Tahoma Bold"];
+    }
 }

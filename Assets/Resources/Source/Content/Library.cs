@@ -12,6 +12,7 @@ using static Duration;
 using static DebutYear;
 using static ReleaseType;
 using static TrackAmount;
+using static RatingStatus;
 using static ReleaseRating;
 
 public class Library
@@ -35,6 +36,7 @@ public class Library
         releaseTypes = releaseTypes.OrderBy(x => x.name).OrderByDescending(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
         debutYears = debutYears.OrderBy(x => x.year).OrderByDescending(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
         durations = durations.OrderBy(x => x.duration).OrderByDescending(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
+        ratingStatuses = ratingStatuses.OrderBy(x => x.status).OrderByDescending(y => y.status == "Rated" ? 2 : (y.status == "Partially rated" ? 1 : 0)).ToList();
         if (!resetFilters) return;
         String.searchRelease.Set("");
         String.searchArtist.Set("");
@@ -52,6 +54,7 @@ public class Library
         releaseTypeFiltering = releaseTypes.ToDictionary(x => x.name, x => new Bool(true));
         debutYearFiltering = debutYears.ToDictionary(x => x.year, x => new Bool(true));
         durationFiltering = durations.ToDictionary(x => x.duration, x => new Bool(true));
+        ratingStatusFiltering = ratingStatuses.ToDictionary(x => x.status, x => new Bool(true));
     }
 
     public void ApplyFiltering()
@@ -67,6 +70,7 @@ public class Library
         releases = releases.Where(x => (requireAllSelectedLanguages.Value() && languageFiltering.Where(x => x.Value.Value()).All(y => x.languages.Contains(y.Key))) || (!requireAllSelectedLanguages.Value() && (x.languages.Count == 0 || x.languages.Any(y => languageFiltering[y].Value())))).ToList();
         releases = releases.Where(x => trackAmountFiltering[x.tracks.Count].Value()).ToList();
         releases = releases.Where(x => debutYearFiltering[x.debutYear].Value()).ToList();
+        releases = releases.Where(x => ratingStatusFiltering[x.GetRating() > 0 ? "Rated" : (ratings.ContainsKey(x.ID) && ratings[x.ID].trackRatings.Any(x => x != 0) ? "Partially rated" : "Unrated")].Value()).ToList();
     }
 
     //List of all artists in the library

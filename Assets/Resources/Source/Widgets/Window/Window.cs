@@ -333,8 +333,8 @@ public class Window : MonoBehaviour
                         print = print.Insert(inputLineMarker > print.Length ? print.Length : inputLineMarker, defines.markerCharacter);
                     else
                     {
-                        if (region.inputLine.align != "Right") print += " ";
-                        if (region.inputLine.align != "Left") print = " " + print;
+                        if (region.inputLine.align != "Right") print += "            ";
+                        if (region.inputLine.align != "Left") print = "            " + print;
                     }
                     foreach (var character in print)
                         length = region.inputLine.text.SpawnCharacter(character, length, region.inputLine.color);

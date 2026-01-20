@@ -1,25 +1,28 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+
 using UnityEngine;
-using static ArtistBattle;
-using static Country;
-using static DebutYear;
-using static Decade;
-using static Duration;
-using static Genre;
-using static Language;
-using static Library;
-using static MusicRelease;
-using static ProgramSettings;
-using static ReleaseRating;
-using static ReleaseType;
+using static UnityEngine.KeyCode;
+
 using static Root;
 using static Root.Anchor;
-using static TrackAmount;
-using static UnityEngine.KeyCode;
+
 using static Year;
+using static Genre;
+using static Decade;
+using static Library;
+using static Country;
+using static Duration;
+using static Language;
+using static DebutYear;
+using static ReleaseType;
+using static ArtistBattle;
+using static MusicRelease;
+using static RatingStatus;
+using static ProgramSettings;
+using static ReleaseRating;
+using static TrackAmount;
 
 public class Blueprint
 {
@@ -259,12 +262,39 @@ public class Blueprint
             });
         }),
         new("ResetLibraryFiltering", () => {
-            SetAnchor(TopRight, -19, -19);
+            SetAnchor(TopRight, CDesktop.title == "MusicReleases" ? -38 : -19, -19);
             AddRegionGroup();
             AddPaddingRegion(() => AddSmallButton("OtherReverse", (h) =>
             {
                 library.ResetLibrary();
                 CDesktop.RespawnAll();
+            }));
+        }),
+        new("RollRandomRelease", () => {
+            SetAnchor(TopRight, -19, -19);
+            AddRegionGroup();
+            AddPaddingRegion(() => AddSmallButton(library.releases.Count == 0 ? "OtherRandomOff" : "OtherRandom", (h) =>
+            {
+                var list = library.releases;
+                if (String.searchRelease.Value() != "")
+                    list = list.Where(x => x.name.ToLower().Contains(String.searchRelease.Value().ToLower())).ToList();
+                var randomIndex = random.Next(list.Count);
+                musicRelease = list[randomIndex];
+                if (CDesktop.title == "MusicRelease")
+                {
+                    CDesktop.RespawnAll();
+                    Respawn("MusicReleaseScrollbarUp", true);
+                    Respawn("MusicReleaseScrollbar", true);
+                    Respawn("MusicReleaseScrollbarDown", true);
+                    SpawnAlbumTransition();
+                    if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                    {
+                        if (musicRelease.pallete == null)
+                            musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                        SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                    }
+                }
+                else SpawnDesktopBlueprint("MusicRelease");
             }));
         }),
 
@@ -2389,6 +2419,131 @@ public class Blueprint
             });
         }),
 
+        //Rating statuses
+        new("RatingStatuses", () => {
+            var rowAmount = 3;
+            var thisWindow = CDesktop.LBWindow();
+            var list = (showExcludedElements.Value() ? ratingStatuses : ratingStatuses.Where(x => ratingStatusFiltering[x.status].Value())).Where(x => x.status != "-").ToList();
+            thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(330);
+            AddPaddingRegion(() =>
+            {
+                AddCheckbox(showExcludedElements);
+                AddLine("Show excluded elements");
+            });
+            AddRegionGroup();
+            SetRegionGroupWidth(37);
+            AddButtonRegion(() => AddLine("#", "", "Right"),
+                (h) =>
+                {
+                    ratingStatuses.Reverse();
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
+            }
+            AddPaddingRegion(() => AddLine(""));
+            AddRegionGroup();
+            SetRegionGroupWidth(219);
+            AddButtonRegion(() => AddLine("Status"),
+                (h) =>
+                {
+                    ratingStatuses = (lastSort == "Status" ? ratingStatuses.OrderByDescending(x => x.status == "Rated" ? 2 : (x.status == "Partially rated" ? 1 : 0)) : ratingStatuses.OrderBy(x => x.status == "Rated" ? 2 : (x.status == "Partially rated" ? 1 : 0))).ToList();
+                    lastSort = lastSort == "Status" ? "" : "Status";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var ratingStatus = list[index + thisWindow.pagination()];
+                        AddLine(ratingStatus.status);
+                        AddCheckbox(ratingStatusFiltering[ratingStatus.status], ratingStatusFiltering.Select(x => x.Value).ToList());
+                    },
+                    (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
+            }
+            AddPaginationLine();
+            AddRegionGroup();
+            SetRegionGroupWidth(55);
+            AddButtonRegion(() => AddLine("Albums"),
+                (h) =>
+                {
+                    ratingStatuses = (lastSort == "Albums" ? ratingStatuses.OrderBy(x => library.originalReleases.Count(y => (y.GetRating() > 0 ? "Rated" : (ratings.ContainsKey(y.ID) && ratings[y.ID].trackRatings.Any(y => y != 0) ? "Partially rated" : "Unrated")) == x.status)) : ratingStatuses.OrderByDescending(x => library.originalReleases.Count(y => (y.GetRating() > 0 ? "Rated" : (ratings.ContainsKey(y.ID) && ratings[y.ID].trackRatings.Any(y => y != 0) ? "Partially rated" : "Unrated")) == x.status))).ToList();
+                    lastSort = lastSort == "Albums" ? "" : "Albums";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var ratingStatus = list[index + thisWindow.pagination()];
+                        AddLine(library.originalReleases.Count(x => (x.GetRating() > 0 ? "Rated" : (ratings.ContainsKey(x.ID) && ratings[x.ID].trackRatings.Any(x => x != 0) ? "Partially rated" : "Unrated")) == ratingStatus.status) + "", "", "Right");
+                    },
+                    (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
+            }
+            AddPaddingRegion(() => AddLine(""));
+        }),
+        new("RatingStatusesScrollbarUp", () => {
+            SetAnchor(145, 38);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            AddPaddingRegion(() =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "RatingStatuses");
+                if (window.pagination() > 0)
+                    AddSmallButton("OtherPageUp", (h) =>
+                    {
+                        window.DecrementPagination();
+                        CDesktop.RespawnAll();
+                        Respawn("RatingStatusesScrollbarUp", true);
+                        Respawn("RatingStatusesScrollbar", true);
+                        Respawn("RatingStatusesScrollbarDown", true);
+                    });
+                else AddSmallButton("OtherPageUpOff");
+            });
+        }),
+        new("RatingStatusesScrollbar", () => {
+            SetAnchor(145, 19);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(53);
+            AddPaddingRegion(() => AddLine(""));
+        }),
+        new("RatingStatusesScrollbarDown", () => {
+            SetAnchor(145, -38);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            AddPaddingRegion(() =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "RatingStatuses");
+                if (window.pagination() < window.maxPagination())
+                    AddSmallButton("OtherPageDown", (h) =>
+                    {
+                        window.IncrementPagination();
+                        CDesktop.RespawnAll();
+                        Respawn("RatingStatusesScrollbarUp", true);
+                        Respawn("RatingStatusesScrollbar", true);
+                        Respawn("RatingStatusesScrollbarDown", true);
+                    });
+                else AddSmallButton("OtherPageDownOff");
+            });
+        }),
+
         //Menu
         new("MenuBar", () => {
             SetAnchor(Bottom, 0, 10);
@@ -2615,6 +2770,11 @@ public class Blueprint
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Tools:"));
             AddButtonRegion(() => AddLine("Artist battle"), (h) =>
+            {
+                tracksPerArtist = 1;
+                SpawnDesktopBlueprint("PrepareArtistBattle");
+            });
+            AddButtonRegion(() => AddLine("Roll a random album"), (h) =>
             {
                 tracksPerArtist = 1;
                 SpawnDesktopBlueprint("PrepareArtistBattle");
@@ -3703,6 +3863,7 @@ public class Blueprint
             SpawnWindowBlueprint("MusicReleasesScrollbar");
             SpawnWindowBlueprint("MusicReleasesScrollbarDown");
             SpawnWindowBlueprint("ResetLibraryFiltering");
+            SpawnWindowBlueprint("RollRandomRelease");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -3743,6 +3904,7 @@ public class Blueprint
             SpawnWindowBlueprint("MusicReleaseScrollbarUp");
             SpawnWindowBlueprint("MusicReleaseScrollbar");
             SpawnWindowBlueprint("MusicReleaseScrollbarDown");
+            SpawnWindowBlueprint("RollRandomRelease");
             SpawnWindowBlueprint("CloseMusicRelease");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
@@ -4023,10 +4185,10 @@ public class Blueprint
         {
             showExcludedElements = new Bool(true);
             SetDesktopBackground("Backgrounds/Default");
-            SpawnWindowBlueprint("RatingStatus");
-            SpawnWindowBlueprint("RatingStatusScrollbarUp");
-            SpawnWindowBlueprint("RatingStatusScrollbar");
-            SpawnWindowBlueprint("RatingStatusScrollbarDown");
+            SpawnWindowBlueprint("RatingStatuses");
+            SpawnWindowBlueprint("RatingStatusesScrollbarUp");
+            SpawnWindowBlueprint("RatingStatusesScrollbar");
+            SpawnWindowBlueprint("RatingStatusesScrollbarDown");
             SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
