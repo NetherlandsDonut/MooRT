@@ -34,7 +34,7 @@ Studio album
 -
 -
 -
-Genres:
+Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
 Flamenco, Dance-pop, Electrofolk
 -
