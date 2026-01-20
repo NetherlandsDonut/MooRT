@@ -2648,23 +2648,24 @@ public class Blueprint
                             if (data[i].Length > 0) newAlbum.languages = ProcessLanguages(data[i]);
                             else newAlbum.languages = new();
                         if (i >= 50)
-                            if (data[i].Length > 0)
+                            if (data[i].Length > 0 && i < data.Length - 1) //If this can be track name
                             {
-                                data[i] = data[i].Replace("\t", " ");
-                                if (data[i].Split(" ").Length > 1 && data[i].Split(" ").Last().Contains(":"))
+                                if ((i + 1 < data.Length || !(data[i + 2].Length > 0 && data[i + 2].Split(":").Length == 2 && data[i + 2].Split(":")[1].Length == 2 && data[i + 2].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))) && data[i + 1].Length > 0 && data[i + 1].Split(":").Length == 2 && data[i + 1].Split(":")[1].Length == 2 && data[i + 1].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))
                                 {
                                     var newTrack = new Track();
-                                    var lastIndex = data[i].LastIndexOf(" ");
-                                    newTrack.name = data[i][..lastIndex].Trim();
-                                    var time = data[i][lastIndex..].Trim();
+                                    newTrack.name = data[i].Trim();
+                                    if (newTrack.name.EndsWith("lyrics"))
+                                        newTrack.name = newTrack.name.Substring(0, newTrack.name.Length - "lyrics".Length);
+                                    var time = data[i + 1].Trim();
                                     if (time.Split(":").Length != 2) { failed = 501; errorAtLine = i + 1; break; };
                                     if (!int.TryParse(time.Split(":")[0], out int minutes)) { failed = 502; errorAtLine = i + 1; break; };
                                     if (!int.TryParse(time.Split(":")[1], out int seconds)) { failed = 503; errorAtLine = i + 1; break; };
                                     newTrack.length = minutes * 60 + seconds;
                                     newTrack.duration = time;
                                     newAlbum.tracks.Add(newTrack);
+                                    i++;
                                 }
-                                else { failed = 500; errorAtLine = i + 1; break; };
+                                else continue;
                             }
                             else { failed = i; break; };
                     }

@@ -1,30 +1,30 @@
 Artist name:
 -
-Fuel Fandango
+大森靖子
 -
 -
 -
 Artist country:
 -
-Spain
+Japan
 -
 -
 -
 Release name:
 -
-Origen
+齶齷龍龕龜龝龠
 -
 -
 -
 Release date:
 -	
-24 January 2020
+11 July 2018
 -
 -
 -
 Release cover:
 -
-https://i1.sndcdn.com/artworks-b1c58755-3d2a-40fc-bf68-3b9958b164dc-0-t500x500.jpg
+https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fototoy.jp%2Fnews%2Fimage.php%2F88442%2F0.jpg&f=1&nofb=1&ipt=5dacfb66c5308058a936b4bb6245bc31e55257881d7551f277573563ccd3c2f6
 -
 -
 -
@@ -36,25 +36,48 @@ Studio album
 -
 Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
-Flamenco, Dance-pop, Electrofolk
+J-Pop, Pop Rock
 -
 -
 -
 Languages: Example: "English, French" / When left empty, "No Language" will be added automatically
 -
-Spanish
+Japanese
 -
 -
 -
 Tracklist:
 -
-Mi Danza 3:16
-Despertaré 3:11
-Silencio 4:30
-Por La Vereda 3:25
-AContra La Pared 3:06
-Estamos Solos 4:12
-Huracán De Flores 2:37
-El Bosque 3:07
-Despacio 4:28
-La Grieta 3:44
+1
+Brutal Number Girllyrics
+2:03
+2
+Zegen vs Undercover
+2:43
+3
+Sasu-Youlyrics
+2:40
+4
+Urban Guitar Sayonaralyrics
+4:10
+5
+Abstract Truthlyrics
+3:28
+6
+Tattooあり
+3:25
+7
+Sappukeilyrics
+3:47
+8
+U-Reilyrics
+4:18
+9
+Yaruse Nakio の Beatlyrics
+5:06
+10
+Trampoline Girllyrics
+4:28
+11
+Brutal Manlyrics
+2:53
