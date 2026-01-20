@@ -89,7 +89,9 @@ public class Starter : MonoBehaviour
             library ??= new();
 
             SetUpLibrary();
-            Serialize(library, "library", true);
+
+            //Backup library only if you are on unity data
+            if (useUnityData) Serialize(library, "library", true);
 
             //Get user settings..
             Deserialize(ref settings, "settings", false, prefix);

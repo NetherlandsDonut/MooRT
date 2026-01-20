@@ -17,10 +17,10 @@ class Serialization
     public static string prefix = "";
 
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = false;
+    public static bool useUnityData = true;
 
     //Indicates whether the program allows for library expansion
-    public static bool libraryExpansion = false;
+    public static bool libraryExpansion = true;
 
     public static string[] ReadTXT(string file, string prefix = "")
     {
@@ -70,9 +70,15 @@ class Serialization
             sw.WriteLine("-");
             sw.WriteLine("-");
             sw.WriteLine("-");
-            sw.WriteLine("Genres:");
+            sw.WriteLine("Genres: Example: \"Indie Folk, Industrial Metal, Shoegaze\" / Can be left empty");
             sw.WriteLine("-");
-            sw.WriteLine("here, here, here, here");
+            sw.WriteLine("");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("-");
+            sw.WriteLine("Languages: Example: \"English, French\" / When left empty, \"No Language\" will be added automatically");
+            sw.WriteLine("-");
+            sw.WriteLine("");
             sw.WriteLine("-");
             sw.WriteLine("-");
             sw.WriteLine("-");

@@ -50,7 +50,7 @@ public class Blueprint
             var thisWindow = CDesktop.LBWindow();
             var list = library.releases;
             if (String.searchRelease.Value() != "")
-                list = list.Where(x => x.name.ToLower().Contains(String.searchRelease.Value())).ToList();
+                list = list.Where(x => x.name.ToLower().Contains(String.searchRelease.Value().ToLower())).ToList();
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             CDesktop.quickInputWindow = thisWindow;
             SetAnchor(Center, -8, 10);
@@ -98,6 +98,32 @@ public class Blueprint
                         musicReleaseIndex = index + thisWindow.pagination();
                         musicRelease = list[musicReleaseIndex];
                         SpawnDesktopBlueprint("MusicRelease");
+                    },
+                    null,
+                    (h) => () =>
+                    {
+                        musicReleaseIndex = index + thisWindow.pagination();
+                        var foo = list[musicReleaseIndex];
+                        SetAnchor(-440, 228);
+                        AddHeaderGroup();
+                        SetRegionGroupWidth(190);
+                        AddHeaderRegion(() =>
+                        {
+                            AddLine(foo.name);
+                        });
+                        AddRegionGroup();
+                        SetRegionGroupWidth(190);
+                        SetRegionGroupHeight(186);
+                        AddPaddingRegion(() =>
+                        {
+                            if (albumCovers.ContainsKey(foo.ID + ""))
+                            {
+                                SetRegionBackgroundAsImage(albumCovers[foo.ID + ""]);
+                                albumCovers[foo.ID + ""].texture.filterMode = FilterMode.Point;
+                            }
+                            else SetRegionBackgroundAsImage(albumCovers["0"]);
+                            SetRegionAsGroupExtender();
+                        });
                     });
                 else AddPaddingRegion(() => AddLine("", "", "Center"));
             }
@@ -694,7 +720,7 @@ public class Blueprint
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? library.artists : library.artists.Where(x => artistFiltering[x.ID].Value())).Where(x => x.name != "Various artists" && (!hideArtistsOfExcludedCountries.Value() || hideArtistsOfExcludedCountries.Value() && countryFiltering[x.country].Value())).ToList();
             if (String.searchArtist.Value() != "")
-                list = list.Where(x => x.name.ToLower().Contains(String.searchArtist.Value())).ToList();
+                list = list.Where(x => x.name.ToLower().Contains(String.searchArtist.Value().ToLower())).ToList();
             CDesktop.quickInputWindow = thisWindow;
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
@@ -747,18 +773,7 @@ public class Blueprint
                         AddLine(artist.name);
                         AddCheckbox(artistFiltering[artist.ID], artistFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var artist = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(artist.name);
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -884,7 +899,7 @@ public class Blueprint
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? countries : countries.Where(x => countryFiltering[x.name].Value())).Where(x => x.name != "-").ToList();
             if (String.searchCountry.Value() != "")
-                list = list.Where(x => x.name.ToLower().Contains(String.searchCountry.Value())).ToList();
+                list = list.Where(x => x.name.ToLower().Contains(String.searchCountry.Value().ToLower())).ToList();
             CDesktop.quickInputWindow = thisWindow;
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
@@ -932,18 +947,7 @@ public class Blueprint
                         AddLine(country.name);
                         AddCheckbox(countryFiltering[country.name], countryFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var country = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(country.name);
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -1092,7 +1096,7 @@ public class Blueprint
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? genres : genres.Where(x => genreFiltering[x.name].Value())).Where(x => x.name != "-").ToList();
             if (String.searchGenre.Value() != "")
-                list = list.Where(x => x.name.ToLower().Contains(String.searchGenre.Value())).ToList();
+                list = list.Where(x => x.name.ToLower().Contains(String.searchGenre.Value().ToLower())).ToList();
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
             AddHeaderGroup();
@@ -1144,18 +1148,7 @@ public class Blueprint
                         AddLine(genre.name);
                         AddCheckbox(genreFiltering[genre.name], genreFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var genre = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(genre.name);
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -1270,7 +1263,7 @@ public class Blueprint
             var thisWindow = CDesktop.LBWindow();
             var list = (showExcludedElements.Value() ? languages : languages.Where(x => languageFiltering[x.name].Value())).Where(x => x.name != "-").ToList();
             if (String.searchLanguage.Value() != "")
-                list = list.Where(x => x.name.ToLower().Contains(String.searchLanguage.Value())).ToList();
+                list = list.Where(x => x.name.ToLower().Contains(String.searchLanguage.Value().ToLower())).ToList();
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
             AddHeaderGroup();
@@ -1322,18 +1315,7 @@ public class Blueprint
                         AddLine(language.name);
                         AddCheckbox(languageFiltering[language.name], languageFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var language = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(language.name);
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -1503,18 +1485,7 @@ public class Blueprint
                         AddLine(year.year + "");
                         AddCheckbox(yearFiltering[year.year], yearFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var year = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(year.year + "");
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -1673,18 +1644,7 @@ public class Blueprint
                         AddLine(decade.decade + "");
                         AddCheckbox(decadeFiltering[decade.decade], decadeFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var decade = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(decade.decade + "");
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -2002,18 +1962,7 @@ public class Blueprint
                         AddLine(trackAmount.amount + "");
                         AddCheckbox(trackAmountFiltering[trackAmount.amount], trackAmountFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var trackAmount = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(trackAmount.amount + "");
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -2172,18 +2121,7 @@ public class Blueprint
                         AddLine(debutYear.year + "");
                         AddCheckbox(debutYearFiltering[debutYear.year], debutYearFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var debutYear = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(debutYear.year + "");
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
@@ -2342,18 +2280,7 @@ public class Blueprint
                         AddLine(duration.duration + "m");
                         AddCheckbox(durationFiltering[duration.duration], durationFiltering.Select(x => x.Value).ToList());
                     },
-                    (h) => { },
-                    null,
-                    (h) => () =>
-                    {
-                        var duration = list[index + thisWindow.pagination()];
-                        SetAnchor(BottomRight);
-                        AddHeaderGroup();
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(duration.duration + "m");
-                        });
-                    });
+                    (h) => { });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
