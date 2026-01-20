@@ -5051,6 +5051,12 @@
       "name": "Fuel Fandango",
       "pronoun": "they",
       "country": "Spain"
+    },
+    {
+      "ID": 843,
+      "name": "大森靖子",
+      "pronoun": "they",
+      "country": "Japan"
     }
   ],
   "originalReleases": [
@@ -283929,6 +283935,68 @@
         {
           "name": "La Grieta",
           "length": 224
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4154,
+      "artist": "大森靖子",
+      "artistID": 843,
+      "name": "クソカワParty",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "J-pop",
+        "Pop Rock"
+      ],
+      "languages": [
+        "Japanese"
+      ],
+      "format": "digital",
+      "releaseDate": "2018.07.11",
+      "tracks": [
+        {
+          "name": "死神",
+          "length": 257
+        },
+        {
+          "name": "ZOC実験室",
+          "length": 251
+        },
+        {
+          "name": "Reality Magic",
+          "length": 244
+        },
+        {
+          "name": "Girl's Girl",
+          "length": 167
+        },
+        {
+          "name": "ラストダンス",
+          "length": 184
+        },
+        {
+          "name": "アメーバの恋",
+          "length": 209
+        },
+        {
+          "name": "7:77",
+          "length": 197
+        },
+        {
+          "name": "東京と今日",
+          "length": 244
+        },
+        {
+          "name": "わたしみ",
+          "length": 317
+        },
+        {
+          "name": "きもいかわ",
+          "length": 392
         }
       ],
       "discs": "",

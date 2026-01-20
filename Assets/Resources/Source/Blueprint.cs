@@ -2650,7 +2650,7 @@ public class Blueprint
                         if (i >= 50)
                             if (data[i].Length > 0 && i < data.Length - 1) //If this can be track name
                             {
-                                if ((i + 1 < data.Length || !(data[i + 2].Length > 0 && data[i + 2].Split(":").Length == 2 && data[i + 2].Split(":")[1].Length == 2 && data[i + 2].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))) && data[i + 1].Length > 0 && data[i + 1].Split(":").Length == 2 && data[i + 1].Split(":")[1].Length == 2 && data[i + 1].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))
+                                if ((i + 2 >= data.Length || !(data[i + 2].Length > 0 && data[i + 2].Split(":").Length == 2 && data[i + 2].Split(":")[1].Length == 2 && data[i + 2].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))) && data[i + 1].Length > 0 && data[i + 1].Split(":").Length == 2 && data[i + 1].Split(":")[1].Length == 2 && data[i + 1].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))
                                 {
                                     var newTrack = new Track();
                                     newTrack.name = data[i].Trim();
