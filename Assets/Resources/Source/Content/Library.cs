@@ -36,6 +36,11 @@ public class Library
         debutYears = debutYears.OrderBy(x => x.year).OrderByDescending(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
         durations = durations.OrderBy(x => x.duration).OrderByDescending(y => y.releases.Sum(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
         if (!resetFilters) return;
+        String.searchRelease.Set("");
+        String.searchArtist.Set("");
+        String.searchCountry.Set("");
+        String.searchGenre.Set("");
+        String.searchLanguage.Set("");
         artistBattleParticipants = originalArtists.ToDictionary(x => x.ID, x => new Bool(false));
         artistFiltering = originalArtists.ToDictionary(x => x.ID, x => new Bool(true));
         countryFiltering = countries.ToDictionary(x => x.name, x => new Bool(true));

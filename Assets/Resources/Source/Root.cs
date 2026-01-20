@@ -69,7 +69,7 @@ public static class Root
 
     public static List<Desktop> desktops;
 
-    public static string releasesLastSort, lastSort;
+    public static string releasesLastSort = "Rating", lastSort;
 
     public static Dictionary<string, Sprite> albumCovers;
 

@@ -1,11 +1,10 @@
+using System;
 using System.Linq;
-using System.Collections.Generic;
 
 using UnityEngine;
 
 using static Root;
 using static Root.InputType;
-using System;
 
 public class String
 {
@@ -31,7 +30,7 @@ public class String
         StrictLetters => char.IsLetter(letter) || letter == '\'' && value.Length != 0 && value.Last() != '\'',
         Capitals => char.IsLetter(letter) || letter == ' ' && value.Length != 0 && value.Last() != ' ',
         Numbers => char.IsDigit(letter),
-        //Decimal => char.IsDigit(letter) || letter == ',' && !Value().Contains(','),
+        InputType.Decimal => char.IsDigit(letter) || letter == ',' && !Value().Contains(','),
         _ => true,
     };
 

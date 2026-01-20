@@ -78,7 +78,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Name"),
                 (h) =>
                 {
-                    list = (releasesLastSort == "Name" ? list.OrderByDescending(x => x.name) : list.OrderBy(x => x.name)).ToList();
+                    library.releases = (releasesLastSort == "Name" ? list.OrderByDescending(x => x.name) : list.OrderBy(x => x.name)).ToList();
                     releasesLastSort = releasesLastSort == "Name" ? "" : "Name";
                 }
             );
@@ -107,7 +107,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Rating"),
                 (h) =>
                 {
-                    list = (releasesLastSort == "Rating" ? list.OrderBy(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0) : list.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
+                    library.releases = (releasesLastSort == "Rating" ? list.OrderBy(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0) : list.OrderByDescending(x => ratings.ContainsKey(x.ID) ? ratings[x.ID].rating : 0)).ToList();
                     releasesLastSort = releasesLastSort == "Rating" ? "" : "Rating";
                 }
             );
@@ -128,7 +128,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Year", "", "Center"),
                 (h) =>
                 {
-                    list = (releasesLastSort == "Year" ? list.OrderBy(x => x.releaseDate) : list.OrderByDescending(x => x.releaseDate)).ToList();
+                    library.releases = (releasesLastSort == "Year" ? list.OrderBy(x => x.releaseDate) : list.OrderByDescending(x => x.releaseDate)).ToList();
                     releasesLastSort = releasesLastSort == "Year" ? "" : "Year";
                 }
             );
@@ -149,7 +149,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Duration"),
                 (h) =>
                 {
-                    list = (releasesLastSort == "Duration" ? list.OrderBy(x => x.length) : list.OrderByDescending(x => x.length)).ToList();
+                    library.releases = (releasesLastSort == "Duration" ? list.OrderBy(x => x.length) : list.OrderByDescending(x => x.length)).ToList();
                     releasesLastSort = releasesLastSort == "Duration" ? "" : "Duration";
                 }
             );
@@ -170,7 +170,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Tracks"),
                 (h) =>
                 {
-                    list = (releasesLastSort == "Tracks" ? list.OrderBy(x => x.tracks.Count) : list.OrderByDescending(x => x.tracks.Count)).ToList();
+                    library.releases = (releasesLastSort == "Tracks" ? list.OrderBy(x => x.tracks.Count) : list.OrderByDescending(x => x.tracks.Count)).ToList();
                     releasesLastSort = releasesLastSort == "Tracks" ? "" : "Tracks";
                 }
             );

@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+
 using UnityEngine;
 
 using static Coloring;
@@ -17,7 +18,6 @@ public class InputText : MonoBehaviour
         this.text = text;
         characters = new();
         this.inputLine = inputLine;
-
         inputLine.text = this;
     }
 
