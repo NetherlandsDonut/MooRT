@@ -5045,12 +5045,6 @@
       "name": "Jan-Rapowanie",
       "pronoun": "they",
       "country": "Poland"
-    },
-    {
-      "ID": 842,
-      "name": "Fuel Fandango",
-      "pronoun": "they",
-      "country": "Spain"
     }
   ],
   "originalReleases": [
@@ -6929,9 +6923,7 @@
         "Ambient",
         "Space Rock"
       ],
-      "languages": [
-        "English"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2014.11.10",
       "tracks": [
@@ -12234,9 +12226,7 @@
         "Krautrock",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974.11.01",
       "tracks": [
@@ -12399,9 +12389,7 @@
         "Noise",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975",
       "tracks": [
@@ -12675,9 +12663,7 @@
         "Progressive Rock",
         "Symphonic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1973.05.25",
       "tracks": [
@@ -12855,9 +12841,7 @@
         "Progressive Rock",
         "Canterbury Scene"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971.02.28",
       "tracks": [
@@ -13039,9 +13023,7 @@
         "Psychedelic Rock",
         "Space Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971.06",
       "tracks": [
@@ -14213,9 +14195,7 @@
         "Progressive Electronic",
         "Space Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971.04",
       "tracks": [
@@ -14247,9 +14227,7 @@
         "Progressive Electronic",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975.03.21",
       "tracks": [
@@ -14281,9 +14259,7 @@
         "Drone",
         "Space Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972.02",
       "tracks": [
@@ -14322,9 +14298,7 @@
         "Progressive Electronic",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974.02.20",
       "tracks": [
@@ -14364,9 +14338,7 @@
         "Progressive Rock",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1976",
       "tracks": [
@@ -14403,9 +14375,7 @@
       "genres": [
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1983.10",
       "tracks": [
@@ -14447,9 +14417,7 @@
         "Progressive Electronic",
         "Psychedelic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970.06.15",
       "tracks": [
@@ -14493,9 +14461,7 @@
         "Space Ambient",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1973.03.01",
       "tracks": [
@@ -14531,9 +14497,7 @@
         "Progressive Electronic",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975.12",
       "tracks": [
@@ -14601,9 +14565,7 @@
         "Progressive Electronic",
         "Progressive Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1979.02",
       "tracks": [
@@ -14637,9 +14599,7 @@
       "genres": [
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1980.03.03",
       "tracks": [
@@ -14669,9 +14629,7 @@
         "Progressive Electronic",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1977",
       "tracks": [
@@ -14838,9 +14796,7 @@
         "Ambient",
         "Field Recordings"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "tracks",
       "releaseDate": "1997.08.14",
       "tracks": [
@@ -14876,9 +14832,7 @@
         "Field Recordings",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2000.10.09",
       "tracks": [
@@ -14918,9 +14872,7 @@
         "Post Rock",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2012.10.15",
       "tracks": [
@@ -14959,9 +14911,7 @@
         "Post Rock",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2002.11.04",
       "tracks": [
@@ -15008,9 +14958,7 @@
         "Post Metal",
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2015.03.31",
       "tracks": [
@@ -15050,9 +14998,7 @@
         "Post Rock",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2017.09.22",
       "tracks": [
@@ -15107,9 +15053,7 @@
         "Spoken Word",
         "Field Recordings"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1999.03.29",
       "tracks": [
@@ -15229,9 +15173,7 @@
         "Progressive Rock",
         "Symphonic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1973.01.23",
       "tracks": [
@@ -15483,55 +15425,55 @@
       "releaseDate": "2001.05.15",
       "tracks": [
         {
-          "name": "迅迎近返迚迢迥迦",
+          "name": "The Grudge",
           "length": 516
         },
         {
-          "name": "孃孅子孑孔",
+          "name": "Eon Blue Apocalypse",
           "length": 64
         },
         {
-          "name": "嬶嬾孀孕字存孚",
+          "name": "The Patient",
           "length": 434
         },
         {
-          "name": "舮舳舵",
+          "name": "Mantra",
           "length": 72
         },
         {
-          "name": "艚艝艟艢艤",
+          "name": "Schism",
           "length": 407
         },
         {
-          "name": "処凧凩凪凭",
+          "name": "Parabol",
           "length": 184
         },
         {
-          "name": "上下不与丐",
+          "name": "Parabola",
           "length": 363
         },
         {
-          "name": "ヅテデトドナニヌ",
+          "name": "Ticks & Leeches",
           "length": 490
         },
         {
-          "name": "ぅうぇえぉおかが",
+          "name": "Lateralus",
           "length": 564
         },
         {
-          "name": "蠻血衂",
+          "name": "Disposition",
           "length": 286
         },
         {
-          "name": "浤浦浩浪浬",
+          "name": "Reflection",
           "length": 667
         },
         {
-          "name": "Fuck 囎囑囓",
+          "name": "Triad",
           "length": 526
         },
         {
-          "name": "〝ぁ〟",
+          "name": "Faaip De Oiad",
           "length": 159
         }
       ],
@@ -16793,9 +16735,7 @@
         "Progressive Electronic",
         "Tribal Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970",
       "tracks": [
@@ -16834,9 +16774,7 @@
         "Krautrock",
         "Tribal Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971",
       "tracks": [
@@ -16979,9 +16917,7 @@
         "Progressive Electronic",
         "Psychedelic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975",
       "tracks": [
@@ -19441,9 +19377,7 @@
         "Heavy Psych",
         "Jam Band"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972",
       "tracks": [
@@ -21295,9 +21229,7 @@
         "Ambient",
         "Psychedelic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1998.12",
       "tracks": [
@@ -36049,9 +35981,7 @@
         "Dark Ambient",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006",
       "tracks": [
@@ -36128,9 +36058,7 @@
         "Experimental",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006.05.31",
       "tracks": [
@@ -36439,9 +36367,7 @@
         "Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2007.07.07",
       "tracks": [
@@ -36504,9 +36430,7 @@
         "Ambient",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2008.04.01",
       "tracks": [
@@ -36562,9 +36486,7 @@
         "Ambient",
         "Plunderphonics"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2011.06.06",
       "tracks": [
@@ -36645,9 +36567,7 @@
         "Drone",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2012.01.12",
       "tracks": [
@@ -36714,9 +36634,7 @@
       "genres": [
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2016.09.22",
       "tracks": [
@@ -36785,9 +36703,7 @@
       "genres": [
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2017.04.06",
       "tracks": [
@@ -36935,9 +36851,7 @@
         "Drone",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2017.12.08",
       "tracks": [
@@ -36964,9 +36878,7 @@
         "Dark Ambient",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2018.04.05",
       "tracks": [
@@ -37006,9 +36918,7 @@
         "Ambient",
         "Plunderphonics"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2018.09.20",
       "tracks": [
@@ -37137,9 +37047,7 @@
         "Drone",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2019.03.14",
       "tracks": [
@@ -41370,9 +41278,7 @@
         "Doo Wop",
         "Blues"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970.02.09",
       "tracks": [
@@ -42990,9 +42896,7 @@
         "Drone Metal",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1993.02.05",
       "tracks": [
@@ -44934,9 +44838,7 @@
         "Dark Ambient",
         "Ethereal Wave"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2008.02.29",
       "tracks": [
@@ -45526,9 +45428,7 @@
       "genres": [
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2000.03.13",
       "tracks": [
@@ -48127,9 +48027,7 @@
         "Drone",
         "Psychedelic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2011.02.07",
       "tracks": [
@@ -48833,9 +48731,7 @@
       "genres": [
         "Modern Classical"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2019.10.25",
       "tracks": [
@@ -49095,9 +48991,7 @@
         "IDM",
         "Drill and Bass"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2014.09.22",
       "tracks": [
@@ -49168,9 +49062,7 @@
         "IDM",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1992.11.09",
       "tracks": [
@@ -49245,9 +49137,7 @@
         "IDM",
         "Drill and Bass"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1996.11.04",
       "tracks": [
@@ -49311,9 +49201,7 @@
         "Acid Techno",
         "Drill and Bass"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1995.04.24",
       "tracks": [
@@ -50532,9 +50420,7 @@
         "Drone",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971",
       "tracks": [
@@ -50570,9 +50456,7 @@
         "Drone",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972",
       "tracks": [
@@ -50619,9 +50503,7 @@
         "Krautrock",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974",
       "tracks": [
@@ -50684,9 +50566,7 @@
         "Progressive Electronic",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1976.06.15",
       "tracks": [
@@ -53920,9 +53800,7 @@
         "Cool Jazz",
         "Post Bop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1976",
       "tracks": [
@@ -54175,9 +54053,7 @@
         "Glitch Hop",
         "Dubstep"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2010.05.25",
       "tracks": [
@@ -57427,9 +57303,7 @@
         "Jazz Rock",
         "Jazz Fusion"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1979.01.19",
       "tracks": [
@@ -59152,9 +59026,7 @@
         "Drone",
         "Free Improvisation"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970.06",
       "tracks": [
@@ -59891,9 +59763,7 @@
         "Drone Metal",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2019.10.25",
       "tracks": [
@@ -59930,9 +59800,7 @@
       "genres": [
         "Drone Metal"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2019.04.13",
       "tracks": [
@@ -64776,9 +64644,7 @@
         "Glitch",
         "IDM"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001.04.02",
       "tracks": [
@@ -67260,9 +67126,7 @@
         "Drone",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2017.12.27",
       "tracks": [
@@ -67318,9 +67182,7 @@
         "Drone",
         "Post Industrial"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2019.04.13",
       "tracks": [
@@ -67350,9 +67212,7 @@
         "Ambient",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2019.04.13",
       "tracks": [
@@ -70193,9 +70053,7 @@
         "Post Rock",
         "Post Metal"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2008.05.06",
       "tracks": [
@@ -70553,9 +70411,7 @@
         "Ambient",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974.06",
       "tracks": [
@@ -70771,9 +70627,7 @@
       "genres": [
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1982.04",
       "tracks": [
@@ -84342,9 +84196,7 @@
         "Experimental Rock",
         "Progressive Metal"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2005.12.02",
       "tracks": [
@@ -84638,9 +84490,7 @@
       "genres": [
         "Progressive Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2009.05.01",
       "tracks": [
@@ -98365,9 +98215,7 @@
         "Electro Acoustic",
         "IDM"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2015.01.23",
       "tracks": [
@@ -102505,9 +102353,7 @@
         "Noise",
         "Sludge Metal"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1996",
       "tracks": [
@@ -102794,9 +102640,7 @@
         "Dark Ambient",
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006.08.08",
       "tracks": [
@@ -103936,9 +103780,7 @@
         "Space Rock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1999.12.10",
       "tracks": [
@@ -104252,9 +104094,7 @@
         "Electro Pop",
         "Electro Disco"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1979.09.25",
       "tracks": [
@@ -104646,9 +104486,7 @@
         "Vaporwave",
         "Glitch"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2011.11.05",
       "tracks": [
@@ -105650,9 +105488,7 @@
         "Progressive Rock",
         "Canterbury Scene"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975.04",
       "tracks": [
@@ -108062,9 +107898,7 @@
         "Electro Industrial",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1999",
       "tracks": [
@@ -108333,9 +108167,7 @@
         "Ambient",
         "Video Game Music"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2015.08.13",
       "tracks": [
@@ -115099,9 +114931,7 @@
         "Electro Acoustic",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1998.01.26",
       "tracks": [
@@ -115277,9 +115107,7 @@
         "Dark Ambient",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1978",
       "tracks": [
@@ -116422,9 +116250,7 @@
         "Tribal Ambient",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1991",
       "tracks": [
@@ -120940,9 +120766,7 @@
         "Experimental",
         "Noise"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1979",
       "tracks": [
@@ -121014,9 +120838,7 @@
         "Industrial",
         "Experimental"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1980.05",
       "tracks": [
@@ -121049,9 +120871,7 @@
         "Free Improvisation",
         "Musique Concrète"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1981",
       "tracks": [
@@ -121559,9 +121379,7 @@
         "Funk Metal",
         "Hard Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006.09.15",
       "tracks": [
@@ -127744,9 +127562,7 @@
         "Space Ambient",
         "Field Recordings"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2007.04",
       "tracks": [
@@ -134362,9 +134178,7 @@
         "Dungeon Synth",
         "Video Game Music"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2000.04",
       "tracks": [
@@ -136686,9 +136500,7 @@
         "Jazz Rock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972.06.09",
       "tracks": [
@@ -139030,9 +138842,7 @@
         "Drone",
         "Field Recordings"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1998.06",
       "tracks": [
@@ -139069,9 +138879,7 @@
         "Drone",
         "Field Recordings"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001",
       "tracks": [
@@ -139097,9 +138905,7 @@
         "Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2002",
       "tracks": [
@@ -139127,9 +138933,7 @@
         "Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2003.02",
       "tracks": [
@@ -139157,9 +138961,7 @@
         "Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2003.04",
       "tracks": [
@@ -144344,9 +144146,7 @@
         "Modern Classical",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2020.03.26",
       "tracks": [
@@ -144427,9 +144227,7 @@
         "Dark Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2020.03.26",
       "tracks": [
@@ -151873,9 +151671,7 @@
         "Trip Hop",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006.12.21",
       "tracks": [
@@ -152890,9 +152686,7 @@
       "genres": [
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2005",
       "tracks": [
@@ -152937,9 +152731,7 @@
         "Drone",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2008.01.29",
       "tracks": [
@@ -152989,9 +152781,7 @@
         "Ambient",
         "Post Metal"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2011.05.10",
       "tracks": [
@@ -153044,9 +152834,7 @@
         "Drone",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2014.09.16",
       "tracks": [
@@ -153103,9 +152891,7 @@
         "Drone",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2018.09.28",
       "tracks": [
@@ -153153,9 +152939,7 @@
         "Post Rock",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2018.10.16",
       "tracks": [
@@ -153204,9 +152988,7 @@
         "Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2020.06.09",
       "tracks": [
@@ -154895,9 +154677,7 @@
         "Space Ambient",
         "Jungle"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2019.06.11",
       "tracks": [
@@ -160186,9 +159966,7 @@
         "Drill and Bass",
         "Electro Acoustic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001.10.22",
       "tracks": [
@@ -160329,9 +160107,7 @@
         "Dark Ambient",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1994.03.07",
       "tracks": [
@@ -160503,9 +160279,7 @@
         "Acid Techno",
         "Ambient Techno"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2018.09.14",
       "tracks": [
@@ -160546,9 +160320,7 @@
         "Acid Techno",
         "Ambient Techno"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1993.11.15",
       "tracks": [
@@ -160585,9 +160357,7 @@
         "Modern Classical",
         "Acid Techno"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1995.08.14",
       "tracks": [
@@ -160625,9 +160395,7 @@
         "Acid Techno",
         "Ambient Techno"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2016.07.08",
       "tracks": [
@@ -160678,9 +160446,7 @@
         "Post Rock",
         "Indie Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2000.03",
       "tracks": [
@@ -160729,9 +160495,7 @@
       "genres": [
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001.09.04",
       "tracks": [
@@ -160774,9 +160538,7 @@
       "genres": [
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2003.11.04",
       "tracks": [
@@ -160817,9 +160579,7 @@
       "genres": [
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2007.02.20",
       "tracks": [
@@ -160862,9 +160622,7 @@
       "genres": [
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2011.04.26",
       "tracks": [
@@ -160908,9 +160666,7 @@
         "Post Rock",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2016.04.01",
       "tracks": [
@@ -166494,9 +166250,7 @@
         "Drone",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970.09",
       "tracks": [
@@ -166535,9 +166289,7 @@
         "Ambient",
         "Experimental"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972.01",
       "tracks": [
@@ -166583,9 +166335,7 @@
         "Krautrock",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1973.10",
       "tracks": [
@@ -174851,9 +174601,7 @@
         "Canterbury Scene",
         "Symphonic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1973.02",
       "tracks": [
@@ -174901,9 +174649,7 @@
         "Progressive Rock",
         "Symphonic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975.05",
       "tracks": [
@@ -175650,9 +175396,7 @@
         "Art Rock",
         "Symphonic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2013.11.04",
       "tracks": [
@@ -175982,9 +175726,7 @@
         "Post Hardcore",
         "Noise Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1994.08.29",
       "tracks": [
@@ -182068,9 +181810,7 @@
         "Progressive Electronic",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974.01",
       "tracks": [
@@ -182123,9 +181863,7 @@
         "Progressive Electronic",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975.08.20",
       "tracks": [
@@ -182172,9 +181910,7 @@
         "Field Recordings",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972",
       "tracks": [
@@ -182218,9 +181954,7 @@
         "Krautrock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1973",
       "tracks": [
@@ -182333,9 +182067,7 @@
         "Synth Pop",
         "Neue Deutsche Welle"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1995.12.01",
       "tracks": [
@@ -182410,9 +182142,7 @@
       "genres": [
         "Instrumental Hip Hop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2016.08.12",
       "tracks": [
@@ -186119,9 +185849,7 @@
         "Jazz Rock",
         "Psychedelic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975",
       "tracks": [
@@ -186170,9 +185898,7 @@
         "Synth Funk",
         "Funk"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1976",
       "tracks": [
@@ -186218,9 +185944,7 @@
         "Horror Synth",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1977",
       "tracks": [
@@ -186329,9 +186053,7 @@
         "Horror Synth",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1978",
       "tracks": [
@@ -189241,9 +188963,7 @@
         "Jazz Rock",
         "Dub"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1994.06.22",
       "tracks": [
@@ -189304,9 +189024,7 @@
         "Krautrock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1996.01.30",
       "tracks": [
@@ -189354,9 +189072,7 @@
         "Krautrock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1998.03.10",
       "tracks": [
@@ -189426,9 +189142,7 @@
         "Post Rock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001.01.20",
       "tracks": [
@@ -189488,9 +189202,7 @@
         "Post Rock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2004.04.06",
       "tracks": [
@@ -189551,9 +189263,7 @@
         "Indie Rock",
         "Indie Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006.01.24",
       "tracks": [
@@ -189614,9 +189324,7 @@
         "Krautrock",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2009.06.23",
       "tracks": [
@@ -191872,9 +191580,7 @@
         "Drill and Bass",
         "Modern Classical"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2005.03.14",
       "tracks": [
@@ -192810,9 +192516,7 @@
         "Dark Ambient",
         "Video Game Music"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1996.06.22",
       "tracks": [
@@ -194113,9 +193817,7 @@
         "Ambient",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1980",
       "tracks": [
@@ -196690,9 +196392,7 @@
         "Experimental",
         "Industrial Metal"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1997.05.05",
       "tracks": [
@@ -196969,9 +196669,7 @@
         "Field Recordings",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1994.08.05",
       "tracks": [
@@ -197036,9 +196734,7 @@
         "Sludge Metal",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001.02.06",
       "tracks": [
@@ -197682,9 +197378,7 @@
         "Modern Classical",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2014",
       "tracks": [
@@ -197908,9 +197602,7 @@
         "Instrumental Hip Hop",
         "Trap"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2013.08.07",
       "tracks": [
@@ -197946,9 +197638,7 @@
         "Abstract Hip Hop",
         "EDM"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2013.08.11",
       "tracks": [
@@ -198219,9 +197909,7 @@
         "Industrial",
         "Alternative Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001.10.03",
       "tracks": [
@@ -201059,9 +200747,7 @@
         "Electro Industrial",
         "Art Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2016.12.22",
       "tracks": [
@@ -210756,9 +210442,7 @@
         "Baroque Pop",
         "Chanson"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1967.09.16",
       "tracks": [
@@ -213197,9 +212881,7 @@
         "Dark Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2020.09.25",
       "tracks": [
@@ -215586,9 +215268,7 @@
         "Post Rock",
         "Field Recordings"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2021.04.02",
       "tracks": [
@@ -218183,9 +217863,7 @@
         "Brutal Prog",
         "Noise Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2002.03.19",
       "tracks": [
@@ -218243,9 +217921,7 @@
         "Experimental Rock",
         "Noise Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2004.01.20",
       "tracks": [
@@ -218313,9 +217989,7 @@
         "Experimental Rock",
         "Noise Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2005.03.22",
       "tracks": [
@@ -218499,9 +218173,7 @@
         "Brutal Prog",
         "Noise Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2011.08.30",
       "tracks": [
@@ -220952,9 +220624,7 @@
         "Progressive Rock",
         "Jazz Fusion"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972.10",
       "tracks": [
@@ -221485,9 +221155,7 @@
         "Progressive Rock",
         "Jazz Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2014.06.25",
       "tracks": [
@@ -223564,9 +223232,7 @@
         "Psychedelic Rock",
         "Electro Folk"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2019.10.18",
       "tracks": [
@@ -226707,9 +226373,7 @@
         "Progressive Rock",
         "Progressive Folk"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2017.01.20",
       "tracks": [
@@ -226738,9 +226402,7 @@
         "Progressive Folk",
         "Symphonic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974.08.28",
       "tracks": [
@@ -226954,9 +226616,7 @@
         "Pop Rock",
         "Progressive Pop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1982.03.19",
       "tracks": [
@@ -227105,9 +226765,7 @@
         "Musique Concrète",
         "Symphonic Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1990.06.14",
       "tracks": [
@@ -227266,9 +226924,7 @@
         "Ambient",
         "Drone"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1973.11",
       "tracks": [
@@ -227297,9 +226953,7 @@
         "Drone",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975.12",
       "tracks": [
@@ -227486,9 +227140,7 @@
         "Ambient",
         "Modern Classical"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1975.11",
       "tracks": [
@@ -227603,9 +227255,7 @@
         "Ambient",
         "Progressive Electronic"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1977.08",
       "tracks": [
@@ -227785,9 +227435,7 @@
       "genres": [
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1978.03",
       "tracks": [
@@ -227822,9 +227470,7 @@
       "genres": [
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1978.09",
       "tracks": [
@@ -227915,9 +227561,7 @@
       "genres": [
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1980.04",
       "tracks": [
@@ -227976,9 +227620,7 @@
       "genres": [
         "Tribal Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1980.04",
       "tracks": [
@@ -228092,9 +227734,7 @@
         "Field Recordings",
         "Dark Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1982.03",
       "tracks": [
@@ -228148,9 +227788,7 @@
         "Dark Ambient",
         "Americana"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1983.07",
       "tracks": [
@@ -228217,9 +227855,7 @@
       "genres": [
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1984.08",
       "tracks": [
@@ -228283,9 +227919,7 @@
         "Ambient",
         "Fields Recordings"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1985.10",
       "tracks": [
@@ -229119,9 +228753,7 @@
         "Experimental Rock",
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1981.11",
       "tracks": [
@@ -229162,9 +228794,7 @@
         "Noise Rock",
         "Post Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1980",
       "tracks": [
@@ -230869,9 +230499,7 @@
       "genres": [
         "Experimental Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1963.07",
       "tracks": [
@@ -232200,9 +231828,7 @@
         "Jam Band",
         "Free Improvisation"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006.09.10",
       "tracks": [
@@ -236244,9 +235870,7 @@
         "Plunderphonics",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2021.03.05",
       "tracks": [
@@ -236472,9 +236096,7 @@
         "Ritual Ambient",
         "Video Game Music"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2000.06.29",
       "tracks": [
@@ -238043,9 +237665,7 @@
         "Modal Jazz",
         "Cool Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1959.08.17",
       "tracks": [
@@ -238085,9 +237705,7 @@
         "Modal Jazz",
         "Jazz Fusion"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1969.07.30",
       "tracks": [
@@ -238115,9 +237733,7 @@
         "Jazz Rock",
         "Jazz Fusion"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970.03.30",
       "tracks": [
@@ -238161,9 +237777,7 @@
         "Jazz Funk",
         "Jazz Fusion"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972.10.11",
       "tracks": [
@@ -238217,9 +237831,7 @@
         "Jazz Rock",
         "Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974.11.22",
       "tracks": [
@@ -238271,9 +237883,7 @@
         "Post Bop",
         "Modal Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1967.02.16",
       "tracks": [
@@ -238408,9 +238018,7 @@
         "Dark Jazz",
         "Art Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2016.04.16",
       "tracks": [
@@ -238744,9 +238352,7 @@
         "Ambient",
         "Downtempo"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "2022.02.25",
       "tracks": [
@@ -241298,9 +240904,7 @@
         "Orchestral",
         "Video Game Music"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2002.05.01",
       "tracks": [
@@ -244405,9 +244009,7 @@
       "genres": [
         "Minimalism"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1974",
       "tracks": [
@@ -244479,9 +244081,7 @@
       "genres": [
         "Minimalism"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1980.09",
       "tracks": [
@@ -246645,9 +246245,7 @@
       "genres": [
         "Hard Bop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1958.01",
       "tracks": [
@@ -246687,9 +246285,7 @@
         "Hard Bop",
         "Cool Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1958.10",
       "tracks": [
@@ -246729,9 +246325,7 @@
         "Hard Bop",
         "Modal Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1960.01.27",
       "tracks": [
@@ -246780,9 +246374,7 @@
         "Modal Jazz",
         "Cool Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1961.01",
       "tracks": [
@@ -246822,9 +246414,7 @@
         "Post Bop",
         "Modal Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1961.03",
       "tracks": [
@@ -246860,9 +246450,7 @@
         "Post Bop",
         "Modal Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1961.09.01",
       "tracks": [
@@ -246895,9 +246483,7 @@
         "Modal Jazz",
         "Cool Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1961.11",
       "tracks": [
@@ -246929,9 +246515,7 @@
         "Post Bop",
         "Modal Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1962.08",
       "tracks": [
@@ -246970,9 +246554,7 @@
       "genres": [
         "Cool Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1963.02",
       "tracks": [
@@ -247024,9 +246606,7 @@
         "Post Bop",
         "Hard Bop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1964.06",
       "tracks": [
@@ -247071,9 +246651,7 @@
         "Hard Bop",
         "Modal Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1964.07",
       "tracks": [
@@ -247115,9 +246693,7 @@
         "Modal Jazz",
         "Spiritual Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1965.02",
       "tracks": [
@@ -247154,9 +246730,7 @@
         "Spiritual Jazz",
         "Big Band"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1966.02",
       "tracks": [
@@ -247185,9 +246759,7 @@
         "Spiritual Jazz",
         "Big Band"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1966.08",
       "tracks": [
@@ -247226,9 +246798,7 @@
       "genres": [
         "Hard Bop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1956.06.22",
       "tracks": [
@@ -248602,9 +248172,7 @@
         "Spiritual Jazz",
         "Post Bop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970.07",
       "tracks": [
@@ -248640,9 +248208,7 @@
         "Spiritual Jazz",
         "Post Bop"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971.02",
       "tracks": [
@@ -248682,9 +248248,7 @@
         "Spiritual Jazz",
         "Free Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971.09",
       "tracks": [
@@ -248782,9 +248346,7 @@
         "Ambient",
         "Minimalism"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2021.03.26",
       "tracks": [
@@ -248843,9 +248405,7 @@
         "Nature Recordings",
         "Video Game Music"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2011.11.11",
       "tracks": [
@@ -249209,9 +248769,7 @@
         "Modern Classical",
         "Orchestral"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2006.03.11",
       "tracks": [
@@ -255488,9 +255046,7 @@
         "Ambient",
         "Experimental Rock"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2001.09.18",
       "tracks": [
@@ -257479,9 +257035,7 @@
         "Video Game Music",
         "Celtic Folk"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2003",
       "tracks": [
@@ -257562,9 +257116,7 @@
         "Arabic Folk",
         "Tribal Ambient"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2003.07",
       "tracks": [
@@ -257920,9 +257472,7 @@
         "Avant Garde Jazz",
         "Orchestral"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "1993.11.22",
       "tracks": [
@@ -262926,9 +262476,7 @@
         "Spiritual Jazz",
         "Afro Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1970.10",
       "tracks": [
@@ -262956,9 +262504,7 @@
         "Spiritual Jazz",
         "Free Jazz"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1972.02",
       "tracks": [
@@ -262986,9 +262532,7 @@
         "Spiritual Jazz",
         "Jazz Fusion"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "analog",
       "releaseDate": "1971.05",
       "tracks": [
@@ -266986,9 +266530,7 @@
         "Ambient",
         "Atmospheric Drum and Bass"
       ],
-      "languages": [
-        "No Language"
-      ],
+      "languages": [],
       "format": "digital",
       "releaseDate": "2021.11.12",
       "tracks": [
@@ -283814,7 +283356,7 @@
         "Pop"
       ],
       "languages": [
-        "Polish"
+        "English"
       ],
       "format": "digital",
       "releaseDate": "2020.02.25",
@@ -283866,69 +283408,6 @@
         {
           "name": "Nikt mi nie kazał",
           "length": 157
-        }
-      ],
-      "discs": "",
-      "coverDescriptors": []
-    },
-    {
-      "ID": 4153,
-      "artist": "Fuel Fandango",
-      "artistID": 842,
-      "name": "Origen",
-      "types": [
-        "Studio album"
-      ],
-      "genres": [
-        "Flamenco",
-        "Dance-pop",
-        "Electrofolk"
-      ],
-      "languages": [
-        "Spanish"
-      ],
-      "format": "digital",
-      "releaseDate": "2020.01.24",
-      "tracks": [
-        {
-          "name": "Mi Danza",
-          "length": 196
-        },
-        {
-          "name": "Despertaré",
-          "length": 191
-        },
-        {
-          "name": "Silencio",
-          "length": 270
-        },
-        {
-          "name": "Por La Vereda",
-          "length": 205
-        },
-        {
-          "name": "AContra La Pared",
-          "length": 186
-        },
-        {
-          "name": "Estamos Solos",
-          "length": 252
-        },
-        {
-          "name": "Huracán De Flores",
-          "length": 157
-        },
-        {
-          "name": "El Bosque",
-          "length": 187
-        },
-        {
-          "name": "Despacio",
-          "length": 268
-        },
-        {
-          "name": "La Grieta",
-          "length": 224
         }
       ],
       "discs": "",
