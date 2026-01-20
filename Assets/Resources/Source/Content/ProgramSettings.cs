@@ -14,7 +14,7 @@ public class ProgramSettings
     public void FillNulls()
     {
         pixelPerfectVision ??= new Bool(false);
-        menuBackgroundColor ??= new[] { 136, 99, 84 };
+        menuBackgroundColor ??= new[] { 96, 79, 124 };
         ratingRanges ??= RatingRange.DefaultRatingRanges();
     }
 

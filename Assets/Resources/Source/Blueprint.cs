@@ -2920,7 +2920,7 @@ public class Blueprint
             AddRegionGroup();
             AddButtonRegion(() => AddLine("Reset To Default Value"), (h) =>
             {
-                settings.menuBackgroundColor = new[] { 136, 99, 84 };
+                settings.menuBackgroundColor = new[] { 96, 79, 124 };
                 CDesktop.RespawnAll();
             });
         }),
@@ -3913,6 +3913,7 @@ public class Blueprint
             SpawnWindowBlueprint("ArtistsScrollbarUp");
             SpawnWindowBlueprint("ArtistsScrollbar");
             SpawnWindowBlueprint("ArtistsScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -3929,6 +3930,7 @@ public class Blueprint
             SpawnWindowBlueprint("CountriesScrollbarUp");
             SpawnWindowBlueprint("CountriesScrollbar");
             SpawnWindowBlueprint("CountriesScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -3945,6 +3947,7 @@ public class Blueprint
             SpawnWindowBlueprint("GenresScrollbarUp");
             SpawnWindowBlueprint("GenresScrollbar");
             SpawnWindowBlueprint("GenresScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -3961,6 +3964,7 @@ public class Blueprint
             SpawnWindowBlueprint("ReleaseTypesScrollbarUp");
             SpawnWindowBlueprint("ReleaseTypesScrollbar");
             SpawnWindowBlueprint("ReleaseTypesScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -3977,6 +3981,7 @@ public class Blueprint
             SpawnWindowBlueprint("YearsScrollbarUp");
             SpawnWindowBlueprint("YearsScrollbar");
             SpawnWindowBlueprint("YearsScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -3993,6 +3998,7 @@ public class Blueprint
             SpawnWindowBlueprint("DecadesScrollbarUp");
             SpawnWindowBlueprint("DecadesScrollbar");
             SpawnWindowBlueprint("DecadesScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -4009,6 +4015,7 @@ public class Blueprint
             SpawnWindowBlueprint("DurationsScrollbarUp");
             SpawnWindowBlueprint("DurationsScrollbar");
             SpawnWindowBlueprint("DurationsScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -4025,6 +4032,7 @@ public class Blueprint
             SpawnWindowBlueprint("TrackAmountsScrollbarUp");
             SpawnWindowBlueprint("TrackAmountsScrollbar");
             SpawnWindowBlueprint("TrackAmountsScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -4041,6 +4049,7 @@ public class Blueprint
             SpawnWindowBlueprint("LanguagesScrollbarUp");
             SpawnWindowBlueprint("LanguagesScrollbar");
             SpawnWindowBlueprint("LanguagesScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -4057,6 +4066,7 @@ public class Blueprint
             SpawnWindowBlueprint("DebutYearsScrollbarUp");
             SpawnWindowBlueprint("DebutYearsScrollbar");
             SpawnWindowBlueprint("DebutYearsScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -4073,6 +4083,7 @@ public class Blueprint
             SpawnWindowBlueprint("AnniversariesScrollbarUp");
             SpawnWindowBlueprint("AnniversariesScrollbar");
             SpawnWindowBlueprint("AnniversariesScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
@@ -4089,6 +4100,7 @@ public class Blueprint
             SpawnWindowBlueprint("RatingStatusScrollbarUp");
             SpawnWindowBlueprint("RatingStatusScrollbar");
             SpawnWindowBlueprint("RatingStatusScrollbarDown");
+            SpawnWindowBlueprint("ResetLibraryFiltering");
             SpawnWindowBlueprint("MenuBar");
             AddHotkey(Escape, () =>
             {
