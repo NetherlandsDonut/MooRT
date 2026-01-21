@@ -1,6 +1,6 @@
 Artist name:
 -
-My Dead Girlfriend
+Hitsujibungaku
 -
 -
 -
@@ -12,19 +12,19 @@ Japan
 -
 Release name:
 -
-Hades (The Nine Stages of Change at the Deceased Remains)
+若者たちへ
 -
 -
 -
 Release date:
 -	
-3 June 2015
+25 July 2018
 -
 -
 -
 Release cover:
 -
-https://f4.bcbits.com/img/a3151626539_10.jpg
+https://m.media-amazon.com/images/I/51Rcu-EfD+L._UF1000,1000_QL80_.jpg
 -
 -
 -
@@ -36,7 +36,7 @@ Studio album
 -
 Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
-Shoegaze, Noise Pop
+Indie Rock, Shimokita-kei
 -
 -
 -
@@ -48,32 +48,38 @@ Japanese
 -
 Tracklist:
 -
-彼女が冷たく笑ったら (Prologue to the Nine Stages of Change at the Deceased Remains)
-4:34
+エンディングlyrics
+5:41
 2
-手を振って
-3:47
+天国lyrics
+2:58
 3
-Hades in the Dead of Winter
-5:31
-4
-Danke
-4:33
-5
-Hong Kong Police
-4:01
-6
-I Think About Mary Poppins
-6:36
-7
-Incarnation of Pessimism
-4:57
-8
-彼女が暑くて腐ったら
-4:31
-9
-Yurikago Kara Hakaba Made
+絵日記lyrics
 3:45
+4
+夏のようlyrics
+5:19
+5
+ドラマlyrics
+3:36
+6
+Redlyrics
+6:14
+7
+Steplyrics
+5:37
+8
+コーリングlyrics
+4:25
+9
+涙の行方lyrics
+4:32
 10
-吐く息 (The Last Stage of Change at the Deceased Remains)
-6:30
+若者たちlyrics
+8:10
+11
+天気予報lyrics
+4:42
+12
+天使たちの会話
+0:53

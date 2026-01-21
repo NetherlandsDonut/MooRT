@@ -5069,6 +5069,12 @@
       "name": "My Dead Girlfriend",
       "pronoun": "they",
       "country": "Japan"
+    },
+    {
+      "ID": 846,
+      "name": "Hitsujibungaku",
+      "pronoun": "they",
+      "country": "Japan"
     }
   ],
   "originalReleases": [
@@ -284201,6 +284207,76 @@
         {
           "name": "吐く息 (The Last Stage of Change at the Deceased Remains)",
           "length": 390
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4158,
+      "artist": "Hitsujibungaku",
+      "artistID": 846,
+      "name": "若者たちへ",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Indie Rock",
+        "Shimokita-kei"
+      ],
+      "languages": [
+        "Japanese"
+      ],
+      "format": "digital",
+      "releaseDate": "2018.07.25",
+      "tracks": [
+        {
+          "name": "エンディング",
+          "length": 341
+        },
+        {
+          "name": "天国",
+          "length": 178
+        },
+        {
+          "name": "絵日記",
+          "length": 225
+        },
+        {
+          "name": "夏のよう",
+          "length": 319
+        },
+        {
+          "name": "ドラマ",
+          "length": 216
+        },
+        {
+          "name": "Red",
+          "length": 374
+        },
+        {
+          "name": "Step",
+          "length": 337
+        },
+        {
+          "name": "コーリング",
+          "length": 265
+        },
+        {
+          "name": "涙の行方",
+          "length": 272
+        },
+        {
+          "name": "若者たち",
+          "length": 490
+        },
+        {
+          "name": "天気予報",
+          "length": 282
+        },
+        {
+          "name": "天使たちの会話",
+          "length": 53
         }
       ],
       "discs": "",
