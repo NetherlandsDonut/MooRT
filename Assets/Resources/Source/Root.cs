@@ -38,10 +38,6 @@ public static class Root
     //Amount of time left to show the tooltip
     public static float tooltipChanneling;
 
-    public static float lastFunnyEffectTime;
-    public static Vector3 lastFunnyEffectPosition;
-    public static List<(int, int)> titleScreenFunnyEffect = new();
-
     public static int keyStack;
     public static float heldKeyTime;
     public static float animationTime;
