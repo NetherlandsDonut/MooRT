@@ -45,11 +45,12 @@ public class AspectRatioEnforce : MonoBehaviour
     void OnPreCull()
     {
         if (Application.isEditor) return;
-        Rect wp = Camera.main.rect;
-        Rect nr = new Rect(0, 0, 1, 1);
-        Camera.main.rect = nr;
+        Camera camera = GetComponent<Camera>();
+        Rect wp = camera.rect;
+        Rect nr = new(0, 0, 1, 1);
+        camera.rect = nr;
         GL.Clear(true, true, Color.black);
-        Camera.main.rect = wp;
+        camera.rect = wp;
     }
 
     void Update()
