@@ -23,6 +23,7 @@ using static RatingStatus;
 using static ProgramSettings;
 using static ReleaseRating;
 using static TrackAmount;
+using System.IO.Compression;
 
 public class Blueprint
 {
@@ -2727,6 +2728,11 @@ public class Blueprint
                             return capitalised;
                         }
                     }
+                });
+                AddButtonRegion(() => AddLine("Paste new release"), (h) =>
+                {
+                    newRelease = Serialization.ReleaseFromString(GUIUtility.systemCopyBuffer);
+                    SpawnDesktopBlueprint("AcceptNewAlbum");
                 });
             }
             AddButtonRegion(() => AddLine("Open new release file"), (h) =>

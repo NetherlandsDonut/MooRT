@@ -2,14 +2,15 @@
 using System.IO;
 using System.Text;
 using System.Diagnostics;
+using System.IO.Compression;
 using System.Security.Cryptography;
 
 using Newtonsoft.Json;
 
 using UnityEngine;
 
-using static Newtonsoft.Json.JsonConvert;
 using static Newtonsoft.Json.Formatting;
+using static Newtonsoft.Json.JsonConvert;
 
 class Serialization
 {
@@ -17,10 +18,10 @@ class Serialization
     public static string prefix = "";
 
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = false;
+    public static bool useUnityData = true;
 
     //Indicates whether the program allows for library expansion
-    public static bool libraryExpansion = false;
+    public static bool libraryExpansion = true;
 
     //Reads a text file and returns all lines of text
     public static string[] ReadTXT(string file, string prefix = "")
@@ -176,5 +177,37 @@ class Serialization
         byte[] enc = icrypt.TransformFinalBlock(textbytes, 0, textbytes.Length);
         icrypt.Dispose();
         return Encoding.UTF8.GetString(enc);
+    }
+
+    public static string CompressToBase64(string text)
+    {
+        byte[] compressedBytes;
+        using (var output = new MemoryStream())
+        {
+            using (var gzip = new GZipStream(output, System.IO.Compression.CompressionLevel.Optimal))
+            using (var writer = new StreamWriter(gzip, Encoding.UTF8)) { writer.Write(text); }
+            compressedBytes = output.ToArray();
+        }
+        return Convert.ToBase64String(compressedBytes);
+    }
+
+    public static string DecompressFromBase64(string base64)
+    {
+        byte[] compressedBytes = Convert.FromBase64String(base64);
+        using var input = new MemoryStream(compressedBytes);
+        using var gzip = new GZipStream(input, CompressionMode.Decompress);
+        using var reader = new StreamReader(gzip, Encoding.UTF8);
+        return reader.ReadToEnd();
+    }
+
+    public static string StringFromRelease(MusicRelease release)
+    {
+        var sett = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore };
+        return CompressToBase64(SerializeObject(release, None, sett));
+    }
+
+    public static MusicRelease ReleaseFromString(string data)
+    {
+        return DeserializeObject<MusicRelease>(DecompressFromBase64(data));
     }
 }
