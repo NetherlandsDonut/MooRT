@@ -22,6 +22,7 @@ class Serialization
     //Indicates whether the program allows for library expansion
     public static bool libraryExpansion = false;
 
+    //Reads a text file and returns all lines of text
     public static string[] ReadTXT(string file, string prefix = "")
     {
         if (useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
@@ -32,12 +33,13 @@ class Serialization
         return content;
     }
 
+    //Starts a process of opening a text file
     public static void OpenTXT(string file, string prefix = "")
     {
         if (useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
         if (!Directory.Exists(prefix + "MooRT_Data_2"))
             Directory.CreateDirectory(prefix + "MooRT_Data_2");
-        if (!File.Exists(prefix + "MooRT_Data_2/" + file + ".txt"))
+        if (file == "newRelease" && !File.Exists(prefix + "MooRT_Data_2/" + file + ".txt"))
         {
             using var sw = new StreamWriter(prefix + "MooRT_Data_2/" + file + ".txt", true);
             sw.WriteLine("Artist name:");

@@ -17,12 +17,11 @@ public class Region : MonoBehaviour
     public List<LineSmallButton> smallButtons;
     public List<LineBigButton> bigButtons;
     public int currentHeight, xExtend, yExtend;
-    public RegionBackgroundType backgroundType;
     public Sprite backgroundImage;
     public GameObject background;
-    public GameObject[] borders;
-    public GameObject[] shadows;
+    public GameObject[] borders, shadows;
     public bool hiddenBottomLine, hiddenTopLine;
+    public RegionBackgroundType backgroundType;
 
     //If true small buttons appear on the left side and big ones on the right
     public bool reverseButtons;

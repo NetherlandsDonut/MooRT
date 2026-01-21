@@ -34,7 +34,7 @@ public class MusicRelease
     //Artist performing the album
     public string artist;
 
-    //Artist performing the album
+    //ID of the artist performing the album
     public int artistID;
 
     //Name of the album

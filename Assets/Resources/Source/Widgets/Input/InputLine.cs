@@ -1,9 +1,10 @@
 using System.Linq;
+
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using static Cursor;
+
 using static Font;
 using static Root;
+using static Cursor;
 using static String;
 
 public class InputLine : MonoBehaviour
