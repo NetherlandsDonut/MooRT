@@ -5081,6 +5081,12 @@
       "name": "Julie",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 848,
+      "name": "toe",
+      "pronoun": "they",
+      "country": "Japan"
     }
   ],
   "originalReleases": [
@@ -284392,6 +284398,70 @@
         {
           "name": "Daisy Pusher",
           "length": 212
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4161,
+      "artist": "toe",
+      "artistID": 848,
+      "name": "The Book About My Idle Plot on a Vague Anxiety",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Math Rock",
+        "Post-rock"
+      ],
+      "languages": [],
+      "format": "digital",
+      "releaseDate": "2005.08.31",
+      "tracks": [
+        {
+          "name": "反逆する風景",
+          "length": 58
+        },
+        {
+          "name": "孤独の発明",
+          "length": 203
+        },
+        {
+          "name": "Tremolo + Delay",
+          "length": 183
+        },
+        {
+          "name": "むこう岸が視る夢",
+          "length": 282
+        },
+        {
+          "name": "All I Understand Is That I Don't Understand",
+          "length": 294
+        },
+        {
+          "name": "C",
+          "length": 247
+        },
+        {
+          "name": "Past and Language",
+          "length": 330
+        },
+        {
+          "name": "Music for You",
+          "length": 108
+        },
+        {
+          "name": "I Do Still Wrong",
+          "length": 180
+        },
+        {
+          "name": "メトロノーム",
+          "length": 217
+        },
+        {
+          "name": "Everything Means Nothing",
+          "length": 194
         }
       ],
       "discs": "",

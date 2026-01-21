@@ -1,67 +1,82 @@
 Artist name:
 -
-Julie
+toe
 -
 -
 -
 Artist country:
 -
-United States
+Japan
 -
 -
 -
 Release name:
 -
-Pushing Daisies
+The Book About My Idle Plot on a Vague Anxiety
 -
 -
 -
 Release date:
 -	
-12 August 2021
+31 August 2005
 -
 -
 -
 Release cover:
 -
-https://f4.bcbits.com/img/a3416872114_10.jpg
+https://f4.bcbits.com/img/a0056601041_16.jpg
 -
 -
 -
 Release type: Studio album | Live album | Extended play | Compilation album | Demo recording | Soundtrack | Remix album
 -
-Extended play
+Studio album
 -
 -
 -
 Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
-Shoegaze, Noise Pop
+Math Rock, Post-Rock
 -
 -
 -
 Languages: Example: "English, French" / When left empty, "No Language" will be added automatically
 -
-English
+
 -
 -
 -
 Tracklist:
 -
-April's-Bloom
-2:42
+反逆する風景
+0:58
 2
-She Was Here Then, She Isn't Here Now.
-0:18
+孤独の発明
+3:23
 3
-Lochness
-3:24
+Tremolo + Delay
+3:03
 4
-Confirmation of Entry Dispatch (Read)
-0:19
+むこう岸が視る夢
+4:42
 5
-Skipping Tiles
-2:16
+All I Understand Is That I Don't Understand
+4:54
 6
-Daisy Pusher
-3:32
+C
+4:07
+7
+Past and Language
+5:30
+8
+Music for You
+1:48
+9
+I Do Still Wrong
+3:00
+10
+メトロノーム
+3:37
+11
+Everything Means Nothing
+3:14
