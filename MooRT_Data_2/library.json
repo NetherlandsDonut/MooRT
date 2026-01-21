@@ -5063,6 +5063,12 @@
       "name": "Number Girl",
       "pronoun": "they",
       "country": "Japan"
+    },
+    {
+      "ID": 845,
+      "name": "My Dead Girlfriend",
+      "pronoun": "they",
+      "country": "Japan"
     }
   ],
   "originalReleases": [
@@ -284133,6 +284139,68 @@
         {
           "name": "Brutal Man",
           "length": 173
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4157,
+      "artist": "My Dead Girlfriend",
+      "artistID": 845,
+      "name": "Hades (The Nine Stages of Change at the Deceased Remains)",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Shoegaze",
+        "Noise Pop"
+      ],
+      "languages": [
+        "Japanese"
+      ],
+      "format": "digital",
+      "releaseDate": "2015.06.03",
+      "tracks": [
+        {
+          "name": "彼女が冷たく笑ったら (Prologue to the Nine Stages of Change at the Deceased Remains)",
+          "length": 274
+        },
+        {
+          "name": "手を振って",
+          "length": 227
+        },
+        {
+          "name": "Hades in the Dead of Winter",
+          "length": 331
+        },
+        {
+          "name": "Danke",
+          "length": 273
+        },
+        {
+          "name": "Hong Kong Police",
+          "length": 241
+        },
+        {
+          "name": "I Think About Mary Poppins",
+          "length": 396
+        },
+        {
+          "name": "Incarnation of Pessimism",
+          "length": 297
+        },
+        {
+          "name": "彼女が暑くて腐ったら",
+          "length": 271
+        },
+        {
+          "name": "Yurikago Kara Hakaba Made",
+          "length": 225
+        },
+        {
+          "name": "吐く息 (The Last Stage of Change at the Deceased Remains)",
+          "length": 390
         }
       ],
       "discs": "",
