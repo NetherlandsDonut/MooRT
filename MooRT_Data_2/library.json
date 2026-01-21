@@ -284350,6 +284350,52 @@
       ],
       "discs": "",
       "coverDescriptors": []
+    },
+    {
+      "ID": 4160,
+      "artist": "Julie",
+      "artistID": 847,
+      "name": "Pushing Daisies",
+      "types": [
+        "Extended play"
+      ],
+      "genres": [
+        "Shoegaze",
+        "Noise Pop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2021.08.12",
+      "tracks": [
+        {
+          "name": "April's-Bloom",
+          "length": 162
+        },
+        {
+          "name": "She Was Here Then, She Isn't Here Now.",
+          "length": 18
+        },
+        {
+          "name": "Lochness",
+          "length": 204
+        },
+        {
+          "name": "Confirmation of Entry Dispatch (Read)",
+          "length": 19
+        },
+        {
+          "name": "Skipping Tiles",
+          "length": 136
+        },
+        {
+          "name": "Daisy Pusher",
+          "length": 212
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
     }
   ]
 }
