@@ -84,9 +84,12 @@ class Serialization
             sw.WriteLine("-");
             sw.WriteLine("Tracklist:");
             sw.WriteLine("");
-            sw.WriteLine("here 2:12");
-            sw.WriteLine("here 1:21");
-            sw.WriteLine("here 2:11");
+            sw.WriteLine("here1");
+            sw.WriteLine("3:23");
+            sw.WriteLine("here2");
+            sw.WriteLine("6:51");
+            sw.WriteLine("here3");
+            sw.WriteLine("12:25");
         }
         if (useUnityData)
             Process.Start(prefix + "MooRT_Data_2/" + file + ".txt");
