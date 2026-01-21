@@ -5078,7 +5078,7 @@
     },
     {
       "ID": 847,
-      "name": "Julie",
+      "name": "julie",
       "pronoun": "they",
       "country": "United States"
     },
@@ -5091,7 +5091,7 @@
     {
       "ID": 849,
       "name": "Charli XCX",
-      "pronoun": "they",
+      "pronoun": "she",
       "country": "United Kingdom"
     }
   ],
@@ -284306,7 +284306,7 @@
     },
     {
       "ID": 4159,
-      "artist": "Julie",
+      "artist": "julie",
       "artistID": 847,
       "name": "My Anti-Aircraft Friend",
       "types": [
@@ -284369,7 +284369,7 @@
     },
     {
       "ID": 4160,
-      "artist": "Julie",
+      "artist": "julie",
       "artistID": 847,
       "name": "Pushing Daisies",
       "types": [
