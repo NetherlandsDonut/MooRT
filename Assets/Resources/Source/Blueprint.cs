@@ -2733,6 +2733,25 @@ public class Blueprint
             {
                 Serialization.OpenTXT("newRelease");
             });
+            if (!Serialization.libraryExpansion)
+            {
+                AddButtonRegion(() => AddLine("Refetch online library"), (h) =>
+                {
+                    Starter.goToMenuOnFailedWWW = true;
+                    Starter.enteredSecondStage = false;
+                    Starter.enteredThirdStage = false;
+                    Starter.enteredFourthStage = false;
+                    if (Serialization.useUnityData) Serialization.urlContent = "x";
+                    else
+                    {
+                        Serialization.urlContent = "";
+                        MonoBehaviour.FindAnyObjectByType<Starter>().StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
+                    }
+                    Cursor.cursor.SetCursor(CursorType.Await);
+                    Starter.enteredSecondStage = true;
+                    CloseDesktop("Menu");
+                });
+            }
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Exporting:"));
             AddButtonRegion(() => AddLine("Quick #100 Studio albums"), (h) =>
@@ -2769,25 +2788,6 @@ public class Blueprint
                 tracksPerArtist = 1;
                 SpawnDesktopBlueprint("PrepareArtistBattle");
             });
-            if (!Serialization.libraryExpansion)
-            {
-                AddButtonRegion(() => AddLine("Refetch online library"), (h) =>
-                {
-                    Starter.goToMenuOnFailedWWW = true;
-                    Starter.enteredSecondStage = false;
-                    Starter.enteredThirdStage = false;
-                    Starter.enteredFourthStage = false;
-                    if (Serialization.useUnityData) Serialization.urlContent = "x";
-                    else
-                    {
-                        Serialization.urlContent = "";
-                        MonoBehaviour.FindAnyObjectByType<Starter>().StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
-                    }
-                    Cursor.cursor.SetCursor(CursorType.Await);
-                    Starter.enteredSecondStage = true;
-                    CloseDesktop("Menu");
-                });
-            }
             AddEmptyRegion();
             AddHeaderRegion(() =>
             {
@@ -3870,18 +3870,21 @@ public class Blueprint
             AddHeaderGroup();
             SetRegionGroupWidth(400);
             AddHeaderRegion(() => AddLine("Successfully fetched the online library.", "", "Center"));
-            if (refetchLibraryArtistCount == library.originalArtists.Count)
-                AddPaddingRegion(() => AddLine("No difference in artist count found.", "", "Center"));
-            else if (refetchLibraryArtistCount > library.originalArtists.Count)
-                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (refetchLibraryArtistCount - library.originalArtists.Count) + " artists less.", "", "Center"));
-            else if (refetchLibraryArtistCount < library.originalArtists.Count)
-                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (library.originalArtists.Count - refetchLibraryArtistCount) + " artists more.", "", "Center"));
-            if (refetchLibraryReleasesCount == library.originalReleases.Count)
-                AddPaddingRegion(() => AddLine("No difference in release count found.", "", "Center"));
-            else if (refetchLibraryReleasesCount > library.originalReleases.Count)
-                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (refetchLibraryReleasesCount - library.originalReleases.Count) + " releases less.", "", "Center"));
-            else if (refetchLibraryReleasesCount < library.originalReleases.Count)
-                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (library.originalReleases.Count - refetchLibraryReleasesCount) + " releases more.", "", "Center"));
+            AddPaddingRegion(() =>
+            {
+                if (refetchLibraryArtistCount == library.originalArtists.Count)
+                    AddLine("No difference in artist count found.", "", "Center");
+                else if (refetchLibraryArtistCount > library.originalArtists.Count)
+                    AddLine("The newly downloaded library has " + (refetchLibraryArtistCount - library.originalArtists.Count) + " artists less.", "", "Center");
+                else if (refetchLibraryArtistCount < library.originalArtists.Count)
+                    AddLine("The newly downloaded library has " + (library.originalArtists.Count - refetchLibraryArtistCount) + " artists more.", "", "Center");
+                if (refetchLibraryReleasesCount == library.originalReleases.Count)
+                    AddLine("No difference in release count found.", "", "Center");
+                else if (refetchLibraryReleasesCount > library.originalReleases.Count)
+                    AddLine("The newly downloaded library has " + (refetchLibraryReleasesCount - library.originalReleases.Count) + " releases less.", "", "Center");
+                else if (refetchLibraryReleasesCount < library.originalReleases.Count)
+                    AddLine("The newly downloaded library has " + (library.originalReleases.Count - refetchLibraryReleasesCount) + " releases more.", "", "Center");
+            });
             AddButtonRegion(() =>
             {
                 AddLine("Okay", "", "Center");
