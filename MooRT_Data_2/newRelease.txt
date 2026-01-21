@@ -12,19 +12,19 @@ United Kingdom
 -
 Release name:
 -
-brat
+How I'm Feeling Now
 -
 -
 -
 Release date:
 -	
-7 June 2024
+15 May 2020
 -
 -
 -
 Release cover:
 -
-https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F60%2FCharli_XCX_-_Brat_(album_cover).png%2F1200px-Charli_XCX_-_Brat_(album_cover).png&f=1&nofb=1&ipt=730eaca562576cab93de6a7e2150126f1fe36308fc3ca5ebfc9df5da1dbc6f26
+https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.genius.com%2Fe618acfa672295153b4a390066c58576.1000x1000x1.png&f=1&nofb=1&ipt=c80fc5fc608b3490c12c096655dd376d659fd81e3301b6aca47075e05a3e4a78
 -
 -
 -
@@ -36,7 +36,7 @@ Studio album
 -
 Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
-Electropop, Electronic Dance Music, Dance-Pop
+Hyperpop, Electropop, Bubblegum Bass
 -
 -
 -
@@ -49,47 +49,35 @@ English
 Tracklist:
 -
 1
-360lyrics
-2:13
+Pink Diamondlyrics
+2:04
 2
-Club Classicslyrics
-2:33
+Foreverlyrics
+4:03
 3
-Sympathy Is a Knifelyrics
-2:31
+Clawslyrics
+2:29
 4
-I Might Say Something Stupidlyrics
-1:49
+7 Yearslyrics
+3:15
 5
-Talk Talklyrics
-2:41
+Detonatelyrics
+3:39
 6
-Von Dutchlyrics
-2:44
+Enemylyrics
+3:42
 7
-Everything Is Romanticlyrics
-3:23
-8
-Rewindlyrics
-2:48
-9
-So Ilyrics
-3:31
-10
-Girl, So Confusinglyrics
-2:54
-11
-Applelyrics
+I Finally Understandlyrics
 2:31
-12
-B2Blyrics
-2:58
-13
-Mean Girlslyrics
-3:09
-14
-I Think About It All the Timelyrics
-2:15
-15
-365lyrics
-3:23
+8
+C2.0lyrics
+3:40
+9
+Party 4 Ulyrics
+4:56
+10
+Anthemslyrics
+2:51
+11
+Visionslyrics
+3:49

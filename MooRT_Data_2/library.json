@@ -284559,6 +284559,73 @@
       ],
       "discs": "",
       "coverDescriptors": []
+    },
+    {
+      "ID": 4163,
+      "artist": "Charli XCX",
+      "artistID": 849,
+      "name": "How I'm Feeling Now",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Hyperpop",
+        "Electropop",
+        "Bubblegum Bass"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2020.05.15",
+      "tracks": [
+        {
+          "name": "Pink Diamond",
+          "length": 124
+        },
+        {
+          "name": "Forever",
+          "length": 243
+        },
+        {
+          "name": "Claws",
+          "length": 149
+        },
+        {
+          "name": "7 Years",
+          "length": 195
+        },
+        {
+          "name": "Detonate",
+          "length": 219
+        },
+        {
+          "name": "Enemy",
+          "length": 222
+        },
+        {
+          "name": "I Finally Understand",
+          "length": 151
+        },
+        {
+          "name": "C2.0",
+          "length": 220
+        },
+        {
+          "name": "Party 4 U",
+          "length": 296
+        },
+        {
+          "name": "Anthems",
+          "length": 171
+        },
+        {
+          "name": "Visions",
+          "length": 229
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
     }
   ]
 }

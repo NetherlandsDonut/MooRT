@@ -2585,9 +2585,9 @@ public class Blueprint
             SetAnchor(Center);
             AddRegionGroup();
             SetRegionGroupWidth(180);
+            AddHeaderRegion(() => AddLine("Library management:"));
             if (Serialization.libraryExpansion)
             {
-                AddHeaderRegion(() => AddLine("Library management:"));
                 AddButtonRegion(() => AddLine("Import new release"), (h) =>
                 {
                     var failed = -1;
@@ -2728,12 +2728,12 @@ public class Blueprint
                         }
                     }
                 });
-                AddButtonRegion(() => AddLine("Open new release file"), (h) =>
-                {
-                    Serialization.OpenTXT("newRelease");
-                });
-                AddEmptyRegion();
             }
+            AddButtonRegion(() => AddLine("Open new release file"), (h) =>
+            {
+                Serialization.OpenTXT("newRelease");
+            });
+            AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Exporting:"));
             AddButtonRegion(() => AddLine("Quick #100 Studio albums"), (h) =>
             {
