@@ -2769,11 +2769,24 @@ public class Blueprint
                 tracksPerArtist = 1;
                 SpawnDesktopBlueprint("PrepareArtistBattle");
             });
-            AddButtonRegion(() => AddLine("Roll a random album"), (h) =>
+            if (!Serialization.libraryExpansion)
             {
-                tracksPerArtist = 1;
-                SpawnDesktopBlueprint("PrepareArtistBattle");
-            });
+                AddButtonRegion(() => AddLine("Refetch online library"), (h) =>
+                {
+                    Starter.enteredSecondStage = false;
+                    Starter.enteredThirdStage = false;
+                    Starter.enteredFourthStage = false;
+                    if (Serialization.useUnityData) Serialization.urlContent = "x";
+                    else
+                    {
+                        Serialization.urlContent = "";
+                        MonoBehaviour.FindAnyObjectByType<Starter>().StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
+                    }
+                    UnityEngine.Cursor.visible = true;
+                    Cursor.cursor.SetCursor(CursorType.None);
+                    Starter.enteredSecondStage = true;
+                });
+            }
             AddEmptyRegion();
             AddHeaderRegion(() =>
             {

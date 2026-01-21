@@ -1,30 +1,30 @@
 Artist name:
 -
-toe
+Charli XCX
 -
 -
 -
 Artist country:
 -
-Japan
+United Kingdom
 -
 -
 -
 Release name:
 -
-The Book About My Idle Plot on a Vague Anxiety
+brat
 -
 -
 -
 Release date:
 -	
-31 August 2005
+7 June 2024
 -
 -
 -
 Release cover:
 -
-https://f4.bcbits.com/img/a0056601041_16.jpg
+https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F60%2FCharli_XCX_-_Brat_(album_cover).png%2F1200px-Charli_XCX_-_Brat_(album_cover).png&f=1&nofb=1&ipt=730eaca562576cab93de6a7e2150126f1fe36308fc3ca5ebfc9df5da1dbc6f26
 -
 -
 -
@@ -36,47 +36,60 @@ Studio album
 -
 Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
-Math Rock, Post-Rock
+Electropop, Electronic Dance Music, Dance-Pop
 -
 -
 -
 Languages: Example: "English, French" / When left empty, "No Language" will be added automatically
 -
-
+English
 -
 -
 -
 Tracklist:
 -
-反逆する風景
-0:58
+1
+360lyrics
+2:13
 2
-孤独の発明
-3:23
+Club Classicslyrics
+2:33
 3
-Tremolo + Delay
-3:03
+Sympathy Is a Knifelyrics
+2:31
 4
-むこう岸が視る夢
-4:42
+I Might Say Something Stupidlyrics
+1:49
 5
-All I Understand Is That I Don't Understand
-4:54
+Talk Talklyrics
+2:41
 6
-C
-4:07
+Von Dutchlyrics
+2:44
 7
-Past and Language
-5:30
+Everything Is Romanticlyrics
+3:23
 8
-Music for You
-1:48
+Rewindlyrics
+2:48
 9
-I Do Still Wrong
-3:00
+So Ilyrics
+3:31
 10
-メトロノーム
-3:37
+Girl, So Confusinglyrics
+2:54
 11
-Everything Means Nothing
-3:14
+Applelyrics
+2:31
+12
+B2Blyrics
+2:58
+13
+Mean Girlslyrics
+3:09
+14
+I Think About It All the Timelyrics
+2:15
+15
+365lyrics
+3:23

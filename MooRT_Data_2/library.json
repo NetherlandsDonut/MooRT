@@ -5087,6 +5087,12 @@
       "name": "toe",
       "pronoun": "they",
       "country": "Japan"
+    },
+    {
+      "ID": 849,
+      "name": "Charli XCX",
+      "pronoun": "they",
+      "country": "United Kingdom"
     }
   ],
   "originalReleases": [
@@ -284466,6 +284472,89 @@
         {
           "name": "Everything Means Nothing",
           "length": 194
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4162,
+      "artist": "Charli XCX",
+      "artistID": 849,
+      "name": "brat",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Electropop",
+        "Electronic Dance Music",
+        "Dance-pop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2024.06.07",
+      "tracks": [
+        {
+          "name": "360",
+          "length": 133
+        },
+        {
+          "name": "Club Classics",
+          "length": 153
+        },
+        {
+          "name": "Sympathy Is a Knife",
+          "length": 151
+        },
+        {
+          "name": "I Might Say Something Stupid",
+          "length": 109
+        },
+        {
+          "name": "Talk Talk",
+          "length": 161
+        },
+        {
+          "name": "Von Dutch",
+          "length": 164
+        },
+        {
+          "name": "Everything Is Romantic",
+          "length": 203
+        },
+        {
+          "name": "Rewind",
+          "length": 168
+        },
+        {
+          "name": "So I",
+          "length": 211
+        },
+        {
+          "name": "Girl, So Confusing",
+          "length": 174
+        },
+        {
+          "name": "Apple",
+          "length": 151
+        },
+        {
+          "name": "B2B",
+          "length": 178
+        },
+        {
+          "name": "Mean Girls",
+          "length": 189
+        },
+        {
+          "name": "I Think About It All the Time",
+          "length": 135
+        },
+        {
+          "name": "365",
+          "length": 203
         }
       ],
       "discs": "",

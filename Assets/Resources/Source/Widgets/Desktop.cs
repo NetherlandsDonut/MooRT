@@ -167,9 +167,12 @@ public class Desktop : MonoBehaviour
                 {
                     Starter.coverBytes = null;
                     cursor.SetCursor(CursorType.Default);
-                    UnityEngine.Debug.Log("Load time: " + Starter.stopwatch.ElapsedTicks);
-                    Starter.stopwatch.Stop();
-                    Starter.stopwatch = null;
+                    if (Starter.stopwatch != null)
+                    {
+                        UnityEngine.Debug.Log("Load time: " + Starter.stopwatch.ElapsedTicks);
+                        Starter.stopwatch.Stop();
+                        Starter.stopwatch = null;
+                    }
                     UnityEngine.Cursor.visible = false;
                     SpawnDesktopBlueprint("MusicReleases");
                     CloseDesktop("LoadingScreen");
