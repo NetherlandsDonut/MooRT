@@ -11,11 +11,16 @@ using static Defines;
 using static ReleaseRating;
 using static Serialization;
 using static ProgramSettings;
+using System.Diagnostics;
 
 public class Starter : MonoBehaviour
 {
+    public static Stopwatch stopwatch;
+
     void Awake()
     {
+        stopwatch = new Stopwatch();
+        stopwatch.Start();
         //Loads the defines into the program
         LoadData();
     }

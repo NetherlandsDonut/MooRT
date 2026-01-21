@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
+
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -188,7 +189,7 @@ public static class Root
         LBDesktop = newDesktop;
         newDesktop.Initialise(title);
         desktops.Add(newDesktop);
-        newDesktop.screen = new GameObject("Camera", typeof(Camera), typeof(SpriteRenderer)).GetComponent<Camera>();
+        newDesktop.screen = new GameObject("Camera", typeof(Camera), typeof(SpriteRenderer), typeof(AspectRatioEnforce)).GetComponent<Camera>();
         newDesktop.screen.transform.parent = newDesktop.transform;
         var screenOffsetter = new GameObject("CameraOffset");
         screenOffsetter.transform.parent = newDesktop.transform;
@@ -200,7 +201,7 @@ public static class Root
         newDesktop.screen.nearClipPlane = -1024;
         newDesktop.screen.farClipPlane = 4096;
         newDesktop.screen.clearFlags = CameraClearFlags.SolidColor;
-        newDesktop.screen.backgroundColor = new Color32(0, 29, 41, 255);
+        newDesktop.screen.backgroundColor = new Color32(0, 0, 0, 255);
         newDesktop.screen.orthographic = true;
         if (settings.pixelPerfectVision.Value()) newDesktop.screen.gameObject.AddComponent<PixelCamera>();
         var cameraBorder = new GameObject("CameraBorder", typeof(SpriteRenderer));
@@ -940,11 +941,9 @@ public static class Root
         var imagePath = prefix + @"MooRT_Data_3\" + file + (encoded ? "" : ".png");
         Debug.Log("Loading image from: " + imagePath);
         if (!File.Exists(imagePath)) return null;
-        byte[] byteArray = File.ReadAllBytes(imagePath);
-        Texture2D tex = new(1, 1);
-        ImageConversion.LoadImage(tex, byteArray);
+        Texture2D tex = new Texture2D(1, 1, TextureFormat.RGB24, false);
         tex.filterMode = FilterMode.Point;
-        tex.Apply();
+        ImageConversion.LoadImage(tex, File.ReadAllBytes(imagePath));
         return tex;
     }
 
@@ -955,11 +954,9 @@ public static class Root
             Directory.CreateDirectory(prefix + "MooRT_Data_4");
         var imagePath = prefix + @"MooRT_Data_4\" + file + (encoded ? "" : ".png");
         if (!File.Exists(imagePath)) return null;
-        byte[] byteArray = File.ReadAllBytes(imagePath);
-        Texture2D tex = new(1, 1);
-        ImageConversion.LoadImage(tex, byteArray);
+        Texture2D tex = new Texture2D(1, 1, TextureFormat.RGB24, false);
         tex.filterMode = FilterMode.Point;
-        tex.Apply();
+        ImageConversion.LoadImage(tex, File.ReadAllBytes(imagePath), markNonReadable: true);
         return tex;
     }
 

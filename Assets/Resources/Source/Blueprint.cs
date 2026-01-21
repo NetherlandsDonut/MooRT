@@ -105,15 +105,8 @@ public class Blueprint
                     null,
                     (h) => () =>
                     {
-                        musicReleaseIndex = index + thisWindow.pagination();
-                        var foo = list[musicReleaseIndex];
+                        var foo = list[index + thisWindow.pagination()];
                         SetAnchor(-440, 228);
-                        AddHeaderGroup();
-                        SetRegionGroupWidth(190);
-                        AddHeaderRegion(() =>
-                        {
-                            AddLine(foo.name);
-                        });
                         AddRegionGroup();
                         SetRegionGroupWidth(190);
                         SetRegionGroupHeight(186);
@@ -279,6 +272,7 @@ public class Blueprint
                 if (String.searchRelease.Value() != "")
                     list = list.Where(x => x.name.ToLower().Contains(String.searchRelease.Value().ToLower())).ToList();
                 var randomIndex = random.Next(list.Count);
+                musicReleaseIndex = randomIndex;
                 musicRelease = list[randomIndex];
                 if (CDesktop.title == "MusicRelease")
                 {

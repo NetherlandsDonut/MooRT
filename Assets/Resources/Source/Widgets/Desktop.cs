@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Diagnostics;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -108,7 +109,7 @@ public class Desktop : MonoBehaviour
                         for (int i = atStart; i < loadingScreenAim; i++)
                         {
                             if (i - 10 >= atStart) break;
-                            Debug.Log(loadingScreenProgress + " / " + loadingScreenAim);
+                            UnityEngine.Debug.Log(loadingScreenProgress + " / " + loadingScreenAim);
                             if (waitForTexture && returnToMenu)
                             {
                                 waitForTexture = false;
@@ -128,7 +129,7 @@ public class Desktop : MonoBehaviour
                                     newCover = null;
                                     returnToMenu = false;
                                     newCoverID = i;
-                                    Debug.Log("Downloading: " + "https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_3/" + i + ".png");
+                                    UnityEngine.Debug.Log("Downloading: " + "https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_3/" + i + ".png");
                                     StartCoroutine(GetTexture("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_3/" + i + ".png"));
                                     break;
                                 }
@@ -155,6 +156,9 @@ public class Desktop : MonoBehaviour
                 else if (loadingScreenProgress >= loadingScreenAim)
                 {
                     cursor.SetCursor(CursorType.Default);
+                    UnityEngine.Debug.Log("Load time: " + Starter.stopwatch.ElapsedTicks);
+                    Starter.stopwatch.Stop();
+                    Starter.stopwatch = null;
                     SpawnDesktopBlueprint("MusicReleases");
                     CloseDesktop("LoadingScreen");
                 }

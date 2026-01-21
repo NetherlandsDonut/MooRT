@@ -28,6 +28,7 @@ public class Exporting
         chart.Apply();
         if (!Directory.Exists("MooRT_Export")) Directory.CreateDirectory("MooRT_Export");
         File.WriteAllBytes("MooRT_Export/squareChart.png", chart.EncodeToPNG());
+        UnityEngine.Object.Destroy(chart);
         Process.Start(Environment.CurrentDirectory + "\\MooRT_Export\\squareChart.png");
     }
 
@@ -73,6 +74,7 @@ public class Exporting
         chart.Apply();
         if (!Directory.Exists("MooRT_Export")) Directory.CreateDirectory("MooRT_Export");
         File.WriteAllBytes("MooRT_Export/scaledChart.png", chart.EncodeToPNG());
+        UnityEngine.Object.Destroy(chart);
         Process.Start(Environment.CurrentDirectory + "\\MooRT_Export\\scaledChart.png");
     }
 
@@ -108,6 +110,7 @@ public class Exporting
         chart.Apply();
         if (!Directory.Exists("MooRT_Export")) Directory.CreateDirectory("MooRT_Export");
         File.WriteAllBytes("MooRT_Export/scaledChart.png", chart.EncodeToPNG());
+        UnityEngine.Object.Destroy(chart);
         Process.Start(Environment.CurrentDirectory + "\\MooRT_Export\\scaledChart.png");
     }
 
