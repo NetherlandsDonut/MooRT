@@ -98,6 +98,7 @@ public class Starter : MonoBehaviour
     public static bool enteredSecondStage = false;
     public static bool enteredThirdStage = false;
     public static bool enteredFourthStage = false;
+    public static bool goToMenuOnFailedWWW = false;
 
     void Update()
     {
@@ -122,14 +123,17 @@ public class Starter : MonoBehaviour
 
             SetUpLibrary();
 
-            //Backup library only if you are on unity data
-            if (useUnityData) Serialize(library, "library", true);
+            if (!goToMenuOnFailedWWW)
+            {
+                //Backup library only if you are on unity data
+                if (useUnityData) Serialize(library, "library", true);
 
-            //Get user settings..
-            Deserialize(ref settings, "settings", false, prefix);
-            settings ??= new();
-            settings.FillNulls();
-            Serialize(settings, "settings", true);
+                //Get user settings..
+                Deserialize(ref settings, "settings", false, prefix);
+                settings ??= new();
+                settings.FillNulls();
+                Serialize(settings, "settings", true);
+            }
         }
     }
 

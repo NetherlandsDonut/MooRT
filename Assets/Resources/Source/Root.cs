@@ -62,6 +62,9 @@ public static class Root
     public static int scaledChartFirstRowAmount = 10;
     public static int scaledChartRowAmount = 10;
 
+    public static int refetchLibraryArtistCount;
+    public static int refetchLibraryReleasesCount;
+
     public static Desktop CDesktop, LBDesktop;
 
     public static List<Desktop> desktops;
@@ -960,10 +963,31 @@ public static class Root
     public static IEnumerator GetJSON(string link)
     {
         UnityWebRequest www = UnityWebRequest.Get(link);
+        www.timeout = 5;
         yield return www.SendWebRequest();
 
-        if (www == null || www.result != UnityWebRequest.Result.Success) Debug.Log("Failed to fetch library.");
-        else Serialization.urlContent = www.downloadHandler.text;
+        if (www == null || www.result != UnityWebRequest.Result.Success)
+        {
+            if (Starter.goToMenuOnFailedWWW)
+            {
+                Starter.enteredThirdStage = true;
+                Starter.enteredFourthStage = true;
+                SpawnDesktopBlueprint("LibraryRefetchFailure");
+            }
+            Serialization.urlContent = "x";
+            Debug.Log("Failed to fetch library.");
+        }
+        else
+        {
+            if (Library.library != null)
+            {
+                refetchLibraryArtistCount = Library.library.originalArtists.Count;
+                refetchLibraryReleasesCount = Library.library.originalReleases.Count;
+                Serialization.Serialize(Library.library, "library", true);
+                Library.library = null;
+            }
+            Serialization.urlContent = www.downloadHandler.text;
+        }
     }
 
     public static Texture2D scaled(Texture2D src, int width, int height, FilterMode mode = FilterMode.Bilinear)

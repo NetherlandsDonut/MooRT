@@ -2773,6 +2773,7 @@ public class Blueprint
             {
                 AddButtonRegion(() => AddLine("Refetch online library"), (h) =>
                 {
+                    Starter.goToMenuOnFailedWWW = true;
                     Starter.enteredSecondStage = false;
                     Starter.enteredThirdStage = false;
                     Starter.enteredFourthStage = false;
@@ -2782,9 +2783,9 @@ public class Blueprint
                         Serialization.urlContent = "";
                         MonoBehaviour.FindAnyObjectByType<Starter>().StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
                     }
-                    UnityEngine.Cursor.visible = true;
-                    Cursor.cursor.SetCursor(CursorType.None);
+                    Cursor.cursor.SetCursor(CursorType.Await);
                     Starter.enteredSecondStage = true;
+                    CloseDesktop("Menu");
                 });
             }
             AddEmptyRegion();
@@ -3847,6 +3848,50 @@ public class Blueprint
                 Exporting.ExportSequenceChart(library.releases.Where(x => x.GetRating() > 0).Take(70).ToList(), sequenceChartSplitOnYears, sequenceChartSplitOnDecades);
             });
         }),
+
+        //Refetch library
+        new("LibraryRefetchFailure", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() => AddLine("Failed to fetch the online library.", "", "Center"));
+            AddButtonRegion(() =>
+            {
+                AddLine("Okay", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("MusicReleases");
+            });
+        }),
+        new("LibraryRefetchSuccess", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() => AddLine("Successfully fetched the online library.", "", "Center"));
+            if (refetchLibraryArtistCount == library.originalArtists.Count)
+                AddPaddingRegion(() => AddLine("No difference in artist count found.", "", "Center"));
+            else if (refetchLibraryArtistCount > library.originalArtists.Count)
+                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (refetchLibraryArtistCount - library.originalArtists.Count) + " artists less.", "", "Center"));
+            else if (refetchLibraryArtistCount < library.originalArtists.Count)
+                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (library.originalArtists.Count - refetchLibraryArtistCount) + " artists more.", "", "Center"));
+            if (refetchLibraryReleasesCount == library.originalReleases.Count)
+                AddPaddingRegion(() => AddLine("No difference in release count found.", "", "Center"));
+            else if (refetchLibraryReleasesCount > library.originalReleases.Count)
+                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (refetchLibraryReleasesCount - library.originalReleases.Count) + " releases less.", "", "Center"));
+            else if (refetchLibraryReleasesCount < library.originalReleases.Count)
+                AddPaddingRegion(() => AddLine("The newly downloaded library has " + (library.originalReleases.Count - refetchLibraryReleasesCount) + " releases more.", "", "Center"));
+            AddButtonRegion(() =>
+            {
+                AddLine("Okay", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("MusicReleases");
+            });
+        }),
     };
 
     public static List<Blueprint> desktopBlueprints = new()
@@ -4361,6 +4406,26 @@ public class Blueprint
                 Serialization.Serialize(settings, "settings");
                 CloseDesktop(CDesktop.title);
                 CDesktop.RespawnAll();
+            });
+        }),
+        new("LibraryRefetchSuccess", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("LibraryRefetchSuccess");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("MusicReleases");
+            });
+        }),
+        new("LibraryRefetchFailure", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("LibraryRefetchFailure");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("MusicReleases");
             });
         }),
     };

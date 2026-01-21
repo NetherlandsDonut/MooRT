@@ -174,7 +174,8 @@ public class Desktop : MonoBehaviour
                         Starter.stopwatch = null;
                     }
                     UnityEngine.Cursor.visible = false;
-                    SpawnDesktopBlueprint("MusicReleases");
+                    if (Starter.goToMenuOnFailedWWW) SpawnDesktopBlueprint("LibraryRefetchSuccess");
+                    else SpawnDesktopBlueprint("MusicReleases");
                     CloseDesktop("LoadingScreen");
                 }
         }
