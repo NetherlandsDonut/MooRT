@@ -5075,6 +5075,12 @@
       "name": "Hitsujibungaku",
       "pronoun": "they",
       "country": "Japan"
+    },
+    {
+      "ID": 847,
+      "name": "Julie",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -284277,6 +284283,69 @@
         {
           "name": "天使たちの会話",
           "length": 53
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4159,
+      "artist": "Julie",
+      "artistID": 847,
+      "name": "My Anti-Aircraft Friend",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Slacker Rock",
+        "Noise Pop",
+        "Shoegaze"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2024.09.13",
+      "tracks": [
+        {
+          "name": "Catalogue",
+          "length": 194
+        },
+        {
+          "name": "Tenebrist",
+          "length": 215
+        },
+        {
+          "name": "Very Little Effort",
+          "length": 256
+        },
+        {
+          "name": "Clairbourne Practice",
+          "length": 187
+        },
+        {
+          "name": "Knob",
+          "length": 303
+        },
+        {
+          "name": "Thread, Stitch",
+          "length": 260
+        },
+        {
+          "name": "Feminine Adornments",
+          "length": 253
+        },
+        {
+          "name": "Ill Cook My Own Meals",
+          "length": 196
+        },
+        {
+          "name": "Piano Instrumental",
+          "length": 270
+        },
+        {
+          "name": "Stuck in a Car With Angels",
+          "length": 220
         }
       ],
       "discs": "",

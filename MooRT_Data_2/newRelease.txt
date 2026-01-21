@@ -1,30 +1,30 @@
 Artist name:
 -
-Hitsujibungaku
+Julie
 -
 -
 -
 Artist country:
 -
-Japan
+United States
 -
 -
 -
 Release name:
 -
-若者たちへ
+My Anti-Aircraft Friend
 -
 -
 -
 Release date:
 -	
-25 July 2018
+13 September 2024
 -
 -
 -
 Release cover:
 -
-https://m.media-amazon.com/images/I/51Rcu-EfD+L._UF1000,1000_QL80_.jpg
+https://i.scdn.co/image/ab67616d0000b2738c8ba2255c9813ced88ac90c
 -
 -
 -
@@ -36,50 +36,44 @@ Studio album
 -
 Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
-Indie Rock, Shimokita-kei
+Slacker Rock, Noise Pop, Shoegaze
 -
 -
 -
 Languages: Example: "English, French" / When left empty, "No Language" will be added automatically
 -
-Japanese
+English
 -
 -
 -
 Tracklist:
 -
-エンディングlyrics
-5:41
+Catalogue
+3:14
 2
-天国lyrics
-2:58
+Tenebrist
+3:35
 3
-絵日記lyrics
-3:45
+Very Little Effortlyrics
+4:16
 4
-夏のようlyrics
-5:19
+Clairbourne Practice
+3:07
 5
-ドラマlyrics
-3:36
+Knob
+5:03
 6
-Redlyrics
-6:14
+Thread, Stitch
+4:20
 7
-Steplyrics
-5:37
+Feminine Adornmentslyrics
+4:13
 8
-コーリングlyrics
-4:25
+Ill Cook My Own Meals
+3:16
 9
-涙の行方lyrics
-4:32
+Piano Instrumental
+4:30
 10
-若者たちlyrics
-8:10
-11
-天気予報lyrics
-4:42
-12
-天使たちの会話
-0:53
+Stuck in a Car With Angels
+3:40
