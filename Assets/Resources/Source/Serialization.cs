@@ -17,10 +17,10 @@ class Serialization
     public static string prefix = "";
 
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = false;
+    public static bool useUnityData = true;
 
     //Indicates whether the program allows for library expansion
-    public static bool libraryExpansion = false;
+    public static bool libraryExpansion = true;
 
     public static string[] ReadTXT(string file, string prefix = "")
     {
@@ -89,18 +89,11 @@ class Serialization
             sw.WriteLine("here 2:11");
         }
         if (useUnityData)
-        {
-            UnityEngine.Debug.Log(prefix + "MooRT_Data_2/" + file + ".txt");
             Process.Start(prefix + "MooRT_Data_2/" + file + ".txt");
-        }
         else
-        {
-            UnityEngine.Debug.Log(Application.dataPath + "_2/" + file + ".txt");
             Process.Start(Application.dataPath + "_2/" + file + ".txt");
-        }
     }
 
-    public static string alreadyTriedLoadingLibrary;
     public static string urlContent = "";
 
     public static void DeserializeFromURL<T>(ref T target, bool encoded = false)

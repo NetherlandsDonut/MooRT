@@ -3846,7 +3846,8 @@ public class Blueprint
             SpawnWindowBlueprint("LoadingStatus");
             loadingStatusBar = CDesktop.LBWindow().LBRegionGroup().LBRegion().background.transform;
             UnityEngine.Object.Instantiate(loadingStatusBar, loadingStatusBar.parent);
-            loadingStatusBar.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Fills/RarityRare");
+            loadingStatusBar.localScale = new Vector3(0, 0, 0);
+            loadingStatusBar.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Fills/LoadingBar");
             loadingStatusBar.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }),
         new("MusicReleases", () =>

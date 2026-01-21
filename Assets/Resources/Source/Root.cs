@@ -929,20 +929,6 @@ public static class Root
         return "";
     }
 
-    public static Texture2D LoadImage(string file, bool encoded = false, string prefix = "")
-    {
-        if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
-        if (!Directory.Exists(prefix + "MooRT_Data_3"))
-            Directory.CreateDirectory(prefix + "MooRT_Data_3");
-        var imagePath = prefix + @"MooRT_Data_3\" + file + (encoded ? "" : ".png");
-        Debug.Log("Loading image from: " + imagePath);
-        if (!File.Exists(imagePath)) return null;
-        Texture2D tex = new Texture2D(1, 1, TextureFormat.RGB24, false);
-        tex.filterMode = FilterMode.Point;
-        ImageConversion.LoadImage(tex, File.ReadAllBytes(imagePath));
-        return tex;
-    }
-
     public static Texture2D LoadBar(string file, bool encoded = false, string prefix = "")
     {
         if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";

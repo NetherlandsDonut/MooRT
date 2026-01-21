@@ -100,9 +100,9 @@ TextureImporter:
       name: Nosutaru_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -122,9 +122,9 @@ TextureImporter:
       name: Nosutaru_1
       rect:
         serializedVersion: 2
-        x: 12
+        x: 18
         y: 468
-        width: 12
+        width: 4
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -144,9 +144,9 @@ TextureImporter:
       name: Nosutaru_2
       rect:
         serializedVersion: 2
-        x: 24
+        x: 27
         y: 468
-        width: 12
+        width: 4
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -166,9 +166,9 @@ TextureImporter:
       name: Nosutaru_3
       rect:
         serializedVersion: 2
-        x: 36
+        x: 39
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -188,9 +188,9 @@ TextureImporter:
       name: Nosutaru_4
       rect:
         serializedVersion: 2
-        x: 48
+        x: 50
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -210,9 +210,9 @@ TextureImporter:
       name: Nosutaru_5
       rect:
         serializedVersion: 2
-        x: 60
+        x: 63
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -232,9 +232,9 @@ TextureImporter:
       name: Nosutaru_6
       rect:
         serializedVersion: 2
-        x: 72
+        x: 74
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -254,9 +254,9 @@ TextureImporter:
       name: Nosutaru_7
       rect:
         serializedVersion: 2
-        x: 84
+        x: 87
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -276,9 +276,9 @@ TextureImporter:
       name: Nosutaru_8
       rect:
         serializedVersion: 2
-        x: 96
+        x: 99
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -298,9 +298,9 @@ TextureImporter:
       name: Nosutaru_9
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -320,9 +320,9 @@ TextureImporter:
       name: Nosutaru_10
       rect:
         serializedVersion: 2
-        x: 120
+        x: 122
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -342,9 +342,9 @@ TextureImporter:
       name: Nosutaru_11
       rect:
         serializedVersion: 2
-        x: 132
+        x: 135
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -364,9 +364,9 @@ TextureImporter:
       name: Nosutaru_12
       rect:
         serializedVersion: 2
-        x: 144
+        x: 146
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -386,9 +386,9 @@ TextureImporter:
       name: Nosutaru_13
       rect:
         serializedVersion: 2
-        x: 156
+        x: 157
         y: 468
-        width: 12
+        width: 11
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -408,9 +408,9 @@ TextureImporter:
       name: Nosutaru_14
       rect:
         serializedVersion: 2
-        x: 168
+        x: 170
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -430,9 +430,9 @@ TextureImporter:
       name: Nosutaru_15
       rect:
         serializedVersion: 2
-        x: 180
+        x: 182
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -452,9 +452,9 @@ TextureImporter:
       name: Nosutaru_16
       rect:
         serializedVersion: 2
-        x: 192
+        x: 194
         y: 468
-        width: 12
+        width: 10
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -474,9 +474,9 @@ TextureImporter:
       name: Nosutaru_17
       rect:
         serializedVersion: 2
-        x: 204
+        x: 208
         y: 468
-        width: 12
+        width: 4
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -496,9 +496,9 @@ TextureImporter:
       name: Nosutaru_18
       rect:
         serializedVersion: 2
-        x: 216
+        x: 219
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -518,9 +518,9 @@ TextureImporter:
       name: Nosutaru_19
       rect:
         serializedVersion: 2
-        x: 228
+        x: 230
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -540,9 +540,9 @@ TextureImporter:
       name: Nosutaru_20
       rect:
         serializedVersion: 2
-        x: 240
+        x: 242
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -562,9 +562,9 @@ TextureImporter:
       name: Nosutaru_21
       rect:
         serializedVersion: 2
-        x: 252
+        x: 255
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -584,9 +584,9 @@ TextureImporter:
       name: Nosutaru_22
       rect:
         serializedVersion: 2
-        x: 264
+        x: 266
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -606,9 +606,9 @@ TextureImporter:
       name: Nosutaru_23
       rect:
         serializedVersion: 2
-        x: 276
+        x: 278
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -628,9 +628,9 @@ TextureImporter:
       name: Nosutaru_24
       rect:
         serializedVersion: 2
-        x: 288
+        x: 290
         y: 468
-        width: 12
+        width: 10
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -650,9 +650,9 @@ TextureImporter:
       name: Nosutaru_25
       rect:
         serializedVersion: 2
-        x: 300
+        x: 303
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -672,9 +672,9 @@ TextureImporter:
       name: Nosutaru_26
       rect:
         serializedVersion: 2
-        x: 312
+        x: 315
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -694,9 +694,9 @@ TextureImporter:
       name: Nosutaru_27
       rect:
         serializedVersion: 2
-        x: 324
+        x: 326
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -716,9 +716,9 @@ TextureImporter:
       name: Nosutaru_28
       rect:
         serializedVersion: 2
-        x: 336
+        x: 338
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -738,9 +738,9 @@ TextureImporter:
       name: Nosutaru_29
       rect:
         serializedVersion: 2
-        x: 348
+        x: 350
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -760,9 +760,9 @@ TextureImporter:
       name: Nosutaru_30
       rect:
         serializedVersion: 2
-        x: 360
+        x: 362
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -782,9 +782,9 @@ TextureImporter:
       name: Nosutaru_31
       rect:
         serializedVersion: 2
-        x: 372
+        x: 375
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -804,9 +804,9 @@ TextureImporter:
       name: Nosutaru_32
       rect:
         serializedVersion: 2
-        x: 384
+        x: 386
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -826,9 +826,9 @@ TextureImporter:
       name: Nosutaru_33
       rect:
         serializedVersion: 2
-        x: 396
+        x: 398
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -848,9 +848,9 @@ TextureImporter:
       name: Nosutaru_34
       rect:
         serializedVersion: 2
-        x: 408
+        x: 410
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -870,9 +870,9 @@ TextureImporter:
       name: Nosutaru_35
       rect:
         serializedVersion: 2
-        x: 420
+        x: 422
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -892,9 +892,9 @@ TextureImporter:
       name: Nosutaru_36
       rect:
         serializedVersion: 2
-        x: 432
+        x: 434
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -914,9 +914,9 @@ TextureImporter:
       name: Nosutaru_37
       rect:
         serializedVersion: 2
-        x: 444
+        x: 447
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -936,9 +936,9 @@ TextureImporter:
       name: Nosutaru_38
       rect:
         serializedVersion: 2
-        x: 456
+        x: 458
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -958,9 +958,9 @@ TextureImporter:
       name: Nosutaru_39
       rect:
         serializedVersion: 2
-        x: 468
+        x: 470
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -980,9 +980,9 @@ TextureImporter:
       name: Nosutaru_40
       rect:
         serializedVersion: 2
-        x: 480
+        x: 482
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1002,9 +1002,9 @@ TextureImporter:
       name: Nosutaru_41
       rect:
         serializedVersion: 2
-        x: 492
+        x: 494
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1024,9 +1024,9 @@ TextureImporter:
       name: Nosutaru_42
       rect:
         serializedVersion: 2
-        x: 504
+        x: 508
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1046,9 +1046,9 @@ TextureImporter:
       name: Nosutaru_43
       rect:
         serializedVersion: 2
-        x: 516
+        x: 519
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1068,9 +1068,9 @@ TextureImporter:
       name: Nosutaru_44
       rect:
         serializedVersion: 2
-        x: 528
+        x: 530
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1090,9 +1090,9 @@ TextureImporter:
       name: Nosutaru_45
       rect:
         serializedVersion: 2
-        x: 540
+        x: 543
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1112,9 +1112,9 @@ TextureImporter:
       name: Nosutaru_46
       rect:
         serializedVersion: 2
-        x: 552
+        x: 554
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1134,9 +1134,9 @@ TextureImporter:
       name: Nosutaru_47
       rect:
         serializedVersion: 2
-        x: 564
+        x: 566
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1156,9 +1156,9 @@ TextureImporter:
       name: Nosutaru_48
       rect:
         serializedVersion: 2
-        x: 576
+        x: 578
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1178,9 +1178,9 @@ TextureImporter:
       name: Nosutaru_49
       rect:
         serializedVersion: 2
-        x: 588
+        x: 590
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1200,9 +1200,9 @@ TextureImporter:
       name: Nosutaru_50
       rect:
         serializedVersion: 2
-        x: 600
+        x: 602
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1222,9 +1222,9 @@ TextureImporter:
       name: Nosutaru_51
       rect:
         serializedVersion: 2
-        x: 612
+        x: 614
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1244,9 +1244,9 @@ TextureImporter:
       name: Nosutaru_52
       rect:
         serializedVersion: 2
-        x: 624
+        x: 626
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1266,9 +1266,9 @@ TextureImporter:
       name: Nosutaru_53
       rect:
         serializedVersion: 2
-        x: 636
+        x: 638
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1288,9 +1288,9 @@ TextureImporter:
       name: Nosutaru_54
       rect:
         serializedVersion: 2
-        x: 648
+        x: 650
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1310,9 +1310,9 @@ TextureImporter:
       name: Nosutaru_55
       rect:
         serializedVersion: 2
-        x: 660
+        x: 662
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1332,9 +1332,9 @@ TextureImporter:
       name: Nosutaru_56
       rect:
         serializedVersion: 2
-        x: 672
+        x: 674
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1354,9 +1354,9 @@ TextureImporter:
       name: Nosutaru_57
       rect:
         serializedVersion: 2
-        x: 684
+        x: 686
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1376,9 +1376,9 @@ TextureImporter:
       name: Nosutaru_58
       rect:
         serializedVersion: 2
-        x: 696
+        x: 698
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1398,9 +1398,9 @@ TextureImporter:
       name: Nosutaru_59
       rect:
         serializedVersion: 2
-        x: 708
+        x: 710
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1420,9 +1420,9 @@ TextureImporter:
       name: Nosutaru_60
       rect:
         serializedVersion: 2
-        x: 720
+        x: 722
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1442,9 +1442,9 @@ TextureImporter:
       name: Nosutaru_61
       rect:
         serializedVersion: 2
-        x: 732
+        x: 734
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1464,9 +1464,9 @@ TextureImporter:
       name: Nosutaru_62
       rect:
         serializedVersion: 2
-        x: 744
+        x: 746
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1486,9 +1486,9 @@ TextureImporter:
       name: Nosutaru_63
       rect:
         serializedVersion: 2
-        x: 756
+        x: 758
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1508,9 +1508,9 @@ TextureImporter:
       name: Nosutaru_64
       rect:
         serializedVersion: 2
-        x: 768
+        x: 770
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1530,9 +1530,9 @@ TextureImporter:
       name: Nosutaru_65
       rect:
         serializedVersion: 2
-        x: 780
+        x: 782
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1552,9 +1552,9 @@ TextureImporter:
       name: Nosutaru_66
       rect:
         serializedVersion: 2
-        x: 792
+        x: 794
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1574,9 +1574,9 @@ TextureImporter:
       name: Nosutaru_67
       rect:
         serializedVersion: 2
-        x: 804
+        x: 806
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1596,9 +1596,9 @@ TextureImporter:
       name: Nosutaru_68
       rect:
         serializedVersion: 2
-        x: 816
+        x: 819
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1618,9 +1618,9 @@ TextureImporter:
       name: Nosutaru_69
       rect:
         serializedVersion: 2
-        x: 828
+        x: 831
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1640,9 +1640,9 @@ TextureImporter:
       name: Nosutaru_70
       rect:
         serializedVersion: 2
-        x: 840
+        x: 842
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1662,9 +1662,9 @@ TextureImporter:
       name: Nosutaru_71
       rect:
         serializedVersion: 2
-        x: 852
+        x: 855
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1684,9 +1684,9 @@ TextureImporter:
       name: Nosutaru_72
       rect:
         serializedVersion: 2
-        x: 864
+        x: 866
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1706,9 +1706,9 @@ TextureImporter:
       name: Nosutaru_73
       rect:
         serializedVersion: 2
-        x: 876
+        x: 879
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1728,9 +1728,9 @@ TextureImporter:
       name: Nosutaru_74
       rect:
         serializedVersion: 2
-        x: 888
+        x: 891
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1750,9 +1750,9 @@ TextureImporter:
       name: Nosutaru_75
       rect:
         serializedVersion: 2
-        x: 900
+        x: 903
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1772,9 +1772,9 @@ TextureImporter:
       name: Nosutaru_76
       rect:
         serializedVersion: 2
-        x: 912
+        x: 916
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1794,9 +1794,9 @@ TextureImporter:
       name: Nosutaru_77
       rect:
         serializedVersion: 2
-        x: 924
+        x: 927
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1816,9 +1816,9 @@ TextureImporter:
       name: Nosutaru_78
       rect:
         serializedVersion: 2
-        x: 936
+        x: 938
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1838,9 +1838,9 @@ TextureImporter:
       name: Nosutaru_79
       rect:
         serializedVersion: 2
-        x: 948
+        x: 951
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1860,9 +1860,9 @@ TextureImporter:
       name: Nosutaru_80
       rect:
         serializedVersion: 2
-        x: 960
+        x: 963
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1882,9 +1882,9 @@ TextureImporter:
       name: Nosutaru_81
       rect:
         serializedVersion: 2
-        x: 972
+        x: 974
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1904,9 +1904,9 @@ TextureImporter:
       name: Nosutaru_82
       rect:
         serializedVersion: 2
-        x: 984
+        x: 986
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1926,9 +1926,9 @@ TextureImporter:
       name: Nosutaru_83
       rect:
         serializedVersion: 2
-        x: 996
+        x: 998
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1948,9 +1948,9 @@ TextureImporter:
       name: Nosutaru_84
       rect:
         serializedVersion: 2
-        x: 1008
+        x: 1011
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1970,9 +1970,9 @@ TextureImporter:
       name: Nosutaru_85
       rect:
         serializedVersion: 2
-        x: 1020
+        x: 1023
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -1992,9 +1992,9 @@ TextureImporter:
       name: Nosutaru_86
       rect:
         serializedVersion: 2
-        x: 1032
+        x: 1034
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2014,9 +2014,9 @@ TextureImporter:
       name: Nosutaru_87
       rect:
         serializedVersion: 2
-        x: 1044
+        x: 1053
         y: 468
-        width: 12
+        width: 2
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2036,9 +2036,9 @@ TextureImporter:
       name: Nosutaru_88
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 1055
         y: 468
-        width: 12
+        width: 2
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2058,9 +2058,9 @@ TextureImporter:
       name: Nosutaru_89
       rect:
         serializedVersion: 2
-        x: 1068
+        x: 1071
         y: 468
-        width: 12
+        width: 4
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2080,9 +2080,9 @@ TextureImporter:
       name: Nosutaru_90
       rect:
         serializedVersion: 2
-        x: 1080
+        x: 1084
         y: 468
-        width: 12
+        width: 4
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2102,9 +2102,9 @@ TextureImporter:
       name: Nosutaru_91
       rect:
         serializedVersion: 2
-        x: 1092
+        x: 1096
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2124,9 +2124,9 @@ TextureImporter:
       name: Nosutaru_92
       rect:
         serializedVersion: 2
-        x: 1104
+        x: 1108
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2146,9 +2146,9 @@ TextureImporter:
       name: Nosutaru_93
       rect:
         serializedVersion: 2
-        x: 1116
+        x: 1119
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2168,9 +2168,9 @@ TextureImporter:
       name: Nosutaru_94
       rect:
         serializedVersion: 2
-        x: 1128
+        x: 1132
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2190,9 +2190,9 @@ TextureImporter:
       name: Nosutaru_95
       rect:
         serializedVersion: 2
-        x: 1140
+        x: 1143
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2212,9 +2212,9 @@ TextureImporter:
       name: Nosutaru_96
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1156
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2234,9 +2234,9 @@ TextureImporter:
       name: Nosutaru_97
       rect:
         serializedVersion: 2
-        x: 1164
+        x: 1167
         y: 468
-        width: 12
+        width: 8
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2256,9 +2256,9 @@ TextureImporter:
       name: Nosutaru_98
       rect:
         serializedVersion: 2
-        x: 1176
+        x: 1179
         y: 468
-        width: 12
+        width: 7
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2278,9 +2278,9 @@ TextureImporter:
       name: Nosutaru_99
       rect:
         serializedVersion: 2
-        x: 1188
+        x: 1190
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2300,9 +2300,9 @@ TextureImporter:
       name: Nosutaru_100
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 1204
         y: 468
-        width: 12
+        width: 6
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}
@@ -2322,9 +2322,9 @@ TextureImporter:
       name: Nosutaru_101
       rect:
         serializedVersion: 2
-        x: 1212
+        x: 1214
         y: 468
-        width: 12
+        width: 9
         height: 13
       alignment: 1
       pivot: {x: 0, y: 1}

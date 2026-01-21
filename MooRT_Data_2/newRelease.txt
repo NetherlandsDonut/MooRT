@@ -1,6 +1,6 @@
 Artist name:
 -
-大森靖子
+Number Girl
 -
 -
 -
@@ -12,19 +12,19 @@ Japan
 -
 Release name:
 -
-クソカワParty
+Sappukei
 -
 -
 -
 Release date:
 -	
-11 July 2018
+19 July 2000
 -
 -
 -
 Release cover:
 -
-https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fototoy.jp%2Fnews%2Fimage.php%2F88442%2F0.jpg&f=1&nofb=1&ipt=5dacfb66c5308058a936b4bb6245bc31e55257881d7551f277573563ccd3c2f6
+https://numbergirl.com/img/discography/sappukei.jpg
 -
 -
 -
@@ -36,7 +36,7 @@ Studio album
 -
 Genres: Example: "Indie Folk, Industrial Metal, Shoegaze" / Can be left empty
 -
-J-Pop, Pop Rock
+Post-Hardcore, Shimokita-kei, Indie Rock
 -
 -
 -
@@ -48,33 +48,35 @@ Japanese
 -
 Tracklist:
 -
-1
-死神
-4:17
+Brutal Number Girllyrics
+2:03
 2
-ZOC実験室
-4:11
+Zegen vs Undercover
+2:43
 3
-Reality Magic
-4:04
+Sasu-Youlyrics
+2:40
 4
-Girl's Girl
-2:47
+Urban Guitar Sayonaralyrics
+4:10
 5
-ラストダンス
-3:04
+Abstract Truthlyrics
+3:28
 6
-アメーバの恋
-3:29
+Tattooあり
+3:25
 7
-7:77
-3:17
+Sappukeilyrics
+3:47
 8
-東京と今日
-4:04
+U-Reilyrics
+4:18
 9
-わたしみlyrics
-5:17
+Yaruse Nakio の Beatlyrics
+5:06
 10
-きもいかわ
-6:32
+Trampoline Girllyrics
+4:28
+11
+Brutal Manlyrics
+2:53

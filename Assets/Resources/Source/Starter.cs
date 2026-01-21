@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 using UnityEditor;
 using UnityEngine;
@@ -8,10 +10,9 @@ using static Font;
 using static Cursor;
 using static Library;
 using static Defines;
-using static ReleaseRating;
 using static Serialization;
+using static ReleaseRating;
 using static ProgramSettings;
-using System.Diagnostics;
 
 public class Starter : MonoBehaviour
 {
@@ -62,9 +63,6 @@ public class Starter : MonoBehaviour
 
         #endregion
 
-        //Gets the user characters and settings into the game
-        #region User Data Deserialization
-
         //Get all the library going on..
         Deserialize(ref ratings, "ratings", false, prefix);
         ratings ??= new();
@@ -78,12 +76,41 @@ public class Starter : MonoBehaviour
         enteredSecondStage = true;
     }
 
+    public static byte[][] coverBytes;
+
+    async void LoadLocalCovers()
+    {
+        var localPrefix = "";
+        if (useUnityData) localPrefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
+        if (!System.IO.Directory.Exists(localPrefix + "MooRT_Data_3"))
+            System.IO.Directory.CreateDirectory(localPrefix + "MooRT_Data_3");
+        var files = new List<string>();
+        for (int i = 0; i <= library.originalReleases.Count + 1; i++) files.Add(localPrefix + "MooRT_Data_3\\" + i + ".png");
+        var tasks = files.Select(x =>
+        {
+            if (System.IO.File.Exists(x)) return System.IO.File.ReadAllBytesAsync(x);
+            else return System.Threading.Tasks.Task.FromResult<byte[]>(null);
+        });
+        coverBytes = await System.Threading.Tasks.Task.WhenAll(tasks);
+        enteredThirdStage = true;
+    }
+
     public static bool enteredSecondStage = false;
     public static bool enteredThirdStage = false;
+    public static bool enteredFourthStage = false;
 
     void Update()
     {
-        if (enteredSecondStage && urlContent != "" && !enteredThirdStage)
+        if (enteredThirdStage && !enteredFourthStage)
+        {
+            LoadLocalCovers();
+
+            enteredFourthStage = true;
+
+            //Spawn the initial desktop so the user can perform all actions from there
+            SpawnDesktopBlueprint("LoadingScreen");
+        }
+        else if (enteredSecondStage && urlContent != "" && !enteredThirdStage)
         {
             enteredThirdStage = true;
 
@@ -103,14 +130,6 @@ public class Starter : MonoBehaviour
             settings ??= new();
             settings.FillNulls();
             Serialize(settings, "settings", true);
-
-            #endregion
-
-            //Spawn the initial desktop so the user can perform all actions from there
-            SpawnDesktopBlueprint("LoadingScreen");
-
-            ////Destroy this object as it's only used for program initialization
-            //Destroy(gameObject);
         }
     }
 

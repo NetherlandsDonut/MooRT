@@ -9,13 +9,12 @@ public class Cursor : MonoBehaviour
 
     //Renderer of the cursor responsible for visuals
     public SpriteRenderer render;
-
-    void Awake() => UnityEngine.Cursor.visible = false;
+    
     void Start() => (render, color) = (GetComponent<SpriteRenderer>(), "None");
 
     void Update()
     {
-        if (!Starter.enteredThirdStage) return;
+        if (!Starter.enteredFourthStage) return;
         if (CDesktop.screenLocked) SetCursor(CursorType.Await);
         else if (render.sprite != null && IsNow(CursorType.Await)) SetCursor(CursorType.Default);
         if (CDesktop == null) return;

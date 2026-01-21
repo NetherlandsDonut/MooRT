@@ -5057,6 +5057,12 @@
       "name": "大森靖子",
       "pronoun": "they",
       "country": "Japan"
+    },
+    {
+      "ID": 844,
+      "name": "Number Girl",
+      "pronoun": "they",
+      "country": "Japan"
     }
   ],
   "originalReleases": [
@@ -283997,6 +284003,136 @@
         {
           "name": "きもいかわ",
           "length": 392
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4155,
+      "artist": "Number Girl",
+      "artistID": 844,
+      "name": "School Girl Distortional Addict",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Post-hardcore",
+        "Shimokita-kei",
+        "Indie Rock"
+      ],
+      "languages": [
+        "Japanese"
+      ],
+      "format": "digital",
+      "releaseDate": "1999.07.23",
+      "tracks": [
+        {
+          "name": "タッチ",
+          "length": 300
+        },
+        {
+          "name": "Pixie Dü",
+          "length": 126
+        },
+        {
+          "name": "裸足の季節",
+          "length": 156
+        },
+        {
+          "name": "Young Girl Seventeen Sexually Knowing",
+          "length": 226
+        },
+        {
+          "name": "桜のダンス",
+          "length": 148
+        },
+        {
+          "name": "日常に生きる少女",
+          "length": 302
+        },
+        {
+          "name": "狂って候",
+          "length": 125
+        },
+        {
+          "name": "透明少女",
+          "length": 201
+        },
+        {
+          "name": "転校生",
+          "length": 299
+        },
+        {
+          "name": "Eight Beater",
+          "length": 243
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4156,
+      "artist": "Number Girl",
+      "artistID": 844,
+      "name": "Sappukei",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Post-hardcore",
+        "Shimokita-kei",
+        "Indie Rock"
+      ],
+      "languages": [
+        "Japanese"
+      ],
+      "format": "digital",
+      "releaseDate": "2000.07.19",
+      "tracks": [
+        {
+          "name": "Brutal Number Girl",
+          "length": 123
+        },
+        {
+          "name": "Zegen vs Undercover",
+          "length": 163
+        },
+        {
+          "name": "Sasu-You",
+          "length": 160
+        },
+        {
+          "name": "Urban Guitar Sayonara",
+          "length": 250
+        },
+        {
+          "name": "Abstract Truth",
+          "length": 208
+        },
+        {
+          "name": "Tattooあり",
+          "length": 205
+        },
+        {
+          "name": "Sappukei",
+          "length": 227
+        },
+        {
+          "name": "U-Rei",
+          "length": 258
+        },
+        {
+          "name": "Yaruse Nakio の Beat",
+          "length": 306
+        },
+        {
+          "name": "Trampoline Girl",
+          "length": 268
+        },
+        {
+          "name": "Brutal Man",
+          "length": 173
         }
       ],
       "discs": "",

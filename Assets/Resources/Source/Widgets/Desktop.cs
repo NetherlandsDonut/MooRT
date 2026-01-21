@@ -1,12 +1,11 @@
-using System.Linq;
-using System.Diagnostics;
+using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using UnityEngine;
-
-using static Root;
 using static Cursor;
 using static InputLine;
+using static Root;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Desktop : MonoBehaviour
 {
@@ -91,25 +90,33 @@ public class Desktop : MonoBehaviour
     {
         if (CDesktop.title == "LoadingScreen")
         {
-            if (Starter.enteredThirdStage)
+            if (Starter.enteredFourthStage)
+
+                //If we still have to load more covers..
                 if (loadingScreenProgress < loadingScreenAim)
                 {
                     var atStart = loadingScreenProgress;
+
+                    //If we already waiting for a cover to download and it appears to be downloaded..
                     if (waitForTexture && newCover != null)
                     {
                         var prefix = "";
                         if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
-                        System.IO.File.WriteAllBytes(prefix + "MooRT_Data_3/" + newCoverID + ".png", newCover.texture.EncodeToPNG());
+
+                        //Save the newly downloaded album cover
+                        var bytes = newCover.texture.EncodeToPNG();
+                        System.IO.File.WriteAllBytes(prefix + "MooRT_Data_3/" + newCoverID + ".png", bytes);
+                        Starter.coverBytes[newCoverID] = bytes;
+
+                        //Reset the variables for downloading a cover
                         newCoverID = 0;
                         waitForTexture = false;
                         newCover = null;
                         returnToMenu = false;
                     }
-                    else
-                        for (int i = atStart; i < loadingScreenAim; i++)
+                    else for (int i = atStart; i < loadingScreenAim; i++)
                         {
-                            if (i - 10 >= atStart) break;
-                            UnityEngine.Debug.Log(loadingScreenProgress + " / " + loadingScreenAim);
+                            if (i - 20 >= atStart) break;
                             if (waitForTexture && returnToMenu)
                             {
                                 waitForTexture = false;
@@ -122,8 +129,9 @@ public class Desktop : MonoBehaviour
                                 var rawBar = LoadBar(i + "");
                                 if (rawBar != null && !albumBars.ContainsKey(i + ""))
                                     albumBars.Add(i + "", Sprite.Create(rawBar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
-                                var raw = LoadImage(i + "");
-                                if (raw == null && !Serialization.useUnityData)
+
+                                var localFilePresent = Starter.coverBytes[i] != null;
+                                if (!localFilePresent && !Serialization.useUnityData)
                                 {
                                     waitForTexture = true;
                                     newCover = null;
@@ -133,15 +141,17 @@ public class Desktop : MonoBehaviour
                                     StartCoroutine(GetTexture("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_3/" + i + ".png"));
                                     break;
                                 }
-                                else if (raw == null) continue;
-                                else if (!albumCovers.ContainsKey(i + ""))
+                                if (!localFilePresent) continue;
+                                if (!albumCovers.ContainsKey(i + ""))
                                 {
                                     loadingScreenProgress++;
-                                    albumCovers.Add(i + "", Sprite.Create(raw, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
+                                    var localCover = new Texture2D(1, 1, TextureFormat.RGB24, false);
+                                    ImageConversion.LoadImage(localCover, Starter.coverBytes[i]);
+                                    albumCovers.Add(i + "", Sprite.Create(localCover, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
                                     if (!albumBars.ContainsKey(i + ""))
                                     {
                                         Texture2D bar = new(188, 17, TextureFormat.ARGB32, false);
-                                        bar.CopyPixels(raw, 0, 0, 0, 93, 188, 17, 0, 0, 0);
+                                        bar.CopyPixels(localCover, 0, 0, 0, 93, 188, 17, 0, 0, 0);
                                         bar.Apply();
                                         albumBars.Add(i + "", Sprite.Create(bar, new Rect(0, 0, 188, 17), new Vector2(0, 1), 1));
                                         var prefix = "";
@@ -151,19 +161,21 @@ public class Desktop : MonoBehaviour
                                 }
                             }
                         }
-                    loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 17);
+                    loadingStatusBar.transform.localScale = new Vector2(Mathf.Round((float)loadingScreenProgress / loadingScreenAim * 298.0f), 1);
                 }
                 else if (loadingScreenProgress >= loadingScreenAim)
                 {
+                    Starter.coverBytes = null;
                     cursor.SetCursor(CursorType.Default);
                     UnityEngine.Debug.Log("Load time: " + Starter.stopwatch.ElapsedTicks);
                     Starter.stopwatch.Stop();
                     Starter.stopwatch = null;
+                    UnityEngine.Cursor.visible = false;
                     SpawnDesktopBlueprint("MusicReleases");
                     CloseDesktop("LoadingScreen");
                 }
         }
-        else
+        if (CDesktop.title != "LoadingScreen")
         {
             if (animatedSpriteTime >= 0)
             {
@@ -180,7 +192,7 @@ public class Desktop : MonoBehaviour
 
     public void Update()
     {
-        if (!Starter.enteredThirdStage) return;
+        if (!Starter.enteredFourthStage) return;
         if (title == "LoadCover")
         {
             if (!startedGettingCover)
