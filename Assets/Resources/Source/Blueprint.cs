@@ -4225,6 +4225,7 @@ public class Blueprint
             (h) =>
             {
                 CloseDesktop(CDesktop.title);
+                countryCodes = countryCodes.OrderByDescending(x => library.originalArtists.Count(y => y.country == x.Key)).ToDictionary(x => x.Key, x => x.Value);
                 SpawnDesktopBlueprint("CreateNewAlbumArtistCountry");
             });
         }),
@@ -4238,7 +4239,7 @@ public class Blueprint
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(440);
+            SetRegionGroupWidth(385);
             AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchNewAlbumCountry); AddSmallButton("OtherReverse", (h) => { String.searchNewAlbumCountry.Set(""); CDesktop.RespawnAll(); }); });
             AddRegionGroup();
             SetRegionGroupWidth(37);
@@ -4389,7 +4390,7 @@ public class Blueprint
             AddPaddingRegion(() =>
             {
                 AddLine("Paste the album cover URL.", "DarkGray");
-                AddLine("Don't copy images from RYM's release page as they are protected.", "DarkGray");
+                AddLine("Don't copy links from RYM's release page as they are protected.", "DarkGray");
             });
             AddEmptyRegion();
             AddButtonRegion(() =>
@@ -5082,6 +5083,7 @@ public class Blueprint
             AddHotkey(Escape, () =>
             {
                 CloseDesktop(CDesktop.title);
+                countryCodes = countryCodes.OrderByDescending(x => library.originalArtists.Count(y => y.country == x.Key)).ToDictionary(x => x.Key, x => x.Value);
                 SpawnDesktopBlueprint("CreateNewAlbumArtistCountry");
             });
         }),
