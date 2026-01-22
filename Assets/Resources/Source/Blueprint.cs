@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 using static ArtistBattle;
 using static Country;
@@ -593,7 +594,16 @@ public class Blueprint
             {
                 AddLine(musicRelease.name);
                 AddLine("#" + musicRelease.ID, "DimGray", "Right");
-                if (CDesktop.title == "AcceptNewAlbum")
+                if (CDesktop.title == "CreateNewAlbumPreview")
+                {
+                    AddSmallButton("OtherBigger", (h) =>
+                    {
+                        GUIUtility.systemCopyBuffer = Serialization.StringFromPackage(new(musicRelease, musicRelease.artist, musicRelease.country, newCoverURL));
+                        SpawnFallingText(new(0, 8), "Data was copied onto the clipboard!");
+                        SpawnFallingText(new(0, -7), "Send it now to your friend :3");
+                    });
+                }
+                else if (CDesktop.title == "AcceptNewAlbum")
                 {
                     AddSmallButton("OtherTrash", (h) =>
                     {
@@ -2747,15 +2757,45 @@ public class Blueprint
                 });
                 AddButtonRegion(() => AddLine("Paste new release"), (h) =>
                 {
+                    //Setup
+                    newCover = null;
+                    newRelease = null;
+                    String.searchNewAlbumCountry.Set("");
+                    String.createNewAlbumReleaseName.Set("");
+                    String.createNewAlbumReleaseDate.Set("");
+                    String.createNewAlbumGenres.Set("");
+                    String.createNewAlbumLanguages.Set("");
+                    String.createNewAlbumTracklist.Set("");
+                    String.createNewAlbumArtistName.Set("");
+                    String.createNewAlbumArtistCountry.Set("-");
+                    String.createNewAlbumCoverURL.Set("");
+                    createNewAlbumReleaseTypeFiltering = releaseTypes.ToDictionary(x => x.name, x => new Bool(false));
+                    //Load
                     var package = Serialization.PackageFromString(GUIUtility.systemCopyBuffer);
-                    newRelease = package.musicRelease;
-                    //= package.coverURL;
+                    if (package == null) return;
+                    newRelease = musicRelease = package.musicRelease;
                     newCoverURL = package.coverURL;
-                    SpawnDesktopBlueprint("AcceptNewAlbum");
+                    String.createNewAlbumArtistName.Set(package.artistName);
+                    String.createNewAlbumArtistCountry.Set(package.artistCountry);
+                    String.createNewAlbumCoverURL.Set(package.coverURL);
+                    if (newRelease.genres.Count > 0) String.createNewAlbumGenres.Set(string.Join(", ", newRelease.genres));
+                    else String.createNewAlbumLanguages.Set("");
+                    if (newRelease.languages.Count > 0) String.createNewAlbumLanguages.Set(string.Join(", ", newRelease.languages));
+                    else String.createNewAlbumLanguages.Set("");
+                    String.createNewAlbumReleaseDate.Set(newRelease.releaseDate);
+                    String.createNewAlbumReleaseName.Set(newRelease.name);
+                    if (newRelease.tracks.Count > 0) String.createNewAlbumTracklist.Set(string.Join("\\n", newRelease.tracks.Select(x => x.name + "\\n" + (x.length / 60) + ":" + (x.length % 60).ToString("00"))));
+                    else String.createNewAlbumTracklist.Set("");
+                    foreach (var type in createNewAlbumReleaseTypeFiltering)
+                        createNewAlbumReleaseTypeFiltering[type.Key].Set(newRelease.types.Contains(type.Key));
+                    CreatePreviewRelease();
+                    CloseDesktop(CDesktop.title);
+                    SpawnDesktopBlueprint("CreateNewAlbumPreviewLoadCover");
                 });
             }
             AddButtonRegion(() => AddLine("Create new release"), (h) =>
             {
+                //Setup
                 newCover = null;
                 newRelease = null;
                 String.searchNewAlbumCountry.Set("");
@@ -2765,15 +2805,16 @@ public class Blueprint
                 String.createNewAlbumLanguages.Set("");
                 String.createNewAlbumTracklist.Set("");
                 String.createNewAlbumArtistName.Set("");
-                String.createNewAlbumArtistCountry.Set("");
+                String.createNewAlbumArtistCountry.Set("-");
                 String.createNewAlbumCoverURL.Set("");
                 createNewAlbumReleaseTypeFiltering = releaseTypes.ToDictionary(x => x.name, x => new Bool(false));
+                //Load
                 SpawnDesktopBlueprint("CreateNewAlbumReleaseName");
             });
-            AddButtonRegion(() => AddLine("Open new release file"), (h) =>
-            {
-                Serialization.OpenTXT("newRelease");
-            });
+            //AddButtonRegion(() => AddLine("Open new release file"), (h) =>
+            //{
+            //    Serialization.OpenTXT("newRelease");
+            //});
             if (!Serialization.libraryExpansion)
             {
                 AddButtonRegion(() => AddLine("Refetch online library"), (h) =>
@@ -2782,6 +2823,7 @@ public class Blueprint
                     Starter.enteredSecondStage = false;
                     Starter.enteredThirdStage = false;
                     Starter.enteredFourthStage = false;
+                    Starter.enteredFifthStage = false;
                     if (Serialization.useUnityData) Serialization.urlContent = "x";
                     else
                     {
@@ -3941,7 +3983,7 @@ public class Blueprint
         new("CreateNewAlbumReleaseName", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Release name:", "DarkGray");
@@ -3997,7 +4039,7 @@ public class Blueprint
         new("CreateNewAlbumReleaseDate", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Release date:", "DarkGray");
@@ -4047,7 +4089,7 @@ public class Blueprint
         new("CreateNewAlbumReleaseType", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Select all valid release types.", "DarkGray");
@@ -4072,7 +4114,7 @@ public class Blueprint
         new("CreateNewAlbumReleaseGenres", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Release genres:", "DarkGray");
@@ -4107,7 +4149,7 @@ public class Blueprint
         new("CreateNewAlbumReleaseLanguages", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Release languages:", "DarkGray");
@@ -4115,7 +4157,7 @@ public class Blueprint
             });
             AddPaddingRegion(() =>
             {
-                AddLine("Type languages in which the vocals are performed on this release.", "DarkGray");
+                AddLine("Type the languages in which the vocals are performed.", "DarkGray");
             });
             AddPaddingRegion(() =>
             {
@@ -4146,7 +4188,7 @@ public class Blueprint
         new("CreateNewAlbumReleaseTracklist", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Release tracklist:", "DarkGray");
@@ -4186,7 +4228,7 @@ public class Blueprint
         new("CreateNewAlbumArtistName", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Artist name:", "DarkGray");
@@ -4203,11 +4245,11 @@ public class Blueprint
             else
                 AddPaddingRegion(() =>
                 {
-                    AddLine("Type the artist name or choose one of the existing artists below.", "DarkGray");
+                    AddLine("Type the artist name or choose one of the artists below.", "DarkGray");
                 });
             AddPaddingRegion(() =>
             {
-                AddLine("Artist's name left empty will result in setting the artist as various artists.", "DarkGray");
+                AddLine("Artist's name left empty will count as various artists.", "DarkGray");
                 AddLine("Country choice will not be taken into consideration then.", "DarkGray");
             });
             AddEmptyRegion();
@@ -4224,8 +4266,6 @@ public class Blueprint
                     {
                         String.createNewAlbumArtistName.Set(fitting[index].name);
                         String.createNewAlbumArtistCountry.Set(fitting[index].country);
-                        CloseDesktop(CDesktop.title);
-                        SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
                     });
                     AddPaddingRegion(() =>
                     {
@@ -4245,6 +4285,20 @@ public class Blueprint
                 SpawnDesktopBlueprint("CreateNewAlbumArtistCountry");
             });
         }),
+        new("CreateNewAlbumArtistCountryNextStep", () => {
+            SetAnchor(-193, -190);
+            AddHeaderGroup();
+            SetRegionGroupWidth(385);
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
+            });
+        }),
         new("CreateNewAlbumArtistCountry", () => {
             var rowAmount = 15;
             var thisWindow = CDesktop.LBWindow();
@@ -4253,9 +4307,16 @@ public class Blueprint
                 list = list.Where(x => x.ToLower().Contains(String.searchNewAlbumCountry.Value().ToLower())).ToList();
             CDesktop.quickInputWindow = thisWindow;
             thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
-            SetAnchor(Center);
+            SetAnchor(Center, 0, 19);
             AddHeaderGroup();
             SetRegionGroupWidth(385);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Artist country: ", "DarkGray");
+                AddText(String.createNewAlbumArtistCountry.Value(), "Gray");
+                AddSmallButton("OtherReverse", (h) => { String.createNewAlbumArtistCountry.Set("-"); CDesktop.RespawnAll(); });
+            });
+            AddEmptyRegion();
             AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchNewAlbumCountry); AddSmallButton("OtherReverse", (h) => { String.searchNewAlbumCountry.Set(""); CDesktop.RespawnAll(); }); });
             AddRegionGroup();
             SetRegionGroupWidth(37);
@@ -4296,8 +4357,6 @@ public class Blueprint
                     {
                         var country = list[index + thisWindow.pagination()];
                         String.createNewAlbumArtistCountry.Set(country);
-                        CloseDesktop(CDesktop.title);
-                        SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
                     });
                 else
                     AddPaddingRegion(() => { AddLine(""); });
@@ -4397,7 +4456,7 @@ public class Blueprint
         new("CreateNewAlbumReleaseCoverURL", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(400);
+            SetRegionGroupWidth(385);
             AddHeaderRegion(() =>
             {
                 AddLine("Album cover URL:", "DarkGray");
@@ -4445,7 +4504,13 @@ public class Blueprint
             else AddButtonRegion(() => AddLine("Artist Name"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumArtistName"); CloseDesktop(name); });
             AddRegionGroup();
             if (CDesktop.title == "CreateNewAlbumArtistCountry") AddPaddingRegion(() => AddLine("Artist Country"));
-            else AddButtonRegion(() => AddLine("Artist Country"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumArtistCountry"); CloseDesktop(name); });
+            else AddButtonRegion(() => AddLine("Artist Country"),(h) =>
+            {
+                var name = CDesktop.title;
+                countryCodes = countryCodes.OrderByDescending(x => library.originalArtists.Count(y => y.country == x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                SpawnDesktopBlueprint("CreateNewAlbumArtistCountry");
+                CloseDesktop(name);
+            });
             AddRegionGroup();
             if (CDesktop.title == "CreateNewAlbumReleaseCoverURL") AddPaddingRegion(() => AddLine("Release Cover"));
             else AddButtonRegion(() => AddLine("Release Cover"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL"); CloseDesktop(name); });
@@ -5077,6 +5142,7 @@ public class Blueprint
         {
             SetDesktopBackground("Backgrounds/Default");
             SpawnWindowBlueprint("CreateNewAlbumArtistCountry");
+            SpawnWindowBlueprint("CreateNewAlbumArtistCountryNextStep");
             SpawnWindowBlueprint("CreateNewAlbumArtistCountryScrollbarUp");
             SpawnWindowBlueprint("CreateNewAlbumArtistCountryScrollbar");
             SpawnWindowBlueprint("CreateNewAlbumArtistCountryScrollbarDown");
@@ -5087,6 +5153,7 @@ public class Blueprint
                 CloseDesktop(CDesktop.title);
                 SpawnDesktopBlueprint("CreateNewAlbumArtistName");
             });
+            AddMousePaginationHotkeys("CreateNewAlbumArtistCountry");
         }),
         new("CreateNewAlbumReleaseCoverURL", () =>
         {
@@ -5126,6 +5193,7 @@ public class Blueprint
             SpawnWindowBlueprint("MusicReleaseScrollbarDown");
             SpawnWindowBlueprint("CloseMusicRelease");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
             AddHotkey(Escape, () =>
             {
                 CloseDesktop(CDesktop.title);

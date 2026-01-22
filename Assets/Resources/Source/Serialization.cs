@@ -193,11 +193,15 @@ class Serialization
 
     public static string DecompressFromBase64(string base64)
     {
-        byte[] compressedBytes = Convert.FromBase64String(base64);
-        using var input = new MemoryStream(compressedBytes);
-        using var gzip = new GZipStream(input, CompressionMode.Decompress);
-        using var reader = new StreamReader(gzip, Encoding.UTF8);
-        return reader.ReadToEnd();
+        Span<byte> compressedBytes = new byte[base64.Length];
+        if (Convert.TryFromBase64String(base64, compressedBytes, out int bytesWritten))
+        {
+            using var input = new MemoryStream(compressedBytes.ToArray());
+            using var gzip = new GZipStream(input, CompressionMode.Decompress);
+            using var reader = new StreamReader(gzip, Encoding.UTF8);
+            return reader.ReadToEnd();
+        }
+        else return "Failed";
     }
 
     public static string StringFromPackage(ReleasePackage package)
@@ -208,6 +212,8 @@ class Serialization
 
     public static ReleasePackage PackageFromString(string data)
     {
-        return DeserializeObject<ReleasePackage>(DecompressFromBase64(data));
+        var uncompressed = DecompressFromBase64(data);
+        if (uncompressed == "Failed") return null;
+        return DeserializeObject<ReleasePackage>(uncompressed);
     }
 }

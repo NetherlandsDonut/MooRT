@@ -14,7 +14,7 @@ public class Cursor : MonoBehaviour
 
     void Update()
     {
-        if (!Starter.enteredFourthStage && !Starter.goToMenuOnFailedWWW || CDesktop == null) return;
+        if (!Starter.enteredFifthStage && !Starter.goToMenuOnFailedWWW || CDesktop == null) return;
         if (CDesktop.screenLocked) SetCursor(CursorType.Await);
         else if (render.sprite != null && IsNow(CursorType.Await)) SetCursor(CursorType.Default);
         var curScreenSpace = new Vector2(Input.mousePosition.x, Input.mousePosition.y);

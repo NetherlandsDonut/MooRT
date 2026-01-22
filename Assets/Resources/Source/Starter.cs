@@ -1,17 +1,21 @@
 ﻿using Kawazu;
-using System.Collections.Generic;
-using System.Diagnostics;
+
+using System.IO;
 using System.Linq;
+using System.Diagnostics;
+using System.Collections.Generic;
+
 using UnityEditor;
 using UnityEngine;
-using static Cursor;
-using static Defines;
-using static Font;
-using static Library;
-using static ProgramSettings;
-using static ReleaseRating;
+
 using static Root;
+using static Font;
+using static Cursor;
+using static Library;
+using static Defines;
+using static ReleaseRating;
 using static Serialization;
+using static ProgramSettings;
 
 public class Starter : MonoBehaviour
 {
@@ -35,10 +39,10 @@ public class Starter : MonoBehaviour
         //things such as damage / heal rolls or chance for effects to happen
         random = new System.Random();
 
-        kawazuConverter = new KawazuConverter("Assets\\Resources\\IpaDic");
-
         //Initialise storage for pagination
         staticPagination = new();
+
+        kawazuConverter = new KawazuConverter(Path.Combine(Application.streamingAssetsPath, "IpaDic"));
 
         //This is the font that will be used
         //by the game's UI system and is the basis of the program
@@ -85,6 +89,7 @@ public class Starter : MonoBehaviour
         if (useUnityData) localPrefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
         if (!System.IO.Directory.Exists(localPrefix + "MooRT_Data_3"))
             System.IO.Directory.CreateDirectory(localPrefix + "MooRT_Data_3");
+        UnityEngine.Debug.Log("Started loading cover bytes");
         var files = new List<string>();
         for (int i = 0; i <= library.originalReleases.Count + 1; i++) files.Add(localPrefix + "MooRT_Data_3\\" + i + ".png");
         var tasks = files.Select(x =>
@@ -93,24 +98,22 @@ public class Starter : MonoBehaviour
             else return System.Threading.Tasks.Task.FromResult<byte[]>(null);
         });
         coverBytes = await System.Threading.Tasks.Task.WhenAll(tasks);
-        enteredThirdStage = true;
+        UnityEngine.Debug.Log("Finished loading cover bytes");
+        enteredFifthStage = true;
     }
 
     public static bool enteredSecondStage = false;
     public static bool enteredThirdStage = false;
     public static bool enteredFourthStage = false;
+    public static bool enteredFifthStage = false;
     public static bool goToMenuOnFailedWWW = false;
 
     void Update()
     {
         if (enteredThirdStage && !enteredFourthStage)
         {
-            LoadLocalCovers();
-
             enteredFourthStage = true;
-
-            //Spawn the initial desktop so the user can perform all actions from there
-            SpawnDesktopBlueprint("LoadingScreen");
+            LoadLocalCovers();
         }
         else if (enteredSecondStage && urlContent != "" && !enteredThirdStage)
         {
@@ -135,6 +138,7 @@ public class Starter : MonoBehaviour
                 settings.FillNulls();
                 Serialize(settings, "settings", true);
             }
+            SpawnDesktopBlueprint("LoadingScreen");
         }
     }
 

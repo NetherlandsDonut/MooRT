@@ -30,6 +30,7 @@ public class Shatter : MonoBehaviour
     {
         this.speed = speed;
         this.delay = delay;
+        duration -= delay;
         if (r != null) render = r;
         else render = GetComponent<SpriteRenderer>();
         if (render == null) StartCoroutine(SelfDestruct(speed));
@@ -52,7 +53,7 @@ public class Shatter : MonoBehaviour
             duration += Time.deltaTime;
             
             //Update the color of the object making it fade away with time
-            render.color = Color.Lerp(startingColor, aimColor, duration * speed);
+            if (duration > 0) render.color = Color.Lerp(startingColor, aimColor, duration * speed);
 
             //Remove the object from the scene if it's already transparent
             if (render.color.a <= 0) Destroy(gameObject);

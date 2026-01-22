@@ -39,7 +39,6 @@ public class MusicRelease
         var newAlbum = new MusicRelease();
         newAlbum.name = String.createNewAlbumReleaseName.Value().Trim();
         if (newAlbum.name == "") newAlbum.name = "Untitled";
-        newAlbum.tracks = new();
         newAlbum.genres = ProcessGenres(String.createNewAlbumGenres.Value().Trim());
         newAlbum.languages = ProcessLanguages(String.createNewAlbumLanguages.Value().Trim());
         newAlbum.types = createNewAlbumReleaseTypeFiltering.ToList().Where(x => x.Value.Value()).Select(x => x.Key).ToList();
@@ -59,6 +58,30 @@ public class MusicRelease
         newCoverURL = String.createNewAlbumCoverURL.Value().Trim();
         newArtist = null;
         newRelease = newAlbum;
+        newRelease.tracks = new();
+        if (String.createNewAlbumTracklist.Value().Length > 0)
+        {
+            var data = String.createNewAlbumTracklist.Value().Replace("\\r", "").Replace("\r", "").Replace("\\n", "\n").Split("\n").ToArray();
+            for (int i = 0; i < data.Length; i++)
+                if (data[i].Length > 0 && i < data.Length - 1) //If this can be track name
+                {
+                    if ((i + 2 >= data.Length || !(data[i + 2].Length > 0 && data[i + 2].Split(":").Length == 2 && data[i + 2].Split(":")[1].Length == 2 && data[i + 2].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))) && data[i + 1].Length > 0 && data[i + 1].Split(":").Length == 2 && data[i + 1].Split(":")[1].Length == 2 && data[i + 1].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))
+                    {
+                        var newTrack = new Track();
+                        newTrack.name = data[i].Trim();
+                        if (newTrack.name.EndsWith("lyrics"))
+                            newTrack.name = newTrack.name[..^"lyrics".Length];
+                        var time = data[i + 1].Trim();
+                        if (!int.TryParse(time.Split(":")[0], out int minutes)) { }
+                        if (!int.TryParse(time.Split(":")[1], out int seconds)) { }
+                        newTrack.length = minutes * 60 + seconds;
+                        newTrack.duration = time;
+                        newRelease.tracks.Add(newTrack);
+                        i++;
+                    }
+                    else continue;
+                }
+        }
         var artistName = String.createNewAlbumArtistName.Value().Trim();
         var artistCountry = String.createNewAlbumArtistCountry.Value().Trim();
         artistName = artistName == "" || artistName == "-" ? "various artists" : artistName;
@@ -138,7 +161,7 @@ public class MusicRelease
     public async Task<string> NameFormatted()
     {
         if (string.IsNullOrWhiteSpace(name)) return name;
-        else return await Root.kawazuConverter.Convert(name, To.Romaji, Mode.Spaced, RomajiSystem.Hepburn);
+        else return await kawazuConverter.Convert(name, To.Romaji, Mode.Spaced, RomajiSystem.Hepburn);
     }
 
     //Type of this music release

@@ -12,12 +12,15 @@ public class FloatingText : MonoBehaviour
         var pixelList = new List<(int, int)>();
         var newObject = new GameObject("Text", typeof(LineText));
         newObject.transform.parent = transform;
-        //if (align == "Center")
-        //    newObject.transform.localPosition = new Vector2(Font.GetFontWithSpecificGlyph(text[0]).Length(text) / -2, 7);
-        //else if (align == "Left")
-        //    newObject.transform.localPosition = new Vector2(0, 7);f
-        //else if (align == "Right")
-        //    newObject.transform.localPosition = new Vector2(-Font.GetFontWithSpecificGlyph(text[0]).Length(text), 7);
+        var overallLength = -1;
+        foreach (var glyph in text)
+            overallLength += GetFontWithSpecificGlyph(glyph).Length(glyph) + 1;
+        if (align == "Center")
+            newObject.transform.localPosition = new Vector2(overallLength / -2, 7);
+        else if (align == "Left")
+            newObject.transform.localPosition = new Vector2(0, 7);
+        else if (align == "Right")
+            newObject.transform.localPosition = new Vector2(-overallLength, 7);
         var temp = newObject.GetComponent<LineText>();
         temp.Initialise(Root.CDesktop.LBWindow(), text, color == "" ? "Gray" : color, "FallingText");
         int length = 0;

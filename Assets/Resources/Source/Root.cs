@@ -1,14 +1,17 @@
 ﻿using Kawazu;
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Networking;
+
 using static Blueprint;
 using static ProgramSettings;
+
 using static Root.Anchor;
 using static Root.RegionBackgroundType;
 
@@ -826,8 +829,8 @@ public static class Root
         var newObject = new GameObject("FallingText", typeof(FloatingText));
         newObject.transform.parent = CDesktop.transform;
         newObject.transform.localPosition = position;
-        newObject.AddComponent<Rigidbody2D>().gravityScale = 2.0f;
-        newObject.AddComponent<Shatter>().Initiate(7);
+        newObject.AddComponent<Rigidbody2D>().gravityScale = 0.0f;
+        newObject.AddComponent<Shatter>().Initiate(3000, 10000);
         var temp = newObject.GetComponent<FloatingText>();
         temp.Initialise(text, color == "" ? "Gray" : color, align);
     }
@@ -948,12 +951,31 @@ public static class Root
         return tex;
     }
 
+    public static bool IsValidUrl(string url)
+    {
+        return Uri.TryCreate(url, UriKind.Absolute, out Uri uri)
+            && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
+    }
+
     public static IEnumerator GetTexture(string link)
     {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(link);
-        yield return www.SendWebRequest();
-
-        if (www == null || www.result != UnityWebRequest.Result.Success) returnToMenu = true;
+        link = link.Trim();
+        UnityWebRequest www = null;
+        if (!IsValidUrl(link) || link == "")
+        {
+            newCover = albumCovers["0"];
+            yield return null;
+        }
+        else
+        {
+            www = UnityWebRequestTexture.GetTexture(link);
+            yield return www.SendWebRequest();
+        }
+        if (www == null || www.result != UnityWebRequest.Result.Success)
+        {
+            newCover = albumCovers["0"];
+            returnToMenu = true;
+        }
         else
         {
             Texture2D tex = DownloadHandlerTexture.GetContent(www);
@@ -975,6 +997,7 @@ public static class Root
             {
                 Starter.enteredThirdStage = true;
                 Starter.enteredFourthStage = true;
+                Starter.enteredFifthStage = true;
                 SpawnDesktopBlueprint("LibraryRefetchFailure");
             }
             Serialization.urlContent = "x";

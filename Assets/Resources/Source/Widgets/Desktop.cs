@@ -90,7 +90,7 @@ public class Desktop : MonoBehaviour
     {
         if (CDesktop.title == "LoadingScreen")
         {
-            if (Starter.enteredFourthStage)
+            if (Starter.enteredFifthStage)
 
                 //If we still have to load more covers..
                 if (loadingScreenProgress < loadingScreenAim)
@@ -196,7 +196,7 @@ public class Desktop : MonoBehaviour
 
     public void Update()
     {
-        if (!Starter.enteredFourthStage) return;
+        if (!Starter.enteredFifthStage) return;
         if (title == "LoadCover")
         {
             if (!startedGettingCover)
@@ -223,7 +223,7 @@ public class Desktop : MonoBehaviour
             else if (returnToMenu)
             {
                 CloseDesktop("CreateNewAlbumPreviewLoadCover");
-                SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
+                SpawnDesktopBlueprint("CreateNewAlbumPreview");
             }
             else if (newCover != null)
             {
