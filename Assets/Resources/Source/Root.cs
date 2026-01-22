@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kawazu;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -63,6 +64,8 @@ public static class Root
     public static int refetchLibraryArtistCount;
     public static int refetchLibraryReleasesCount;
 
+    public static KawazuConverter kawazuConverter;
+
     public static Desktop CDesktop, LBDesktop;
 
     public static List<Desktop> desktops;
@@ -88,6 +91,8 @@ public static class Root
     public static Dictionary<string, Bool> genreFiltering;
 
     public static Dictionary<string, Bool> releaseTypeFiltering;
+
+    public static Dictionary<string, Bool> createNewAlbumReleaseTypeFiltering;
 
     public static Dictionary<int, Bool> trackAmountFiltering;
 

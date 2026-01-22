@@ -32,7 +32,7 @@ public class InputLine : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         inputLineWindow = region.regionGroup.window.title;
         inputDestination = text.inputLine.text.text;
-        inputLineMarker = marker == 0 ? text.inputLine.text.text.value.Length : marker;
+        inputLineMarker = marker == 0 || marker > text.inputLine.text.text.value.Length ? text.inputLine.text.text.value.Length : marker;
         region.regionGroup.window.Respawn();
     }
     

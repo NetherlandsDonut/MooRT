@@ -1,16 +1,19 @@
 ﻿
 public class ReleasePackage
 {
-    public ReleasePackage()
+    public ReleasePackage(MusicRelease musicRelease, string artistName, string artistCountry, string coverURL)
     {
-
+        this.musicRelease = musicRelease;
+        this.artistName = artistName;
+        this.artistCountry = artistCountry;
+        this.coverURL = coverURL;
     }
 
-    MusicRelease musicRelease;
+    public MusicRelease musicRelease;
 
-    string artistName;
+    public string artistName;
 
-    string artistCountry;
+    public string artistCountry;
 
-    string coverURL;
+    public string coverURL;
 }

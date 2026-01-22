@@ -1,18 +1,17 @@
-﻿using System.Linq;
-using System.Diagnostics;
+﻿using Kawazu;
 using System.Collections.Generic;
-
+using System.Diagnostics;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
-
-using static Root;
-using static Font;
 using static Cursor;
-using static Library;
 using static Defines;
-using static Serialization;
-using static ReleaseRating;
+using static Font;
+using static Library;
 using static ProgramSettings;
+using static ReleaseRating;
+using static Root;
+using static Serialization;
 
 public class Starter : MonoBehaviour
 {
@@ -35,6 +34,8 @@ public class Starter : MonoBehaviour
         //This variable stores random number generator for
         //things such as damage / heal rolls or chance for effects to happen
         random = new System.Random();
+
+        kawazuConverter = new KawazuConverter("Assets\\Resources\\IpaDic");
 
         //Initialise storage for pagination
         staticPagination = new();

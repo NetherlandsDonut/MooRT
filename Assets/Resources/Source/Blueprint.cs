@@ -2,7 +2,10 @@
 using System.Linq;
 using System.Collections.Generic;
 
+using Kawazu;
+
 using UnityEngine;
+
 using static UnityEngine.KeyCode;
 
 using static Root;
@@ -23,7 +26,6 @@ using static RatingStatus;
 using static ProgramSettings;
 using static ReleaseRating;
 using static TrackAmount;
-using System.IO.Compression;
 
 public class Blueprint
 {
@@ -290,6 +292,15 @@ public class Blueprint
                     }
                 }
                 else SpawnDesktopBlueprint("MusicRelease");
+            }));
+        }),
+        new("CreateNewAlbumClose", () => {
+            SetAnchor(TopRight, -19, -19);
+            AddRegionGroup();
+            AddPaddingRegion(() => AddSmallButton("OtherClose", (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("Menu");
             }));
         }),
 
@@ -2729,12 +2740,29 @@ public class Blueprint
                         }
                     }
                 });
-                //AddButtonRegion(() => AddLine("Paste new release"), (h) =>
-                //{
-                //    newRelease = Serialization.ReleaseFromString(GUIUtility.systemCopyBuffer);
-                //    SpawnDesktopBlueprint("AcceptNewAlbum");
-                //});
+                AddButtonRegion(() => AddLine("Paste new release"), (h) =>
+                {
+                    var package = Serialization.PackageFromString(GUIUtility.systemCopyBuffer);
+                    newRelease = package.musicRelease;
+                    //= package.coverURL;
+                    newCoverURL = package.coverURL;
+                    SpawnDesktopBlueprint("AcceptNewAlbum");
+                });
             }
+            AddButtonRegion(() => AddLine("Create new release"), (h) =>
+            {
+                String.searchNewAlbumCountry.Set("");
+                String.createNewAlbumReleaseName.Set("");
+                String.createNewAlbumReleaseDate.Set("");
+                String.createNewAlbumGenres.Set("");
+                String.createNewAlbumLanguages.Set("");
+                String.createNewAlbumTracklist.Set("");
+                String.createNewAlbumArtistName.Set("");
+                String.createNewAlbumArtistCountry.Set("");
+                String.createNewAlbumCoverURL.Set("");
+                createNewAlbumReleaseTypeFiltering = releaseTypes.ToDictionary(x => x.name, x => new Bool(false));
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseName");
+            });
             AddButtonRegion(() => AddLine("Open new release file"), (h) =>
             {
                 Serialization.OpenTXT("newRelease");
@@ -3901,6 +3929,397 @@ public class Blueprint
                 SpawnDesktopBlueprint("MusicReleases");
             });
         }),
+
+        //Create new album
+        new("CreateNewAlbumReleaseName", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Release name:", "DarkGray");
+                AddInputLine(String.createNewAlbumReleaseName);
+            });
+            var sorted = library.originalReleases.OrderBy(x => x.name.Length).ToList();
+            var fitting = String.createNewAlbumReleaseName.Value() == "" ? new() : sorted.FindAll(x => x.GetName().ToLower().Contains(String.createNewAlbumReleaseName.Value().ToLower()));
+            fitting = fitting.OrderBy(x => x.name.Length).ToList();
+            AddEmptyRegion();
+            AddHeaderRegion(() =>
+            {
+                AddLine("Similiar album names:", "DarkGray");
+            });
+            for (int i = 0; i < 5; i++)
+            {
+                var index = i;
+                if (fitting.Count > i)
+                    AddPaddingRegion(() =>
+                    {
+                        AddLine(fitting[index].name);
+                        AddLine(fitting[index].artist, "DarkGray", "Right");
+                    });
+                else
+                    AddPaddingRegion(() =>
+                    {
+                        AddLine("");
+                    });
+            }
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseDate");
+            });
+        }),
+        new("CreateNewAlbumReleaseDate", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Release date:", "DarkGray");
+                AddInputLine(String.createNewAlbumReleaseDate);
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseType");
+            });
+        }),
+        new("CreateNewAlbumReleaseType", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() => AddLine("Release type:", "DarkGray"));
+            foreach (var releaseType in releaseTypes)
+                AddPaddingRegion(() =>
+                {
+                    AddLine(releaseType.name);
+                    AddCheckbox(createNewAlbumReleaseTypeFiltering[releaseType.name], createNewAlbumReleaseTypeFiltering.Select(x => x.Value).ToList());
+                });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseGenres");
+            });
+        }),
+        new("CreateNewAlbumReleaseGenres", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Release genres:", "DarkGray");
+                AddInputLine(String.createNewAlbumGenres);
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseLanguages");
+            });
+        }),
+        new("CreateNewAlbumReleaseLanguages", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Release languages:", "DarkGray");
+                AddInputLine(String.createNewAlbumLanguages);
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Leave the input empty in case of lack of vocals.", "DarkGray");
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumArtistName");
+            });
+        }),
+        new("CreateNewAlbumArtistName", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Artist name:", "DarkGray");
+                AddInputLine(String.createNewAlbumArtistName);
+            });
+            var sorted = library.originalArtists.OrderBy(x => x.name.Length).ToList();
+            var fitting = String.createNewAlbumArtistName.Value() == "" ? new() : sorted.FindAll(x => x.name.ToLower().Contains(String.createNewAlbumArtistName.Value().ToLower()));
+            fitting = fitting.OrderBy(x => x.name.Length).ToList();
+            AddEmptyRegion();
+            AddHeaderRegion(() =>
+            {
+                AddLine("Similiar artist names:", "DarkGray");
+            });
+            for (int i = 0; i < 5; i++)
+            {
+                var index = i;
+                if (fitting.Count > i)
+                    AddButtonRegion(() =>
+                    {
+                        AddLine(fitting[index].name);
+                        AddLine(fitting[index].country, "DarkGray", "Right");
+                    },
+                    (h) =>
+                    {
+                        String.createNewAlbumArtistName.Set(fitting[index].name);
+                        String.createNewAlbumArtistCountry.Set(fitting[index].country);
+                        CloseDesktop(CDesktop.title);
+                        SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
+                    });
+                else
+                    AddPaddingRegion(() =>
+                    {
+                        AddLine("");
+                    });
+            }
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumArtistCountry");
+            });
+        }),
+        new("CreateNewAlbumArtistCountry", () => {
+            var rowAmount = 15;
+            var thisWindow = CDesktop.LBWindow();
+            var list = countryCodes.Select(x => x.Key).ToList();
+            if (String.searchNewAlbumCountry.Value() != "")
+                list = list.Where(x => x.ToLower().Contains(String.searchNewAlbumCountry.Value().ToLower())).ToList();
+            CDesktop.quickInputWindow = thisWindow;
+            thisWindow.SetPaginationSingleStep(() => list.Count, rowAmount);
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(440);
+            AddPaddingRegion(() => { AddLine("Search:", "DarkGray"); AddInputLine(String.searchNewAlbumCountry); AddSmallButton("OtherReverse", (h) => { String.searchNewAlbumCountry.Set(""); CDesktop.RespawnAll(); }); });
+            AddRegionGroup();
+            SetRegionGroupWidth(37);
+            AddButtonRegion(() => AddLine("#", "", "Right"),
+                (h) =>
+                {
+                    countries.Reverse();
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddHeaderRegion(() => AddLine(1 + index + thisWindow.pagination() + "", "", "Right"));
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
+            }
+            AddPaddingRegion(() => AddLine(""));
+            AddRegionGroup();
+            SetRegionGroupWidth(219);
+            AddButtonRegion(() => AddLine("Name"),
+                (h) =>
+                {
+                    countries = (lastSort == "Name" ? countries.OrderByDescending(x => x.name) : countries.OrderBy(x => x.name)).ToList();
+                    lastSort = lastSort == "Name" ? "" : "Name";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var country = list[index + thisWindow.pagination()];
+                        AddLine(country);
+                    },
+                    (h) =>
+                    {
+                        var country = list[index + thisWindow.pagination()];
+                        String.createNewAlbumArtistCountry.Set(country);
+                        CloseDesktop(CDesktop.title);
+                        SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
+                    });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
+            }
+            AddPaginationLine();
+            AddRegionGroup();
+            SetRegionGroupWidth(55);
+            AddButtonRegion(() => AddLine("Short"),
+                (h) =>
+                {
+                    countries = (lastSort == "Name" ? countries.OrderByDescending(x => x.name) : countries.OrderBy(x => x.name)).ToList();
+                    lastSort = lastSort == "Name" ? "" : "Name";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var country = list[index + thisWindow.pagination()];
+                        AddLine(countryCodes[country], "", "Right");
+                    });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
+            }
+            AddPaddingRegion(() => AddLine(""));
+            AddRegionGroup();
+            SetRegionGroupWidth(55);
+            AddButtonRegion(() => AddLine("Artists"),
+                (h) =>
+                {
+                    countries = (lastSort == "Artists" ? countries.OrderBy(x => x.artists.Count) : countries.OrderByDescending(x => x.artists.Count)).ToList();
+                    lastSort = lastSort == "Artists" ? "" : "Artists";
+                }
+            );
+            for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+            {
+                var index = i;
+                if (list.Count > index + thisWindow.pagination())
+                    AddButtonRegion(() =>
+                    {
+                        var country = list[index + thisWindow.pagination()];
+                        AddLine(library.originalArtists.Count(x => x.country == country) + "", "", "Right");
+                    },
+                    (h) => { });
+                else
+                    AddPaddingRegion(() => { AddLine(""); });
+            }
+            AddPaddingRegion(() => AddLine(""));
+        }),
+        new("CreateNewAlbumArtistCountryScrollbarUp", () => {
+            SetAnchor(200, 142);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            AddPaddingRegion(() =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "CreateNewAlbumArtistCountry");
+                if (window.pagination() > 0)
+                    AddSmallButton("OtherPageUp", (h) =>
+                    {
+                        window.DecrementPagination();
+                        CDesktop.RespawnAll();
+                        Respawn("CreateNewAlbumArtistCountryScrollbarUp", true);
+                        Respawn("CreateNewAlbumArtistCountryScrollbar", true);
+                        Respawn("CreateNewAlbumArtistCountryScrollbarDown", true);
+                    });
+                else AddSmallButton("OtherPageUpOff");
+            });
+        }),
+        new("CreateNewAlbumArtistCountryScrollbar", () => {
+            SetAnchor(200, 123);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            SetRegionGroupHeight(281);
+            AddPaddingRegion(() => AddLine(""));
+        }),
+        new("CreateNewAlbumArtistCountryScrollbarDown", () => {
+            SetAnchor(200, -162);
+            AddRegionGroup();
+            SetRegionGroupWidth(19);
+            AddPaddingRegion(() =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "CreateNewAlbumArtistCountry");
+                if (window.pagination() < window.maxPagination())
+                    AddSmallButton("OtherPageDown", (h) =>
+                    {
+                        window.IncrementPagination();
+                        CDesktop.RespawnAll();
+                        Respawn("CreateNewAlbumArtistCountryScrollbarUp", true);
+                        Respawn("CreateNewAlbumArtistCountryScrollbar", true);
+                        Respawn("CreateNewAlbumArtistCountryScrollbarDown", true);
+                    });
+                else AddSmallButton("OtherPageDownOff");
+            });
+        }),
+        new("CreateNewAlbumReleaseCoverURL", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Album cover URL:", "DarkGray");
+                AddInputLine(String.createNewAlbumCoverURL);
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Finalize", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumPreview");
+            });
+        }),
+        new("CreateNewAlbumMenuBar", () => {
+            SetAnchor(Bottom, 0, 10);
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumReleaseName") AddPaddingRegion(() => AddLine("Release Name"));
+            else AddButtonRegion(() => AddLine("Release Name"), (h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseName"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumReleaseDate") AddPaddingRegion(() => AddLine("Release Date"));
+            else AddButtonRegion(() => AddLine("Release Date"), (h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseDate"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumReleaseType") AddPaddingRegion(() => AddLine("Release Type"));
+            else AddButtonRegion(() => AddLine("Release Type"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseType"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumReleaseGenres") AddPaddingRegion(() => AddLine("Release Genres"));
+            else AddButtonRegion(() => AddLine("Release Genres"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseGenres"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumReleaseLanguages") AddPaddingRegion(() => AddLine("Release Languages"));
+            else AddButtonRegion(() => AddLine("Release Languages"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseLanguages"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumReleaseTracklist") AddPaddingRegion(() => AddLine("Release Tracklist"));
+            else AddButtonRegion(() => AddLine("Release Tracklist"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseTracklist"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumArtistName") AddPaddingRegion(() => AddLine("Artist Name"));
+            else AddButtonRegion(() => AddLine("Artist Name"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumArtistName"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumArtistCountry") AddPaddingRegion(() => AddLine("Artist Country"));
+            else AddButtonRegion(() => AddLine("Artist Country"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumArtistCountry"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumReleaseCoverURL") AddPaddingRegion(() => AddLine("Release Cover"));
+            else AddButtonRegion(() => AddLine("Release Cover"),(h) => { var name = CDesktop.title; SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL"); CloseDesktop(name); });
+            AddRegionGroup();
+            if (CDesktop.title == "CreateNewAlbumPreview") AddPaddingRegion(() => AddLine("Preview"));
+            else AddButtonRegion(() => AddLine("Preview"),(h) =>
+            {
+                var name = CDesktop.title;
+                newRelease = new MusicRelease();
+                //newRelease.name = String.createNewAlbumReleaseName;
+                //newRelease.releaseDate = String.createNewAlbumReleaseName;
+                SpawnDesktopBlueprint("CreateNewAlbumPreview");
+                CloseDesktop(name);
+            });
+        }),
     };
 
     public static List<Blueprint> desktopBlueprints = new()
@@ -4435,6 +4854,116 @@ public class Blueprint
             {
                 CloseDesktop(CDesktop.title);
                 SpawnDesktopBlueprint("MusicReleases");
+            });
+        }),
+        new("CreateNewAlbumReleaseName", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumReleaseName");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumReleaseDate", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumReleaseDate");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumReleaseType", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumReleaseType");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumReleaseGenres", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumReleaseGenres");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumReleaseLanguages", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumReleaseLanguages");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumReleaseTracklist", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumReleaseTracklist");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumArtistName", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumArtistName");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumArtistCountry", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumArtistCountry");
+            SpawnWindowBlueprint("CreateNewAlbumArtistCountryScrollbarUp");
+            SpawnWindowBlueprint("CreateNewAlbumArtistCountryScrollbar");
+            SpawnWindowBlueprint("CreateNewAlbumArtistCountryScrollbarDown");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumReleaseCoverURL", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("CreateNewAlbumReleaseCoverURL");
+            SpawnWindowBlueprint("CreateNewAlbumClose");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+        }),
+        new("CreateNewAlbumPreview", () =>
+        {
+            if (newRelease.pallete == null)
+                newRelease.GeneratePallete(newCover);
+            SetDesktopBackgroundAsGradient(newRelease.pallete);
+            SpawnWindowBlueprint("MusicRelease");
+            SpawnWindowBlueprint("MusicReleaseCover");
+            SpawnWindowBlueprint("MusicReleaseDescription");
+            SpawnWindowBlueprint("MusicReleaseBottomLine");
+            SpawnWindowBlueprint("MusicReleaseScrollbarUp");
+            SpawnWindowBlueprint("MusicReleaseScrollbar");
+            SpawnWindowBlueprint("MusicReleaseScrollbarDown");
+            SpawnWindowBlueprint("CloseMusicRelease");
+            SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                CDesktop.RespawnAll();
+            });
+            AddHotkey(PageUp, () =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "MusicRelease");
+                if (window.pagination() > 0)
+                {
+                    window.DecrementPagination();
+                    CDesktop.RespawnAll();
+                    Respawn("MusicReleaseScrollbarUp");
+                    Respawn("MusicReleaseScrollbar");
+                    Respawn("MusicReleaseScrollbarDown");
+                }
+            });
+            AddHotkey(PageDown, () =>
+            {
+                var window = CDesktop.windows.Find(x => x.title == "MusicRelease");
+                if (window.pagination() < window.maxPagination())
+                {
+                    window.IncrementPagination();
+                    CDesktop.RespawnAll();
+                    Respawn("MusicReleaseScrollbarUp");
+                    Respawn("MusicReleaseScrollbar");
+                    Respawn("MusicReleaseScrollbarDown");
+                }
             });
         }),
     };

@@ -19,7 +19,7 @@ public class String
     public string RemoveNextOne(int i) => value = value.Remove(i, 1);
 
     public void Clear() => value = "";
-    public void Paste() => value = GUIUtility.systemCopyBuffer.Replace("\b", "").Replace("\r", "").Replace("\n", "").Trim();
+    public void Paste() => value = GUIUtility.systemCopyBuffer.Replace("\b", "").Trim();
     public void Set(string value) => backupValue = this.value = value;
     public void Confirm() => backupValue = value;
     public void Reset() => value = backupValue;
@@ -40,4 +40,13 @@ public class String
     public static String searchGenre = new() { inputType = Everything };
     public static String searchCountry = new() { inputType = Everything };
     public static String searchLanguage = new() { inputType = Everything };
+    public static String searchNewAlbumCountry = new() { inputType = Everything };
+    public static String createNewAlbumReleaseName = new() { inputType = Everything };
+    public static String createNewAlbumReleaseDate = new() { inputType = Everything };
+    public static String createNewAlbumGenres = new() { inputType = Everything };
+    public static String createNewAlbumLanguages = new() { inputType = Everything };
+    public static String createNewAlbumTracklist = new() { inputType = Everything };
+    public static String createNewAlbumArtistName = new() { inputType = Everything };
+    public static String createNewAlbumArtistCountry = new() { inputType = Everything };
+    public static String createNewAlbumCoverURL = new() { inputType = Everything };
 }
