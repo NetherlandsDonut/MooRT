@@ -521,12 +521,20 @@ public class Blueprint
                     }
                 }
                 WriteWrap(region, "This release has", "DarkGray");
-                WriteWrap(region, musicRelease.tracks.Count + " tracks", "Gray");
-                WriteWrap(region, "which", "DarkGray");
-                WriteWrap(region, "add up", "DarkGray");
-                WriteWrap(region, "to a", "DarkGray");
-                WriteWrap(region, "runtime of", "DarkGray");
-                WriteWrap(region, musicRelease.duration + "m", "Gray");
+                if (musicRelease.tracks.Count == 0)
+                {
+                    WriteWrap(region, "no", "DarkGray");
+                    WriteWrap(region, "tracks", "DarkGray");
+                }
+                else
+                {
+                    WriteWrap(region, musicRelease.tracks.Count + " tracks", "Gray");
+                    WriteWrap(region, "which", "DarkGray");
+                    WriteWrap(region, "add up", "DarkGray");
+                    WriteWrap(region, "to a", "DarkGray");
+                    WriteWrap(region, "runtime of", "DarkGray");
+                    WriteWrap(region, musicRelease.duration + "m", "Gray");
+                }
                 AddText(".", "DarkGray");
                 SetRegionAsGroupExtender();
             });
@@ -629,7 +637,8 @@ public class Blueprint
             SetRegionGroupHeight(281);
             AddPaddingRegion(() =>
             {
-                if (CDesktop.title == "AcceptNewAlbum") SetRegionBackgroundAsImage(newCover);
+                if (CDesktop.title == "AcceptNewAlbum" || CDesktop.title == "CreateNewAlbumPreview")
+                    SetRegionBackgroundAsImage(newCover);
                 else if (albumCovers.ContainsKey(musicRelease.ID + ""))
                 {
                     SetRegionBackgroundAsImage(albumCovers[musicRelease.ID + ""]);
@@ -2747,6 +2756,8 @@ public class Blueprint
             }
             AddButtonRegion(() => AddLine("Create new release"), (h) =>
             {
+                newCover = null;
+                newRelease = null;
                 String.searchNewAlbumCountry.Set("");
                 String.createNewAlbumReleaseName.Set("");
                 String.createNewAlbumReleaseDate.Set("");
@@ -4194,6 +4205,11 @@ public class Blueprint
                 {
                     AddLine("Type the artist name or choose one of the existing artists below.", "DarkGray");
                 });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Artist's name left empty will result in setting the artist as various artists.", "DarkGray");
+                AddLine("Country choice will not be taken into consideration then.", "DarkGray");
+            });
             AddEmptyRegion();
             for (int i = 0; i < 5; i++)
             {
@@ -4246,7 +4262,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("#", "", "Right"),
                 (h) =>
                 {
-                    countries.Reverse();
+                    countryCodes.Reverse();
                 }
             );
             for (int i = thisWindow.pagination() == 0 ? 0 : list.Count - thisWindow.pagination() < rowAmount ? list.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
@@ -4263,7 +4279,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Name"),
                 (h) =>
                 {
-                    countries = (lastSort == "Name" ? countries.OrderByDescending(x => x.name) : countries.OrderBy(x => x.name)).ToList();
+                    countryCodes = (lastSort == "Name" ? countryCodes.OrderByDescending(x => x.Key) : countryCodes.OrderBy(x => x.Key)).ToDictionary(x => x.Key, x => x.Value);
                     lastSort = lastSort == "Name" ? "" : "Name";
                 }
             );
@@ -4292,7 +4308,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Short"),
                 (h) =>
                 {
-                    countries = (lastSort == "Name" ? countries.OrderByDescending(x => x.name) : countries.OrderBy(x => x.name)).ToList();
+                    countryCodes = (lastSort == "Name" ? countryCodes.OrderByDescending(x => x.Value) : countryCodes.OrderBy(x => x.Value)).ToDictionary(x => x.Key, x => x.Value);
                     lastSort = lastSort == "Name" ? "" : "Name";
                 }
             );
@@ -4314,7 +4330,7 @@ public class Blueprint
             AddButtonRegion(() => AddLine("Artists"),
                 (h) =>
                 {
-                    countries = (lastSort == "Artists" ? countries.OrderBy(x => x.artists.Count) : countries.OrderByDescending(x => x.artists.Count)).ToList();
+                    countryCodes = (lastSort == "Artists" ? countryCodes.OrderBy(x => library.originalArtists.Count(y => y.country == x.Key)) : countryCodes.OrderByDescending(x => library.originalArtists.Count(y => y.country == x.Key))).ToDictionary(x => x.Key, x => x.Value);
                     lastSort = lastSort == "Artists" ? "" : "Artists";
                 }
             );
@@ -4334,7 +4350,7 @@ public class Blueprint
             AddPaddingRegion(() => AddLine(""));
         }),
         new("CreateNewAlbumArtistCountryScrollbarUp", () => {
-            SetAnchor(200, 142);
+            SetAnchor(173, 152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -4353,14 +4369,14 @@ public class Blueprint
             });
         }),
         new("CreateNewAlbumArtistCountryScrollbar", () => {
-            SetAnchor(200, 123);
+            SetAnchor(173, 133);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("CreateNewAlbumArtistCountryScrollbarDown", () => {
-            SetAnchor(200, -162);
+            SetAnchor(173, -152);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -4399,8 +4415,9 @@ public class Blueprint
             },
             (h) =>
             {
+                CreatePreviewRelease();
                 CloseDesktop(CDesktop.title);
-                SpawnDesktopBlueprint("CreateNewAlbumPreview");
+                SpawnDesktopBlueprint("CreateNewAlbumPreviewLoadCover");
             });
         }),
         new("CreateNewAlbumMenuBar", () => {
@@ -4436,12 +4453,9 @@ public class Blueprint
             if (CDesktop.title == "CreateNewAlbumPreview") AddPaddingRegion(() => AddLine("Preview"));
             else AddButtonRegion(() => AddLine("Preview"),(h) =>
             {
-                var name = CDesktop.title;
-                newRelease = new MusicRelease();
-                //newRelease.name = String.createNewAlbumReleaseName;
-                //newRelease.releaseDate = String.createNewAlbumReleaseName;
-                SpawnDesktopBlueprint("CreateNewAlbumPreview");
-                CloseDesktop(name);
+                CreatePreviewRelease();
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumPreviewLoadCover");
             });
         }),
     };
@@ -5100,9 +5114,9 @@ public class Blueprint
         }),
         new("CreateNewAlbumPreview", () =>
         {
-            if (newRelease.pallete == null)
-                newRelease.GeneratePallete(newCover);
-            SetDesktopBackgroundAsGradient(newRelease.pallete);
+            if (musicRelease.pallete == null)
+                musicRelease.GeneratePallete(newCover);
+            SetDesktopBackgroundAsGradient(musicRelease.pallete);
             SpawnWindowBlueprint("MusicRelease");
             SpawnWindowBlueprint("MusicReleaseCover");
             SpawnWindowBlueprint("MusicReleaseDescription");

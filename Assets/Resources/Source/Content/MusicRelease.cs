@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using static Root;
 using static ReleaseRating;
 
 public class MusicRelease
@@ -31,6 +32,85 @@ public class MusicRelease
         else if (discs == "0") discs = "";
         AsignFormattedName();
         artist.AsignFormattedName();
+    }
+
+    public static MusicRelease CreatePreviewRelease()
+    {
+        var newAlbum = new MusicRelease();
+        newAlbum.name = String.createNewAlbumReleaseName.Value().Trim();
+        if (newAlbum.name == "") newAlbum.name = "Untitled";
+        newAlbum.tracks = new();
+        newAlbum.genres = ProcessGenres(String.createNewAlbumGenres.Value().Trim());
+        newAlbum.languages = ProcessLanguages(String.createNewAlbumLanguages.Value().Trim());
+        newAlbum.types = createNewAlbumReleaseTypeFiltering.ToList().Where(x => x.Value.Value()).Select(x => x.Key).ToList();
+        if (newAlbum.types == null || newAlbum.types.Count == 0) newAlbum.types = new() { "Studio album" };
+        var dateTrim = String.createNewAlbumReleaseDate.Value().Trim().Replace("-", ".");
+        if (dateTrim.Contains(" "))
+        {
+            var split = dateTrim.Split(" ").ToList();
+            var day = split.Find(x => x.Length <= 2 && x.All(x => char.IsDigit(x)));
+            var month = split.Find(x => x.Length >= 3 && x.All(x => !char.IsDigit(x)));
+            var year = split.Find(x => x.Length == 4 && x.All(x => char.IsDigit(x)));
+            var reverseMonths = monthNames.ToDictionary(x => x.Value, x => x.Key);
+            newAlbum.releaseDate = year + "." + reverseMonths[month].ToString("00") + (day != null ? "." + int.Parse(day).ToString("00") : "");
+        }
+        else newAlbum.releaseDate = dateTrim;
+        newAlbum.discs = "";
+        newCoverURL = String.createNewAlbumCoverURL.Value().Trim();
+        newArtist = null;
+        newRelease = newAlbum;
+        var artistName = String.createNewAlbumArtistName.Value().Trim();
+        var artistCountry = String.createNewAlbumArtistCountry.Value().Trim();
+        artistName = artistName == "" || artistName == "-" ? "various artists" : artistName;
+        artistCountry = artistName == "various artists" || artistCountry == "" ? "-" : artistCountry;
+        artistFind = Library.library.originalArtists.Find(x => x.name == artistName && (x.country == artistCountry || artistCountry == ""));
+        if (artistFind == null)
+        {
+            artistFind = new Artist()
+            {
+                ID = Library.library.originalArtists.Count + 1,
+                name = artistName,
+                pronoun = "they",
+                country = artistCountry,
+                releases = new()
+            };
+            newArtist = artistFind;
+        }
+        newRelease.ID = Library.library.originalReleases.Count + 1;
+        newRelease.coverDescriptors = new() { };
+        if (newRelease.releaseDate.Length < 4) newRelease.releaseDate = "2000";
+        newRelease.format = int.Parse(newRelease.releaseDate[..4]) >= 1990 ? "digital" : "analog";
+        newRelease.artist = artistFind.name;
+        newRelease.artistID = artistFind.ID;
+        newRelease.Initialise(artistFind);
+        musicRelease = newRelease;
+        return newAlbum;
+
+        List<string> ProcessGenres(string line)
+        {
+            if (line == "") return new();
+            var list = line.Split(",").Select(x => ProcessGenre(x.Trim())).ToList();
+            return list;
+
+            string ProcessGenre(string genre)
+            {
+                var capitalised = string.Join(' ', genre.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
+                return capitalised;
+            }
+        }
+
+        List<string> ProcessLanguages(string line)
+        {
+            if (line == "") return new();
+            var list = line.Split(",").Select(x => ProcessLanguage(x.Trim())).ToList();
+            return list;
+
+            string ProcessLanguage(string language)
+            {
+                var capitalised = string.Join(' ', language.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
+                return capitalised;
+            }
+        }
     }
 
     //Asigns the formatted name for the album
