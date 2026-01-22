@@ -116,7 +116,7 @@ public class Desktop : MonoBehaviour
                     }
                     else for (int i = atStart; i < loadingScreenAim; i++)
                         {
-                            if (i - 20 >= atStart) break;
+                            if (i - 10 >= atStart) break;
                             if (waitForTexture && returnToMenu)
                             {
                                 waitForTexture = false;

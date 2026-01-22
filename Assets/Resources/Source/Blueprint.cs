@@ -596,6 +596,27 @@ public class Blueprint
                 AddLine("#" + musicRelease.ID, "DimGray", "Right");
                 if (CDesktop.title == "CreateNewAlbumPreview")
                 {
+                    if (Serialization.libraryExpansion)
+                        AddSmallButton("OtherNew", (h) =>
+                        {
+                            library.originalReleases.Add(newRelease);
+                            if (newArtist != null)
+                            {
+                                newArtist.releases.Add(newRelease);
+                                library.originalArtists.Add(newArtist);
+                            }
+                            else artistFind.releases.Add(newRelease);
+                            albumCovers.Add(newRelease.ID + "", newCover);
+                            var prefix = "";
+                            if (Serialization.useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
+                            System.IO.File.WriteAllBytes(prefix + "MooRT_Data_3/" + newRelease.ID + ".png", newCover.texture.EncodeToPNG());
+                            newArtist = null;
+                            newRelease = null;
+                            artistFind = null;
+                            Starter.SetUpLibrary();
+                            CloseDesktop(CDesktop.title);
+                            SpawnDesktopBlueprint("Menu");
+                        });
                     AddSmallButton("OtherBigger", (h) =>
                     {
                         GUIUtility.systemCopyBuffer = Serialization.StringFromPackage(new(musicRelease, musicRelease.artist, musicRelease.country, newCoverURL));
@@ -2613,186 +2634,43 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(180);
             AddHeaderRegion(() => AddLine("Library management:"));
-            if (Serialization.libraryExpansion)
+            AddButtonRegion(() => AddLine("Paste new release"), (h) =>
             {
-                AddButtonRegion(() => AddLine("Import new release"), (h) =>
-                {
-                    var failed = -1;
-                    var data = Serialization.ReadTXT("newRelease");
-                    var possibleTypes = new List<string> { "Studio album", "Live album", "Extended play", "Compilation album", "Demo recording", "Soundtrack", "Remix album" };
-                    var artistName = "";
-                    var artistCountry = "none";
-                    var newAlbum = new MusicRelease();
-                    newAlbum.tracks = new();
-                    for (int i = 0; i < data.Length; i++)
-                    {
-                        if (i == 2)
-                            if (data[i].Length > 0) artistName = data[i];
-                            else { failed = i; break; };
-                        if (i == 8)
-                            if (data[i].Length > 0) artistCountry = data[i];
-                            else if (!library.originalArtists.Exists(x => x.name == artistName)) { failed = i; break; };
-                        if (i == 14)
-                            if (data[i].Length > 0) newAlbum.name = data[i];
-                            else { failed = i; break; };
-                        if (i == 20)
-                            if (data[i].Length > 0)
-                            {
-                                var trim = data[i].Trim();
-                                if (trim.Contains(" "))
-                                {
-                                    var split = trim.Split(" ").ToList();
-                                    var day = split.Find(x => x.Length <= 2 && x.All(x => char.IsDigit(x)));
-                                    var month = split.Find(x => x.Length >= 3 && x.All(x => !char.IsDigit(x)));
-                                    var year = split.Find(x => x.Length == 4 && x.All(x => char.IsDigit(x)));
-                                    var reverseMonths = monthNames.ToDictionary(x => x.Value, x => x.Key);
-                                    newAlbum.releaseDate = year + "." + reverseMonths[month].ToString("00") + (day != null ? "." + int.Parse(day).ToString("00") : "");
-                                }
-                                else newAlbum.releaseDate = data[i];
-                            }
-                            else { failed = i; break; };
-                        if (i == 26)
-                            if (data[i].Length > 0) newCoverURL = data[i];
-                            else { failed = i; break; };
-                        if (i == 32)
-                            if (data[i].Length > 0)
-                            {
-                                var types = ProcessTypes(data[i]);
-                                if (types.All(x => possibleTypes.Contains(x))) newAlbum.types = types;
-                                else { failed = 320; break; };
-                            }
-                            else { failed = i; break; };
-                        if (i == 38)
-                            if (data[i].Length > 0) newAlbum.genres = ProcessGenres(data[i]);
-                            else newAlbum.genres = new();
-                        if (i == 44)
-                            if (data[i].Length > 0) newAlbum.languages = ProcessLanguages(data[i]);
-                            else newAlbum.languages = new();
-                        if (i >= 50)
-                            if (data[i].Length > 0 && i < data.Length - 1) //If this can be track name
-                            {
-                                if ((i + 2 >= data.Length || !(data[i + 2].Length > 0 && data[i + 2].Split(":").Length == 2 && data[i + 2].Split(":")[1].Length == 2 && data[i + 2].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))) && data[i + 1].Length > 0 && data[i + 1].Split(":").Length == 2 && data[i + 1].Split(":")[1].Length == 2 && data[i + 1].All(x => x == ':' || x == '0' || x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9'))
-                                {
-                                    var newTrack = new Track();
-                                    newTrack.name = data[i].Trim();
-                                    if (newTrack.name.EndsWith("lyrics"))
-                                        newTrack.name = newTrack.name.Substring(0, newTrack.name.Length - "lyrics".Length);
-                                    var time = data[i + 1].Trim();
-                                    if (time.Split(":").Length != 2) { failed = 501; errorAtLine = i + 1; break; };
-                                    if (!int.TryParse(time.Split(":")[0], out int minutes)) { failed = 502; errorAtLine = i + 1; break; };
-                                    if (!int.TryParse(time.Split(":")[1], out int seconds)) { failed = 503; errorAtLine = i + 1; break; };
-                                    newTrack.length = minutes * 60 + seconds;
-                                    newTrack.duration = time;
-                                    newAlbum.tracks.Add(newTrack);
-                                    i++;
-                                }
-                                else continue;
-                            }
-                            else { failed = i; break; };
-                    }
-                    if (failed != -1)
-                        SpawnWindowBlueprint("ErrorLoadingAlbum" + failed);
-                    else
-                    {
-                        newArtist = null;
-                        newRelease = newAlbum;
-                        artistFind = library.originalArtists.Find(x => x.name == artistName && (x.country == artistCountry || artistCountry == "none"));
-                        if (artistFind == null)
-                        {
-                            artistFind = new Artist()
-                            {
-                                ID = library.originalArtists.Count + 1,
-                                name = artistName,
-                                pronoun = "they",
-                                country = artistCountry,
-                                releases = new()
-                            };
-                            newArtist = artistFind;
-                        }
-                        newRelease.ID = library.originalReleases.Count + 1;
-                        newRelease.coverDescriptors = new() { };
-                        newRelease.format = int.Parse(newRelease.releaseDate[..4]) >= 1990 ? "digital" : "analog";
-                        newRelease.artist = artistFind.name;
-                        newRelease.artistID = artistFind.ID;
-                        newRelease.Initialise(artistFind);
-                        musicRelease = newRelease;
-                        SpawnDesktopBlueprint("LoadCover");
-                    }
-
-                    List<string> ProcessGenres(string line)
-                    {
-                        var list = line.Split(",").Select(x => ProcessGenre(x.Trim())).ToList();
-                        return list;
-
-                        string ProcessGenre(string genre)
-                        {
-                            var capitalised = string.Join(' ', genre.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
-                            return capitalised;
-                        }
-                    }
-
-                    List<string> ProcessLanguages(string line)
-                    {
-                        var list = line.Split(",").Select(x => ProcessLanguage(x.Trim())).ToList();
-                        return list;
-
-                        string ProcessLanguage(string language)
-                        {
-                            var capitalised = string.Join(' ', language.Split(" ").Select(x => x[..1].ToUpper() + x[1..].ToLower()).ToList());
-                            return capitalised;
-                        }
-                    }
-
-                    List<string> ProcessTypes(string line)
-                    {
-                        var list = line.Split(",").Select(x => ProcessType(x.Trim())).ToList();
-                        return list;
-
-                        string ProcessType(string type)
-                        {
-                            var capitalised = type[..1].ToUpper() + type[1..].ToLower();
-                            return capitalised;
-                        }
-                    }
-                });
-                AddButtonRegion(() => AddLine("Paste new release"), (h) =>
-                {
-                    //Setup
-                    newCover = null;
-                    newRelease = null;
-                    String.searchNewAlbumCountry.Set("");
-                    String.createNewAlbumReleaseName.Set("");
-                    String.createNewAlbumReleaseDate.Set("");
-                    String.createNewAlbumGenres.Set("");
-                    String.createNewAlbumLanguages.Set("");
-                    String.createNewAlbumTracklist.Set("");
-                    String.createNewAlbumArtistName.Set("");
-                    String.createNewAlbumArtistCountry.Set("-");
-                    String.createNewAlbumCoverURL.Set("");
-                    createNewAlbumReleaseTypeFiltering = releaseTypes.ToDictionary(x => x.name, x => new Bool(false));
-                    //Load
-                    var package = Serialization.PackageFromString(GUIUtility.systemCopyBuffer);
-                    if (package == null) return;
-                    newRelease = musicRelease = package.musicRelease;
-                    newCoverURL = package.coverURL;
-                    String.createNewAlbumArtistName.Set(package.artistName);
-                    String.createNewAlbumArtistCountry.Set(package.artistCountry);
-                    String.createNewAlbumCoverURL.Set(package.coverURL);
-                    if (newRelease.genres.Count > 0) String.createNewAlbumGenres.Set(string.Join(", ", newRelease.genres));
-                    else String.createNewAlbumLanguages.Set("");
-                    if (newRelease.languages.Count > 0) String.createNewAlbumLanguages.Set(string.Join(", ", newRelease.languages));
-                    else String.createNewAlbumLanguages.Set("");
-                    String.createNewAlbumReleaseDate.Set(newRelease.releaseDate);
-                    String.createNewAlbumReleaseName.Set(newRelease.name);
-                    if (newRelease.tracks.Count > 0) String.createNewAlbumTracklist.Set(string.Join("\\n", newRelease.tracks.Select(x => x.name + "\\n" + (x.length / 60) + ":" + (x.length % 60).ToString("00"))));
-                    else String.createNewAlbumTracklist.Set("");
-                    foreach (var type in createNewAlbumReleaseTypeFiltering)
-                        createNewAlbumReleaseTypeFiltering[type.Key].Set(newRelease.types.Contains(type.Key));
-                    CreatePreviewRelease();
-                    CloseDesktop(CDesktop.title);
-                    SpawnDesktopBlueprint("CreateNewAlbumPreviewLoadCover");
-                });
-            }
+                //Setup
+                newCover = null;
+                newRelease = null;
+                String.searchNewAlbumCountry.Set("");
+                String.createNewAlbumReleaseName.Set("");
+                String.createNewAlbumReleaseDate.Set("");
+                String.createNewAlbumGenres.Set("");
+                String.createNewAlbumLanguages.Set("");
+                String.createNewAlbumTracklist.Set("");
+                String.createNewAlbumArtistName.Set("");
+                String.createNewAlbumArtistCountry.Set("-");
+                String.createNewAlbumCoverURL.Set("");
+                createNewAlbumReleaseTypeFiltering = releaseTypes.ToDictionary(x => x.name, x => new Bool(false));
+                //Load
+                var package = Serialization.PackageFromString(GUIUtility.systemCopyBuffer);
+                if (package == null) return;
+                newRelease = musicRelease = package.musicRelease;
+                newCoverURL = package.coverURL;
+                String.createNewAlbumArtistName.Set(package.artistName);
+                String.createNewAlbumArtistCountry.Set(package.artistCountry);
+                String.createNewAlbumCoverURL.Set(package.coverURL);
+                if (newRelease.genres.Count > 0) String.createNewAlbumGenres.Set(string.Join(", ", newRelease.genres));
+                else String.createNewAlbumLanguages.Set("");
+                if (newRelease.languages.Count > 0) String.createNewAlbumLanguages.Set(string.Join(", ", newRelease.languages));
+                else String.createNewAlbumLanguages.Set("");
+                String.createNewAlbumReleaseDate.Set(newRelease.releaseDate);
+                String.createNewAlbumReleaseName.Set(newRelease.name);
+                if (newRelease.tracks.Count > 0) String.createNewAlbumTracklist.Set(string.Join("\\n", newRelease.tracks.Select(x => x.name + "\\n" + (x.length / 60) + ":" + (x.length % 60).ToString("00"))));
+                else String.createNewAlbumTracklist.Set("");
+                foreach (var type in createNewAlbumReleaseTypeFiltering)
+                    createNewAlbumReleaseTypeFiltering[type.Key].Set(newRelease.types.Contains(type.Key));
+                CreatePreviewRelease();
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumPreviewLoadCover");
+            });
             AddButtonRegion(() => AddLine("Create new release"), (h) =>
             {
                 //Setup
@@ -2811,10 +2689,6 @@ public class Blueprint
                 //Load
                 SpawnDesktopBlueprint("CreateNewAlbumReleaseName");
             });
-            //AddButtonRegion(() => AddLine("Open new release file"), (h) =>
-            //{
-            //    Serialization.OpenTXT("newRelease");
-            //});
             if (!Serialization.libraryExpansion)
             {
                 AddButtonRegion(() => AddLine("Refetch online library"), (h) =>

@@ -213,7 +213,7 @@ public class MusicRelease
     //Generates color pallete for the album
     public void GeneratePallete(Sprite sprite)
     {
-        var tex = Root.scaled(sprite.texture, 8, 8);
+        var tex = scaled(sprite.texture, 8, 8);
         var colors = new List<Color>();
         for (int i = 0; i < 4; i++)
             for (int j = 0; j < 4; j++)

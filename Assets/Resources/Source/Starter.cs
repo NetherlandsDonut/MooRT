@@ -23,8 +23,10 @@ public class Starter : MonoBehaviour
 
     void Awake()
     {
+        //Stopwatch for measuring startup time
         stopwatch = new Stopwatch();
         stopwatch.Start();
+
         //Loads the defines into the program
         LoadData();
     }

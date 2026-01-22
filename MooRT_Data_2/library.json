@@ -284626,6 +284626,84 @@
       ],
       "discs": "",
       "coverDescriptors": []
+    },
+    {
+      "ID": 4164,
+      "artist": "Mitski",
+      "artistID": 835,
+      "name": "Be the Cowboy",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Art Pop",
+        "Indie Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2018.08.17",
+      "tracks": [
+        {
+          "name": "Geyser",
+          "length": 143
+        },
+        {
+          "name": "Why Didn't You Stop Me?",
+          "length": 141
+        },
+        {
+          "name": "Old Friend",
+          "length": 112
+        },
+        {
+          "name": "A Pearl",
+          "length": 156
+        },
+        {
+          "name": "Lonesome Love",
+          "length": 110
+        },
+        {
+          "name": "Remember My Name",
+          "length": 135
+        },
+        {
+          "name": "Me and My Husband",
+          "length": 137
+        },
+        {
+          "name": "Come Into the Water",
+          "length": 92
+        },
+        {
+          "name": "Nobody",
+          "length": 193
+        },
+        {
+          "name": "Pink in the Night",
+          "length": 136
+        },
+        {
+          "name": "A Horse Named Cold Air",
+          "length": 123
+        },
+        {
+          "name": "Washing Machine Heart",
+          "length": 128
+        },
+        {
+          "name": "Blue Light",
+          "length": 103
+        },
+        {
+          "name": "Two Slow Dancers",
+          "length": 239
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
     }
   ]
 }
