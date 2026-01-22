@@ -209,7 +209,7 @@ public class Desktop : MonoBehaviour
             else if (newCover != null)
             {
                 CloseDesktop("LoadCover");
-                GUIUtility.systemCopyBuffer = Serialization.StringFromRelease(newRelease);
+                //GUIUtility.systemCopyBuffer = Serialization.StringFromPackage(new(newRelease, newArtistName, newArtistCountry, newReleaseCoverURL));
                 SpawnDesktopBlueprint("AcceptNewAlbum");
             }
         }

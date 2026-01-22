@@ -200,14 +200,14 @@ class Serialization
         return reader.ReadToEnd();
     }
 
-    public static string StringFromRelease(MusicRelease release)
+    public static string StringFromPackage(ReleasePackage package)
     {
         var sett = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore };
-        return CompressToBase64(SerializeObject(release, None, sett));
+        return CompressToBase64(SerializeObject(package, None, sett));
     }
 
-    public static MusicRelease ReleaseFromString(string data)
+    public static ReleasePackage PackageFromString(string data)
     {
-        return DeserializeObject<MusicRelease>(DecompressFromBase64(data));
+        return DeserializeObject<ReleasePackage>(DecompressFromBase64(data));
     }
 }

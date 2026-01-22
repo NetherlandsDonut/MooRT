@@ -2729,11 +2729,11 @@ public class Blueprint
                         }
                     }
                 });
-                AddButtonRegion(() => AddLine("Paste new release"), (h) =>
-                {
-                    newRelease = Serialization.ReleaseFromString(GUIUtility.systemCopyBuffer);
-                    SpawnDesktopBlueprint("AcceptNewAlbum");
-                });
+                //AddButtonRegion(() => AddLine("Paste new release"), (h) =>
+                //{
+                //    newRelease = Serialization.ReleaseFromString(GUIUtility.systemCopyBuffer);
+                //    SpawnDesktopBlueprint("AcceptNewAlbum");
+                //});
             }
             AddButtonRegion(() => AddLine("Open new release file"), (h) =>
             {
