@@ -209,8 +209,27 @@ public class Desktop : MonoBehaviour
             else if (newCover != null)
             {
                 CloseDesktop("LoadCover");
-                //GUIUtility.systemCopyBuffer = Serialization.StringFromPackage(new(newRelease, newArtistName, newArtistCountry, newReleaseCoverURL));
                 SpawnDesktopBlueprint("AcceptNewAlbum");
+            }
+        }
+        if (title == "CreateNewAlbumPreviewLoadCover")
+        {
+            if (!startedGettingCover)
+            {
+                returnToMenu = false;
+                startedGettingCover = true;
+                StartCoroutine(GetTexture(newCoverURL));
+            }
+            else if (returnToMenu)
+            {
+                CloseDesktop("CreateNewAlbumPreviewLoadCover");
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
+            }
+            else if (newCover != null)
+            {
+                CloseDesktop("CreateNewAlbumPreviewLoadCover");
+                //GUIUtility.systemCopyBuffer = Serialization.StringFromPackage(new(newRelease, newArtistName, newArtistCountry, newReleaseCoverURL));
+                SpawnDesktopBlueprint("CreateNewAlbumPreview");
             }
         }
         if (CDesktop.title == "LoadingScreen") return;

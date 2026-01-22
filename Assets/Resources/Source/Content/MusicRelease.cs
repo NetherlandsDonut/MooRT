@@ -1,9 +1,12 @@
 using Kawazu;
+
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+
 using UnityEngine;
+
 using static ReleaseRating;
 
 public class MusicRelease
@@ -27,6 +30,7 @@ public class MusicRelease
             discs = string.Join(':', discs.Split(':').Select(x => int.Parse(x)).Where(x => x != 0 && x < tracks.Count).OrderBy(x => x));
         else if (discs == "0") discs = "";
         AsignFormattedName();
+        artist.AsignFormattedName();
     }
 
     //Asigns the formatted name for the album
@@ -54,7 +58,7 @@ public class MusicRelease
     public async Task<string> NameFormatted()
     {
         if (string.IsNullOrWhiteSpace(name)) return name;
-        else return await Root.kawazuConverter.Convert(name, To.Romaji, Mode.Okurigana, RomajiSystem.Hepburn);
+        else return await Root.kawazuConverter.Convert(name, To.Romaji, Mode.Spaced, RomajiSystem.Hepburn);
     }
 
     //Type of this music release

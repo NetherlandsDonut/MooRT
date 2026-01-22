@@ -1,31 +1,27 @@
-﻿using System;
-using System.Linq;
+﻿using Kawazu;
+using System;
 using System.Collections.Generic;
-
-using Kawazu;
-
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
-
-using static UnityEngine.KeyCode;
-
+using static ArtistBattle;
+using static Country;
+using static DebutYear;
+using static Decade;
+using static Duration;
+using static Genre;
+using static Language;
+using static Library;
+using static MusicRelease;
+using static ProgramSettings;
+using static RatingStatus;
+using static ReleaseRating;
+using static ReleaseType;
 using static Root;
 using static Root.Anchor;
-
-using static Year;
-using static Genre;
-using static Decade;
-using static Library;
-using static Country;
-using static Duration;
-using static Language;
-using static DebutYear;
-using static ReleaseType;
-using static ArtistBattle;
-using static MusicRelease;
-using static RatingStatus;
-using static ProgramSettings;
-using static ReleaseRating;
 using static TrackAmount;
+using static UnityEngine.KeyCode;
+using static Year;
 
 public class Blueprint
 {
@@ -3940,30 +3936,43 @@ public class Blueprint
                 AddLine("Release name:", "DarkGray");
                 AddInputLine(String.createNewAlbumReleaseName);
             });
-            var sorted = library.originalReleases.OrderBy(x => x.name.Length).ToList();
-            var fitting = String.createNewAlbumReleaseName.Value() == "" ? new() : sorted.FindAll(x => x.GetName().ToLower().Contains(String.createNewAlbumReleaseName.Value().ToLower()));
-            fitting = fitting.OrderBy(x => x.name.Length).ToList();
-            AddEmptyRegion();
-            AddHeaderRegion(() =>
+            AddPaddingRegion(() =>
             {
-                AddLine("Similiar album names:", "DarkGray");
+                AddLine("Type the release name.", "DarkGray");
             });
+            AddPaddingRegion(() =>
+            {
+                AddLine("There can be multiple albums with the same name in the library.", "DarkGray");
+                AddLine("Avoid duplicating albums of the same artist.", "DarkGray");
+            });
+            var sorted = library.originalReleases.OrderBy(x => x.GetName().Length).ToList();
+            var fitting = String.createNewAlbumReleaseName.Value() == "" ? new() : sorted.FindAll(x => x.GetName().ToLower().Contains(String.createNewAlbumReleaseName.Value().ToLower()));
+            fitting = fitting.OrderBy(x => x.GetName().Length).ToList();
+            AddEmptyRegion();
             for (int i = 0; i < 5; i++)
             {
                 var index = i;
                 if (fitting.Count > i)
-                    AddPaddingRegion(() =>
+                {
+                    AddHeaderRegion(() =>
                     {
                         AddLine(fitting[index].name);
-                        AddLine(fitting[index].artist, "DarkGray", "Right");
                     });
-                else
                     AddPaddingRegion(() =>
                     {
-                        AddLine("");
+                        AddLine("By: " + fitting[index].artist, "DarkGray");
                     });
+                    AddEmptyRegion();
+                }
             }
-            AddEmptyRegion();
+            if (String.createNewAlbumReleaseName.Value() != "" && fitting.Count == 0)
+            {
+                AddPaddingRegion(() =>
+                {
+                    AddLine("Found no existing albums of similiar name.", "DarkGray");
+                });
+                AddEmptyRegion();
+            }
             AddButtonRegion(() =>
             {
                 AddLine("Next Step", "", "Center");
@@ -3983,6 +3992,36 @@ public class Blueprint
                 AddLine("Release date:", "DarkGray");
                 AddInputLine(String.createNewAlbumReleaseDate);
             });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Type in the release date of the album.", "DarkGray");
+            });
+            AddEmptyRegion();
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #1: ", "DarkGray");
+                AddText("25.11.2025", "Gray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #2: ", "DarkGray");
+                AddText("11.2025", "Gray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #3: ", "DarkGray");
+                AddText("25 November 2025", "Gray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #4: ", "DarkGray");
+                AddText("November 2025", "Gray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #5: ", "DarkGray");
+                AddText("2025", "Gray");
+            });
             AddEmptyRegion();
             AddButtonRegion(() =>
             {
@@ -3998,7 +4037,10 @@ public class Blueprint
             SetAnchor(Center);
             AddHeaderGroup();
             SetRegionGroupWidth(400);
-            AddHeaderRegion(() => AddLine("Release type:", "DarkGray"));
+            AddHeaderRegion(() =>
+            {
+                AddLine("Select all valid release types.", "DarkGray");
+            });
             foreach (var releaseType in releaseTypes)
                 AddPaddingRegion(() =>
                 {
@@ -4025,6 +4067,21 @@ public class Blueprint
                 AddLine("Release genres:", "DarkGray");
                 AddInputLine(String.createNewAlbumGenres);
             });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Type genres of this album.", "DarkGray");
+            });
+            AddEmptyRegion();
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #1: ", "DarkGray");
+                AddText("Progressive Rock, Pop", "Gray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #2: ", "DarkGray");
+                AddText("Ambient", "Gray");
+            });
             AddEmptyRegion();
             AddButtonRegion(() =>
             {
@@ -4047,7 +4104,62 @@ public class Blueprint
             });
             AddPaddingRegion(() =>
             {
+                AddLine("Type languages in which the vocals are performed on this release.", "DarkGray");
+            });
+            AddPaddingRegion(() =>
+            {
                 AddLine("Leave the input empty in case of lack of vocals.", "DarkGray");
+            });
+            AddEmptyRegion();
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #1: ", "DarkGray");
+                AddText("French, Spanish", "Gray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #2: ", "DarkGray");
+                AddText("English", "Gray");
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Next Step", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseTracklist");
+            });
+        }),
+        new("CreateNewAlbumReleaseTracklist", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(400);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Release tracklist:", "DarkGray");
+                AddInputLine(String.createNewAlbumTracklist);
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Paste in the tracklist from RYM's release page.", "DarkGray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Make sure the pasted tracklist contains track lengths.", "DarkGray");
+                AddLine("otherwise the process will fail.", "DarkGray");
+            });
+            AddEmptyRegion();
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #1: ", "DarkGray");
+                AddText("A1\\r\\nTime Was\\r\\n9:42\\r\\nA2\\r\\nSometime World\\r\\n6:55\\r\\nA3\\r\\nBlowin' Free...", "Gray");
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Example #2: ", "DarkGray");
+                AddText("\\r\\nLeft\\r\\n1.1\\r\\nSomewhat Damagedlyrics\\r\\n4:31\\r\\n1.2\\r\\nThe Day the World...", "Gray");
             });
             AddEmptyRegion();
             AddButtonRegion(() =>
@@ -4069,22 +4181,28 @@ public class Blueprint
                 AddLine("Artist name:", "DarkGray");
                 AddInputLine(String.createNewAlbumArtistName);
             });
-            var sorted = library.originalArtists.OrderBy(x => x.name.Length).ToList();
-            var fitting = String.createNewAlbumArtistName.Value() == "" ? new() : sorted.FindAll(x => x.name.ToLower().Contains(String.createNewAlbumArtistName.Value().ToLower()));
-            fitting = fitting.OrderBy(x => x.name.Length).ToList();
+            var sorted = library.originalArtists.OrderBy(x => x.GetName().Length).ToList();
+            var fitting = String.createNewAlbumArtistName.Value() == "" ? new() : sorted.FindAll(x => x.GetName().ToLower().Contains(String.createNewAlbumArtistName.Value().ToLower()));
+            fitting = fitting.OrderBy(x => x.GetName().Length).ToList();
+            if (fitting.Count == 0)
+                AddPaddingRegion(() =>
+                {
+                    AddLine("Type the artist name.", "DarkGray");
+                });
+            else
+                AddPaddingRegion(() =>
+                {
+                    AddLine("Type the artist name or choose one of the existing artists below.", "DarkGray");
+                });
             AddEmptyRegion();
-            AddHeaderRegion(() =>
-            {
-                AddLine("Similiar artist names:", "DarkGray");
-            });
             for (int i = 0; i < 5; i++)
             {
                 var index = i;
                 if (fitting.Count > i)
+                {
                     AddButtonRegion(() =>
                     {
                         AddLine(fitting[index].name);
-                        AddLine(fitting[index].country, "DarkGray", "Right");
                     },
                     (h) =>
                     {
@@ -4093,13 +4211,13 @@ public class Blueprint
                         CloseDesktop(CDesktop.title);
                         SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
                     });
-                else
                     AddPaddingRegion(() =>
                     {
-                        AddLine("");
+                        AddLine("From: " + fitting[index].country, "DarkGray");
                     });
+                    AddEmptyRegion();
+                }
             }
-            AddEmptyRegion();
             AddButtonRegion(() =>
             {
                 AddLine("Next Step", "", "Center");
@@ -4267,6 +4385,11 @@ public class Blueprint
             {
                 AddLine("Album cover URL:", "DarkGray");
                 AddInputLine(String.createNewAlbumCoverURL);
+            });
+            AddPaddingRegion(() =>
+            {
+                AddLine("Paste the album cover URL.", "DarkGray");
+                AddLine("Don't copy images from RYM's release page as they are protected.", "DarkGray");
             });
             AddEmptyRegion();
             AddButtonRegion(() =>
@@ -4869,6 +4992,11 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumReleaseDate");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseName");
+            });
         }),
         new("CreateNewAlbumReleaseType", () =>
         {
@@ -4876,6 +5004,11 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumReleaseType");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseDate");
+            });
         }),
         new("CreateNewAlbumReleaseGenres", () =>
         {
@@ -4883,6 +5016,11 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumReleaseGenres");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseType");
+            });
         }),
         new("CreateNewAlbumReleaseLanguages", () =>
         {
@@ -4890,6 +5028,11 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumReleaseLanguages");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseGenres");
+            });
         }),
         new("CreateNewAlbumReleaseTracklist", () =>
         {
@@ -4897,6 +5040,11 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumReleaseTracklist");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseLanguages");
+            });
         }),
         new("CreateNewAlbumArtistName", () =>
         {
@@ -4904,6 +5052,11 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumArtistName");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseTracklist");
+            });
         }),
         new("CreateNewAlbumArtistCountry", () =>
         {
@@ -4914,6 +5067,11 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumArtistCountryScrollbarDown");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumArtistName");
+            });
         }),
         new("CreateNewAlbumReleaseCoverURL", () =>
         {
@@ -4921,6 +5079,22 @@ public class Blueprint
             SpawnWindowBlueprint("CreateNewAlbumReleaseCoverURL");
             SpawnWindowBlueprint("CreateNewAlbumClose");
             SpawnWindowBlueprint("CreateNewAlbumMenuBar");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumArtistCountry");
+            });
+        }),
+        new("CreateNewAlbumPreviewLoadCover", () =>
+        {
+            newCover = null;
+            startedGettingCover = false;
+            SetDesktopBackground("Backgrounds/Default");
+            AddHotkey(Escape, () =>
+            {
+                CloseDesktop(CDesktop.title);
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
+            });
         }),
         new("CreateNewAlbumPreview", () =>
         {
