@@ -1,35 +1,31 @@
-﻿using Kawazu;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mail;
-using System.Net.Security;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+
 using UnityEditor;
-using UnityEditor.VersionControl;
+
 using UnityEngine;
-using static ArtistBattle;
-using static Country;
-using static DebutYear;
-using static Decade;
-using static Duration;
-using static Genre;
-using static Language;
-using static Library;
-using static MusicRelease;
-using static ProgramSettings;
-using static RatingStatus;
-using static ReleaseRating;
-using static ReleaseType;
+
+using static UnityEngine.KeyCode;
+
 using static Root;
 using static Root.Anchor;
-using static TrackAmount;
-using static UnityEngine.KeyCode;
+
 using static Year;
+using static Genre;
+using static Decade;
+using static Library;
+using static Country;
+using static Duration;
+using static Language;
+using static DebutYear;
+using static TrackAmount;
+using static ReleaseType;
+using static ArtistBattle;
+using static MusicRelease;
+using static RatingStatus;
+using static ReleaseRating;
+using static ProgramSettings;
 
 public class Blueprint
 {
@@ -690,11 +686,13 @@ public class Blueprint
                 SetRegionAsGroupExtender();
             });
             AddEmptyRegion();
-            AddButtonRegion(() =>
+            if (CDesktop.title != "AcceptNewAlbum" && CDesktop.title != "CreateNewAlbumPreview")
             {
-                AddLine(Root.rating.Value() ? "Hide track ratings" : "Show track ratings", "", "Center");
-            },
-            (h) =>
+                AddButtonRegion(() =>
+                {
+                    AddLine(Root.rating.Value() ? "Hide track ratings" : "Show track ratings", "", "Center");
+                },
+                (h) =>
             {
                 Root.rating.Invert();
                 CDesktop.RespawnAll();
@@ -702,32 +700,44 @@ public class Blueprint
                 Respawn("MusicReleaseScrollbar", true);
                 Respawn("MusicReleaseScrollbarDown", true);
             });
-            if (musicRelease.clearedRating)
-                AddButtonRegion(() =>
-                {
-                    AddLine("Restore rating", "", "Center");
-                },
-                (h) =>
-                {
-                    musicRelease.RestoreTrackRatings();
-                    CDesktop.RespawnAll();
-                    Respawn("MusicReleaseScrollbarUp", true);
-                    Respawn("MusicReleaseScrollbar", true);
-                    Respawn("MusicReleaseScrollbarDown", true);
-                });
+                if (musicRelease.clearedRating)
+                    AddButtonRegion(() =>
+                    {
+                        AddLine("Restore rating", "", "Center");
+                    },
+                    (h) =>
+                    {
+                        musicRelease.RestoreTrackRatings();
+                        CDesktop.RespawnAll();
+                        Respawn("MusicReleaseScrollbarUp", true);
+                        Respawn("MusicReleaseScrollbar", true);
+                        Respawn("MusicReleaseScrollbarDown", true);
+                    });
+                else
+                    AddButtonRegion(() =>
+                    {
+                        AddLine("Clear rating", "", "Center");
+                    },
+                    (h) =>
+                    {
+                        musicRelease.ClearTrackRatings();
+                        CDesktop.RespawnAll();
+                        Respawn("MusicReleaseScrollbarUp", true);
+                        Respawn("MusicReleaseScrollbar", true);
+                        Respawn("MusicReleaseScrollbarDown", true);
+                    });
+            }
             else
-                AddButtonRegion(() =>
+            {
+                AddPaddingRegion(() =>
                 {
-                    AddLine("Clear rating", "", "Center");
-                },
-                (h) =>
-                {
-                    musicRelease.ClearTrackRatings();
-                    CDesktop.RespawnAll();
-                    Respawn("MusicReleaseScrollbarUp", true);
-                    Respawn("MusicReleaseScrollbar", true);
-                    Respawn("MusicReleaseScrollbarDown", true);
+                    AddLine("", "", "Center");
                 });
+                AddPaddingRegion(() =>
+                {
+                    AddLine("", "", "Center");
+                });
+            }
             AddPaddingRegion(() =>
             {
                 if (ratings.ContainsKey(musicRelease.ID) && ratings[musicRelease.ID].rating > 0)
@@ -4417,6 +4427,23 @@ public class Blueprint
                 AddLine("Sending mail..", "", "Center");
             });
         }),
+        new("SendingMailFailure", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Sending mail failed.", "", "Center");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Okay", "", "Center");
+            },
+            (h) =>
+            {
+                SpawnDesktopBlueprint("CreateNewAlbumPreview");
+            });
+        }),
     };
 
     public static List<Blueprint> desktopBlueprints = new()
@@ -5125,6 +5152,13 @@ public class Blueprint
             SetDesktopBackgroundAsGradient(musicRelease.pallete);
             SpawnWindowBlueprint("SendingMail");
             Serialization.SendMail();
+        }),
+        new("SendingMailFailure", () =>
+        {
+            if (musicRelease.pallete == null)
+                musicRelease.GeneratePallete(newCover);
+            SetDesktopBackgroundAsGradient(musicRelease.pallete);
+            SpawnWindowBlueprint("SendingMailFailure");
         }),
     };
 

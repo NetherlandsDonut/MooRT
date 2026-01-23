@@ -209,6 +209,7 @@ public class Desktop : MonoBehaviour
             else if (newCover != null)
             {
                 CloseDesktop("LoadCover");
+                rating.Set(false);
                 SpawnDesktopBlueprint("AcceptNewAlbum");
             }
         }
@@ -223,12 +224,13 @@ public class Desktop : MonoBehaviour
             else if (returnToMenu)
             {
                 CloseDesktop("CreateNewAlbumPreviewLoadCover");
+                rating.Set(false);
                 SpawnDesktopBlueprint("CreateNewAlbumPreview");
             }
             else if (newCover != null)
             {
                 CloseDesktop("CreateNewAlbumPreviewLoadCover");
-                //GUIUtility.systemCopyBuffer = Serialization.StringFromPackage(new(newRelease, newArtistName, newArtistCountry, newReleaseCoverURL));
+                rating.Set(false);
                 SpawnDesktopBlueprint("CreateNewAlbumPreview");
             }
         }

@@ -1,22 +1,20 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Net.Mail;
+﻿using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
-using System.Net.Security;
+using System.IO;
 using System.IO.Compression;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mail;
+using System.Net.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-
+using System.Text;
+using UnityEditor.VersionControl;
 using UnityEngine;
-
-using Newtonsoft.Json;
-
+using static MusicRelease;
 using static Newtonsoft.Json.Formatting;
 using static Newtonsoft.Json.JsonConvert;
-
-using static MusicRelease;
 
 class Serialization
 {
@@ -24,26 +22,33 @@ class Serialization
     public static MailMessage mail;
 
     //Smtp server to send mails with
-    public static SmtpClient smptServer;
+    public static SmtpClient smtpServer;
 
     public static async void SendMail()
     {
         var content = StringFromPackage(new(musicRelease, musicRelease.artist, musicRelease.country, Root.newCoverURL));
-        smptServer = new SmtpClient("smtp-relay.brevo.com");
-        smptServer.Timeout = 10000;
-        smptServer.DeliveryMethod = SmtpDeliveryMethod.Network;
-        smptServer.UseDefaultCredentials = false;
-        smptServer.Port = 587;
+        smtpServer = new SmtpClient("smtp-relay.brevo.com");
+        smtpServer.Timeout = 10000;
+        smtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+        smtpServer.UseDefaultCredentials = false;
+        smtpServer.Port = 587;
         mail = new MailMessage();
         mail.From = new MailAddress("moort.box@gmail.com");
         mail.To.Add(new MailAddress("moort.box@gmail.com"));
         mail.Subject = musicRelease.artist + " - " + musicRelease.name;
         mail.Body = content;
-        smptServer.Credentials = new System.Net.NetworkCredential("a0a9c9001@smtp-brevo.com", SMTPPass.password) as ICredentialsByHost;
-        smptServer.EnableSsl = true;
+        smtpServer.Credentials = new System.Net.NetworkCredential("a0a9c9001@smtp-brevo.com", SMTPPass.password) as ICredentialsByHost;
+        smtpServer.EnableSsl = true;
         ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
         mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-        await smptServer.SendMailAsync(mail);
+        try
+        {
+            await smtpServer.SendMailAsync(mail);
+        }
+        catch (SmtpException ex)
+        {
+            Root.SpawnDesktopBlueprint("SendingMailFailure");
+        }
         Root.CloseDesktop("SendingMail");
     }
 
