@@ -5201,7 +5201,7 @@ public class Blueprint
             AddHotkey(Escape, () =>
             {
                 CloseDesktop(CDesktop.title);
-                CDesktop.RespawnAll();
+                SpawnDesktopBlueprint("CreateNewAlbumReleaseCoverURL");
             });
             AddHotkey(PageUp, () =>
             {
