@@ -1,18 +1,20 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.IO;
-using System.IO.Compression;
 using System.Net;
-using System.Net.Http;
+using System.Text;
 using System.Net.Mail;
+using System.Diagnostics;
 using System.Net.Security;
+using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using UnityEditor.VersionControl;
+
 using UnityEngine;
+
+using Newtonsoft.Json;
+
 using static MusicRelease;
+
 using static Newtonsoft.Json.Formatting;
 using static Newtonsoft.Json.JsonConvert;
 
@@ -45,7 +47,7 @@ class Serialization
         {
             await smtpServer.SendMailAsync(mail);
         }
-        catch (SmtpException ex)
+        catch
         {
             Root.SpawnDesktopBlueprint("SendingMailFailure");
         }
