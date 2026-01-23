@@ -284704,6 +284704,315 @@
       ],
       "discs": "",
       "coverDescriptors": []
+    },
+    {
+      "ID": 4165,
+      "artist": "Mitski",
+      "artistID": 835,
+      "name": "LUSH",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Singer-songwriter",
+        "Chamber Pop",
+        "Art Pop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2012.01.31",
+      "tracks": [
+        {
+          "name": "Liquid Smooth",
+          "length": 169
+        },
+        {
+          "name": "Wife",
+          "length": 159
+        },
+        {
+          "name": "Abbey",
+          "length": 166
+        },
+        {
+          "name": "Brand New City",
+          "length": 132
+        },
+        {
+          "name": "Eric",
+          "length": 197
+        },
+        {
+          "name": "Bag of Bones",
+          "length": 276
+        },
+        {
+          "name": "Door",
+          "length": 132
+        },
+        {
+          "name": "Pearl Diver",
+          "length": 164
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4166,
+      "artist": "Mitski",
+      "artistID": 835,
+      "name": "Bury Me at Makeout Creek",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Indie Rock",
+        "Singer-songwriter",
+        "Slacker Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2014.11.11",
+      "tracks": [
+        {
+          "name": "Texas Reznikoff",
+          "length": 132
+        },
+        {
+          "name": "Townie",
+          "length": 205
+        },
+        {
+          "name": "First Love / Late Spring",
+          "length": 278
+        },
+        {
+          "name": "Francis Forever",
+          "length": 149
+        },
+        {
+          "name": "I Don't Smoke",
+          "length": 198
+        },
+        {
+          "name": "Jobless Monday",
+          "length": 127
+        },
+        {
+          "name": "Drunk Walk Home",
+          "length": 155
+        },
+        {
+          "name": "I Will",
+          "length": 174
+        },
+        {
+          "name": "Carry Me Out",
+          "length": 233
+        },
+        {
+          "name": "Last Words of a Shooting Star",
+          "length": 164
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4167,
+      "artist": "Mitski",
+      "artistID": 835,
+      "name": "Puberty 2",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Indie Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2016.06.17",
+      "tracks": [
+        {
+          "name": "Happy",
+          "length": 220
+        },
+        {
+          "name": "Dan the Dancer",
+          "length": 145
+        },
+        {
+          "name": "Once More to See You",
+          "length": 180
+        },
+        {
+          "name": "Fireworks",
+          "length": 157
+        },
+        {
+          "name": "Your Best American Girl",
+          "length": 212
+        },
+        {
+          "name": "I Bet on Losing Dogs",
+          "length": 170
+        },
+        {
+          "name": "My Body's Made of Crushed Little Stars",
+          "length": 116
+        },
+        {
+          "name": "Thursday Girl",
+          "length": 188
+        },
+        {
+          "name": "A Loving Feeling",
+          "length": 92
+        },
+        {
+          "name": "Crack Baby",
+          "length": 292
+        },
+        {
+          "name": "A Burning Hill",
+          "length": 109
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4168,
+      "artist": "Mitski",
+      "artistID": 835,
+      "name": "Retired From Sad, New Career in Business",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Singer-songwriter",
+        "Chamber Pop",
+        "Art Pop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2013.08.01",
+      "tracks": [
+        {
+          "name": "Goodbye, My Danish Sweetheart",
+          "length": 137
+        },
+        {
+          "name": "Square",
+          "length": 190
+        },
+        {
+          "name": "Strawberry Blond",
+          "length": 114
+        },
+        {
+          "name": "Humpty",
+          "length": 201
+        },
+        {
+          "name": "I Want You",
+          "length": 183
+        },
+        {
+          "name": "Shame",
+          "length": 144
+        },
+        {
+          "name": "Because Dreaming Costs Money, My Dear",
+          "length": 185
+        },
+        {
+          "name": "Circle",
+          "length": 171
+        },
+        {
+          "name": "Class of 2013",
+          "length": 109
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4169,
+      "artist": "Mitski",
+      "artistID": 835,
+      "name": "Laurel Hell",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Art Pop",
+        "Synthpop",
+        "New Wave"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2022.02.04",
+      "tracks": [
+        {
+          "name": "Valentine, Texas",
+          "length": 155
+        },
+        {
+          "name": "Working for the Knife",
+          "length": 158
+        },
+        {
+          "name": "Stay Soft",
+          "length": 196
+        },
+        {
+          "name": "Everyone",
+          "length": 227
+        },
+        {
+          "name": "Heat Lightning",
+          "length": 171
+        },
+        {
+          "name": "The Only Heartbreaker",
+          "length": 184
+        },
+        {
+          "name": "Love Me More",
+          "length": 212
+        },
+        {
+          "name": "There's Nothing Left Here for You",
+          "length": 172
+        },
+        {
+          "name": "Should've Been Me",
+          "length": 191
+        },
+        {
+          "name": "I Guess",
+          "length": 135
+        },
+        {
+          "name": "That's Our Lamp",
+          "length": 144
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
     }
   ]
 }

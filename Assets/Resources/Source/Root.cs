@@ -536,7 +536,7 @@ public static class Root
                 AddLine("");
                 int size = CDesktop.LBWindow().LBRegionGroup().setHeight - 2;
                 var freshRegion = CDesktop.LBWindow().LBRegionGroup().LBRegion();
-                var fill = new GameObject("Fill");
+                var fill = new GameObject("Fill", typeof(SpriteRenderer));
                 fill.transform.parent = freshRegion.transform;
                 fill.transform.localPosition = new();
                 var fillTop = new GameObject("FillTop", typeof(SpriteRenderer));
@@ -548,10 +548,12 @@ public static class Root
                 fillMiddle.GetComponent<SpriteRenderer>().sprite = scrollbarFills[1];
                 fillMiddle.transform.parent = fill.transform;
                 fillMiddle.transform.localPosition = new();
-                var stretch = size - 8 < 1 ? 1 : size - 8;
-                fillMiddle.transform.localScale = new Vector3(1, size, 1);
-                fillMiddle.AddComponent<BoxCollider2D>();
-                fillMiddle.gameObject.AddComponent<Highlightable>().Initialise(freshRegion, null, null, null, null);
+                var stretch = size < 1 ? 1 : size;
+                var pagination = windowFind.pagination();
+                var maxPagination = windowFind.maxPagination();
+                var finalSize = stretch - maxPagination * 2;
+                if (finalSize < 13) finalSize = 13;
+                fillMiddle.transform.localScale = new Vector3(1, finalSize, 1);
                 var fillBottom = new GameObject("FillBottom", typeof(SpriteRenderer));
                 fillBottom.GetComponent<SpriteRenderer>().sprite = scrollbarFills[2];
                 fillBottom.GetComponent<SpriteRenderer>().sortingOrder++;
@@ -559,8 +561,11 @@ public static class Root
                 fillBottom.transform.localPosition = new();
                 fillBottom.transform.localPosition += new Vector3(0, 4);
                 fillBottom.transform.localPosition += new Vector3(0, -fillMiddle.transform.localScale.y);
-                fillMiddle.GetComponent<Highlightable>().additionalRenderers = new() { fillTop.GetComponent<SpriteRenderer>(), fillBottom.GetComponent<SpriteRenderer>() };
-
+                fill.AddComponent<BoxCollider2D>().offset = new Vector2(6.5f, -finalSize / 2f);
+                fill.GetComponent<BoxCollider2D>().size = new Vector2(13, finalSize);
+                fill.gameObject.AddComponent<Highlightable>().Initialise(freshRegion, null, null, null, null);
+                fill.GetComponent<Highlightable>().additionalRenderers = new() { fillTop.GetComponent<SpriteRenderer>(), fillMiddle.GetComponent<SpriteRenderer>(), fillBottom.GetComponent<SpriteRenderer>() };
+                fill.gameObject.AddComponent<Scrollbar>().Initialise(size, finalSize);
                 fill.transform.localPosition += new Vector3(4, -4);
             }
         },

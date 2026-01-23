@@ -275,6 +275,11 @@ public class Desktop : MonoBehaviour
                 }
             }
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.LeftControl)) CloseWindow("Tooltip");
+            if (Input.GetMouseButtonUp(0) && Scrollbar.scrollbarUsed != null)
+            {
+                Scrollbar.scrollbarUsed.GetComponent<Highlightable>().pressedState = "None";
+                Scrollbar.scrollbarUsed = null;
+            }
             if (mouseOver != null)
             {
                 if (mouseOver.pressedState == "None")

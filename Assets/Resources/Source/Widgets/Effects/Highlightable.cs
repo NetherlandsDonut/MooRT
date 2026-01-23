@@ -42,7 +42,7 @@ public class Highlightable : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if (defaultColor.a == 0) defaultColor = GetComponent<SpriteRenderer>().color;
+        if (defaultColor.a == 0) defaultColor = render.color;
         if (cursor.IsNow(None)) return;
         SetMouseOver(this);
         if (pressedState == "None" && tooltip != null) CDesktop.SetTooltip(tooltip);
@@ -64,7 +64,8 @@ public class Highlightable : MonoBehaviour
         render.color = defaultColor;
         if (additionalRenderers != null && additionalRenderers.Count > 0)
             additionalRenderers.ForEach(x => x.color = defaultColor);
-        pressedState = "None";
+        if (GetComponent<Scrollbar>() == null)
+            pressedState = "None";
     }
 
     public void MouseDown(string key)

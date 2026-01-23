@@ -20,6 +20,12 @@ using static Newtonsoft.Json.JsonConvert;
 
 class Serialization
 {
+    //Indicates whether game tries to load data from unity the folder
+    public static bool useUnityData = true;
+
+    //Indicates whether the program allows for library expansion
+    public static bool libraryExpansion = true;
+
     //Mail to send
     public static MailMessage mail;
 
@@ -54,12 +60,6 @@ class Serialization
         }
         Root.CloseDesktop("SendingMail");
     }
-
-    //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = false;
-
-    //Indicates whether the program allows for library expansion
-    public static bool libraryExpansion = false;
 
     //Reads a text file and returns all lines of text
     public static string[] ReadTXT(string file, string prefix = "")

@@ -534,6 +534,7 @@ public class Blueprint
                             AddPaddingRegion(() => AddSmallButton("OtherTrash", (h) =>
                             {
                                 musicRelease.tracks.RemoveAt(index + thisWindow.pagination());
+                                musicRelease.Initialise(null);
                                 CDesktop.RespawnAll();
                             }));
                         }
