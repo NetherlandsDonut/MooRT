@@ -55,9 +55,6 @@ class Serialization
         Root.CloseDesktop("SendingMail");
     }
 
-    //Prefix for serialisation
-    public static string prefix = "";
-
     //Indicates whether game tries to load data from unity the folder
     public static bool useUnityData = false;
 

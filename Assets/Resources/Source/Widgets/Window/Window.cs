@@ -115,7 +115,7 @@ public class Window : MonoBehaviour
         if (CDesktop != desktop || onlyWhenActive && !desktop.windows.Contains(this)) return;
         CDesktop.windows.FindAll(x => x.title == "Tooltip").ForEach(x => CloseWindow(x));
         CloseWindow(this, false);
-        SpawnWindowBlueprint(title, false);
+        SpawnWindowBlueprint(title);
     }
 
     public void Rebuild()

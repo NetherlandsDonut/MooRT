@@ -118,6 +118,8 @@ public static class Root
     public static bool startedGettingCover;
     public static bool returnToMenu;
 
+    public static Sprite[] scrollbarFills;
+
     public static MusicRelease newRelease;
     public static Artist newArtist, artistFind;
 
@@ -339,12 +341,12 @@ public static class Root
         return find;
     }
 
-    public static Window SpawnWindowBlueprint(string blueprintTitle, bool resetSearch = true)
+    public static Window SpawnWindowBlueprint(string blueprintTitle)
     {
-        return SpawnWindowBlueprint(FindWindowBlueprint(blueprintTitle), resetSearch);
+        return SpawnWindowBlueprint(FindWindowBlueprint(blueprintTitle));
     }
 
-    public static Window SpawnWindowBlueprint(Blueprint blueprint, bool resetSearch = true)
+    public static Window SpawnWindowBlueprint(Blueprint blueprint)
     {
         if (blueprint == null) return null;
         if (WindowUp(blueprint.title)) return null;
@@ -369,7 +371,7 @@ public static class Root
         var window = CDesktop.windows.Find(x => x.title == windowName);
         bool wasThere = window != null;
         if (wasThere) window.Respawn(onlyWhenActive);
-        else if (!onlyWhenActive) SpawnWindowBlueprint(windowName, true);
+        else if (!onlyWhenActive) SpawnWindowBlueprint(windowName);
         return wasThere;
     }
 
@@ -498,7 +500,7 @@ public static class Root
         newObject.transform.parent = onWhat.transform;
         newObject.transform.localPosition = new Vector3(2, -2, 0.1f);
         var high = onWhat.background.GetComponent<Highlightable>();
-        if (high != null) high.additionalRender = newObject.GetComponent<SpriteRenderer>();
+        if (high != null) high.additionalRenderers.Add(newObject.GetComponent<SpriteRenderer>());
         if (overlaySprite == null) overlaySprite = Resources.Load<Sprite>("Sprites/" + overlay);
         newObject.GetComponent<SpriteRenderer>().sprite = overlaySprite;
     }
@@ -521,6 +523,48 @@ public static class Root
     public static void AddPaddingRegion(Action draw)
     {
         AddRegion(Padding, draw, null, null, null, null);
+    }
+
+    public static void AddScrollbarRegion(string windowRef)
+    {
+        AddRegion(Padding,
+        () =>
+        {
+            var windowFind = CDesktop.windows.Find(x => x.title == windowRef);
+            if (windowFind != null)
+            {
+                AddLine("");
+                int size = CDesktop.LBWindow().LBRegionGroup().setHeight - 2;
+                var freshRegion = CDesktop.LBWindow().LBRegionGroup().LBRegion();
+                var fill = new GameObject("Fill");
+                fill.transform.parent = freshRegion.transform;
+                fill.transform.localPosition = new();
+                var fillTop = new GameObject("FillTop", typeof(SpriteRenderer));
+                fillTop.GetComponent<SpriteRenderer>().sprite = scrollbarFills[0];
+                fillTop.GetComponent<SpriteRenderer>().sortingOrder++;
+                fillTop.transform.parent = fill.transform;
+                fillTop.transform.localPosition = new();
+                var fillMiddle = new GameObject("FillMiddle", typeof(SpriteRenderer));
+                fillMiddle.GetComponent<SpriteRenderer>().sprite = scrollbarFills[1];
+                fillMiddle.transform.parent = fill.transform;
+                fillMiddle.transform.localPosition = new();
+                var stretch = size - 8 < 1 ? 1 : size - 8;
+                fillMiddle.transform.localScale = new Vector3(1, size, 1);
+                fillMiddle.AddComponent<BoxCollider2D>();
+                fillMiddle.gameObject.AddComponent<Highlightable>().Initialise(freshRegion, null, null, null, null);
+                var fillBottom = new GameObject("FillBottom", typeof(SpriteRenderer));
+                fillBottom.GetComponent<SpriteRenderer>().sprite = scrollbarFills[2];
+                fillBottom.GetComponent<SpriteRenderer>().sortingOrder++;
+                fillBottom.transform.parent = fill.transform;
+                fillBottom.transform.localPosition = new();
+                fillBottom.transform.localPosition += new Vector3(0, 4);
+                fillBottom.transform.localPosition += new Vector3(0, -fillMiddle.transform.localScale.y);
+                fillMiddle.GetComponent<Highlightable>().additionalRenderers = new() { fillTop.GetComponent<SpriteRenderer>(), fillBottom.GetComponent<SpriteRenderer>() };
+
+                fill.transform.localPosition += new Vector3(4, -4);
+            }
+        },
+        null, null, null, null);
     }
 
     public static void AddPaginationLine()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -14,7 +15,8 @@ public class Highlightable : MonoBehaviour
     public Tooltip tooltip;
 
     //Saved reference to the renderer to avoid
-    public SpriteRenderer render, additionalRender;
+    public SpriteRenderer render;
+    public List<SpriteRenderer> additionalRenderers;
 
     //Events regarding 
     public Action<Highlightable> pressEvent, rightPressEvent, middlePressEvent;
@@ -28,6 +30,7 @@ public class Highlightable : MonoBehaviour
     public void Initialise(Region region, Action<Highlightable> pressEvent, Action<Highlightable> rightPressEvent, Func<Highlightable, Action> tooltip, Action<Highlightable> middlePressEvent)
     {
         render = GetComponent<SpriteRenderer>();
+        additionalRenderers = new();
         pressedState = "None";
         this.pressEvent = pressEvent;
         this.rightPressEvent = rightPressEvent;
@@ -46,7 +49,8 @@ public class Highlightable : MonoBehaviour
         if (GetComponent<InputCharacter>() != null) cursor.SetCursor(Write);
         else if (pressedState != "None") cursor.SetCursor(Click);
         render.color = defaultColor - new Color(0.1f, 0.1f, 0.1f, 0);
-        if (additionalRender != null) additionalRender.color = defaultColor - new Color(0.1f, 0.1f, 0.1f, 0);
+        if (additionalRenderers != null && additionalRenderers.Count > 0)
+            additionalRenderers.ForEach(x => x.color = defaultColor - new Color(0.1f, 0.1f, 0.1f, 0));
     }
 
     public void OnMouseExit()
@@ -58,7 +62,8 @@ public class Highlightable : MonoBehaviour
         if (cursor.IsNow(Click) || cursor.IsNow(Write))
             cursor.SetCursor(Default);
         render.color = defaultColor;
-        if (additionalRender != null) additionalRender.color = defaultColor;
+        if (additionalRenderers != null && additionalRenderers.Count > 0)
+            additionalRenderers.ForEach(x => x.color = defaultColor);
         pressedState = "None";
     }
 
@@ -69,7 +74,8 @@ public class Highlightable : MonoBehaviour
         Root.tooltip = null;
         cursor.SetCursor(Click);
         render.color = defaultColor - new Color(0.2f, 0.2f, 0.2f, 0);
-        if (additionalRender != null) additionalRender.color = defaultColor - new Color(0.2f, 0.2f, 0.2f, 0);
+        if (additionalRenderers != null && additionalRenderers.Count > 0)
+            additionalRenderers.ForEach(x => x.color = defaultColor - new Color(0.2f, 0.2f, 0.2f, 0));
         pressedState = key;
     }
 
@@ -79,7 +85,8 @@ public class Highlightable : MonoBehaviour
         if (pressedState != key) return;
         cursor.SetCursor(Default);
         render.color = defaultColor - (mouseOver == this ? new Color(0.1f, 0.1f, 0.1f, 0) : new Color(0, 0, 0, 0));
-        if (additionalRender != null) additionalRender.color = defaultColor - (mouseOver == this ? new Color(0.1f, 0.1f, 0.1f, 0) : new Color(0, 0, 0, 0));
+        if (additionalRenderers != null && additionalRenderers.Count > 0)
+            additionalRenderers.ForEach(x => x.color = defaultColor - (mouseOver == this ? new Color(0.1f, 0.1f, 0.1f, 0) : new Color(0, 0, 0, 0)));
         if (pressedState == "Left" && pressEvent != null)
         {
             var l = GetComponent<LineSmallButton>();

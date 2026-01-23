@@ -236,7 +236,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(376);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("MusicReleases");
         }),
         new("MusicReleasesScrollbarDown", () => {
             SetAnchor(195, -190);
@@ -643,7 +643,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(243);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("MusicRelease");
         }),
         new("MusicReleaseScrollbarDown", () => {
             SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? 256 : (rating.Value() ? 272 : 227), -57);
@@ -1052,7 +1052,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("Artists");
         }),
         new("ArtistsScrollbarDown", () => {
             SetAnchor(173, -171);
@@ -1249,7 +1249,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("Countries");
         }),
         new("CountriesScrollbarDown", () => {
             SetAnchor(200, -162);
@@ -1416,7 +1416,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("Genres");
         }),
         new("GenresScrollbarDown", () => {
             SetAnchor(173, -171);
@@ -1594,7 +1594,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("Languages");
         }),
         new("LanguagesScrollbarDown", () => {
             SetAnchor(173, -171);
@@ -1753,7 +1753,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("Years");
         }),
         new("YearsScrollbarDown", () => {
             SetAnchor(173, -152);
@@ -1912,7 +1912,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(148);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("Decades");
         }),
         new("DecadesScrollbarDown", () => {
             SetAnchor(173, -86);
@@ -2071,7 +2071,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(129);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("ReleaseTypes");
         }),
         new("ReleaseTypesScrollbarDown", () => {
             SetAnchor(173, -76);
@@ -2230,7 +2230,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("TrackAmounts");
         }),
         new("TrackAmountsScrollbarDown", () => {
             SetAnchor(173, -152);
@@ -2389,7 +2389,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("DebutYears");
         }),
         new("DebutYearsScrollbarDown", () => {
             SetAnchor(173, -152);
@@ -2548,7 +2548,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("Durations");
         }),
         new("DurationsScrollbarDown", () => {
             SetAnchor(173, -152);
@@ -2673,7 +2673,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(53);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("RatingStatuses");
         }),
         new("RatingStatusesScrollbarDown", () => {
             SetAnchor(145, -38);
@@ -3082,190 +3082,6 @@ public class Blueprint
             });
         }),
 
-        //Errors
-        new("ErrorLoadingAlbum2", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 3, no artist name provided");
-            });
-        }),
-        new("ErrorLoadingAlbum8", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 9, no artist country provided");
-            });
-        }),
-        new("ErrorLoadingAlbum14", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 15, no album name provided");
-            });
-        }),
-        new("ErrorLoadingAlbum20", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 21, release date in wrong fromat");
-            });
-        }),
-        new("ErrorLoadingAlbum26", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 27, error loading image");
-            });
-        }),
-        new("ErrorLoadingAlbum32", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 33, no album type provided");
-            });
-        }),
-        new("ErrorLoadingAlbum320", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 33, provided album type isn't recognised");
-            });
-        }),
-        new("ErrorLoadingAlbum38", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line 39, no album genres provided");
-            });
-        }),
-        new("ErrorLoadingAlbum50", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line " + errorAtLine + ", no tracks were provided");
-            });
-        }),
-        new("ErrorLoadingAlbum500", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line " + errorAtLine + ", track provided with wrong format");
-            });
-        }),
-        new("ErrorLoadingAlbum501", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line " + errorAtLine + ", duration provided in wrong format");
-            });
-        }),
-        new("ErrorLoadingAlbum502", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line " + errorAtLine + ", minutes aren't a number");
-            });
-        }),
-        new("ErrorLoadingAlbum503", () => {
-            SetAnchor(Top, 0, -19);
-            AddRegionGroup();
-            SetRegionGroupWidth(300);
-            AddHeaderRegion(() =>
-            {
-                AddLine("Error loading album");
-                AddSmallButton("OtherClose", (h) => CloseWindow(h.window));
-            });
-            AddPaddingRegion(() =>
-            {
-                AddLine("Error at line " + errorAtLine + ", seconds aren't a number");
-            });
-        }),
-
         //Artist battle
         new("ArtistBattle", () => {
             SetAnchor(Center);
@@ -3567,7 +3383,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("ArtistBattleArtists");
         }),
         new("ArtistBattleArtistsScrollbarDown", () => {
             SetAnchor(200, -174);
@@ -4410,7 +4226,7 @@ public class Blueprint
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(281);
-            AddPaddingRegion(() => AddLine(""));
+            AddScrollbarRegion("CreateNewAlbumArtistCountry");
         }),
         new("CreateNewAlbumArtistCountryScrollbarDown", () => {
             SetAnchor(173, -152);

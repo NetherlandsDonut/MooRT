@@ -71,7 +71,7 @@ public class Starter : MonoBehaviour
         #endregion
 
         //Get all the library going on..
-        Deserialize(ref ratings, "ratings", false, prefix);
+        Deserialize(ref ratings, "ratings", false);
         ratings ??= new();
         foreach (var rating in ratings)
             if (rating.Value.savedTrackRatings != null)
@@ -80,6 +80,7 @@ public class Starter : MonoBehaviour
         Serialize(ratings, "ratings", true);
         if (useUnityData) urlContent = "x";
         else StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
+        scrollbarFills = Resources.LoadAll<Sprite>("Sprites/Scrollbar/ScrollbarFill");
         enteredSecondStage = true;
     }
 
@@ -122,7 +123,7 @@ public class Starter : MonoBehaviour
             enteredThirdStage = true;
 
             if (urlContent != "x") DeserializeFromURL(ref library, false);
-            if (library == null) Deserialize(ref library, "library", false, prefix);
+            if (library == null) Deserialize(ref library, "library", false);
             else Serialize(library, "library");
 
             library ??= new();
@@ -135,7 +136,7 @@ public class Starter : MonoBehaviour
                 if (useUnityData) Serialize(library, "library", true);
 
                 //Get user settings..
-                Deserialize(ref settings, "settings", false, prefix);
+                Deserialize(ref settings, "settings", false);
                 settings ??= new();
                 settings.FillNulls();
                 Serialize(settings, "settings", true);
@@ -198,7 +199,7 @@ public class Starter : MonoBehaviour
         //into the game. By game content I mean specs, abilities, instances etc
         #region Data Deserialization
 
-        Deserialize(ref defines, "defines", false, prefix);
+        Deserialize(ref defines, "defines", false);
         defines ??= new();
 
         albumCovers = new();
