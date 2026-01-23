@@ -29,12 +29,12 @@ class Serialization
     public static async void SendMail()
     {
         var content = StringFromPackage(new(musicRelease, musicRelease.artist, musicRelease.country, Root.newCoverURL));
-        smtpServer = new SmtpClient("smtp-relay.brevo.com");
+        smtpServer = new("smtp-relay.brevo.com");
         smtpServer.Timeout = 10000;
         smtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
         smtpServer.UseDefaultCredentials = false;
         smtpServer.Port = 587;
-        mail = new MailMessage();
+        mail = new();
         mail.From = new MailAddress("moort.box@gmail.com");
         mail.To.Add(new MailAddress("moort.box@gmail.com"));
         mail.Subject = musicRelease.artist + " - " + musicRelease.name;
@@ -43,6 +43,7 @@ class Serialization
         smtpServer.EnableSsl = true;
         ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
         mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+        BackupAlbumCreation(content, mail.Subject);
         try
         {
             await smtpServer.SendMailAsync(mail);
@@ -53,9 +54,6 @@ class Serialization
         }
         Root.CloseDesktop("SendingMail");
     }
-
-    //Compress package for sending outside
-    //public static string compressedPackage;
 
     //Prefix for serialisation
     public static string prefix = "";
@@ -83,64 +81,8 @@ class Serialization
         if (useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
         if (!Directory.Exists(prefix + "MooRT_Data_2"))
             Directory.CreateDirectory(prefix + "MooRT_Data_2");
-        if (file == "newRelease" && !File.Exists(prefix + "MooRT_Data_2/" + file + ".txt"))
-        {
-            using var sw = new StreamWriter(prefix + "MooRT_Data_2/" + file + ".txt", true);
-            sw.WriteLine("Artist name:");
-            sw.WriteLine("-");
-            sw.WriteLine("here");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("Artist country:");
-            sw.WriteLine("-");
-            sw.WriteLine("here");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("Release name:");
-            sw.WriteLine("-");
-            sw.WriteLine("here");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("Release cover:");
-            sw.WriteLine("-");
-            sw.WriteLine("here");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("Release type: Studio album | Live album | Extended play | Compilation album | Demo recording | Soundtrack | Remix album");
-            sw.WriteLine("");
-            sw.WriteLine("here");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("Genres: Example: \"Indie Folk, Industrial Metal, Shoegaze\" / Can be left empty");
-            sw.WriteLine("-");
-            sw.WriteLine("");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("Languages: Example: \"English, French\" / When left empty, \"No Language\" will be added automatically");
-            sw.WriteLine("-");
-            sw.WriteLine("");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("-");
-            sw.WriteLine("Tracklist:");
-            sw.WriteLine("-");
-            sw.WriteLine("here1");
-            sw.WriteLine("3:23");
-            sw.WriteLine("here2");
-            sw.WriteLine("6:51");
-            sw.WriteLine("here3");
-            sw.Write("12:25");
-        }
-        if (useUnityData)
-            Process.Start(prefix + "MooRT_Data_2/" + file + ".txt");
-        else
-            Process.Start(Application.dataPath + "_2/" + file + ".txt");
+        if (useUnityData) Process.Start(prefix + "MooRT_Data_2/" + file + ".txt");
+        else Process.Start(Application.dataPath + "_2/" + file + ".txt");
     }
 
     public static string urlContent = "";
@@ -181,6 +123,17 @@ class Serialization
         var data = SerializeObject(what, encoded ? None : Indented, sett);
         if (encoded) data = Encrypt(data);
         File.WriteAllText(prefix + "MooRT_Data_2/" + (backup ? "Backup/" + date + "/" : "") + where + (encoded ? "" : ".json"), data);
+    }
+
+    public static void BackupAlbumCreation(string data, string where, string prefix = "")
+    {
+        if (useUnityData) prefix = @"C:\Users\ragan\Documents\Projects\Unity\MooRT\";
+        if (!Directory.Exists(prefix + "MooRT_Data_2"))
+            Directory.CreateDirectory(prefix + "MooRT_Data_2");
+        if (!Directory.Exists(prefix + "MooRT_Data_2/Created albums"))
+            Directory.CreateDirectory(prefix + "MooRT_Data_2/Created albums");
+        if (File.Exists(prefix + "MooRT_Data_2/" + "Created albums/" + where + ".txt")) return;
+        File.WriteAllText(prefix + "MooRT_Data_2/" + "Created albums/" + where + ".txt", data);
     }
 
     public static string IV = "1a1a1a1a1a1a1a1a";

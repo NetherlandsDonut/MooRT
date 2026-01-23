@@ -307,7 +307,7 @@ public class Blueprint
         //Music release
         new("MusicRelease", () => {
             var rating = Root.rating.Value();
-            SetAnchor(rating ? -103 : -58, 209);
+            SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? -86 : (rating ? -103 : -58), 209);
             var rowAmount = 14;
             var thisWindow = CDesktop.LBWindow();
             var discs = musicRelease.discs == null || musicRelease.discs.Length == 0 ? new() : musicRelease.discs.Split(":").Select(x => int.Parse(x)).ToList();
@@ -451,6 +451,33 @@ public class Blueprint
                     AddPaddingRegion(() => AddLine(track.Item2, track.Item1 == -1 ? "DarkGray" : "Gray"));
                 }
             }
+            if (CDesktop.title == "CreateNewAlbumPreview")
+            {
+                AddRegionGroup();
+                SetRegionGroupWidth(19);
+                SetRegionGroupHeight(281);
+                AddHeaderRegion(() => AddLine("", "", "Right"));
+                for (int i = thisWindow.pagination() == 0 ? 0 : tracklist.Count - thisWindow.pagination() < rowAmount ? tracklist.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+                {
+                    var index = i;
+                    if (tracklist.Count > index + thisWindow.pagination())
+                    {
+                        var track = tracklist[index + thisWindow.pagination()];
+                        if (track.Item1 == -1) AddPaddingRegion(() => AddLine(""));
+                        else
+                        {
+                            AddPaddingRegion(() => AddSmallButton("OtherDetract", (h) =>
+                            {
+                                musicRelease.tracks[index + thisWindow.pagination()].length -= Input.GetKey(LeftShift) ? 10 : 1;
+                                if (musicRelease.tracks[index + thisWindow.pagination()].length <= 0)
+                                    musicRelease.tracks[index + thisWindow.pagination()].length = 1;
+                                musicRelease.Initialise(null);
+                                CDesktop.RespawnAll();
+                            }));
+                        }
+                    }
+                }
+            }
             AddRegionGroup();
             SetRegionGroupWidth(58);
             SetRegionGroupHeight(281);
@@ -464,12 +491,61 @@ public class Blueprint
                     AddPaddingRegion(() => AddLine(track.Item3, track.Item1 != -1 ? "Gray" : "DimGray"));
                 }
             }
+            if (CDesktop.title == "CreateNewAlbumPreview")
+            {
+                AddRegionGroup();
+                SetRegionGroupWidth(19);
+                SetRegionGroupHeight(281);
+                AddHeaderRegion(() => AddLine("", "", "Right"));
+                for (int i = thisWindow.pagination() == 0 ? 0 : tracklist.Count - thisWindow.pagination() < rowAmount ? tracklist.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+                {
+                    var index = i;
+                    if (tracklist.Count > index + thisWindow.pagination())
+                    {
+                        var track = tracklist[index + thisWindow.pagination()];
+                        if (track.Item1 == -1) AddPaddingRegion(() => AddLine(""));
+                        else
+                        {
+                            AddPaddingRegion(() => AddSmallButton("OtherAdd", (h) =>
+                            {
+                                musicRelease.tracks[index + thisWindow.pagination()].length += Input.GetKey(LeftShift) ? 10 : 1;
+                                musicRelease.Initialise(null);
+                                CDesktop.RespawnAll();
+                            }));
+                        }
+                    }
+                }
+            }
+            if (CDesktop.title == "CreateNewAlbumPreview")
+            {
+                AddRegionGroup();
+                SetRegionGroupWidth(19);
+                SetRegionGroupHeight(281);
+                AddHeaderRegion(() => AddLine("", "", "Right"));
+                for (int i = thisWindow.pagination() == 0 ? 0 : tracklist.Count - thisWindow.pagination() < rowAmount ? tracklist.Count - (thisWindow.pagination() + 1) : 0; i < rowAmount; i++)
+                {
+                    var index = i;
+                    if (tracklist.Count > index + thisWindow.pagination())
+                    {
+                        var track = tracklist[index + thisWindow.pagination()];
+                        if (track.Item1 == -1) AddPaddingRegion(() => AddLine(""));
+                        else
+                        {
+                            AddPaddingRegion(() => AddSmallButton("OtherTrash", (h) =>
+                            {
+                                musicRelease.tracks.RemoveAt(index + thisWindow.pagination());
+                                CDesktop.RespawnAll();
+                            }));
+                        }
+                    }
+                }
+            }
         }),
         new("MusicReleaseDescription", () => {
             var rating = Root.rating.Value();
-            SetAnchor(rating ? -293 : -248, -76);
+            SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? -276 : (rating ? -293 : -248), -76);
             AddHeaderGroup();
-            SetRegionGroupWidth(rating ? 584 : 494);
+            SetRegionGroupWidth(CDesktop.title == "CreateNewAlbumPreview" ? 551 : (rating ? 584 : 494));
             SetRegionGroupHeight(95);
             AddPaddingRegion(() =>
             {
@@ -544,7 +620,7 @@ public class Blueprint
             });
         }),
         new("MusicReleaseScrollbarUp", () => {
-            SetAnchor(rating.Value() ? 272 : 227, 209);
+            SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? 256 : (rating.Value() ? 272 : 227), 209);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -563,14 +639,14 @@ public class Blueprint
             });
         }),
         new("MusicReleaseScrollbar", () => {
-            SetAnchor(rating.Value() ? 272 : 227, 190);
+            SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? 256 : (rating.Value() ? 272 : 227), 190);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             SetRegionGroupHeight(243);
             AddPaddingRegion(() => AddLine(""));
         }),
         new("MusicReleaseScrollbarDown", () => {
-            SetAnchor(rating.Value() ? 272 : 227, -57);
+            SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? 256 : (rating.Value() ? 272 : 227), -57);
             AddRegionGroup();
             SetRegionGroupWidth(19);
             AddPaddingRegion(() =>
@@ -590,9 +666,9 @@ public class Blueprint
         }),
         new("MusicReleaseCover", () => {
             var rating = Root.rating.Value();
-            SetAnchor(rating ? -293 : -248, 228);
+            SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? -276 : (rating ? -293 : -248), 228);
             AddHeaderGroup();
-            SetRegionGroupWidth(rating ? 584 : 494);
+            SetRegionGroupWidth(CDesktop.title == "CreateNewAlbumPreview" ? 551 : (rating ? 584 : 494));
             AddHeaderRegion(() =>
             {
                 AddLine(musicRelease.name);
@@ -620,7 +696,7 @@ public class Blueprint
                             CloseDesktop(CDesktop.title);
                             SpawnDesktopBlueprint("Menu");
                         });
-                    AddSmallButton("OtherBigger", (h) =>
+                    AddSmallButton("OtherMail", (h) =>
                     {
                         SpawnDesktopBlueprint("SendingMail");
                     });
@@ -761,50 +837,62 @@ public class Blueprint
         }),
         new("MusicReleaseBottomLine", () => {
             var rating = Root.rating.Value();
-            SetAnchor(rating ? -293 : -248, 19);
+            SetAnchor(CDesktop.title == "CreateNewAlbumPreview" ? -276 : (rating ? -293 : -248), 19);
             AddRegionGroup();
-            AddPaddingRegion(() =>
+            if (CDesktop.title == "CreateNewAlbumPreview")
             {
-                if (musicReleaseIndex > 0) AddSmallButton("OtherPreviousPage", (h) =>
-                {
-                    musicRelease = library.releases[--musicReleaseIndex];
-                    CDesktop.RespawnAll();
-                    Respawn("MusicReleaseScrollbarUp", true);
-                    Respawn("MusicReleaseScrollbar", true);
-                    Respawn("MusicReleaseScrollbarDown", true);
-                    SpawnAlbumTransition();
-                    if (albumCovers.ContainsKey(musicRelease.ID + ""))
-                    {
-                        if (musicRelease.pallete == null)
-                            musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
-                        SetDesktopBackgroundAsGradient(musicRelease.pallete);
-                    }
-                });
-                else AddSmallButton("OtherPreviousPageOff");
-            });
-            AddRegionGroup();
-            SetRegionGroupWidth(152);
-            AddPaddingRegion(() => AddLine(musicReleaseIndex + 1 + " / " + library.releases.Count, "DarkGray", "Center"));
-            AddRegionGroup();
-            AddPaddingRegion(() =>
+                AddPaddingRegion(() => AddSmallButton("OtherPreviousPageOff"));
+                AddRegionGroup();
+                SetRegionGroupWidth(152);
+                AddPaddingRegion(() => AddLine("", "DarkGray", "Center"));
+                AddRegionGroup();
+                AddPaddingRegion(() => AddSmallButton("OtherNextPageOff"));
+            }
+            else
             {
-                if (musicReleaseIndex < library.releases.Count - 1) AddSmallButton("OtherNextPage", (h) =>
+                AddPaddingRegion(() =>
                 {
-                    musicRelease = library.releases[++musicReleaseIndex];
-                    CDesktop.RespawnAll();
-                    Respawn("MusicReleaseScrollbarUp", true);
-                    Respawn("MusicReleaseScrollbar", true);
-                    Respawn("MusicReleaseScrollbarDown", true);
-                    SpawnAlbumTransition();
-                    if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                    if (musicReleaseIndex > 0) AddSmallButton("OtherPreviousPage", (h) =>
                     {
-                        if (musicRelease.pallete == null)
-                            musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
-                        SetDesktopBackgroundAsGradient(musicRelease.pallete);
-                    }
+                        musicRelease = library.releases[--musicReleaseIndex];
+                        CDesktop.RespawnAll();
+                        Respawn("MusicReleaseScrollbarUp", true);
+                        Respawn("MusicReleaseScrollbar", true);
+                        Respawn("MusicReleaseScrollbarDown", true);
+                        SpawnAlbumTransition();
+                        if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                        {
+                            if (musicRelease.pallete == null)
+                                musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                            SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                        }
+                    });
+                    else AddSmallButton("OtherPreviousPageOff");
                 });
-                else AddSmallButton("OtherNextPageOff");
-            });
+                AddRegionGroup();
+                SetRegionGroupWidth(152);
+                AddPaddingRegion(() => AddLine(musicReleaseIndex + 1 + " / " + library.releases.Count, "DarkGray", "Center"));
+                AddRegionGroup();
+                AddPaddingRegion(() =>
+                {
+                    if (musicReleaseIndex < library.releases.Count - 1) AddSmallButton("OtherNextPage", (h) =>
+                    {
+                        musicRelease = library.releases[++musicReleaseIndex];
+                        CDesktop.RespawnAll();
+                        Respawn("MusicReleaseScrollbarUp", true);
+                        Respawn("MusicReleaseScrollbar", true);
+                        Respawn("MusicReleaseScrollbarDown", true);
+                        SpawnAlbumTransition();
+                        if (albumCovers.ContainsKey(musicRelease.ID + ""))
+                        {
+                            if (musicRelease.pallete == null)
+                                musicRelease.GeneratePallete(albumCovers[musicRelease.ID + ""]);
+                            SetDesktopBackgroundAsGradient(musicRelease.pallete);
+                        }
+                    });
+                    else AddSmallButton("OtherNextPageOff");
+                });
+            }
         }),
 
         //Artists
@@ -2786,11 +2874,6 @@ public class Blueprint
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Menu:"));
-            //AddButtonRegion(() => AddLine("Settings"), (h) =>
-            //{
-            //    CloseWindow(h.window);
-            //    SpawnWindowBlueprint("MenuSettings");
-            //});
             AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
                 Serialization.Serialize(settings, "settings");

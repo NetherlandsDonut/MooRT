@@ -23,15 +23,16 @@ public class MusicRelease
         }
         duration = sumLength / 60;
         length = sumLength;
-        country = artist.country;
+        if (artist != null) country = artist.country;
         discs ??= "";
-        if (artist.releases.Count > 0)
-            debutYear = int.Parse(artist.releases.OrderBy(x => x.releaseDate).ToList()[0].releaseDate.Substring(0, 4));
+        if (artist != null)
+            if (artist.releases.Count > 0)
+                debutYear = int.Parse(artist.releases.OrderBy(x => x.releaseDate).ToList()[0].releaseDate.Substring(0, 4));
         if (discs.Length > 0)
             discs = string.Join(':', discs.Split(':').Select(x => int.Parse(x)).Where(x => x != 0 && x < tracks.Count).OrderBy(x => x));
         else if (discs == "0") discs = "";
         AsignFormattedName();
-        artist.AsignFormattedName();
+        artist?.AsignFormattedName();
     }
 
     public static MusicRelease CreatePreviewRelease()
