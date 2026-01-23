@@ -2,8 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mail;
+using System.Net.Security;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using static ArtistBattle;
 using static Country;
@@ -618,6 +625,10 @@ public class Blueprint
                             SpawnDesktopBlueprint("Menu");
                         });
                     AddSmallButton("OtherBigger", (h) =>
+                    {
+                        SpawnDesktopBlueprint("SendingMail");
+                    });
+                    AddSmallButton("OtherCopy", (h) =>
                     {
                         GUIUtility.systemCopyBuffer = Serialization.StringFromPackage(new(musicRelease, musicRelease.artist, musicRelease.country, newCoverURL));
                         SpawnFallingText(new(0, 8), "Data was copied onto the clipboard!");
@@ -4397,6 +4408,15 @@ public class Blueprint
                 SpawnDesktopBlueprint("CreateNewAlbumPreviewLoadCover");
             });
         }),
+        new("SendingMail", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Sending mail..", "", "Center");
+            });
+        }),
     };
 
     public static List<Blueprint> desktopBlueprints = new()
@@ -5097,6 +5117,14 @@ public class Blueprint
                     Respawn("MusicReleaseScrollbarDown");
                 }
             });
+        }),
+        new("SendingMail", () =>
+        {
+            if (musicRelease.pallete == null)
+                musicRelease.GeneratePallete(newCover);
+            SetDesktopBackgroundAsGradient(musicRelease.pallete);
+            SpawnWindowBlueprint("SendingMail");
+            Serialization.SendMail();
         }),
     };
 
