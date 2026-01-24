@@ -11,7 +11,6 @@ using UnityEngine.Networking;
 
 using static Blueprint;
 using static ProgramSettings;
-
 using static Root.Anchor;
 using static Root.RegionBackgroundType;
 
@@ -551,9 +550,9 @@ public static class Root
                 var stretch = size < 1 ? 1 : size;
                 var pagination = windowFind.pagination();
                 var maxPagination = windowFind.maxPagination();
-                var finalSize = stretch - maxPagination * 2;
-                if (finalSize < 13) finalSize = 13;
-                fillMiddle.transform.localScale = new Vector3(1, finalSize, 1);
+                var fillSize = stretch - maxPagination * 2;
+                if (fillSize < 13) fillSize = 13;
+                fillMiddle.transform.localScale = new Vector3(1, fillSize, 1);
                 var fillBottom = new GameObject("FillBottom", typeof(SpriteRenderer));
                 fillBottom.GetComponent<SpriteRenderer>().sprite = scrollbarFills[2];
                 fillBottom.GetComponent<SpriteRenderer>().sortingOrder++;
@@ -561,12 +560,13 @@ public static class Root
                 fillBottom.transform.localPosition = new();
                 fillBottom.transform.localPosition += new Vector3(0, 4);
                 fillBottom.transform.localPosition += new Vector3(0, -fillMiddle.transform.localScale.y);
-                fill.AddComponent<BoxCollider2D>().offset = new Vector2(6.5f, -finalSize / 2f);
-                fill.GetComponent<BoxCollider2D>().size = new Vector2(13, finalSize);
+                fill.AddComponent<BoxCollider2D>().offset = new Vector2(6.5f, -fillSize / 2f);
+                fill.GetComponent<BoxCollider2D>().size = new Vector2(13, fillSize);
                 fill.gameObject.AddComponent<Highlightable>().Initialise(freshRegion, null, null, null, null);
                 fill.GetComponent<Highlightable>().additionalRenderers = new() { fillTop.GetComponent<SpriteRenderer>(), fillMiddle.GetComponent<SpriteRenderer>(), fillBottom.GetComponent<SpriteRenderer>() };
-                fill.gameObject.AddComponent<Scrollbar>().Initialise(size, finalSize);
-                fill.transform.localPosition += new Vector3(4, -4);
+                fill.gameObject.AddComponent<Scrollbar>().Initialise(size, fillSize, windowRef);
+                var percentOfPagination = pagination == 0 ? 0 : pagination / (float)maxPagination * 100;
+                fill.transform.localPosition = new Vector3(4, (percentOfPagination == 0 ? 0 : -((size - fillSize) / 100f * percentOfPagination)) - 4);
             }
         },
         null, null, null, null);

@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+
 using UnityEngine;
+
+using static Root;
 using static Cursor;
 using static InputLine;
-using static Root;
-using static System.Net.Mime.MediaTypeNames;
 
 public class Desktop : MonoBehaviour
 {
@@ -279,6 +279,7 @@ public class Desktop : MonoBehaviour
             {
                 Scrollbar.scrollbarUsed.GetComponent<Highlightable>().pressedState = "None";
                 Scrollbar.scrollbarUsed = null;
+                cursor.SetCursor(CursorType.Default);
             }
             if (mouseOver != null)
             {
@@ -395,7 +396,11 @@ public class Desktop : MonoBehaviour
                             didSomething = true;
                         }
                     if (didSomething)
+                    {
                         Respawn(inputLineWindow);
+                        var scrollbarRelated = CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
+                        foreach (var window in scrollbarRelated) Respawn(window, true);
+                    }
                 }
                 else if (heldKeyTime <= 0)
                 {

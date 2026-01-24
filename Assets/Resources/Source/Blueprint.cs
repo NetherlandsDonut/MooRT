@@ -264,6 +264,8 @@ public class Blueprint
             {
                 library.ResetLibrary();
                 CDesktop.RespawnAll();
+                var scrollbarRelated = CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
+                foreach (var window in scrollbarRelated) Respawn(window, true);
             }));
         }),
         new("RollRandomRelease", () => {
@@ -4341,6 +4343,7 @@ public class Blueprint
             },
             (h) =>
             {
+                CloseDesktop("SendingMailFailure");
                 SpawnDesktopBlueprint("CreateNewAlbumPreview");
             });
         }),
@@ -5068,6 +5071,7 @@ public class Blueprint
         {
             var moved = false;
             var window = CDesktop.windows.Find(x => x.title == windowName);
+            if (window == null) return;
             for (int i = Input.GetKey(LeftShift) ? window.perPage - 1 : 0; i >= 0; i--)
                 if (window.pagination() > 0)
                 {
@@ -5087,6 +5091,7 @@ public class Blueprint
         {
             var moved = false;
             var window = CDesktop.windows.Find(x => x.title == windowName);
+            if (window == null) return;
             for (int i = Input.GetKey(LeftShift) ? window.perPage - 1 : 0; i >= 0; i--)
                 if (window.pagination() < window.maxPagination())
                 {

@@ -59,13 +59,12 @@ public class Highlightable : MonoBehaviour
         SetMouseOver(null);
         CloseWindow("Tooltip");
         Root.tooltip = null;
-        if (cursor.IsNow(Click) || cursor.IsNow(Write))
+        if (cursor.IsNow(Click) && Scrollbar.scrollbarUsed == null || cursor.IsNow(Write))
             cursor.SetCursor(Default);
         render.color = defaultColor;
         if (additionalRenderers != null && additionalRenderers.Count > 0)
             additionalRenderers.ForEach(x => x.color = defaultColor);
-        if (GetComponent<Scrollbar>() == null)
-            pressedState = "None";
+        pressedState = "None";
     }
 
     public void MouseDown(string key)

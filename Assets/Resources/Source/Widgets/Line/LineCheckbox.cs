@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class LineCheckbox : MonoBehaviour
@@ -12,6 +14,7 @@ public class LineCheckbox : MonoBehaviour
     //Bool field asigned to this checkbox
     public Bool value;
 
+    //When inverting the list the corresponding bool is in, this is the list
     public List<Bool> referenceList;
 
     //Initialisation method
@@ -28,6 +31,8 @@ public class LineCheckbox : MonoBehaviour
     {
         //Invert the field value
         value.Invert();
+        var scrollbarRelated = Root.CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
+        foreach (var window in scrollbarRelated) Root.Respawn(window, true);
         if (Root.CDesktop.title == "PrepareArtistBattle")
             Root.CDesktop.RespawnAll();
     }
@@ -36,6 +41,8 @@ public class LineCheckbox : MonoBehaviour
     {
         value.Invert();
         referenceList?.ForEach(x => x.Invert());
+        var scrollbarRelated = Root.CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
+        foreach (var window in scrollbarRelated) Root.Respawn(window, true);
         if (Root.CDesktop.title == "PrepareArtistBattle")
             Root.CDesktop.RespawnAll();
     }
