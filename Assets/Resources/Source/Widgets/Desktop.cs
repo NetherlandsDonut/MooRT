@@ -153,6 +153,7 @@ public class Desktop : MonoBehaviour
                                     loadingScreenProgress++;
                                     var localCover = new Texture2D(1, 1, TextureFormat.RGB24, false);
                                     ImageConversion.LoadImage(localCover, Starter.coverBytes[i]);
+                                    localCover.filterMode = FilterMode.Point;
                                     albumCovers.Add(i + "", Sprite.Create(localCover, new Rect(0, 0, 188, 188), new Vector2(0, 1), 1));
                                     if (!albumBars.ContainsKey(i + ""))
                                     {

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 
 using UnityEditor;
+
 using UnityEngine;
 
 using static Root;
@@ -19,11 +20,12 @@ using static ProgramSettings;
 
 public class Starter : MonoBehaviour
 {
+    //Stopwatch for measuring startup time
     public static Stopwatch stopwatch;
 
     void Awake()
     {
-        //Stopwatch for measuring startup time
+        //Initialise the stopwatch for initial measures
         stopwatch = new Stopwatch();
         stopwatch.Start();
 
@@ -44,6 +46,7 @@ public class Starter : MonoBehaviour
         //Initialise storage for pagination
         staticPagination = new();
 
+        //Create the converter to translate japanese sentences into romaji
         kawazuConverter = new KawazuConverter(Path.Combine(Application.streamingAssetsPath, "IpaDic"));
 
         //This is the font that will be used

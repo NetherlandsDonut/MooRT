@@ -1132,7 +1132,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(countryFiltering.Count(x => x.Value.Value()) + " out of " + countryFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Short"),
@@ -1333,7 +1333,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(genreFiltering.Count(x => x.Value.Value()) + " out of " + genreFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -1500,7 +1500,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(languageFiltering.Count(x => x.Value.Value()) + " out of " + languageFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -1670,7 +1670,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(yearFiltering.Count(x => x.Value.Value()) + " out of " + yearFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -1829,7 +1829,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(decadeFiltering.Count(x => x.Value.Value()) + " out of " + decadeFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -1988,7 +1988,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(releaseTypeFiltering.Count(x => x.Value.Value()) + " out of " + releaseTypeFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -2147,7 +2147,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(trackAmountFiltering.Count(x => x.Value.Value()) + " out of " + trackAmountFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -2306,7 +2306,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(debutYearFiltering.Count(x => x.Value.Value()) + " out of " + debutYearFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Debuts"),
@@ -2465,7 +2465,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(durationFiltering.Count(x => x.Value.Value()) + " out of " + durationFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -2624,7 +2624,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(ratingStatusFiltering.Count(x => x.Value.Value()) + " out of " + ratingStatusFiltering.Count + " is active", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Albums"),
@@ -3094,7 +3094,7 @@ public class Blueprint
                 var artist = library.originalArtists.Find(x => x.ID == candidate.artistID);
                 AddRegionGroup();
                 SetRegionGroupWidth(190);
-                SetRegionGroupHeight(243);
+                SetRegionGroupHeight(277);
                 AddButtonRegion(() =>
                 {
                     if (albumCovers.ContainsKey(album.ID + ""))
@@ -3114,28 +3114,34 @@ public class Blueprint
                 });
                 AddHeaderRegion(() =>
                 {
-                    AddLine(track.duration);
-                    AddText(" / ", "DarkGray");
-                    AddText(track.name, "Gray");
+                    AddLine(track.name, "Gray");
+                    AddLine(track.duration, "Gray");
                 });
                 AddPaddingRegion(() =>
                 {
-                    AddLine(artist.name);
+                    AddLine("by ", "DarkGray");
+                    AddText(artist.name, "Gray");
                 });
                 AddPaddingRegion(() =>
                 {
-                    AddLine(album.name);
+                    AddLine("from ", "DarkGray");
+                    AddText(album.name, "Gray");
+                });
+                AddPaddingRegion(() =>
+                {
+                    AddLine("released in ", "DarkGray");
+                    AddText(album.releaseDate[..4], "Gray");
                 });
             }
         }),
         new("ArtistBattleHeader", () => {
-            SetAnchor(Center, 0, 133);
+            SetAnchor(Center, 0, 150);
             AddRegionGroup();
             SetRegionGroupWidth(190 * artistBattle.perRound);
             SetRegionGroupHeight(19);
             AddHeaderRegion(() =>
             {
-                AddLine("Round " + (currentRound + 1) + " / " + artistBattle.roundAmount, "", "Center");
+                AddLine(currentRound + 1 + " / " + artistBattle.roundAmount, "", "Center");
             });
         }),
         new("ArtistBattlePerRound", () => {
@@ -4155,7 +4161,7 @@ public class Blueprint
                 else
                     AddPaddingRegion(() => { AddLine(""); });
             }
-            AddPaginationLine();
+            AddPaddingRegion(() => AddLine(countryCodes.Count + " countries available", "DarkGray"));
             AddRegionGroup();
             SetRegionGroupWidth(55);
             AddButtonRegion(() => AddLine("Short"),

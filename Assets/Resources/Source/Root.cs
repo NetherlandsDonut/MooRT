@@ -562,36 +562,14 @@ public static class Root
                 fillBottom.transform.localPosition += new Vector3(0, -fillMiddle.transform.localScale.y);
                 fill.AddComponent<BoxCollider2D>().offset = new Vector2(6.5f, -fillSize / 2f);
                 fill.GetComponent<BoxCollider2D>().size = new Vector2(13, fillSize);
-                fill.gameObject.AddComponent<Highlightable>().Initialise(freshRegion, null, null, null, null);
+                fill.AddComponent<Highlightable>().Initialise(freshRegion, null, null, null, null);
                 fill.GetComponent<Highlightable>().additionalRenderers = new() { fillTop.GetComponent<SpriteRenderer>(), fillMiddle.GetComponent<SpriteRenderer>(), fillBottom.GetComponent<SpriteRenderer>() };
-                fill.gameObject.AddComponent<Scrollbar>().Initialise(size, fillSize, windowRef);
+                fill.AddComponent<Scrollbar>().Initialise(size, fillSize, windowRef);
                 var percentOfPagination = pagination == 0 ? 0 : pagination / (float)maxPagination * 100;
                 fill.transform.localPosition = new Vector3(4, (percentOfPagination == 0 ? 0 : -((size - fillSize) / 100f * percentOfPagination)) - 4);
             }
         },
         null, null, null, null);
-    }
-
-    public static void AddPaginationLine()
-    {
-        AddPaddingRegion(() =>
-        {
-            var thisWindow = CDesktop.LBWindow();
-            AddLine("Pagination: ", "DarkGray");
-            AddText(thisWindow.pagination() + 1 + "");
-            AddText(" / ", "DarkGray");
-            AddText(thisWindow.maxPagination() + 1 + "");
-            AddSmallButton("OtherNextPage", (h) =>
-            {
-                if (thisWindow.pagination() < thisWindow.maxPagination())
-                    thisWindow.IncrementPagination();
-            });
-            AddSmallButton("OtherPreviousPage", (h) =>
-            {
-                if (thisWindow.pagination() > 0)
-                    thisWindow.DecrementPagination();
-            });
-        });
     }
 
     public static void ReverseButtons()
@@ -611,12 +589,6 @@ public static class Root
     public static void SetRegionBackground(RegionBackgroundType backgroundType)
     {
         CDesktop.LBWindow().LBRegionGroup().LBRegion().backgroundType = backgroundType;
-    }
-
-    public static void SetRegionBackgroundAsImage(string replacement)
-    {
-        SetRegionBackground(Image);
-        CDesktop.LBWindow().LBRegionGroup().LBRegion().backgroundImage = Resources.Load<Sprite>("Sprites/RegionReplacements/" + replacement);
     }
 
     public static void SetRegionBackgroundAsImage(Sprite replacement)

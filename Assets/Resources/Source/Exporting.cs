@@ -123,11 +123,11 @@ public class Exporting
         var scores = artistBattle.rounds.GroupBy(x => x.choice).Select(x => (artistBattle.artists.Find(y => y.ID == x.First().choice), x.Count())).OrderByDescending(x => x.Item2).ToList();
         var newLine = "<tr>";
         for (int i = 0; i < scores.Count(); i++)
-            newLine += "<td class=\"" + (i == 0 ? "bracketWin" : "bracketLos") + "\">" + scores[i].Item1.name + "</td>";
+            newLine += "<td class=\"" + (scores[i].Item2 == scores.Max(x => x.Item2) ? "bracketWin" : "bracketLos") + "\">" + scores[i].Item1.name + "</td>";
         file.Add(newLine + "</tr>");
         newLine = "<tr>";
         for (int i = 0; i < scores.Count(); i++)
-            newLine += "<td class=\"" + (i == 0 ? "winsWin" : "winsLos") + "\">" + scores[i].Item2 + "</td>";
+            newLine += "<td class=\"" + (scores[i].Item2 == scores.Max(x => x.Item2) ? "winsWin" : "winsLos") + "\">" + scores[i].Item2 + "</td>";
         file.Add(newLine + "</tr>");
         foreach (var round in artistBattle.rounds)
         {
