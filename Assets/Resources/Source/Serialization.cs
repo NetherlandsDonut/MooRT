@@ -21,10 +21,10 @@ using static Newtonsoft.Json.JsonConvert;
 class Serialization
 {
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = true;
+    public static bool useUnityData = false;
 
     //Indicates whether the program allows for library expansion
-    public static bool libraryExpansion = true;
+    public static bool libraryExpansion = false;
 
     //Mail to send
     public static MailMessage mail;

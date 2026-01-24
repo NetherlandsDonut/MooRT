@@ -57,6 +57,12 @@ public class Desktop : MonoBehaviour
             windows[i].Respawn();
     }
 
+    public void RespawnAllScrollbarRelatedWindows()
+    {
+        var scrollbarRelated = CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
+        foreach (var window in scrollbarRelated) Respawn(window, true);
+    }
+
     //Last built window
     public Window LBWindow() => windows.Last();
 
@@ -237,7 +243,7 @@ public class Desktop : MonoBehaviour
         if (CDesktop.title == "LoadingScreen") return;
         if (hasFocus)
         {
-            if (quickInputWindow != null)
+            if (quickInputWindow != null && inputLineWindow == null && Scrollbar.scrollbarUsed == null)
             {
                 if (quickInputTime <= 1) quickInputTime += Time.deltaTime;
                 if (quickInputTime > 1) quickInput = "";

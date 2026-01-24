@@ -120,16 +120,11 @@ public class Starter : MonoBehaviour
         }
         else if (enteredSecondStage && urlContent != "" && !enteredThirdStage)
         {
-            enteredThirdStage = true;
-
             if (urlContent != "x") DeserializeFromURL(ref library, false);
             if (library == null) Deserialize(ref library, "library", false);
             else Serialize(library, "library");
-
             library ??= new();
-
             SetUpLibrary();
-
             if (!goToMenuOnFailedWWW)
             {
                 //Backup library only if you are on unity data
@@ -141,7 +136,12 @@ public class Starter : MonoBehaviour
                 settings.FillNulls();
                 Serialize(settings, "settings", true);
             }
+
+            //Spawn the first screen in
             SpawnDesktopBlueprint("LoadingScreen");
+
+            //Let the program now load the album covers
+            enteredThirdStage = true;
         }
     }
 

@@ -42,6 +42,7 @@ public class MusicRelease
         if (newAlbum.name == "") newAlbum.name = "Untitled";
         newAlbum.genres = ProcessGenres(String.createNewAlbumGenres.Value().Trim());
         newAlbum.languages = ProcessLanguages(String.createNewAlbumLanguages.Value().Trim());
+        if (newAlbum.languages.Count == 0) newAlbum.languages.Add("No Language");
         newAlbum.types = createNewAlbumReleaseTypeFiltering.ToList().Where(x => x.Value.Value()).Select(x => x.Key).ToList();
         if (newAlbum.types == null || newAlbum.types.Count == 0) newAlbum.types = new() { "Studio album" };
         var dateTrim = String.createNewAlbumReleaseDate.Value().Trim().Replace("-", ".");

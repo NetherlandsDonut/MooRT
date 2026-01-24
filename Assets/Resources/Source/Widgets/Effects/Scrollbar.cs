@@ -53,13 +53,18 @@ public class Scrollbar : MonoBehaviour
             if (maxPagination > 0)
             {
                 var percentageOfPaginationDone = 100f / range * -(transform.localPosition.y + 4);
-                var paginationResult = maxPagination * (percentageOfPaginationDone / 100);
-                if (window.pagination() != (int)paginationResult)
+                var paginationResult = (int)(maxPagination * (percentageOfPaginationDone / 100));
+                var oldPagination = window.pagination();
+                if (oldPagination != paginationResult)
                 {
                     window.PreparePagination();
-                    window.SetPagination((int)paginationResult);
+                    window.SetPagination(paginationResult);
                     window.CorrectPagination();
                     window.Respawn();
+                    if (oldPagination == maxPagination || paginationResult == maxPagination)
+                        Root.Respawn(windowRef + "ScrollbarDown", true);
+                    if (oldPagination == 0 || paginationResult == 0)
+                        Root.Respawn(windowRef + "ScrollbarUp", true);
                 }
             }
         }

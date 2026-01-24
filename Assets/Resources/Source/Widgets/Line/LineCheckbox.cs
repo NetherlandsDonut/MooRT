@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -31,19 +30,17 @@ public class LineCheckbox : MonoBehaviour
     {
         //Invert the field value
         value.Invert();
-        var scrollbarRelated = Root.CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
-        foreach (var window in scrollbarRelated) Root.Respawn(window, true);
-        if (Root.CDesktop.title == "PrepareArtistBattle")
-            Root.CDesktop.RespawnAll();
+        if (Root.CDesktop.title == "PrepareArtistBattle") Root.CDesktop.RespawnAll();
+        else if (Root.WindowUp(region.regionGroup.window.title + "Scrollbar")) Root.CDesktop.RespawnAll();
+        Root.CDesktop.RespawnAllScrollbarRelatedWindows();
     }
 
     public void RightClick()
     {
         value.Invert();
         referenceList?.ForEach(x => x.Invert());
-        var scrollbarRelated = Root.CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
-        foreach (var window in scrollbarRelated) Root.Respawn(window, true);
-        if (Root.CDesktop.title == "PrepareArtistBattle")
-            Root.CDesktop.RespawnAll();
+        if (Root.CDesktop.title == "PrepareArtistBattle") Root.CDesktop.RespawnAll();
+        else if (Root.WindowUp(region.regionGroup.window.title + "Scrollbar")) Root.CDesktop.RespawnAll();
+        Root.CDesktop.RespawnAllScrollbarRelatedWindows();
     }
 }

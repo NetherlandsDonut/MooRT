@@ -142,7 +142,7 @@ public static class Root
         { 12, "December" }
     };
 
-    public static Bool showExcludedElements;
+    public static Bool showExcludedElements = new(true);
     public static Bool hideArtistsOfExcludedCountries = new(true);
     public static Bool requireAllSelectedGenres = new(false);
     public static Bool requireAllSelectedLanguages = new(false);

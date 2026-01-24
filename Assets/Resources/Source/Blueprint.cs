@@ -250,9 +250,7 @@ public class Blueprint
                     {
                         window.IncrementPagination();
                         CDesktop.RespawnAll();
-                        Respawn("MusicReleasesScrollbarUp", true);
-                        Respawn("MusicReleasesScrollbar", true);
-                        Respawn("MusicReleasesScrollbarDown", true);
+                        CDesktop.RespawnAllScrollbarRelatedWindows();
                     });
                 else AddSmallButton("OtherPageDownOff");
             });
@@ -264,8 +262,7 @@ public class Blueprint
             {
                 library.ResetLibrary();
                 CDesktop.RespawnAll();
-                var scrollbarRelated = CDesktop.windows.FindAll(x => x.title.ToLower().Contains("scrollbar")).Select(x => x.title);
-                foreach (var window in scrollbarRelated) Respawn(window, true);
+                CDesktop.RespawnAllScrollbarRelatedWindows();
             }));
         }),
         new("RollRandomRelease", () => {
@@ -772,13 +769,13 @@ public class Blueprint
                     AddLine(Root.rating.Value() ? "Hide track ratings" : "Show track ratings", "", "Center");
                 },
                 (h) =>
-            {
-                Root.rating.Invert();
-                CDesktop.RespawnAll();
-                Respawn("MusicReleaseScrollbarUp", true);
-                Respawn("MusicReleaseScrollbar", true);
-                Respawn("MusicReleaseScrollbarDown", true);
-            });
+                {
+                    Root.rating.Invert();
+                    CDesktop.RespawnAll();
+                    Respawn("MusicReleaseScrollbarUp", true);
+                    Respawn("MusicReleaseScrollbar", true);
+                    Respawn("MusicReleaseScrollbarDown", true);
+                });
                 if (musicRelease.clearedRating)
                     AddButtonRegion(() =>
                     {
@@ -5082,9 +5079,7 @@ public class Blueprint
             if (moved)
             {
                 CDesktop.RespawnAll();
-                Respawn(windowName + "ScrollbarUp");
-                Respawn(windowName + "Scrollbar");
-                Respawn(windowName + "ScrollbarDown");
+                CDesktop.RespawnAllScrollbarRelatedWindows();
             }
         });
         AddHotkey(PageDown, () =>
@@ -5102,9 +5097,7 @@ public class Blueprint
             if (moved)
             {
                 CDesktop.RespawnAll();
-                Respawn(windowName + "ScrollbarUp");
-                Respawn(windowName + "Scrollbar");
-                Respawn(windowName + "ScrollbarDown");
+                CDesktop.RespawnAllScrollbarRelatedWindows();
             }
         });
     }

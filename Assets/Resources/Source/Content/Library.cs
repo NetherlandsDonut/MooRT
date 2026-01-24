@@ -43,6 +43,9 @@ public class Library
         String.searchCountry.Set("");
         String.searchGenre.Set("");
         String.searchLanguage.Set("");
+        showExcludedElements.Set(true);
+        requireAllSelectedGenres.Set(false);
+        requireAllSelectedLanguages.Set(false);
         artistBattleParticipants = originalArtists.ToDictionary(x => x.ID, x => new Bool(false));
         artistFiltering = originalArtists.ToDictionary(x => x.ID, x => new Bool(true));
         countryFiltering = countries.ToDictionary(x => x.name, x => new Bool(true));
