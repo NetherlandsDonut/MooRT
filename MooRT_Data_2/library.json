@@ -5093,6 +5093,12 @@
       "name": "Charli XCX",
       "pronoun": "she",
       "country": "United Kingdom"
+    },
+    {
+      "ID": 850,
+      "name": "Fall Out Boy",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -40406,7 +40412,7 @@
           "length": 380
         }
       ],
-      "discs": "",
+      "discs": "5",
       "coverDescriptors": [
         "Season : Winter",
         "Colour : Orange"
@@ -285009,6 +285015,232 @@
         {
           "name": "That's Our Lamp",
           "length": 144
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4170,
+      "artist": "Fall Out Boy",
+      "artistID": 850,
+      "name": "Folie à deux",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Pop Rock",
+        "Alternative Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2008.12.16",
+      "tracks": [
+        {
+          "name": "Disloyal Order of Water Buffaloes",
+          "length": 257
+        },
+        {
+          "name": "I Don't Care",
+          "length": 214
+        },
+        {
+          "name": "She's My Winona",
+          "length": 231
+        },
+        {
+          "name": "America's Suitehearts",
+          "length": 214
+        },
+        {
+          "name": "Headfirst Slide Into Cooperstown on a Bad Bet",
+          "length": 234
+        },
+        {
+          "name": "The (Shipped) Gold Standard",
+          "length": 199
+        },
+        {
+          "name": "(Coffee's for Closers)",
+          "length": 275
+        },
+        {
+          "name": "What a Catch, Donnie",
+          "length": 291
+        },
+        {
+          "name": "27",
+          "length": 192
+        },
+        {
+          "name": "Tiffany Blews",
+          "length": 224
+        },
+        {
+          "name": "w.a.m.s.",
+          "length": 278
+        },
+        {
+          "name": "20 Dollar Nose Bleed",
+          "length": 257
+        },
+        {
+          "name": "West Coast Smoker",
+          "length": 165
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4171,
+      "artist": "Fall Out Boy",
+      "artistID": 850,
+      "name": "From Under the Cork Tree",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Pop Punk",
+        "Emo-pop"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2005.05.03",
+      "tracks": [
+        {
+          "name": "Our Lawyer Made Us Change the Name of This Song So We Wouldn't Get Sued",
+          "length": 188
+        },
+        {
+          "name": "Of All the Gin Joints in All the World",
+          "length": 191
+        },
+        {
+          "name": "Dance, Dance",
+          "length": 180
+        },
+        {
+          "name": "Sugar, We're Goin Down",
+          "length": 229
+        },
+        {
+          "name": "Nobody Puts Baby in the Corner",
+          "length": 200
+        },
+        {
+          "name": "I've Got a Dark Alley and a Bad Idea That Says You Should Shut Your Mouth (Summer Song)",
+          "length": 190
+        },
+        {
+          "name": "7 Minutes in Heaven (Atavan Halen)",
+          "length": 182
+        },
+        {
+          "name": "Sophomore Slump or Comeback of the Year",
+          "length": 203
+        },
+        {
+          "name": "Champagne for My Real Friends, Real Pain for My Sham Friends",
+          "length": 203
+        },
+        {
+          "name": "I Slept With Someone in Fall Out Boy and All I Got Was This Stupid Song Written About Me",
+          "length": 211
+        },
+        {
+          "name": "A Little Less Sixteen Candles, a Little More \"Touch Me\"",
+          "length": 169
+        },
+        {
+          "name": "Get Busy Living or Get Busy Dying (Do Your Part to Save the Scene and Stop Going to Shows)",
+          "length": 207
+        },
+        {
+          "name": "XO",
+          "length": 220
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4172,
+      "artist": "Fall Out Boy",
+      "artistID": 850,
+      "name": "Infinity on High",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Pop Punk",
+        "Pop Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2007.02.05",
+      "tracks": [
+        {
+          "name": "Thriller",
+          "length": 209
+        },
+        {
+          "name": "\"The Take Over, the Breaks Over\"",
+          "length": 214
+        },
+        {
+          "name": "This Ain't a Scene, It's an Arms Race",
+          "length": 212
+        },
+        {
+          "name": "I'm Like a Lawyer With the Way I'm Always Trying to Get You Off (Me + You)",
+          "length": 212
+        },
+        {
+          "name": "Hum Hallelujah",
+          "length": 230
+        },
+        {
+          "name": "Golden",
+          "length": 152
+        },
+        {
+          "name": "Thnks fr th Mmrs",
+          "length": 204
+        },
+        {
+          "name": "Don't You Know Who I Think I Am?",
+          "length": 172
+        },
+        {
+          "name": "The (After) Life of the Party",
+          "length": 202
+        },
+        {
+          "name": "The Carpal Tunnel of Love",
+          "length": 203
+        },
+        {
+          "name": "Bang the Doldrums",
+          "length": 212
+        },
+        {
+          "name": "Fame < Infamy",
+          "length": 186
+        },
+        {
+          "name": "You're Crashing, But You're No Wave",
+          "length": 222
+        },
+        {
+          "name": "I've Got All This Ringing in My Ears and None on My Fingers",
+          "length": 247
         }
       ],
       "discs": "",
