@@ -5099,6 +5099,12 @@
       "name": "Fall Out Boy",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 851,
+      "name": "Halsey",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -285241,6 +285247,81 @@
         {
           "name": "I've Got All This Ringing in My Ears and None on My Fingers",
           "length": 247
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4173,
+      "artist": "Halsey",
+      "artistID": 851,
+      "name": "If I Can't Have Love, I Want Power",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Alt-rock",
+        "Grunge Pop",
+        "Industrial"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2021.08.27",
+      "tracks": [
+        {
+          "name": "The Tradition",
+          "length": 226
+        },
+        {
+          "name": "Bells in Santa Fe",
+          "length": 217
+        },
+        {
+          "name": "Easier Than Lying",
+          "length": 206
+        },
+        {
+          "name": "Lilith",
+          "length": 167
+        },
+        {
+          "name": "Girl Is a Gun",
+          "length": 146
+        },
+        {
+          "name": "You Asked for This",
+          "length": 265
+        },
+        {
+          "name": "Darling",
+          "length": 182
+        },
+        {
+          "name": "1121",
+          "length": 162
+        },
+        {
+          "name": "Honey",
+          "length": 173
+        },
+        {
+          "name": "Whispers",
+          "length": 191
+        },
+        {
+          "name": "I Am Not a Woman, I'm a God",
+          "length": 176
+        },
+        {
+          "name": "The Lighthouse",
+          "length": 273
+        },
+        {
+          "name": "Ya'aburnee",
+          "length": 188
         }
       ],
       "discs": "",
