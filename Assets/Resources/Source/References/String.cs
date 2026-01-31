@@ -50,4 +50,6 @@ public class String
     public static String createNewAlbumArtistName = new() { inputType = Everything };
     public static String createNewAlbumArtistCountry = new() { inputType = Everything };
     public static String createNewAlbumCoverURL = new() { inputType = Everything };
+    public static String login = new() { inputType = Everything };
+    public static String password = new() { inputType = Everything };
 }

@@ -4350,6 +4350,40 @@ public class Blueprint
                 SpawnDesktopBlueprint("CreateNewAlbumPreview");
             });
         }),
+        new("Login", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Email:", "DarkGray");
+                AddInputLine(String.login);
+            });
+            AddHeaderRegion(() =>
+            {
+                AddLine("Password:", "DarkGray");
+                AddInputLine(String.password);
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Log in", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("Login");
+                SpawnDesktopBlueprint("LoggingIn");
+                FirebaseAuthManager.Instance.Login(String.login.Value(), String.password.Value());
+            });
+        }),
+        new("LoggingIn", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Logging in..", "", "Center");
+            });
+        }),
     };
 
     public static List<Blueprint> desktopBlueprints = new()
@@ -5065,6 +5099,16 @@ public class Blueprint
                 musicRelease.GeneratePallete(newCover);
             SetDesktopBackgroundAsGradient(musicRelease.pallete);
             SpawnWindowBlueprint("SendingMailFailure");
+        }),
+        new("Login", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("Login");
+        }),
+        new("LoggingIn", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("LoggingIn");
         }),
     };
 
