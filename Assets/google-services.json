@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "195322622830",
+    "firebase_url": "https://moort-3cefc-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "moort-3cefc",
+    "storage_bucket": "moort-3cefc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195322622830:android:0338d32617a0a5c3e1077f",
+        "android_client_info": {
+          "package_name": "com.cactiquarium.moort"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5kRlfUdEz7ma4Cbs9UrNH-c5gRrsNBmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
