@@ -1,9 +1,11 @@
-﻿using Google.MiniJSON;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 using UnityEditor;
 using UnityEngine;
+
 using static ArtistBattle;
 using static Country;
 using static DebutYear;
@@ -17,11 +19,13 @@ using static ProgramSettings;
 using static RatingStatus;
 using static ReleaseRating;
 using static ReleaseType;
+using static TrackAmount;
+using static Year;
+
 using static Root;
 using static Root.Anchor;
-using static TrackAmount;
+
 using static UnityEngine.KeyCode;
-using static Year;
 
 public class Blueprint
 {
@@ -2870,6 +2874,11 @@ public class Blueprint
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Menu:"));
+            AddButtonRegion(() => AddLine("Update ratings on the server"), (h) =>
+            {
+                SpawnDesktopBlueprint("UploadingLocalFiles");
+                Serialization.UploadLocalFilesToLoggedAccount();
+            });
             AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
                 Serialization.Serialize(settings, "settings");
@@ -4494,18 +4503,19 @@ public class Blueprint
             AddEmptyRegion();
             AddButtonRegion(() =>
             {
-                AddLine("Don't attempt again", "", "Center");
+                AddLine("Okay", "", "Center");
             },
             (h) =>
             {
                 CloseDesktop("FailedToUploadLocalFiles");
-                SpawnDesktopBlueprint("AccountInitialisation");
+                if (CDesktop.title != "MusicReleases")
+                    SpawnDesktopBlueprint("AccountInitialisation");
             });
         }),
         new("SuccessfulUpload", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(200);
+            SetRegionGroupWidth(300);
             AddHeaderRegion(() =>
             {
                 AddLine("Successfully uploaded files to the server.", "Gray", "Center");
@@ -4517,22 +4527,19 @@ public class Blueprint
             (h) =>
             {
                 CloseDesktop("SuccessfulUpload");
-                SpawnDesktopBlueprint("MusicReleases");
+                if (CDesktop.title != "MusicReleases")
+                    SpawnDesktopBlueprint("MusicReleases");
             });
         }),
         new("AccountInitialisation", () => {
             SetAnchor(Center);
             AddHeaderGroup();
-            SetRegionGroupWidth(200);
+            SetRegionGroupWidth(300);
             AddHeaderRegion(() =>
             {
-                AddLine("This account has no saved files yet.", "Gray");
-                AddLine("Do you want to upload your local ratings", "Gray");
-                AddLine("and settings into this account?", "Gray");
-            });
-            AddHeaderRegion(() =>
-            {
-                AddLine("Password:", "DarkGray");
+                AddLine("This account has no saved files yet.", "Gray", "Center");
+                AddLine("Do you want to upload your local ratings", "Gray", "Center");
+                AddLine("and settings into this account?", "Gray", "Center");
             });
             AddButtonRegion(() =>
             {
@@ -5295,6 +5302,11 @@ public class Blueprint
         {
             SetDesktopBackground("Backgrounds/Default");
             SpawnWindowBlueprint("FailedToUploadLocalFiles");
+        }),
+        new("SuccessfulUpload", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("SuccessfulUpload");
         }),
         new("AccountInitialisation", () =>
         {

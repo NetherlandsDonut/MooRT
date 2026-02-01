@@ -28,12 +28,12 @@ public class FirebaseAuthManager : MonoBehaviour
         }
     }
 
-    async void Start()
+    void Start()
     {
-        await InitializeFirebase();
+        InitializeFirebase();
     }
 
-    public async Task InitializeFirebase()
+    public async void InitializeFirebase()
     {
         var dependencyStatus = await FirebaseApp.CheckAndFixDependenciesAsync();
         if (dependencyStatus == DependencyStatus.Available)
@@ -69,13 +69,25 @@ public class FirebaseAuthManager : MonoBehaviour
 
             user = loginTask.Result.User;
 
-            Debug.Log($"Logged in as: {user.Email}");
+            Debug.Log($"Logged in as: {user.Email} {user.UserId}");
 
             if (Root.CDesktop.title == "LoggingIn")
             {
                 var recordExists = await FirebaseDatabaseManager.RecordExistsAsync();
                 Root.CloseDesktop("LoggingIn");
-                if (recordExists) Root.SpawnDesktopBlueprint("MusicReleases");
+                if (recordExists)
+                {
+                    if (await FirebaseDatabaseManager.DownloadUserData())
+                        Root.SpawnDesktopBlueprint("MusicReleases");
+                    else
+                    {
+                        if (Root.CDesktop.title == "LoggingIn")
+                        {
+                            Root.CloseDesktop("LoggingIn");
+                            Root.SpawnDesktopBlueprint("FailedToLogin");
+                        }
+                    }
+                }
                 else Root.SpawnDesktopBlueprint("AccountInitialisation");
             }
         }

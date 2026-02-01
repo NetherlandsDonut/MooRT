@@ -25,16 +25,32 @@ public class FirebaseDatabaseManager : MonoBehaviour
         });
     }
 
+    public static async Task<bool> DownloadUserData()
+    {
+        try
+        {
+            if (await Serialization.DownloadAccountData())
+                return true;
+            else
+                return false;
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Firebase read error: " + e);
+            return false;
+        }
+    }
+
     public static async Task<bool> RecordExistsAsync()
     {
         try
         {
-            DataSnapshot snapshot = await dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.Email).GetValueAsync();
+            DataSnapshot snapshot = await dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).GetValueAsync();
             return snapshot.Exists;
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Firebase read error: " + e);
+            Debug.Log("Firebase read error: " + e);
             return false;
         }
     }

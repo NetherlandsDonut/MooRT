@@ -1,21 +1,23 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Net.Mail;
-using System.Diagnostics;
+﻿using Firebase.Database;
 using Firebase.Extensions;
-using System.Net.Security;
-using System.IO.Compression;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 
-using UnityEngine;
 
 using Newtonsoft.Json;
-
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
 using static MusicRelease;
-
 using static Newtonsoft.Json.Formatting;
 using static Newtonsoft.Json.JsonConvert;
 
@@ -129,17 +131,23 @@ class Serialization
         var jsonRatings = SerializeObject(ReleaseRating.ratings, None, sett);
         var jsonSettings = SerializeObject(ProgramSettings.settings, None, sett);
         var result = "None";
-        await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.Email).Child("ratings").SetRawJsonValueAsync(jsonRatings).ContinueWithOnMainThread(task =>
+        await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("ratings").SetRawJsonValueAsync(jsonRatings).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompletedSuccessfully)
             {
                 result = "Continue";
-                UnityEngine.Debug.Log("Data uploaded successfully");
+                UnityEngine.Debug.Log("Ratings uploaded successfully");
             }
             else if (task.IsFaulted)
             {
                 result = "Throw";
                 UnityEngine.Debug.LogError("Upload failed: " + task.Exception);
+                var agg = task.Exception.Flatten();
+                foreach (var e in agg.InnerExceptions)
+                {
+                    UnityEngine.Debug.LogError("Firebase inner error: " + e.GetType());
+                    UnityEngine.Debug.LogError("Message: " + e.Message);
+                }
             }
             else if (task.IsCanceled)
             {
@@ -149,12 +157,12 @@ class Serialization
         });
         if (result == "Continue")
         {
-            await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.Email).Child("settings").SetRawJsonValueAsync(jsonSettings).ContinueWithOnMainThread(task =>
+            await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("settings").SetRawJsonValueAsync(jsonSettings).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompletedSuccessfully)
                 {
                     result = "Continue";
-                    UnityEngine.Debug.Log("Data uploaded successfully");
+                    UnityEngine.Debug.Log("Settings uploaded successfully");
                 }
                 else if (task.IsFaulted)
                 {
@@ -170,6 +178,11 @@ class Serialization
             if (result == "Continue")
             {
                 Root.CloseDesktop("UploadingLocalFiles");
+                Root.SpawnDesktopBlueprint("SuccessfulUpload");
+            }
+            else
+            {
+                Root.CloseDesktop("UploadingLocalFiles");
                 Root.SpawnDesktopBlueprint("FailedToUploadLocalFiles");
             }
         }
@@ -178,6 +191,28 @@ class Serialization
             Root.CloseDesktop("UploadingLocalFiles");
             Root.SpawnDesktopBlueprint("FailedToUploadLocalFiles");
         }
+    }
+
+    public static async Task<bool> DownloadAccountData()
+    {
+        DataSnapshot ratingsSnapshot = await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("ratings").GetValueAsync();
+        if (ratingsSnapshot.Exists)
+        {
+            DataSnapshot settingsSnapshot = await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("settings").GetValueAsync();
+            if (settingsSnapshot.Exists)
+            {
+                ReleaseRating.ratings = DeserializeObject<Dictionary<int, ReleaseRating>>(ratingsSnapshot.GetRawJsonValue());
+                ReleaseRating.ratings ??= new();
+                foreach (var rating in ReleaseRating.ratings)
+                    if (rating.Value.savedTrackRatings != null)
+                        rating.Value.trackRatings = rating.Value.savedTrackRatings.ToArray();
+                ReleaseRating.ratings = ReleaseRating.ratings.Where(x => x.Value.savedTrackRatings != null).ToDictionary(x => x.Key, x => x.Value);
+                ProgramSettings.settings = DeserializeObject<ProgramSettings>(settingsSnapshot.GetRawJsonValue());
+                return true;
+            }
+            else return false;
+        }
+        else return false;
     }
 
     public static void BackupAlbumCreation(string data, string where, string prefix = "")

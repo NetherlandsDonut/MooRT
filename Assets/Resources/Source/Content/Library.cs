@@ -73,7 +73,7 @@ public class Library
         releases = releases.Where(x => (requireAllSelectedLanguages.Value() && languageFiltering.Where(x => x.Value.Value()).All(y => x.languages.Contains(y.Key))) || (!requireAllSelectedLanguages.Value() && (x.languages.Count == 0 || x.languages.Any(y => languageFiltering[y].Value())))).ToList();
         releases = releases.Where(x => trackAmountFiltering[x.tracks.Count].Value()).ToList();
         releases = releases.Where(x => debutYearFiltering[x.debutYear].Value()).ToList();
-        releases = releases.Where(x => ratingStatusFiltering[x.GetRating() > 0 ? "Rated" : (ratings.ContainsKey(x.ID) && ratings[x.ID].trackRatings.Any(x => x != 0) ? "Partially rated" : "Unrated")].Value()).ToList();
+        releases = releases.Where(x => ratingStatusFiltering[x.GetRating() > 0 ? "Rated" : (ratings.ContainsKey(x.ID) && ratings[x.ID].trackRatings != null && ratings[x.ID].trackRatings.Any(x => x != 0) ? "Partially rated" : "Unrated")].Value()).ToList();
     }
 
     //List of all artists in the library
