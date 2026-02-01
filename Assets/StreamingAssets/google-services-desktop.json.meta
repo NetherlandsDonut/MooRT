@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 1c6f2cfe27b932f41842243bf2ac91ad
+=======
+guid: 8f7369fc12c8d1248857f3121687aa1f
+>>>>>>> parent of 0a13599 (Revert "Update. Firebase added.")
 TextScriptImporter:
   externalObjects: {}
   userData: 
