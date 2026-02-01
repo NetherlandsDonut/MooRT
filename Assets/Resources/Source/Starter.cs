@@ -82,7 +82,7 @@ public class Starter : MonoBehaviour
         ratings = ratings.Where(x => x.Value.savedTrackRatings != null).ToDictionary(x => x.Key, x => x.Value);
         Serialize(ratings, "ratings", true);
         if (useUnityData) urlContent = "x";
-        else StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
+        else StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/firebase/MooRT_Data_2/library.json"));
         scrollbarFills = Resources.LoadAll<Sprite>("Sprites/Scrollbar/ScrollbarFill");
         enteredSecondStage = true;
     }

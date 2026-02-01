@@ -143,8 +143,8 @@ public class Desktop : MonoBehaviour
                                     newCover = null;
                                     returnToMenu = false;
                                     newCoverID = i;
-                                    UnityEngine.Debug.Log("Downloading: " + "https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_3/" + i + ".png");
-                                    StartCoroutine(GetTexture("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_3/" + i + ".png"));
+                                    UnityEngine.Debug.Log("Downloading: " + "https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/firebase/MooRT_Data_3/" + i + ".png");
+                                    StartCoroutine(GetTexture("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/firebase/MooRT_Data_3/" + i + ".png"));
                                     break;
                                 }
                                 if (!localFilePresent) continue;

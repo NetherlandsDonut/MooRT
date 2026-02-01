@@ -2811,7 +2811,7 @@ public class Blueprint
                     else
                     {
                         Serialization.urlContent = "";
-                        MonoBehaviour.FindAnyObjectByType<Starter>().StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/main/MooRT_Data_2/library.json"));
+                        MonoBehaviour.FindAnyObjectByType<Starter>().StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/firebase/MooRT_Data_2/library.json"));
                     }
                     Cursor.cursor.SetCursor(CursorType.Await);
                     Starter.enteredSecondStage = true;
