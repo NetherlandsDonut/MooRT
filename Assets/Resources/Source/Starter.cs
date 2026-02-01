@@ -84,6 +84,8 @@ public class Starter : MonoBehaviour
         if (useUnityData) urlContent = "x";
         else StartCoroutine(GetJSON("https://raw.githubusercontent.com/NetherlandsDonut/MooRT/refs/heads/firebase/MooRT_Data_2/library.json"));
         scrollbarFills = Resources.LoadAll<Sprite>("Sprites/Scrollbar/ScrollbarFill");
+        String.email.Set(PlayerPrefs.GetString("SavedEmail"));
+        String.password.Set(PlayerPrefs.GetString("SavedPassword"));
         enteredSecondStage = true;
     }
 

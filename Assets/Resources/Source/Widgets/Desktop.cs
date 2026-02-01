@@ -182,7 +182,11 @@ public class Desktop : MonoBehaviour
                     }
                     UnityEngine.Cursor.visible = false;
                     if (Starter.goToMenuOnFailedWWW) SpawnDesktopBlueprint("LibraryRefetchSuccess");
-                    else SpawnDesktopBlueprint("MusicReleases");
+                    else
+                    {
+                        if (FirebaseAuthManager.failedToAuth) SpawnDesktopBlueprint("FailedToAuth");
+                        else SpawnDesktopBlueprint("Login");
+                    }
                     CloseDesktop("LoadingScreen");
                 }
         }

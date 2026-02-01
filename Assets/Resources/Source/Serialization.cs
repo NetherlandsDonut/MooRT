@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Net.Mail;
 using System.Diagnostics;
+using Firebase.Extensions;
 using System.Net.Security;
 using System.IO.Compression;
 using System.Security.Cryptography;
@@ -21,10 +22,10 @@ using static Newtonsoft.Json.JsonConvert;
 class Serialization
 {
     //Indicates whether game tries to load data from unity the folder
-    public static bool useUnityData = true;
+    public static bool useUnityData = false;
 
     //Indicates whether the program allows for library expansion
-    public static bool libraryExpansion = true;
+    public static bool libraryExpansion = false;
 
     //Mail to send
     public static MailMessage mail;
@@ -120,6 +121,63 @@ class Serialization
         var data = SerializeObject(what, encoded ? None : Indented, sett);
         if (encoded) data = Encrypt(data);
         File.WriteAllText(prefix + "MooRT_Data_2/" + (backup ? "Backup/" + date + "/" : "") + where + (encoded ? "" : ".json"), data);
+    }
+
+    public static async void UploadLocalFilesToLoggedAccount()
+    {
+        var sett = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore };
+        var jsonRatings = SerializeObject(ReleaseRating.ratings, None, sett);
+        var jsonSettings = SerializeObject(ProgramSettings.settings, None, sett);
+        var result = "None";
+        await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.Email).Child("ratings").SetRawJsonValueAsync(jsonRatings).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompletedSuccessfully)
+            {
+                result = "Continue";
+                UnityEngine.Debug.Log("Data uploaded successfully");
+            }
+            else if (task.IsFaulted)
+            {
+                result = "Throw";
+                UnityEngine.Debug.LogError("Upload failed: " + task.Exception);
+            }
+            else if (task.IsCanceled)
+            {
+                result = "Throw";
+                UnityEngine.Debug.LogWarning("Upload was canceled");
+            }
+        });
+        if (result == "Continue")
+        {
+            await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.Email).Child("settings").SetRawJsonValueAsync(jsonSettings).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompletedSuccessfully)
+                {
+                    result = "Continue";
+                    UnityEngine.Debug.Log("Data uploaded successfully");
+                }
+                else if (task.IsFaulted)
+                {
+                    result = "Throw";
+                    UnityEngine.Debug.LogError("Upload failed: " + task.Exception);
+                }
+                else if (task.IsCanceled)
+                {
+                    result = "Throw";
+                    UnityEngine.Debug.LogWarning("Upload was canceled");
+                }
+            });
+            if (result == "Continue")
+            {
+                Root.CloseDesktop("UploadingLocalFiles");
+                Root.SpawnDesktopBlueprint("FailedToUploadLocalFiles");
+            }
+        }
+        else
+        {
+            Root.CloseDesktop("UploadingLocalFiles");
+            Root.SpawnDesktopBlueprint("FailedToUploadLocalFiles");
+        }
     }
 
     public static void BackupAlbumCreation(string data, string where, string prefix = "")

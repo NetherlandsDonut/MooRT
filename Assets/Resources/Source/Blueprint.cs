@@ -1,31 +1,27 @@
-﻿using System;
-using System.Linq;
+﻿using Google.MiniJSON;
+using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using UnityEditor;
-
 using UnityEngine;
-
-using static UnityEngine.KeyCode;
-
-using static Root;
-using static Root.Anchor;
-
-using static Year;
-using static Genre;
-using static Decade;
-using static Library;
-using static Country;
-using static Duration;
-using static Language;
-using static DebutYear;
-using static TrackAmount;
-using static ReleaseType;
 using static ArtistBattle;
+using static Country;
+using static DebutYear;
+using static Decade;
+using static Duration;
+using static Genre;
+using static Language;
+using static Library;
 using static MusicRelease;
+using static ProgramSettings;
 using static RatingStatus;
 using static ReleaseRating;
-using static ProgramSettings;
+using static ReleaseType;
+using static Root;
+using static Root.Anchor;
+using static TrackAmount;
+using static UnityEngine.KeyCode;
+using static Year;
 
 public class Blueprint
 {
@@ -4357,7 +4353,7 @@ public class Blueprint
             AddHeaderRegion(() =>
             {
                 AddLine("Email:", "DarkGray");
-                AddInputLine(String.login);
+                AddInputLine(String.email);
             });
             AddHeaderRegion(() =>
             {
@@ -4372,7 +4368,17 @@ public class Blueprint
             {
                 CloseDesktop("Login");
                 SpawnDesktopBlueprint("LoggingIn");
-                FirebaseAuthManager.Instance.Login(String.login.Value(), String.password.Value());
+                FirebaseAuthManager.Instance.Login(String.email.Value(), String.password.Value());
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Use local files instead", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("Login");
+                SpawnDesktopBlueprint("MusicReleases");
             });
         }),
         new("LoggingIn", () => {
@@ -4382,6 +4388,171 @@ public class Blueprint
             AddHeaderRegion(() =>
             {
                 AddLine("Logging in..", "", "Center");
+            });
+        }),
+        new("FailedToLogin", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Failed to login.", "Gray", "Center");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Okay", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("FailedToLogin");
+                SpawnDesktopBlueprint("Login");
+            });
+        }),
+        new("FailedToAuth", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Failed to connect to the server.", "Gray", "Center");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Retry", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("FailedToAuth");
+                SpawnDesktopBlueprint("RetryingAuth");
+                FirebaseAuthManager.Instance.InitializeFirebase();
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Use local files instead", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("FailedToAuth");
+                SpawnDesktopBlueprint("MusicReleases");
+            });
+        }),
+        new("RetryingAuth", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Retrying to connect..", "Gray");
+            });
+        }),
+        new("SuccessfulAuth", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Successfully connected to the server.", "Gray", "Center");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Okay", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("SuccessfulAuth");
+                SpawnDesktopBlueprint("Login");
+            });
+        }),
+        new("UploadingLocalFiles", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Uploading local files..", "", "Center");
+            });
+        }),
+        new("FailedToUploadLocalFiles", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Failed to upload the local files.", "Gray", "Center");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Retry", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("FailedToUploadLocalFiles");
+                SpawnDesktopBlueprint("UploadingLocalFiles");
+                Serialization.UploadLocalFilesToLoggedAccount();
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("Don't attempt again", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("FailedToUploadLocalFiles");
+                SpawnDesktopBlueprint("AccountInitialisation");
+            });
+        }),
+        new("SuccessfulUpload", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("Successfully uploaded files to the server.", "Gray", "Center");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Okay", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("SuccessfulUpload");
+                SpawnDesktopBlueprint("MusicReleases");
+            });
+        }),
+        new("AccountInitialisation", () => {
+            SetAnchor(Center);
+            AddHeaderGroup();
+            SetRegionGroupWidth(200);
+            AddHeaderRegion(() =>
+            {
+                AddLine("This account has no saved files yet.", "Gray");
+                AddLine("Do you want to upload your local ratings", "Gray");
+                AddLine("and settings into this account?", "Gray");
+            });
+            AddHeaderRegion(() =>
+            {
+                AddLine("Password:", "DarkGray");
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Yes, upload local files", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("AccountInitialisation");
+                SpawnDesktopBlueprint("UploadingLocalFiles");
+                Serialization.UploadLocalFilesToLoggedAccount();
+            });
+            AddEmptyRegion();
+            AddButtonRegion(() =>
+            {
+                AddLine("No, don't upload local files", "", "Center");
+            },
+            (h) =>
+            {
+                CloseDesktop("AccountInitialisation");
+                SpawnDesktopBlueprint("MusicReleases");
             });
         }),
     };
@@ -5109,6 +5280,26 @@ public class Blueprint
         {
             SetDesktopBackground("Backgrounds/Default");
             SpawnWindowBlueprint("LoggingIn");
+        }),
+        new("FailedToLogin", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("FailedToLogin");
+        }),
+        new("UploadingLocalFiles", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("UploadingLocalFiles");
+        }),
+        new("FailedToUploadLocalFiles", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("FailedToUploadLocalFiles");
+        }),
+        new("AccountInitialisation", () =>
+        {
+            SetDesktopBackground("Backgrounds/Default");
+            SpawnWindowBlueprint("AccountInitialisation");
         }),
     };
 
