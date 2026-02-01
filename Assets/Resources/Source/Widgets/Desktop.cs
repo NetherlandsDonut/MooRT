@@ -184,7 +184,7 @@ public class Desktop : MonoBehaviour
                     if (Starter.goToMenuOnFailedWWW) SpawnDesktopBlueprint("LibraryRefetchSuccess");
                     else
                     {
-                        if (FirebaseAuthManager.failedToAuth) SpawnDesktopBlueprint("FailedToAuth");
+                        if (FirebaseManager.failedToAuth) SpawnDesktopBlueprint("FailedToAuth");
                         else SpawnDesktopBlueprint("Login");
                     }
                     CloseDesktop("LoadingScreen");

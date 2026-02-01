@@ -4377,7 +4377,7 @@ public class Blueprint
             {
                 CloseDesktop("Login");
                 SpawnDesktopBlueprint("LoggingIn");
-                FirebaseAuthManager.Instance.Login(String.email.Value(), String.password.Value());
+                FirebaseManager.Instance.Login(String.email.Value(), String.password.Value());
             });
             AddEmptyRegion();
             AddButtonRegion(() =>
@@ -4433,7 +4433,7 @@ public class Blueprint
             {
                 CloseDesktop("FailedToAuth");
                 SpawnDesktopBlueprint("RetryingAuth");
-                FirebaseAuthManager.Instance.InitializeFirebase();
+                FirebaseManager.Instance.InitializeFirebase();
             });
             AddEmptyRegion();
             AddButtonRegion(() =>

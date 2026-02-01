@@ -1,16 +1,17 @@
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 
 using System.Threading.Tasks;
 
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class FirebaseAuthManager : MonoBehaviour
+public class FirebaseManager : MonoBehaviour
 {
     public static bool failedToAuth = false;
 
-    public static FirebaseAuthManager Instance;
+    public static FirebaseManager Instance;
+    public static DatabaseReference dbRef;
 
     public FirebaseAuth auth;
     public FirebaseUser user;
@@ -39,6 +40,7 @@ public class FirebaseAuthManager : MonoBehaviour
         if (dependencyStatus == DependencyStatus.Available)
         {
             auth = FirebaseAuth.DefaultInstance;
+            dbRef = FirebaseDatabase.DefaultInstance.RootReference;
             Debug.Log("Firebase Auth initialized");
             if (Root.CDesktop != null && Root.CDesktop.title == "RetryingAuth")
             {
@@ -73,11 +75,11 @@ public class FirebaseAuthManager : MonoBehaviour
 
             if (Root.CDesktop.title == "LoggingIn")
             {
-                var recordExists = await FirebaseDatabaseManager.RecordExistsAsync();
+                var recordExists = await RecordExistsAsync();
                 Root.CloseDesktop("LoggingIn");
                 if (recordExists)
                 {
-                    if (await FirebaseDatabaseManager.DownloadUserData())
+                    if (await DownloadUserData())
                         Root.SpawnDesktopBlueprint("MusicReleases");
                     else
                     {
@@ -103,6 +105,36 @@ public class FirebaseAuthManager : MonoBehaviour
                 Root.CloseDesktop("LoggingIn");
                 Root.SpawnDesktopBlueprint("FailedToLogin");
             }
+        }
+    }
+
+    public static async Task<bool> DownloadUserData()
+    {
+        try
+        {
+            if (await Serialization.DownloadAccountData())
+                return true;
+            else
+                return false;
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Firebase read error: " + e);
+            return false;
+        }
+    }
+
+    public static async Task<bool> RecordExistsAsync()
+    {
+        try
+        {
+            DataSnapshot snapshot = await dbRef.Child("users").Child(FirebaseManager.Instance.user.UserId).GetValueAsync();
+            return snapshot.Exists;
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Firebase read error: " + e);
+            return false;
         }
     }
 }

@@ -131,7 +131,7 @@ class Serialization
         var jsonRatings = SerializeObject(ReleaseRating.ratings, None, sett);
         var jsonSettings = SerializeObject(ProgramSettings.settings, None, sett);
         var result = "None";
-        await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("ratings").SetRawJsonValueAsync(jsonRatings).ContinueWithOnMainThread(task =>
+        await FirebaseManager.dbRef.Child("users").Child(FirebaseManager.Instance.user.UserId).Child("ratings").SetRawJsonValueAsync(jsonRatings).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompletedSuccessfully)
             {
@@ -157,7 +157,7 @@ class Serialization
         });
         if (result == "Continue")
         {
-            await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("settings").SetRawJsonValueAsync(jsonSettings).ContinueWithOnMainThread(task =>
+            await FirebaseManager.dbRef.Child("users").Child(FirebaseManager.Instance.user.UserId).Child("settings").SetRawJsonValueAsync(jsonSettings).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompletedSuccessfully)
                 {
@@ -195,10 +195,10 @@ class Serialization
 
     public static async Task<bool> DownloadAccountData()
     {
-        DataSnapshot ratingsSnapshot = await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("ratings").GetValueAsync();
+        DataSnapshot ratingsSnapshot = await FirebaseManager.dbRef.Child("users").Child(FirebaseManager.Instance.user.UserId).Child("ratings").GetValueAsync();
         if (ratingsSnapshot.Exists)
         {
-            DataSnapshot settingsSnapshot = await FirebaseDatabaseManager.dbRef.Child("users").Child(FirebaseAuthManager.Instance.user.UserId).Child("settings").GetValueAsync();
+            DataSnapshot settingsSnapshot = await FirebaseManager.dbRef.Child("users").Child(FirebaseManager.Instance.user.UserId).Child("settings").GetValueAsync();
             if (settingsSnapshot.Exists)
             {
                 ReleaseRating.ratings = DeserializeObject<Dictionary<int, ReleaseRating>>(ratingsSnapshot.GetRawJsonValue());
