@@ -5105,6 +5105,12 @@
       "name": "Halsey",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 852,
+      "name": "Deftones",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -285322,6 +285328,267 @@
         {
           "name": "Ya'aburnee",
           "length": 188
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4174,
+      "artist": "Deftones",
+      "artistID": 852,
+      "name": "Around the Fur",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Nu Metal",
+        "Alternative Metal"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "1997.10.28",
+      "tracks": [
+        {
+          "name": "My Own Summer (Shove It)",
+          "length": 215
+        },
+        {
+          "name": "Lhabia",
+          "length": 251
+        },
+        {
+          "name": "Mascara",
+          "length": 225
+        },
+        {
+          "name": "Around the Fur",
+          "length": 212
+        },
+        {
+          "name": "Rickets",
+          "length": 163
+        },
+        {
+          "name": "Be Quiet and Drive (Far Away)",
+          "length": 308
+        },
+        {
+          "name": "Lotion",
+          "length": 238
+        },
+        {
+          "name": "Dai the Flu",
+          "length": 277
+        },
+        {
+          "name": "Headup",
+          "length": 313
+        },
+        {
+          "name": "MX",
+          "length": 289
+        },
+        {
+          "name": "Damone",
+          "length": 284
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4175,
+      "artist": "Deftones",
+      "artistID": 852,
+      "name": "White Pony",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Alternative Metal"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2000.06.20",
+      "tracks": [
+        {
+          "name": "Feiticeira",
+          "length": 189
+        },
+        {
+          "name": "Digital Bath",
+          "length": 255
+        },
+        {
+          "name": "Elite",
+          "length": 241
+        },
+        {
+          "name": "Rx Queen",
+          "length": 267
+        },
+        {
+          "name": "Street Carp",
+          "length": 161
+        },
+        {
+          "name": "Teenager",
+          "length": 200
+        },
+        {
+          "name": "Knife Prty",
+          "length": 289
+        },
+        {
+          "name": "Korea",
+          "length": 203
+        },
+        {
+          "name": "Passenger",
+          "length": 367
+        },
+        {
+          "name": "Change (In the House of Flies)",
+          "length": 299
+        },
+        {
+          "name": "Pink Maggit",
+          "length": 452
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4176,
+      "artist": "Deftones",
+      "artistID": 852,
+      "name": "Koi no yokan",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Alternative Metal"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2012.11.13",
+      "tracks": [
+        {
+          "name": "Swerve City",
+          "length": 164
+        },
+        {
+          "name": "Romantic Dreams",
+          "length": 278
+        },
+        {
+          "name": "Leathers",
+          "length": 248
+        },
+        {
+          "name": "Poltergeist",
+          "length": 211
+        },
+        {
+          "name": "Entombed",
+          "length": 299
+        },
+        {
+          "name": "Graphic Nature",
+          "length": 271
+        },
+        {
+          "name": "Tempest",
+          "length": 365
+        },
+        {
+          "name": "Gauze",
+          "length": 281
+        },
+        {
+          "name": "Rosemary",
+          "length": 413
+        },
+        {
+          "name": "Goon Squad",
+          "length": 340
+        },
+        {
+          "name": "What Happened to You?",
+          "length": 233
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4177,
+      "artist": "Deftones",
+      "artistID": 852,
+      "name": "private music",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Alternative Metal"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2025.08.22",
+      "tracks": [
+        {
+          "name": "My Mind Is a Mountain",
+          "length": 170
+        },
+        {
+          "name": "Locked Club",
+          "length": 172
+        },
+        {
+          "name": "Ecdysis",
+          "length": 208
+        },
+        {
+          "name": "Infinite Source",
+          "length": 212
+        },
+        {
+          "name": "Souvenir",
+          "length": 370
+        },
+        {
+          "name": "cXz",
+          "length": 192
+        },
+        {
+          "name": "I Think About You All the Time",
+          "length": 248
+        },
+        {
+          "name": "Milk of the Madonna",
+          "length": 248
+        },
+        {
+          "name": "Cut Hands",
+          "length": 181
+        },
+        {
+          "name": "~Metal Dream",
+          "length": 182
+        },
+        {
+          "name": "Departing the Body",
+          "length": 359
         }
       ],
       "discs": "",
