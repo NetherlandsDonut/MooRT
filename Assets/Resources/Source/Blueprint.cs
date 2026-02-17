@@ -4379,6 +4379,22 @@ public class Blueprint
                 SpawnDesktopBlueprint("LoggingIn");
                 FirebaseManager.Instance.Login(String.email.Value(), String.password.Value());
             });
+            AddButtonRegion(() =>
+            {
+                AddLine("Create new account", "", "Center");
+            },
+            (h) =>
+            {
+
+            });
+            AddButtonRegion(() =>
+            {
+                AddLine("Recover password", "", "Center");
+            },
+            (h) =>
+            {
+
+            });
             AddEmptyRegion();
             AddButtonRegion(() =>
             {
