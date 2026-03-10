@@ -5111,6 +5111,12 @@
       "name": "Deftones",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 853,
+      "name": "Geese",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -285589,6 +285595,72 @@
         {
           "name": "Departing the Body",
           "length": 359
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4178,
+      "artist": "Geese",
+      "artistID": 853,
+      "name": "Getting Killed",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Indie Rock",
+        "Art Rock"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2025.09.26",
+      "tracks": [
+        {
+          "name": "Trinidad",
+          "length": 224
+        },
+        {
+          "name": "Cobra",
+          "length": 185
+        },
+        {
+          "name": "Husbands",
+          "length": 248
+        },
+        {
+          "name": "Getting Killed",
+          "length": 284
+        },
+        {
+          "name": "Islands of Men",
+          "length": 354
+        },
+        {
+          "name": "100 Horses",
+          "length": 226
+        },
+        {
+          "name": "Half Real",
+          "length": 202
+        },
+        {
+          "name": "Au pays du cocaine",
+          "length": 210
+        },
+        {
+          "name": "Bow Down",
+          "length": 208
+        },
+        {
+          "name": "Taxes",
+          "length": 197
+        },
+        {
+          "name": "Long Island City Here I Come",
+          "length": 397
         }
       ],
       "discs": "",
