@@ -2874,11 +2874,12 @@ public class Blueprint
             });
             AddEmptyRegion();
             AddHeaderRegion(() => AddLine("Menu:"));
-            AddButtonRegion(() => AddLine("Update ratings on the server"), (h) =>
-            {
-                SpawnDesktopBlueprint("UploadingLocalFiles");
-                Serialization.UploadLocalFilesToLoggedAccount();
-            });
+            if (FirebaseManager.Instance.user != null)
+                AddButtonRegion(() => AddLine("Update ratings on the server"), (h) =>
+                {
+                    SpawnDesktopBlueprint("UploadingLocalFiles");
+                    Serialization.UploadLocalFilesToLoggedAccount();
+                });
             AddButtonRegion(() => AddLine("Exit"), (h) =>
             {
                 Serialization.Serialize(settings, "settings");

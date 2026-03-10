@@ -185,7 +185,7 @@ public class Desktop : MonoBehaviour
                     else
                     {
                         if (FirebaseManager.failedToAuth) SpawnDesktopBlueprint("FailedToAuth");
-                        else SpawnDesktopBlueprint("Login");
+                        else SpawnDesktopBlueprint("MusicReleases"); //SWAP TO LOGIN
                     }
                     CloseDesktop("LoadingScreen");
                 }
