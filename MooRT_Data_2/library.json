@@ -285665,6 +285665,79 @@
       ],
       "discs": "",
       "coverDescriptors": []
+    },
+    {
+      "ID": 4179,
+      "artist": "Harry Styles",
+      "artistID": 705,
+      "name": "Kiss All the Time. Disco, Occasionally.",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Dance-pop",
+        "Alt-pop",
+        "Synthpop",
+        "Alternative Dance",
+        "Indietronica"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2026.03.06",
+      "tracks": [
+        {
+          "name": "Aperture",
+          "length": 311
+        },
+        {
+          "name": "American Girls",
+          "length": 213
+        },
+        {
+          "name": "Ready, Steady, Go!",
+          "length": 160
+        },
+        {
+          "name": "Are You Listening Yet?",
+          "length": 192
+        },
+        {
+          "name": "Taste Back",
+          "length": 221
+        },
+        {
+          "name": "The Waiting Game",
+          "length": 169
+        },
+        {
+          "name": "Season 2 Weight Loss",
+          "length": 229
+        },
+        {
+          "name": "Coming Up Roses",
+          "length": 248
+        },
+        {
+          "name": "Pop",
+          "length": 216
+        },
+        {
+          "name": "Dance No More",
+          "length": 194
+        },
+        {
+          "name": "Paint by Numbers",
+          "length": 147
+        },
+        {
+          "name": "Carla's Song",
+          "length": 253
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
     }
   ]
 }
