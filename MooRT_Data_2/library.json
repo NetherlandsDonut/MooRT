@@ -5117,6 +5117,12 @@
       "name": "Geese",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 854,
+      "name": "Yves Tumor",
+      "pronoun": "they",
+      "country": "United States"
     }
   ],
   "originalReleases": [
@@ -285734,6 +285740,82 @@
         {
           "name": "Carla's Song",
           "length": 253
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4180,
+      "artist": "Yves Tumor",
+      "artistID": 854,
+      "name": "Praise a Lord Who Chews but Which Does Not Consume; (Or Simply, Hot Between Worlds)",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Neo-psychedelia",
+        "Post-punk",
+        "Art Rock",
+        "Noise Pop",
+        "Post-punk Revival",
+        "Dance-punk",
+        "Glam Rock",
+        "Dance-punk Revival"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2023.03.17",
+      "tracks": [
+        {
+          "name": "God Is a Circle",
+          "length": 212
+        },
+        {
+          "name": "Lovely Sewer",
+          "length": 195
+        },
+        {
+          "name": "Meteora Blues",
+          "length": 227
+        },
+        {
+          "name": "Interlude",
+          "length": 52
+        },
+        {
+          "name": "Parody",
+          "length": 186
+        },
+        {
+          "name": "Heaven Surrounds Us Like a Hood",
+          "length": 246
+        },
+        {
+          "name": "Operator",
+          "length": 196
+        },
+        {
+          "name": "In Spite of War",
+          "length": 151
+        },
+        {
+          "name": "Echolalia",
+          "length": 180
+        },
+        {
+          "name": "Fear Evil Like Fire",
+          "length": 210
+        },
+        {
+          "name": "Purified by the Fire",
+          "length": 193
+        },
+        {
+          "name": "Ebony Eye",
+          "length": 196
         }
       ],
       "discs": "",
