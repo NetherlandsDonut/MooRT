@@ -285820,6 +285820,61 @@
       ],
       "discs": "",
       "coverDescriptors": []
+    },
+    {
+      "ID": 4181,
+      "artist": "Neurosis",
+      "artistID": 541,
+      "name": "An Undying Love for a Burning World",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Atmospheric Sludge Metal",
+        "Post-rock",
+        "Doom Metal"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "2026.03.20",
+      "tracks": [
+        {
+          "name": "We Are Torn Wide Open",
+          "length": 52
+        },
+        {
+          "name": "Mirror Deep",
+          "length": 339
+        },
+        {
+          "name": "First Red Rays",
+          "length": 507
+        },
+        {
+          "name": "Blind",
+          "length": 545
+        },
+        {
+          "name": "Seething and Scattered",
+          "length": 493
+        },
+        {
+          "name": "Untethered",
+          "length": 242
+        },
+        {
+          "name": "In the Waiting Hours",
+          "length": 615
+        },
+        {
+          "name": "Last Light",
+          "length": 1017
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
     }
   ]
 }
