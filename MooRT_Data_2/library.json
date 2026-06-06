@@ -5123,6 +5123,18 @@
       "name": "Yves Tumor",
       "pronoun": "they",
       "country": "United States"
+    },
+    {
+      "ID": 855,
+      "name": "Bad Brains",
+      "pronoun": "they",
+      "country": "United States"
+    },
+    {
+      "ID": 856,
+      "name": "Hey",
+      "pronoun": "they",
+      "country": "Poland"
     }
   ],
   "originalReleases": [
@@ -285871,6 +285883,155 @@
         {
           "name": "Last Light",
           "length": 1017
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4182,
+      "artist": "Bad Brains",
+      "artistID": 855,
+      "name": "Black Dots",
+      "types": [
+        "Demo recording"
+      ],
+      "genres": [
+        "Hardcore Punk",
+        "Reggae"
+      ],
+      "languages": [
+        "English"
+      ],
+      "format": "digital",
+      "releaseDate": "1996.10.01",
+      "tracks": [
+        {
+          "name": "Don't Need It",
+          "length": 118
+        },
+        {
+          "name": "At the Atlantis",
+          "length": 118
+        },
+        {
+          "name": "Pay to Cum",
+          "length": 122
+        },
+        {
+          "name": "Supertouch / Shitfit",
+          "length": 182
+        },
+        {
+          "name": "Regulator",
+          "length": 88
+        },
+        {
+          "name": "You're a Migraine",
+          "length": 101
+        },
+        {
+          "name": "Don't Bother Me",
+          "length": 156
+        },
+        {
+          "name": "Banned in D.C.",
+          "length": 167
+        },
+        {
+          "name": "Why'd You Have to Go?",
+          "length": 175
+        },
+        {
+          "name": "The Man Won't Annoy Ya",
+          "length": 162
+        },
+        {
+          "name": "Redbone in the City",
+          "length": 126
+        },
+        {
+          "name": "Black Dots",
+          "length": 72
+        },
+        {
+          "name": "How Low Can a Punk Get?",
+          "length": 159
+        },
+        {
+          "name": "Just Another Damn Song",
+          "length": 117
+        },
+        {
+          "name": "Attitude",
+          "length": 99
+        },
+        {
+          "name": "Send You No Flowers",
+          "length": 112
+        }
+      ],
+      "discs": "",
+      "coverDescriptors": []
+    },
+    {
+      "ID": 4183,
+      "artist": "Hey",
+      "artistID": 856,
+      "name": "Miłość! Uwaga! Ratunku! Pomocy!",
+      "types": [
+        "Studio album"
+      ],
+      "genres": [
+        "Alternative Rock",
+        "Pop Rock",
+        "Art Pop"
+      ],
+      "languages": [
+        "Polish"
+      ],
+      "format": "digital",
+      "releaseDate": "2009.10.23",
+      "tracks": [
+        {
+          "name": "Vanitas",
+          "length": 199
+        },
+        {
+          "name": "Umieraj stąd",
+          "length": 224
+        },
+        {
+          "name": "Faza Delta",
+          "length": 259
+        },
+        {
+          "name": "Piersi ćwierć",
+          "length": 289
+        },
+        {
+          "name": "Chiński urzędnik państwowy",
+          "length": 267
+        },
+        {
+          "name": "Miłość! Uwaga! Ratunku! Pomocy!",
+          "length": 242
+        },
+        {
+          "name": "Stygnę",
+          "length": 311
+        },
+        {
+          "name": "Boję się o nas",
+          "length": 315
+        },
+        {
+          "name": "Kto tam? Kto jest w środku?",
+          "length": 195
+        },
+        {
+          "name": "Nie więcej...",
+          "length": 193
         }
       ],
       "discs": "",
